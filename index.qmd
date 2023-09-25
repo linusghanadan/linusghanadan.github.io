@@ -10,6 +10,9 @@ about:
       - text: GitHub
         icon: github
         href: https://github.com/linusghanadan/
+      - text: Instagram
+        icon: instagram
+        href: https://www.instagram.com/linusghanadan/
       - text: Email
         icon: envelope
         href: mailto:linusghanadan@ucsb.edu
