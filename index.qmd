@@ -1,5 +1,21 @@
 ---
-title: "linusghanadan.github.io"
+title: "Linus Ghanadan"
+about:
+    template: solana
+    image: website-photo.jpeg
+    links: 
+      - text: LinkedIn
+        href: https://www.linkedin.com/in/linus-ghanadan/
+        icon: linkedin
+      - text: GitHub
+        icon: github
+        href: https://github.com/linusghanadan/
+      - text: Email
+        icon: envelope
+        href: mailto:linusghanadan@ucsb.edu
 ---
 
-Hi, this is Linus!
+Hi, my name is Linus Ghanadan! Welcome to my website! Keep reading to learn more about what I'm up to!
+
+I'm currently pursuing a Master's degree in Environmental Data Science from the Bren School of Environmental Science & Management at the University of California, Santa Barbara. My career goal is to implement data-driven solutions that advance sustainability within the public and private sectors.
+
