@@ -15,10 +15,9 @@ about:
         href: https://www.instagram.com/linusghanadan/
       - text: Email
         icon: envelope
-        href: mailto:linusghanadan@ucsb.edu
+        href: mailto:linusghanadan@bren.ucsb.edu
 ---
 
-Hi, my name is Linus Ghanadan! Welcome to my website! Keep reading to learn more about what I'm up to!
+# Bio
 
 I'm currently pursuing a Master's degree in Environmental Data Science from the Bren School of Environmental Science & Management at the University of California, Santa Barbara. My career goal is to implement data-driven solutions that advance sustainability within the public and private sectors.
-
