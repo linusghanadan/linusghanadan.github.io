@@ -2,7 +2,7 @@
 title: "Linus Ghanadan"
 about:
     template: solana
-    image: linus-website-photo.jpeg
+    image: linus-website-photo.jpg
     links: 
       - text: Email
         icon: envelope
