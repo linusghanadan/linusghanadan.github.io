@@ -20,4 +20,4 @@ about:
 
 # Bio
 
-I'm currently pursuing a Master's degree in Environmental Data Science from the Bren School of Environmental Science & Management at the University of California, Santa Barbara. My career goal is to implement data-driven solutions that advance sustainability within the public and private sectors.
+I'm currently pursuing a Master's degree in Environmental Data Science from the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I finished my undergraduate studies in 2023, receiving a Bachelor of Science in Environmental Science & Policy from the University of Maryland. While at UMD, I also gained experiences working with the U.S. Department of Transportation, World Resources Institute, and The Nature Conservancy. Moving forward, my career goal is to implement data-driven solutions that advance sustainability within the public and private sectors.
