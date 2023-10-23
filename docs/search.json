@@ -5,5 +5,40 @@
     "title": "Linus Ghanadan",
     "section": "",
     "text": "Bio\nI’m currently pursuing a Master’s degree in Environmental Data Science from the Bren School of Environmental Science & Management at the University of California, Santa Barbara. I finished my undergraduate studies in 2023, receiving a Bachelor of Science in Environmental Science & Policy from the University of Maryland. While at UMD, I also gained experiences working with the U.S. Department of Transportation, World Resources Institute, and The Nature Conservancy. Moving forward, my career goal is to implement data-driven solutions that advance sustainability within the public and private sectors."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "My first blog post\n\n\n\n\n\n\n\nStatistics\n\n\n\n\nDescription of blog post\n\n\n\n\n\n\nOct 23, 2023\n\n\nLinus Ghanadan\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/2023-10-23-my-first-post/index.html",
+    "href": "blog/2023-10-23-my-first-post/index.html",
+    "title": "My first blog post",
+    "section": "",
+    "text": "Interesting insights here.1\nI want to cite something here (Csik 2022).\nI’m citing another resources here(Liu et al. 2023)."
+  },
+  {
+    "objectID": "blog/2023-10-23-my-first-post/index.html#first-section",
+    "href": "blog/2023-10-23-my-first-post/index.html#first-section",
+    "title": "My first blog post",
+    "section": "",
+    "text": "Interesting insights here.1\nI want to cite something here (Csik 2022).\nI’m citing another resources here(Liu et al. 2023)."
+  },
+  {
+    "objectID": "blog/2023-10-23-my-first-post/index.html#second-section",
+    "href": "blog/2023-10-23-my-first-post/index.html#second-section",
+    "title": "My first blog post",
+    "section": "Second section",
+    "text": "Second section\nIn conclusion, this is a blog.2"
+  },
+  {
+    "objectID": "blog/2023-10-23-my-first-post/index.html#footnotes",
+    "href": "blog/2023-10-23-my-first-post/index.html#footnotes",
+    "title": "My first blog post",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThis is a footnote↩︎\nThis is another footnote↩︎"
   }
 ]
