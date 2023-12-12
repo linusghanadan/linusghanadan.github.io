@@ -57,7 +57,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -201,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="about" class="level2">
 <h2 class="anchored" data-anchor-id="about">About</h2>
-<p>At an elevation of 14,505 feet above sea level, Mount Whitney is the tallest mountain in the contiguous United States. Located in the Sierra Nevada mountain range, Mount Whitney’s western slope and summit are located in Sequoia National Park, and the summit is also the southern terminus of the popular John Muir trail, which stretches over 200 miles from Yosemite Valley down to Mount Whitney. The eastern slope is part of the Inyo National Forest and is managed by the U.S. Forest Service.</p>
+<p>At an elevation of 14,505 feet above sea level, Mount Whitney is the tallest mountain in the contiguous United States <span class="citation" data-cites="sierra_nevada_geotourism_mt_2023">(<a href="#ref-sierra_nevada_geotourism_mt_2023" role="doc-biblioref">Sierra Nevada Geotourism 2023</a>)</span>. Located in the Sierra Nevada mountain range, Mount Whitney’s western slope and summit are located in Sequoia National Park, and the summit is also the southern terminus of the popular John Muir trail, which stretches over 200 miles from Yosemite Valley down to Mount Whitney. The eastern slope is part of the Inyo National Forest and is managed by the U.S. Forest Service.</p>
 </section>
 <section id="highlights-of-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="highlights-of-analysis">Highlights of analysis</h2>
@@ -217,8 +236,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <section id="usgs-land-cover-raster-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="usgs-land-cover-raster-dataset">USGS land cover raster dataset</h3>
-<p>The primary dataset that we will be working with comes from the 2011 National Terrestrial Ecosystems data, which was collected as part of the USGS Gap Analysis Project (GAP) by the U.S. Forest Service and Department of the Interior (2). For the purposes of this analysis, the full, nationwide dataset was pre-processed in Microsoft Planetary Computer to only include the area around Mount Whitney. With 30 meter by 30 meter pixel resolution, this raster dataset is a TIF file and contains numbers representing land cover classification.</p>
-<p>U.S. Geological Survey (USGS) Gap Analysis Project (GAP), 2016, GAP/LANDFIRE National Terrestrial Ecosystems 2011: U.S. Geological Survey data release, https://doi.org/10.5066/F7ZS2TM0.</p>
+<p>The primary dataset that we will be working with comes from the 2011 National Terrestrial Ecosystems data, which was collected as part of the USGS Gap Analysis Project (GAP) by the U.S. Forest Service and Department of the Interior <span class="citation" data-cites="us_geological_survey_gaplandfire_2016">(<a href="#ref-us_geological_survey_gaplandfire_2016" role="doc-biblioref">U.S. Geological Survey 2016</a>)</span>. For the purposes of this analysis, the full, nationwide dataset was pre-processed in Microsoft Planetary Computer to only include the area around Mount Whitney. With 30 meter by 30 meter pixel resolution, this raster dataset is a TIF file and contains numbers representing land cover classification.</p>
+<p>Citation: U.S. Geological Survey. 2016. “GAP/LANDFIRE National Terrestrial Ecosystems 2011.” <a href="https://doi.org/10.5066/F7ZS2TM0">https://doi.org/10.5066/F7ZS2TM0</a>.</p>
 <div class="cell" data-execution_count="11">
 <details>
 <summary>Code</summary>
@@ -234,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="usgs-land-cover-tabular-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="usgs-land-cover-tabular-dataset">USGS land cover tabular dataset</h3>
-<p>Our second dataset is also from the 2011 National Terrestrial Ecosystems data and helps us make sense of data in the raster dataset. This tabular dataset is a CSV file and has the land cover classification names associated with each code used in the raster dataset. This dataset was accessed from the same online source as the raster dataset.</p>
+<p>Our second dataset is also from the 2011 National Terrestrial Ecosystems data and helps us make sense of data in the raster dataset. This tabular dataset is a CSV file and has the land cover classification names associated with each code used in the raster dataset. This dataset was accessed from the same online source as the raster dataset <span class="citation" data-cites="us_geological_survey_gaplandfire_2016">(<a href="#ref-us_geological_survey_gaplandfire_2016" role="doc-biblioref">U.S. Geological Survey 2016</a>)</span>.</p>
 <div class="cell" data-execution_count="12">
 <details>
 <summary>Code</summary>
@@ -247,8 +266,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="shapefile-of-california-geographic-boundaries" class="level3">
 <h3 class="anchored" data-anchor-id="shapefile-of-california-geographic-boundaries">Shapefile of California geographic boundaries</h3>
-<p>The final dataset that we will be using is a shapefile of California geographic boundaries, included in the U.S. Census Bureau’s 2016 Topologically Integrated Geographic Encoding and Referencing (TIGER) database. We will use this shapefile to plot our basemap when visualizing our area of analysis.</p>
-<p>Citation</p>
+<p>The final dataset that we will be using is a shapefile of California geographic boundaries, included in the U.S. Census Bureau’s 2016 Topologically Integrated Geographic Encoding and Referencing (TIGER) database <span class="citation" data-cites="california_open_data_ca_2019">(<a href="#ref-california_open_data_ca_2019" role="doc-biblioref">California Open Data 2019</a>)</span>. We will use this shapefile to plot our basemap when visualizing our area of analysis.</p>
+<p>Citation: California Open Data. 2019. “CA State Boundary.” <a href="https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b">https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b</a>.</p>
 <div class="cell" data-execution_count="13">
 <details>
 <summary>Code</summary>
@@ -409,10 +428,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This map shows our area of land cover analysis in relation to Mount Whitney.</p>
 
 
+
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2023,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-california_open_data_ca_2019" class="csl-entry" role="listitem">
+California Open Data. 2019. <span>“<span>CA</span> <span>State</span> <span>Boundary</span>.”</span> <a href="https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b">https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b</a>.
+</div>
+<div id="ref-sierra_nevada_geotourism_mt_2023" class="csl-entry" role="listitem">
+Sierra Nevada Geotourism. 2023. <span>“Mt. <span>Whitney</span>, <span>Sequoia</span> <span>National</span> <span>Park</span> and <span>Inyo</span> <span>National</span> <span>Forest</span>.”</span> <a href="https://sierranevadageotourism.org/entries/mt-whitney-sequoia-national-park-and-inyo-national-forest/e04fe75a-25d7-4028-afe6-99319ecb1cac">https://sierranevadageotourism.org/entries/mt-whitney-sequoia-national-park-and-inyo-national-forest/e04fe75a-25d7-4028-afe6-99319ecb1cac</a>.
+</div>
+<div id="ref-us_geological_survey_gaplandfire_2016" class="csl-entry" role="listitem">
+U.S. Geological Survey. 2016. <span>“<span>GAP</span>/<span>LANDFIRE</span> <span>National</span> <span>Terrestrial</span> <span>Ecosystems</span> 2011.”</span> <a href="https://doi.org/10.5066/F7ZS2TM0">https://doi.org/10.5066/F7ZS2TM0</a>.
+</div>
+</div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2023,
   author = {Ghanadan, Linus},
   title = {Land {Cover} {Analysis} Around {Mount} {Whitney}},
   date = {2023-12-11},
