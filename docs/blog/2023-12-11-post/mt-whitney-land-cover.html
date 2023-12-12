@@ -210,7 +210,7 @@ div.csl-indent {
 </section>
 <section id="purpose" class="level2">
 <h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
-<p>In this analysis, we will use a raster dataset from the U.S. Geological Survey (USGS) to extract land cover statistics in a small region surrounding Mount Whitney in California. The numbers contained in the raster represent land cover classification, so we will also have to use an accompanying CSV file from USGS that tells us what classes of land cover correspond to these numbers. We will also be creating a simple map showing the area of analysis relative to Mount Whitney. An analysis of this kind has potential use for government agencies seeking to better understand land cover in a region.</p>
+<p>In this analysis, we will use a raster dataset from the U.S. Geological Survey (USGS) to extract land cover statistics in a small region surrounding Mount Whitney in California. We will also be creating a simple map showing the area of analysis relative to Mount Whitney. An analysis of this kind has potential use for government agencies seeking to better understand land cover in a region.</p>
 <p><img src="mount_whitney.jpeg" class="img-fluid"></p>
 <p><a href="https://commons.wikimedia.org/wiki/File:Thor_Peak,_Mount_Whitney.jpg">Penny Higgins</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a>, via Wikimedia Commons</p>
 </section>
@@ -233,7 +233,7 @@ div.csl-indent {
 <section id="usgs-land-cover-raster-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="usgs-land-cover-raster-dataset">USGS land cover raster dataset</h3>
 <p>The primary dataset that we will be working with comes from the 2011 National Terrestrial Ecosystems data, which was collected as part of the USGS Gap Analysis Project (GAP) by the U.S. Forest Service and Department of the Interior <span class="citation" data-cites="us_geological_survey_gaplandfire_2016">(<a href="#ref-us_geological_survey_gaplandfire_2016" role="doc-biblioref">U.S. Geological Survey 2016</a>)</span>. For the purposes of this analysis, the full, nationwide dataset was pre-processed in Microsoft Planetary Computer to only include the area around Mount Whitney. With 30 meter by 30 meter pixel resolution, this raster dataset is a TIF file and contains numbers representing land cover classification.</p>
-<p>Citation: U.S. Geological Survey. 2016. “GAP/LANDFIRE National Terrestrial Ecosystems 2011.” <a href="https://doi.org/10.5066/F7ZS2TM0">https://doi.org/10.5066/F7ZS2TM0</a>.</p>
+<p><strong>Data citation</strong>: U.S. Geological Survey. 2016. “GAP/LANDFIRE National Terrestrial Ecosystems 2011.” <a href="https://doi.org/10.5066/F7ZS2TM0">https://doi.org/10.5066/F7ZS2TM0</a>.</p>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -263,7 +263,7 @@ div.csl-indent {
 <section id="shapefile-of-california-geographic-boundaries" class="level3">
 <h3 class="anchored" data-anchor-id="shapefile-of-california-geographic-boundaries">Shapefile of California geographic boundaries</h3>
 <p>The final dataset that we will be using is a shapefile of California geographic boundaries, included in the U.S. Census Bureau’s 2016 Topologically Integrated Geographic Encoding and Referencing (TIGER) database <span class="citation" data-cites="california_open_data_ca_2019">(<a href="#ref-california_open_data_ca_2019" role="doc-biblioref">California Open Data 2019</a>)</span>. We will use this shapefile to plot our basemap when visualizing our area of analysis.</p>
-<p>Citation: California Open Data. 2019. “CA State Boundary.” <a href="https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b">https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b</a>.</p>
+<p><strong>Data citation</strong>: California Open Data. 2019. “CA State Boundary.” <a href="https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b">https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b</a>.</p>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
