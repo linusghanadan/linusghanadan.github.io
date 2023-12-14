@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2023-12-11">
 <meta name="description" content="This analysis uses Python to extract land cover statistics from a USGS raster dataset on land cover classification in the area surrounding Mount Whitney in California.">
 
-<title>Linus Ghanadan - Land Cover Analysis around Mount Whitney</title>
+<title>Linus Ghanadan - Land cover analysis around Mount Whitney</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,7 +160,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Land Cover Analysis around Mount Whitney</h1>
+      <h1 class="title">Land cover analysis around Mount Whitney</h1>
                   <div>
         <div class="description">
           This analysis uses Python to extract land cover statistics from a USGS raster dataset on land cover classification in the area surrounding Mount Whitney in California.
@@ -203,8 +203,6 @@ div.csl-indent {
 
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
 <section id="link-to-github-repository" class="level2">
 <h2 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/mt_whitney_land_cover">Link to GitHub repository</a></h2>
 </section>
@@ -228,12 +226,11 @@ div.csl-indent {
 <li>Creating map that shows area of land cover analysis relative to Mount Whitney with California boundaries as a basemap</li>
 </ul>
 </section>
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
-<section id="usgs-land-cover-raster-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="usgs-land-cover-raster-dataset">USGS land cover raster dataset</h3>
+<section id="read-in-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-data">1) Read in data</h2>
+<section id="usgs-land-cover-raster-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="usgs-land-cover-raster-dataset">USGS land cover raster dataset</h4>
 <p>The primary dataset that we will be working with comes from the 2011 National Terrestrial Ecosystems data, which was collected as part of the USGS Gap Analysis Project (GAP) by the U.S. Forest Service and Department of the Interior <span class="citation" data-cites="us_geological_survey_gaplandfire_2016">(<a href="#ref-us_geological_survey_gaplandfire_2016" role="doc-biblioref">U.S. Geological Survey 2016</a>)</span>. For the purposes of this analysis, the full, nationwide dataset was pre-processed in Microsoft Planetary Computer to only include the area around Mount Whitney. With 30 meter by 30 meter pixel resolution, this raster dataset is a TIF file and contains numbers representing land cover classification.</p>
-<p><strong>Data citation</strong>: U.S. Geological Survey. 2016. “GAP/LANDFIRE National Terrestrial Ecosystems 2011.” <a href="https://doi.org/10.5066/F7ZS2TM0">https://doi.org/10.5066/F7ZS2TM0</a>.</p>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -247,8 +244,8 @@ div.csl-indent {
 </details>
 </div>
 </section>
-<section id="usgs-land-cover-tabular-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="usgs-land-cover-tabular-dataset">USGS land cover tabular dataset</h3>
+<section id="usgs-land-cover-tabular-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="usgs-land-cover-tabular-dataset">USGS land cover tabular dataset</h4>
 <p>Our second dataset is also from the 2011 National Terrestrial Ecosystems data and helps us make sense of data in the raster dataset. This tabular dataset is a CSV file and has the land cover classification names associated with each code used in the raster dataset. This dataset was accessed from the same online source as the raster dataset <span class="citation" data-cites="us_geological_survey_gaplandfire_2016">(<a href="#ref-us_geological_survey_gaplandfire_2016" role="doc-biblioref">U.S. Geological Survey 2016</a>)</span>.</p>
 <div class="cell" data-execution_count="2">
 <details>
@@ -260,10 +257,9 @@ div.csl-indent {
 </details>
 </div>
 </section>
-<section id="shapefile-of-california-geographic-boundaries" class="level3">
-<h3 class="anchored" data-anchor-id="shapefile-of-california-geographic-boundaries">Shapefile of California geographic boundaries</h3>
+<section id="shapefile-of-california-geographic-boundaries" class="level4">
+<h4 class="anchored" data-anchor-id="shapefile-of-california-geographic-boundaries">Shapefile of California geographic boundaries</h4>
 <p>The final dataset that we will be using is a shapefile of California geographic boundaries, included in the U.S. Census Bureau’s 2016 Topologically Integrated Geographic Encoding and Referencing (TIGER) database <span class="citation" data-cites="california_open_data_ca_2019">(<a href="#ref-california_open_data_ca_2019" role="doc-biblioref">California Open Data 2019</a>)</span>. We will use this shapefile to plot our basemap when visualizing our area of analysis.</p>
-<p><strong>Data citation</strong>: California Open Data. 2019. “CA State Boundary.” <a href="https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b">https://data.ca.gov/dataset/ca-geographic-boundaries/resource/3db1e426-fb51-44f5-82d5-a54d7c6e188b</a>.</p>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
@@ -277,7 +273,7 @@ div.csl-indent {
 </section>
 </section>
 <section id="import-libraries-and-functions" class="level2">
-<h2 class="anchored" data-anchor-id="import-libraries-and-functions">Import libraries and functions</h2>
+<h2 class="anchored" data-anchor-id="import-libraries-and-functions">2) Import libraries and functions</h2>
 <p>We’ll start by importing all our necessary libraries and functions for our analysis. Some of these packages we already imported before reading in our data, but we will again include them here just to remind us of all the packages that we are using.</p>
 <div class="cell" data-execution_count="4">
 <details>
@@ -299,7 +295,7 @@ div.csl-indent {
 </div>
 </section>
 <section id="raster-reduction" class="level2">
-<h2 class="anchored" data-anchor-id="raster-reduction">Raster reduction</h2>
+<h2 class="anchored" data-anchor-id="raster-reduction">3) Raster reduction</h2>
 <p>Next, we reduce the size of the raster, which is stored in our Python environment as a <em>xarray.DataArray</em> named <code>lulc</code>. We want to remove these unnecessary raster componenets to simplify our Python environment, often helping our code run faster as well.</p>
 <div class="cell" data-execution_count="5">
 <details>
@@ -312,11 +308,8 @@ div.csl-indent {
 </details>
 </div>
 </section>
-</section>
-<section id="part-1-calculating-and-plotting-percent-area-of-land-cover-classes" class="level1">
-<h1>Part 1: Calculating and plotting percent area of land cover classes</h1>
 <section id="calculate-percent-area-of-land-cover-classes" class="level2">
-<h2 class="anchored" data-anchor-id="calculate-percent-area-of-land-cover-classes">Calculate percent area of land cover classes</h2>
+<h2 class="anchored" data-anchor-id="calculate-percent-area-of-land-cover-classes">4) Calculate percent area of land cover classes</h2>
 <p>Now that we are working with a reduced raster, we can move on to calculating percent area of the different land cover classes. To do this, we must extract the unique values contained in the <code>lulc</code> <em>xarray.DataArray</em>, in addition to the count of how many times each unique value appears in our raster. Since these codes correspond to land cover classes specified in our <code>class_names</code> <em>pandas.DataFrame</em>, we need to merge the extracted codes and counts with <code>class_names</code>, which requires storing our codes and counts as a <em>pandas.DataFrame</em>. Once we have this merged <em>pandas.DataFrame</em>, which we stored as <code>classes</code>, performing the actual calculation can be easily accomplished. We just use the count column in <code>classes</code> and size of <code>lulc</code> as object attributes.</p>
 <div class="cell" data-execution_count="6">
 <details>
@@ -336,7 +329,7 @@ div.csl-indent {
 </div>
 </section>
 <section id="create-horizontal-bar-plot" class="level2">
-<h2 class="anchored" data-anchor-id="create-horizontal-bar-plot">Create horizontal bar plot</h2>
+<h2 class="anchored" data-anchor-id="create-horizontal-bar-plot">5) Create horizontal bar plot</h2>
 <p>Next, we will our percent values with a horizontal bar plot, which shows us the percent for each land cover classification that takes up at least 1% of the area. We filter for just these land cover classes to reduce the amount of output, as it is likely irrelevant for an audience to see the percent for land cover classes that only take up a very small area. We also use the <code>sort_values</code> function, so we can plot our horizontal bars in ascending order, making our plot easier to interpret.</p>
 <div class="cell" data-execution_count="7">
 <details>
@@ -361,11 +354,8 @@ div.csl-indent {
 </div>
 <p>The horizontal bar plot shows the percent area of different land cover classes in the area around Mount Whitney. Of any one class, “Mediterrabean California Alpine Bedrock and Scree” takes up the most land, constituting just over 15% of the analysis area. “California Central Valley and Southern Coastal Grassland”, “Sierra Nevada Subalpine Lodgepole Pine Forest and Woodland”, and “Mediterranean California Mesic Mixed Conifer Forest and Woodland” each make up about 8-10% of the area. Seeveral other land cover classifications make up less than 8% of the area.</p>
 </section>
-</section>
-<section id="part-2-plotting-map-showing-area-of-land-cover-analysis-relative-to-mount-whitney" class="level1">
-<h1>Part 2: Plotting map showing area of land cover analysis relative to Mount Whitney</h1>
 <section id="create-geodataframes-for-area-of-analysis-and-mount-whitney" class="level2">
-<h2 class="anchored" data-anchor-id="create-geodataframes-for-area-of-analysis-and-mount-whitney">Create GeoDataFrames for area of analysis and Mount Whitney</h2>
+<h2 class="anchored" data-anchor-id="create-geodataframes-for-area-of-analysis-and-mount-whitney">6) Create GeoDataFrames for area of analysis and Mount Whitney</h2>
 <p>To better understand our area of analysis relative to Mount Whitney, we want to plot the geographic coordinates of <code>lulc</code> and a point for Mount Whitney on the same map. To do this, we first extract the bounding box of <code>lulc</code>, which gives us four coordinate points that make up a rectangle denoting the area analyzed from our raster. In this case, we know that our raster area was a square, which means that extracting the bounding box does not include additional area that was not part of the analysis. Next, we convert these points into a <em>shapely.Polygon</em>, which then allows us to create a <em>geopandas.GeoDataFrame</em> containing this polygon. Lastley, we make another <em>geopandas.GeoDataFrame</em> that just contains a single point for Mount Whitney. We know to provide the coordinates for Mount Whitney in the EPSG:4326 Coordinate Reference System because this is the same CRS that is set for the USGS data that we read in as <code>lulc</code>.</p>
 <div class="cell" data-execution_count="8">
 <details>
@@ -385,7 +375,7 @@ div.csl-indent {
 </div>
 </section>
 <section id="plot-map-showing-area-of-land-cover-analysis-relative-to-mount-whitney" class="level2">
-<h2 class="anchored" data-anchor-id="plot-map-showing-area-of-land-cover-analysis-relative-to-mount-whitney">Plot map showing area of land cover analysis relative to Mount Whitney</h2>
+<h2 class="anchored" data-anchor-id="plot-map-showing-area-of-land-cover-analysis-relative-to-mount-whitney">7) Plot map showing area of land cover analysis relative to Mount Whitney</h2>
 <p>After changing the CRS of <code>bbox</code> and <code>ca</code> to also match <code>lulc</code>, we can finally create our map showing the area of analysis relative to Mount Whitney!</p>
 <div class="cell" data-execution_count="9">
 <details>
@@ -426,7 +416,6 @@ div.csl-indent {
 
 
 </section>
-</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-california_open_data_ca_2019" class="csl-entry" role="listitem">
@@ -440,7 +429,7 @@ U.S. Geological Survey. 2016. <span>“<span>GAP</span>/<span>LANDFIRE</span> <s
 </div>
 </div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2023,
   author = {Ghanadan, Linus},
-  title = {Land {Cover} {Analysis} Around {Mount} {Whitney}},
+  title = {Land Cover Analysis Around {Mount} {Whitney}},
   date = {2023-12-11},
   url = {https://linusghanadan.github.io/blog/2023-12-11-post/mt-whitney-land-cover.html},
   langid = {en}
