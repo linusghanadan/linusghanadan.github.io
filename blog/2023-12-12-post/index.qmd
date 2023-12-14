@@ -76,17 +76,23 @@ for (url in excel_urls) {
   dfs[[file_name]] <- wq_data
 }
 
+```
+
+```{r}
 # Combine all data frames into a single data frame
-wq_data_combined <- do.call(rbind, dfs)
+wq_data_combined <- bind_rows(dfs)
+```
+
+```{r}
 
 # Wrangle data for relevant column variables, and filter for TN (total nitrogen)
 nitr_data <- wq_data_combined %>%
-  select("MonitoringLocation", "SampleDate", "Parameter", "MeasureValue", "Unit", "Latitude", "Longitude") %>% 
+  dplyr::select("MonitoringLocation", "SampleDate", "Parameter", "MeasureValue", "Unit", "Latitude", "Longitude") %>% 
   filter(Parameter=="TN")
 
 # Wrangle data for relevant column variables, and filter for TP (total phosphorus)
 phos_data <- wq_data_combined %>%
-  select("MonitoringLocation", "SampleDate", "Parameter", "MeasureValue", "Unit", "Latitude", "Longitude") %>% 
+  dplyr::select("MonitoringLocation", "SampleDate", "Parameter", "MeasureValue", "Unit", "Latitude", "Longitude") %>% 
   filter(Parameter=="TP")
 
 # Remove unnecessary data and values from environment
@@ -103,7 +109,6 @@ nitr_monthly_avgs_ts <- nitr_data %>%
 # Create data frame version, and convert year-months to Date class (helpful for plotting)
 nitr_monthly_avgs_df <- as.data.frame(nitr_monthly_avgs_ts)
 nitr_monthly_avgs_df$yr_mo <- as.Date(nitr_monthly_avgs_ts$yr_mo, format = "%Y-%m")
-
 ```
 
 ## Methods
@@ -222,6 +227,71 @@ ggplot(phos_monthly_avgs_df, aes(yr_mo)) +
   scale_color_manual(name = "", values = c("Monthly mean" = "black", "Seasonally adjusted monthly mean" = "cornflowerblue", "STL seasonality" = "seagreen", "STL trend" = "red"), breaks = c("Monthly mean", "Seasonally adjusted monthly mean", "STL seasonality", "STL trend")) +
   theme_bw() +
   theme(legend.position = "top", plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+# Run a regression
+nitr_season_reg <- lm(monthly_avg ~ season_year, data = nitr_decomp_yearly)
+
+# Inspect the results
+summary(nitr_season_reg)
+
+```
+
+```{r}
+# Run a regression
+phos_season_reg <- lm(monthly_avg ~ season_year, data = phos_decomp_yearly)
+
+# Inspect the results
+summary(phos_season_reg)
+```
+
+```{r}
+# Run a regression
+nitr_trend_reg <- lm(season_adjust ~ trend, data = nitr_decomp_yearly)
+
+# Inspect the results
+summary(nitr_trend_reg)
+```
+
+```{r}
+# Run a regression
+phos_trend_reg <- lm(season_adjust ~ trend, data = phos_decomp_yearly)
+
+# Inspect the results
+summary(phos_trend_reg)
+```
+
+```{r}
+# Run a regression
+nitr_rem_reg <- lm(season_adjust ~ remainder, data = nitr_decomp_yearly)
+
+# Inspect the results
+summary(nitr_rem_reg)
+```
+
+```{r}
+# Run a regression
+phos_rem_reg <- lm(season_adjust ~ remainder, data = phos_decomp_yearly)
+
+# Inspect the results
+summary(phos_rem_reg)
+```
+
+```{r}
+# Run a regression
+nitr_trend_est <- lm(trend ~ yr_mo, data = nitr_decomp_yearly)
+
+# Inspect the results
+summary(nitr_trend_est)
+```
+
+```{r}
+# Run a regression
+phos_trend_est <- lm(trend ~ yr_mo, data = phos_decomp_yearly)
+
+# Inspect the results
+summary(phos_trend_est)
 ```
 
 ## Conclusion
