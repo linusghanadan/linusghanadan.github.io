@@ -24,15 +24,15 @@ Since the 2010 introduction of TMDL requirements, what seasonal and non-seasonal
 
 ## Introduction
 
-In December 2010, the EPA took an unprecedented step in enacting federal policy specific to the Chesapeake Bay, the largest estuary in the United States \[\@\]. Specifically, the EPA established Total Maximum Daily Load (TMDL) requirements for the amount of nitrogen, phosphorus, and sediment that is allowed in the Bay. Nitrogen and phosphorus are the two pollutants primarily responsible for algal blooms, which cause marine dead zones through taking in dissolved oxygen and blocking sunlight. Sediment also contributes to dead zones by blocking sunlight, leading it to be included in the 2010 TMDL requirements.
+In December 2010, the EPA took an unprecedented step in enacting federal policy specific to the Chesapeake Bay, the largest estuary in the United States \[@us_environmental_protection_agency_chesapeake_2023\]. Specifically, the EPA established Total Maximum Daily Load (TMDL) requirements for the amount of nitrogen, phosphorus, and sediment that is allowed in the Bay. Nitrogen and phosphorus are the two pollutants primarily responsible for algal blooms, which cause marine dead zones through taking in dissolved oxygen and blocking sunlight. Sediment also contributes to dead zones by blocking sunlight, leading it to be included in the 2010 TMDL requirements.
 
-This analysis will focus on nitrogen and phosphorus, the two nutrient pollutants regulated under the 2010 TMDL requirements. A 2022 study found that agricultural runoff was the largest source of nutrient pollution, accounting for 48% of nitrogen and 27% of phosphorus in the Chesapeake Bay \[\@\]. Both of these pollutants also get to the Bay as a result of urban and suburban runoff, wastewater treatment plants releasing treated water, and natural sources (i.e., runoff from forests, wetlands, etc.). In addition, about 25% of nitrogen that ends up in the Bay comes from air pollution that is originally emitted to the atmosphere by sources such as cars and factories \[\@\]. Through a process called atmospheric deposition, these nitrogen compounds react with other chemicals to become nitrous oxides, which can be deposited back to Earth's surface through precipitation or as dry deposition.
+This analysis will focus on nitrogen and phosphorus, the two nutrient pollutants regulated under the 2010 TMDL requirements. A 2022 study found that agricultural runoff was the largest source of nutrient pollution, accounting for 48% of nitrogen and 27% of phosphorus in the Chesapeake Bay [@chesapeake_progress_2025_nodate]. Both of these pollutants also get to the Bay as a result of urban and suburban runoff, wastewater treatment plants releasing treated water, and natural sources (i.e., runoff from forests, wetlands, etc.). In addition, about 25% of nitrogen that ends up in the Bay comes from air pollution that is originally emitted to the atmosphere by sources such as cars and factories \[@burns_atmospheric_2021\]. Through a process called atmospheric deposition, these nitrogen compounds react with other chemicals to become nitrous oxides, which can be deposited back to Earth's surface through precipitation or as dry deposition.
 
 Through conducting a time series analysis of post-2010 nitrogen and phosphorus concentration measurements, my goal is to better understand how concentrations have changed since the introduction of TMDL requirements. I'm also interested in the nature of any seasonality and whether the three time series components (i.e., seasonal, trend, and random) are consistent across both nitrogen and phosphorus.
 
 ## Data
 
-Yearly water quality data on the Chesapeake Bay's tidal and non-tidal regions going back to 1984 is publicly available on the Chesapeake Bay Program DataHub. Data is organized into either Tier 1, 2, or 3 depending on how it was collected. While Tier 1 and 2 data can be collected by any interested group, Tier 3 data is collected by monitoring stations overseen by experienced professionals. Only Tier 3 data can be used for governmental regulatory assessments.
+Yearly water quality data on the Chesapeake Bay's tidal and non-tidal regions going back to 1984 is publicly available on the Chesapeake Bay Program DataHub [@chesapeake_bay_program_datahub_traditional_nodate]. Data is organized into either Tier 1, 2, or 3 depending on how it was collected. While Tier 1 and 2 data can be collected by any interested group, Tier 3 data is collected by monitoring stations overseen by experienced professionals. Only Tier 3 data can be used for governmental regulatory assessments.
 
 For my analysis, I will be using 2010 to 2019 Tier 3 data collected at 143 different monitoring stations positioned throughout the Chesapeake Bay tidal regions, which includes the mainstem Bay and tributary components. Across the 10 years that we are looking at, we'll have a total of 43,809 nitrogen observations and 43,590 phosphorus observations.
 
@@ -246,7 +246,7 @@ ggplot(phos_monthly_avgs_df, aes(yr_mo)) +
 
 Our plot for phosphorus further supports the idea that there is a slight downward trend over the ten years. If you independently trace the maximums or minimums, the line does seem to be moving downward at an oscillating but fairly consistent rate. Unlike nitrogen, phosphorus concentrations shoot up in the middle of the year around May, have a relatively flat peak lasting from June to August, and then shoot down at the end of Summer.
 
-#### Simple linear regression based on SLR
+#### Simple linear regressions based on STL model parameters
 
 ```{r}
 # Run regression of season component on monthly average nitrogen
@@ -266,15 +266,19 @@ summary(phos_season_reg)
 For phosphorus, adjusted R-squared of this regression is 0.76, confirming our idea that seasonality is more pronounced with phosphorus.
 
 ```{r}
-# JUST CALCULATE CONFIDENCE INTERVAL
+# Fit the linear regression model
 nitr_trend_reg <- lm(trend ~ yr_mo, data = nitr_decomp_yearly)
-summary(nitr_trend_reg)
+
+# Compute the confidence interval for the coefficient of yr_mo
+120 * confint(nitr_trend_reg, "yr_mo") / nitr_decomp_yearly$monthly_avg[1]
 ```
 
 ```{r}
-# JUST CALCULATE CONFIDENCE INTERVAL
+# Fit the linear regression model
 phos_trend_reg <- lm(trend ~ yr_mo, data = phos_decomp_yearly)
-summary(phos_trend_reg)
+
+# Compute the confidence interval for the coefficient of yr_mo
+120 * confint(phos_trend_reg, "yr_mo") / phos_decomp_yearly$monthly_avg[1]
 ```
 
 ## Conclusion

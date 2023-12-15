@@ -20,9 +20,9 @@ format:
 
 ## Purpose
 
-Marine aquaculture has the potential to be a substantial part of the solution to meeting the future demand for protein-rich food while simultaneously ensuring environmental sustainability (\@). Increases in the demand for seafood have already resulted in an industry shift from wild fisheries to terrestrial aquaculture, with farmed seafood products currently making up about 50% of global seafood supply. However, concerns about the sustainability of further expanding terrestrial aquaculture suggest that increasing the development of marine aquaculture farms might play an important role in a comprehensive solution.
+Marine aquaculture has the potential to be a substantial part of the solution to meeting the future demand for protein-rich food while simultaneously ensuring environmental sustainability \[@costello_future_2020\]. Increases in the demand for seafood have already resulted in an industry shift from wild fisheries to terrestrial aquaculture, with farmed seafood products currently making up about 50% of global seafood supply. However, concerns about the sustainability of further expanding terrestrial aquaculture suggest that increasing the development of marine aquaculture farms might play an important role in a comprehensive solution.
 
-Furthermore, the U.S. West Coast represents an area where such marine aquaculture expansion could take place. In fact, the State of Washington currently leads the nation in marine aquaculture development. From 2005 to 2018, Washington generated over \$200 million from these sea-based farms, about 40% of nationwide revenue during that same period [@].
+Furthermore, the U.S. West Coast represents an area where such marine aquaculture expansion could take place. In fact, the State of Washington currently leads the nation in marine aquaculture development. From 2005 to 2018, Washington generated over \$200 million from these sea-based farms, about 40% of nationwide revenue during that same period [@froehlich_piecing_2022].
 
 This analysis seeks to build on knowledge regarding the potential for marine aquaculture expansion in the four Exclusive Economic Zones (EEZs) adjacent to the U.S. West Coast. Using raster data on mean sea surface temperature and depth, I'll estimate the total and percent area within each of these four EEZs that would be suitable for oyster aquaculture. After visualizing oyster suitability, I'll create a generalized model that can be used for any species based on their ideal temperature and depth ranges.
 
@@ -48,7 +48,7 @@ library(spData)
 
 #### Sea surface temperature TIF files
 
-For temperature, we will use a stacked one kilometer grid cell raster that comes from data collected by the National Oceanic and Atmospheric Association. There are a total of five layers, one for each year from 2008 through 2012. The values in each grid cell correspond to the grid cell's mean sea surface temperature that year.
+For temperature, we will use a stacked one kilometer grid cell raster that comes from data collected by the National Oceanic and Atmospheric Association [@national_oceanic_and_atmospheric_association_noaa_daily_2018]. There are a total of five layers, one for each year from 2008 through 2012. The values in each grid cell correspond to the grid cell's mean sea surface temperature that year.
 
 ```{r}
 # Store list of SST tif files
@@ -84,7 +84,7 @@ mean_sst <- mean_sst - 273.15
 
 #### Bathymetry raster
 
-The bathymetry raster that we will be using characterizes ocean depth at a spatial resolution of one meter grid cells. We get this data from the General Bathymetric Chart of the Oceans (GEBCO).
+The bathymetry raster that we will be using characterizes ocean depth at a spatial resolution of one meter grid cells. We get this data from the General Bathymetric Chart of the Oceans [@general_bathymetric_chart_of_the_oceans_gebco_gridded_2023].
 
 ```{r}
 # Load bathymetry raster
@@ -97,7 +97,7 @@ depth <- resample(depth, mean_sst, method = "ngb")
 
 #### Shapefile for West Coast EEZs
 
-This data comes from Marine Regions, which is managed by the Flanders Marine Institute [@]\].
+This data comes from Marine Regions, which is managed by the Flanders Marine Institute [@marine_regions_eez_nodate].
 
 ```{r}
 # Load shapefile for West Coast EEZ
