@@ -1,0 +1,14 @@
+{
+  "hash": "0196bff85ddc5abd23ea8e6a5d8b154c",
+  "result": {
+    "markdown": "---\ntitle: \"Reproducible workflow to gauge suitability of species for U.S. West Coast marine aquaculture\"\ndescription: \"This analysis starts by assessing the suitability of oyster aquaculture in U.S. West Coast Exclusive Economic Zones. Then, a generalized model that provides total and percent area of suitability for any species based on input ranges of suitable temperature and depth.\"\nauthor: \n  - name: Linus Ghanadan\n    url: https://linusghanadan.github.io/\n    affiliation: MEDS\n    affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science\ndate: 12-12-2023\ncategories: [Geospatial Analysis]\ncitation:\n  url: https://linusghanadan.github.io/blog/2023-12-13-post/\ndraft: false\nformat:\n    html:\n        code-fold: true\n---\n\n\n## Purpose\n\nMarine aquaculture has the potential to be a substantial part of the solution to meeting the future demand for protein-rich food while simultaneously ensuring environmental sustainability (\\@). Increases in the demand for seafood have already resulted in an industry shift from wild fisheries to terrestrial aquaculture, with farmed seafood products currently making up about 50% of global seafood supply (\\@). However, concerns about the sustainability of further expanding terrestrial aquaculture suggest that increasing the development of marine aquaculture farms might play an important role in a comperhensive solution.\n\nFurthermore, the U.S. West Coast represents an area where such marine aquaculture expansion could take place. In fact, the State of Washington currently leads the nation in marine aquaculture development. From 2005 to 2018, Washington generated over \\$200 million from these sea-based farms, about 40% of nationwide revenue during that same period.\n\nThis analysis seeks to build on knowledge regarding the potential for marine aquaculture expansion in the four Exclusive Economic Zones (EEZs) adjacent to the U.S. West Coast. Using raster data on mean sea surface temperature and depth, I'll estimate the total and percent area within each of these four EEZs that would be suitable for oyster aquaculture. After visualizing oyster suitability, I'll create a generalized model that can be used for any species based on their ideal temperature and depth ranges.\n\n## Load required R packages\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Load required packages\nlibrary(sf)\nlibrary(terra)\nlibrary(here)\nlibrary(dplyr)\nlibrary(raster)\nlibrary(tmap)\nlibrary(spData)\n```\n:::\n\n\n## Read in data\n\n## Process data\n\n#### \n\n## Oyster suitability analysis\n\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n\n## Generalized suitability model\n\n## Conclusions\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
