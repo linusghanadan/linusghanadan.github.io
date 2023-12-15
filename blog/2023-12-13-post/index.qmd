@@ -52,7 +52,7 @@ For temperature, we will use a stacked one kilometer grid cell raster that comes
 
 ```{r}
 # Store list of SST tif files
-sst_files <- list.files(here("data"), pattern = "\\d\\.tif$", full.names = TRUE)
+sst_files <- list.files(here("data/2023-12-13-post-data"), pattern = "\\d\\.tif$", full.names = TRUE)
 
 # Store first raster to use as reference raster
 reference_raster <- raster(sst_files[1])
@@ -88,7 +88,7 @@ The bathymetry raster that we will be using characterizes ocean depth at a spati
 
 ```{r}
 # Load bathymetry raster
-depth <- raster(here("data", "depth.tif"))
+depth <- raster(here("data/2023-12-13-post-data/depth.tif"))
 
 # Resample the depth data to match the resolution of SST data
 depth <- resample(depth, mean_sst, method = "ngb")
@@ -101,12 +101,12 @@ This data comes from Marine Regions, which is managed by the Flanders Marine Ins
 
 ```{r}
 # Load shapefile for West Coast EEZ
-eez <- st_read(here("data/wc_regions_clean.shp"))
+eez <- st_read(here("data/2023-12-13-post-data/wc_regions_clean.shp"))
 ```
 
 ## Oyster suitability analysis
 
-Now that we have processed the data, we can move on to figuring out where oyster aquaculture is suitable in West Coast EEZs. Oysters generally reside in waters with a sea surface temperature of 11 to 30 degrees Celsius and at a depth of 0 to 70 meters below sea level. Thus, we will use these ranges to build a suitability mask raster and then crop to only include areas in West Coast EEZs.
+Now that we have processed the data, we can move on to figuring out where oyster aquaculture is suitable in West Coast EEZs. Oysters generally reside in waters with a sea surface temperature of 11 to 30 degrees Celsius and at a depth of 0 to 70 meters below sea level [@froese_fishbase_2023]. Thus, we will use these ranges to build a suitability mask raster and then crop to only include areas in West Coast EEZs.
 
 #### Create and crop suitability mask
 
@@ -133,7 +133,7 @@ oyster_mask <- crop(oyster_mask, eez)
 
 #### Create cell areas raster and EEZ raster
 
-Next, we calculate the total number of cells that are suitable. In this case, this is equivalent to the cell areas in meters squared, as the grid cell resolution is one meter by one meter. (do i even need to do first two steps here???)
+Next, we calculate the total number of cells that are suitable. In this case, this is equivalent to the cell areas in meters squared, as the grid cell resolution is one meter by one meter. We also convert the cell areas data and EEZ area data to raster form, so we can perform our calculation in the next step.
 
 ```{r}
 # Calculate total number of cells that are suitable
@@ -149,24 +149,25 @@ eez_raster <- rasterize(eez, oyster_mask)
 
 #### Calculate total and percent suitable area for each EEZ
 
+To calculate total and percent suitable area for each EEZ, we use the zonal() function from the raster package. This function allows us to calculate the sum of suitable grid cells within each EEZ, as our EEZ raster labels each grid cell as part of one of the five West Coast EEZs.
+
 ```{r}
 # Calculate total suitable area within each EEZ
-total_suitable_area <- zonal(cell_areas_raster, eez_raster, fun = sum, na.rm = TRUE)
+total_suitable_area <- raster::zonal(cell_areas_raster, eez_raster, fun = sum, na.rm = TRUE)
 
 # Calculate percentage of suitable area within each EEZ
 percent_suitable_area <- (total_suitable_area / eez$area_m2) * 100
-
-
-# Bind EEZ data with total area and percent calculations
-eez_joined <- cbind(eez, total_suitable_area, percent_suitable_area) %>%
-  mutate("Suitable area (km^2)" = value / 1000000) %>%
-  mutate("Percent suitable" = value.1) %>% 
-  dplyr::select(-value, -value.1, -zone, -zone.1)
 ```
 
 #### Visualize results
 
 ```{r}
+# Bind EEZ data with total area and percent calculations
+eez_joined <- cbind(eez, total_suitable_area, percent_suitable_area) %>%
+  mutate("Suitable area (km^2)" = value / 1000000) %>%
+  mutate("Percent suitable" = value.1) %>% 
+  dplyr::select(-value, -value.1, -zone, -zone.1)
+
 # Store polygons for U.S. West Coast States from spData package
 CA <- us_states %>%
   filter(NAME == "California")
@@ -306,15 +307,17 @@ suitable_aqua <- function(species, tempmin, tempmax, depthmin, depthmax) {
 
 #### Use function to analyze suitable area for Common carp
 
-Compared to oysters, the Common carp can handle slightly more extreme temperatures (3 to 35 degrees Celsius). However, unlike oysters who thrive in depths of up to 70 meters below sea level, the Common carp can only handle up to 29 meters. We can apply our generalized function to see what this means in term of how suitability differs for the Common carp.
+Compared to oysters, the Common carp can handle slightly more extreme temperatures (3 to 35 degrees Celsius) [@froese_fishbase_2023]. However, unlike oysters who thrive in depths of up to 70 meters below sea level, the Common carp can only handle up to 29 meters. We can apply our generalized function to see what this means in term of how suitability differs for the Common carp.
 
 ```{r}
 # Run function for Common carp species
 suitable_aqua("Common carp", tempmin=3, tempmax=35, depthmin=0, depthmax=29)
 ```
 
-The two maps are very similar in terms of how the different EEZs compare to each other, but a closer inspection of the legend values does show us that the Common carp has a consistently higher amount of suitable area. Hence, the slightly larger temperature range was more important for suitability than the narrower depth range.
+The two maps are very similar in terms of how the different EEZs compare to each other, but a closer inspection of the legend values does show us that the Common carp has a consistently higher amount of suitable area. Hence, the larger temperature range was more important for suitability than the narrower depth range.
 
 ## Conclusion
 
-The main takeaway from this analysis is that we were able to build a model that helps us better understand which West Coast EEZs are best suited for marine aquaculture of certain species. This being said, there are certainly limitations. Specifically, using a sea surface temperature raster with finer resolution would give us more precise estimates. In addition, this analysis did not look at where marine aquaculture currently exists on the West Coast. This model could be improved upon by subtracting areas that already being used for marine aquaculture.
+The main takeaway from this analysis is that we were able to build a model that helps us better understand which West Coast EEZs are best suited for marine aquaculture of certain species based on ideal ranges for sea surface temperature and depth. To demonstrate how this model could be used, this analysis looked at suitability for oysters and the Common carp. Specifically, our comparison showed that having a larger temperature range (3-35 degrees Celsius for carp compared to 11-30 degrees Celsius for oysters) was more important for suitability than having a narrower depth range (0-29 meters for carp compared to 0-70 meters for oysters).
+
+This being said, there are certainly limitations in using our model. For one, using a sea surface temperature raster with finer resolution would give us more precise estimates. In addition, this analysis did not look at where marine aquaculture currently exists on the West Coast. This model could be improved upon by subtracting areas that already being used for marine aquaculture. Lastly, a more robust model would look at more variables than just sea surface temperature and depth. Further analysis might include additional water variables with conditional ranges for different species, such as degree hardness (dH) and potential of hydrogen (pH).
