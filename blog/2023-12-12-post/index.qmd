@@ -185,12 +185,12 @@ For phosphorus, there is a very consistent marginal decline for each set of lags
 
 ```{r}
 # Conduct STL time series analysis for nitrogen with two-year seasons, and extract components
-nitr_decomp_yearly <- nitr_monthly_avgs_ts %>%
+nitr_decomp <- nitr_monthly_avgs_ts %>%
   fabletools::model(feasts::STL(monthly_avg, t.window = 24)) %>% 
   generics::components()
 
 # Plot STL time series analysis of nitrogen concentration
-autoplot(nitr_decomp_yearly) +
+autoplot(nitr_decomp) +
   labs(title = "STL Time Series Analysis of Nitrogen Concentration", x = "Year Month")
 ```
 
@@ -198,12 +198,12 @@ In this plot of the three STL components for nitrogen, it is still difficult to 
 
 ```{r}
 # Conduct STL time series analysis for phosphorus with two-year seasons, and extract components
-phos_decomp_yearly <- phos_monthly_avgs_ts %>%
+phos_decomp <- phos_monthly_avgs_ts %>%
   fabletools::model(feasts::STL(monthly_avg, t.window = 24)) %>% 
   generics::components()
 
 # Plot STL time series analysis
-autoplot(phos_decomp_yearly) +
+autoplot(phos_decomp) +
   labs(title = "STL Time Series Analysis of Phosphorus Concentration", x = "Year Month")
 
 ```
@@ -214,10 +214,10 @@ The STL plot for phosphorus does make it seem like there is a long-term downward
 # For nitrogen, plot monthly mean, seasonally adjusted monthly mean, STL seasonality, and STL trend
 ggplot(nitr_monthly_avgs_df, aes(yr_mo)) +
   scale_x_date(date_breaks = "1 year", date_minor_breaks = "6 months", date_labels = "%Y-%m") +
-  geom_line(aes(y=nitr_decomp_yearly$monthly_avg, color = "Monthly mean")) +
-  geom_line(aes(y=nitr_decomp_yearly$season_adjust, color = "Seasonally adjusted monthly mean"), linewidth=2) +
-  geom_line(aes(y=nitr_decomp_yearly$trend, color = "STL trend"), linewidth = 2) +
-  geom_line(aes(y=nitr_decomp_yearly$season_year, color = "STL seasonality")) +
+  geom_line(aes(y=nitr_decomp$monthly_avg, color = "Monthly mean")) +
+  geom_line(aes(y=nitr_decomp$season_adjust, color = "Seasonally adjusted monthly mean"), linewidth=2) +
+  geom_line(aes(y=nitr_decomp$trend, color = "STL trend"), linewidth = 2) +
+  geom_line(aes(y=nitr_decomp$season_year, color = "STL seasonality")) +
   labs(x = 'Year-Month',
        y = 'Concentration (mg/L)',
        title = "Nitrogen in Chesapeake Bay (2010-2019)") +
@@ -232,10 +232,10 @@ I decided to make this visualization to get a better idea of exactly how these c
 # For phosphorus, plot monthly mean, seasonally adjusted monthly mean, STL seasonality, and STL trend
 ggplot(phos_monthly_avgs_df, aes(yr_mo)) +
   scale_x_date(date_breaks = "1 year", date_minor_breaks = "6 months", date_labels = "%Y-%m") +
-  geom_line(aes(y=phos_decomp_yearly$monthly_avg, color = "Monthly mean")) +
-  geom_line(aes(y=phos_decomp_yearly$season_adjust, color = "Seasonally adjusted monthly mean"), linewidth=2) +
-  geom_line(aes(y=phos_decomp_yearly$trend, color = "STL trend"), linewidth = 2) +
-  geom_line(aes(y=phos_decomp_yearly$season_year, color = "STL seasonality")) +
+  geom_line(aes(y=phos_decomp$monthly_avg, color = "Monthly mean")) +
+  geom_line(aes(y=phos_decomp$season_adjust, color = "Seasonally adjusted monthly mean"), linewidth=2) +
+  geom_line(aes(y=phos_decomp$trend, color = "STL trend"), linewidth = 2) +
+  geom_line(aes(y=phos_decomp$season_year, color = "STL seasonality")) +
   labs(x = 'Year-Month',
        y = 'Concentration (mg/L)',
        title = "Phosphorus in Chesapeake Bay (2010-2019)") +
@@ -250,7 +250,7 @@ Our plot for phosphorus further supports the idea that there is a slight downwar
 
 ```{r}
 # Run regression of season component on monthly average nitrogen
-nitr_season_reg <- lm(monthly_avg ~ season_year, data = nitr_decomp_yearly)
+nitr_season_reg <- lm(monthly_avg ~ season_year, data = nitr_decomp)
 summary(nitr_season_reg)
 
 ```
@@ -259,7 +259,7 @@ Adjusted R-squared of 0.55 indicates that seasonal trends can explain a bit over
 
 ```{r}
 # Run regression of season component on monthly average phosphorus
-phos_season_reg <- lm(monthly_avg ~ season_year, data = phos_decomp_yearly)
+phos_season_reg <- lm(monthly_avg ~ season_year, data = phos_decomp)
 summary(phos_season_reg)
 ```
 
@@ -267,18 +267,18 @@ For phosphorus, adjusted R-squared of this regression is 0.76, confirming our id
 
 ```{r}
 # Fit the linear regression model
-nitr_trend_reg <- lm(trend ~ yr_mo, data = nitr_decomp_yearly)
+nitr_trend_reg <- lm(trend ~ yr_mo, data = nitr_decomp)
 
 # Compute the confidence interval for the coefficient of yr_mo
-120 * confint(nitr_trend_reg, "yr_mo") / nitr_decomp_yearly$monthly_avg[1]
+120 * confint(nitr_trend_reg, "yr_mo") / nitr_decomp$monthly_avg[1]
 ```
 
 ```{r}
 # Fit the linear regression model
-phos_trend_reg <- lm(trend ~ yr_mo, data = phos_decomp_yearly)
+phos_trend_reg <- lm(trend ~ yr_mo, data = phos_decomp)
 
 # Compute the confidence interval for the coefficient of yr_mo
-120 * confint(phos_trend_reg, "yr_mo") / phos_decomp_yearly$monthly_avg[1]
+120 * confint(phos_trend_reg, "yr_mo") / phos_decomp$monthly_avg[1]
 ```
 
 ## Conclusion
