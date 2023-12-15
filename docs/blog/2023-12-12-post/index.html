@@ -57,7 +57,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -199,14 +218,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In December 2010, the EPA took an unprecedented step in enacting federal policy specific to the Chesapeake Bay, the largest estuary in the United States [@]. Specifically, the EPA established Total Maximum Daily Load (TMDL) requirements for the amount of nitrogen, phosphorus, and sediment that is allowed in the Bay. Nitrogen and phosphorus are the two pollutants primarily responsible for algal blooms, which cause marine dead zones through taking in dissolved oxygen and blocking sunlight. Sediment also contributes to dead zones by blocking sunlight, leading it to be included in the 2010 TMDL requirements.</p>
-<p>This analysis will focus on nitrogen and phosphorus, the two nutrient pollutants regulated under the 2010 TMDL requirements. A 2022 study found that agricultural runoff was the largest source of nutrient pollution, accounting for 48% of nitrogen and 27% of phosphorus in the Chesapeake Bay [@]. Both of these pollutants also get to the Bay as a result of urban and suburban runoff, wastewater treatment plants releasing treated water, and natural sources (i.e., runoff from forests, wetlands, etc.). In addition, about 25% of nitrogen that ends up in the Bay comes from air pollution that is originally emitted to the atmosphere by sources such as cars and factories [@]. Through a process called atmospheric deposition, these nitrogen compounds react with other chemicals to become nitrous oxides, which can be deposited back to Earth’s surface through precipitation or as dry deposition.</p>
+<p>In December 2010, the EPA took an unprecedented step in enacting federal policy specific to the Chesapeake Bay, the largest estuary in the United States <span class="citation" data-cites="us_environmental_protection_agency_chesapeake_2023">(<a href="#ref-us_environmental_protection_agency_chesapeake_2023" role="doc-biblioref">U.S. Environmental Protection Agency 2023</a>)</span>. Specifically, the EPA established Total Maximum Daily Load (TMDL) requirements for the amount of nitrogen, phosphorus, and sediment that is allowed in the Bay. Nitrogen and phosphorus are the two pollutants primarily responsible for algal blooms, which cause marine dead zones through taking in dissolved oxygen and blocking sunlight. Sediment also contributes to dead zones by blocking sunlight, leading it to be included in the 2010 TMDL requirements.</p>
+<p>This analysis will focus on nitrogen and phosphorus, the two nutrient pollutants regulated under the 2010 TMDL requirements. A 2022 study found that agricultural runoff was the largest source of nutrient pollution, accounting for 48% of nitrogen and 27% of phosphorus in the Chesapeake Bay <span class="citation" data-cites="chesapeake_progress_2025_nodate">(<a href="#ref-chesapeake_progress_2025_nodate" role="doc-biblioref">Chesapeake Progress, n.d.</a>)</span>. Both of these pollutants also get to the Bay as a result of urban and suburban runoff, wastewater treatment plants releasing treated water, and natural sources (i.e., runoff from forests, wetlands, etc.). In addition, about 25% of nitrogen that ends up in the Bay comes from air pollution that is originally emitted to the atmosphere by sources such as cars and factories <span class="citation" data-cites="burns_atmospheric_2021">(<a href="#ref-burns_atmospheric_2021" role="doc-biblioref">Burns et al. 2021</a>)</span>. Through a process called atmospheric deposition, these nitrogen compounds react with other chemicals to become nitrous oxides, which can be deposited back to Earth’s surface through precipitation or as dry deposition.</p>
 <p>Through conducting a time series analysis of post-2010 nitrogen and phosphorus concentration measurements, my goal is to better understand how concentrations have changed since the introduction of TMDL requirements. I’m also interested in the nature of any seasonality and whether the three time series components (i.e., seasonal, trend, and random) are consistent across both nitrogen and phosphorus.</p>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>Yearly water quality data on the Chesapeake Bay’s tidal and non-tidal regions going back to 1984 is publicly available on the Chesapeake Bay Program’s DataHub. Data is organized into either Tier 1, 2, or 3 depending on how it was collected. While Tier 1 and 2 data can be collected by any interested group, Tier 3 data is collected by monitoring stations overseen by experienced professionals. Only Tier 3 data can be used for governmental regulatory assessments.</p>
-<p>For my analysis, I will be using 2010-2019 Tier 3 data collected at 143 different monitoring stations positioned throughout the Chesapeake Bay tidal regions, which includes the mainstem Bay and tributary components. Across the 10 years that I’m looking at, I will be using 43,809 observations of total nitrogen concentration and 43,590 observations of total phosphorus concentration.</p>
+<p>Yearly water quality data on the Chesapeake Bay’s tidal and non-tidal regions going back to 1984 is publicly available on the Chesapeake Bay Program DataHub <span class="citation" data-cites="chesapeake_bay_program_datahub_traditional_nodate">(<a href="#ref-chesapeake_bay_program_datahub_traditional_nodate" role="doc-biblioref">Chesapeake Bay Program DataHub, n.d.</a>)</span>. Data is organized into either Tier 1, 2, or 3 depending on how it was collected. While Tier 1 and 2 data can be collected by any interested group, Tier 3 data is collected by monitoring stations overseen by experienced professionals. Only Tier 3 data can be used for governmental regulatory assessments.</p>
+<p>For my analysis, I will be using 2010 to 2019 Tier 3 data collected at 143 different monitoring stations positioned throughout the Chesapeake Bay tidal regions, which includes the mainstem Bay and tributary components. Across the 10 years that we are looking at, we’ll have a total of 43,809 nitrogen observations and 43,590 phosphorus observations.</p>
+<p>Below, we import the R packages used in this analysis. Then, we read in the yearly water quality data using their CBP DataHub URL. We also process the data by creating separate data.frames for total nitrogen and phosphorus measurements.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -243,221 +263,220 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(url, <span class="at">destfile =</span> local_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  wq_data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(local_path, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  dfs[[file_name]] <span class="ot">&lt;-</span> wq_data</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all data frames into a single data frame</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>wq_data_combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(dfs)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data for relevant column variables, and filter for TN (total nitrogen)</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>nitr_data <span class="ot">&lt;-</span> wq_data_combined <span class="sc">%&gt;%</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"MonitoringLocation"</span>, <span class="st">"SampleDate"</span>, <span class="st">"Parameter"</span>, <span class="st">"MeasureValue"</span>, <span class="st">"Unit"</span>, <span class="st">"Latitude"</span>, <span class="st">"Longitude"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Parameter<span class="sc">==</span><span class="st">"TN"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data for relevant column variables, and filter for TP (total phosphorus)</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>phos_data <span class="ot">&lt;-</span> wq_data_combined <span class="sc">%&gt;%</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"MonitoringLocation"</span>, <span class="st">"SampleDate"</span>, <span class="st">"Parameter"</span>, <span class="st">"MeasureValue"</span>, <span class="st">"Unit"</span>, <span class="st">"Latitude"</span>, <span class="st">"Longitude"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Parameter<span class="sc">==</span><span class="st">"TP"</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove unnecessary data and values from environment</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(wq_data, wq_data_combined, dfs)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(excel_urls, file_name, local_path, temp_dir, url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</section>
+<section id="exploratory-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-analysis">Exploratory analysis</h2>
+<p>To get an idea of what is going on with the data, we’ll first calculate moving averages for each year-month, storing as both a tsibble and data.frame. We’ll plot these moving averages just to get a general idea of what types of trends we might be looking at.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all data frames into a single data frame</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wq_data_combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(dfs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute nitrogen monthly moving average, and store as tsibble</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_ts <span class="ot">&lt;-</span> nitr_data <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yr_mo =</span> tsibble<span class="sc">::</span><span class="fu">yearmonth</span>(SampleDate)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yr_mo) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">monthly_avg =</span> <span class="fu">mean</span>(MeasureValue, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  tsibble<span class="sc">::</span><span class="fu">as_tsibble</span>()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame version, and convert year-months to Date class (helpful for plotting)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(nitr_monthly_avgs_ts)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_df<span class="sc">$</span>yr_mo <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(nitr_monthly_avgs_ts<span class="sc">$</span>yr_mo, <span class="at">format =</span> <span class="st">"%Y-%m"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot monthly average nitrogen concentration as a function of year-month</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_df <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> yr_mo, <span class="at">y =</span> monthly_avg)) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">'line'</span>, <span class="at">fun =</span> <span class="st">'mean'</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Year-Month'</span>, <span class="at">y =</span> <span class="st">'Monthly Mean Concentration (mg/L)'</span>, <span class="at">title =</span> <span class="st">"Nitrogen in Chesapeake Bay (2010-2019)"</span>) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_minor_breaks =</span> <span class="st">"6 months"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<p>From this plot, there does appear to be a seasonal trend for nitrogen concentrations, but there is no clear non-seasonal trend. In addition, there is a notable spike in early 2014.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data for relevant column variables, and filter for TN (total nitrogen)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nitr_data <span class="ot">&lt;-</span> wq_data_combined <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"MonitoringLocation"</span>, <span class="st">"SampleDate"</span>, <span class="st">"Parameter"</span>, <span class="st">"MeasureValue"</span>, <span class="st">"Unit"</span>, <span class="st">"Latitude"</span>, <span class="st">"Longitude"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Parameter<span class="sc">==</span><span class="st">"TN"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data for relevant column variables, and filter for TP (total phosphorus)</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>phos_data <span class="ot">&lt;-</span> wq_data_combined <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"MonitoringLocation"</span>, <span class="st">"SampleDate"</span>, <span class="st">"Parameter"</span>, <span class="st">"MeasureValue"</span>, <span class="st">"Unit"</span>, <span class="st">"Latitude"</span>, <span class="st">"Longitude"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Parameter<span class="sc">==</span><span class="st">"TP"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove unnecessary data and values from environment</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(wq_data, wq_data_combined, dfs)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(excel_urls, file_name, local_path, temp_dir, url)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize nitrogen data by year-month, and store as tsibble</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_ts <span class="ot">&lt;-</span> nitr_data <span class="sc">%&gt;%</span> </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yr_mo =</span> tsibble<span class="sc">::</span><span class="fu">yearmonth</span>(SampleDate)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yr_mo) <span class="sc">%&gt;%</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">monthly_avg =</span> <span class="fu">mean</span>(MeasureValue, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  tsibble<span class="sc">::</span><span class="fu">as_tsibble</span>()</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame version, and convert year-months to Date class (helpful for plotting)</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(nitr_monthly_avgs_ts)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_df<span class="sc">$</span>yr_mo <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(nitr_monthly_avgs_ts<span class="sc">$</span>yr_mo, <span class="at">format =</span> <span class="st">"%Y-%m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute phosphorus monthly moving average, and store as tsibble</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>phos_monthly_avgs_ts <span class="ot">&lt;-</span> phos_data <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yr_mo =</span> tsibble<span class="sc">::</span><span class="fu">yearmonth</span>(SampleDate)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yr_mo) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">monthly_avg =</span> <span class="fu">mean</span>(MeasureValue, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  tsibble<span class="sc">::</span><span class="fu">as_tsibble</span>()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame version, and convert year-months to Date class (helpful for plotting)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>phos_monthly_avgs_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(phos_monthly_avgs_ts)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>phos_monthly_avgs_df<span class="sc">$</span>yr_mo <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(phos_monthly_avgs_ts<span class="sc">$</span>yr_mo, <span class="at">format =</span> <span class="st">"%Y-%m"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot monthly average phosphorus concentration as a function of year-month</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>phos_monthly_avgs_df <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> yr_mo, <span class="at">y =</span> monthly_avg)) <span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">'line'</span>, <span class="at">fun =</span> <span class="st">'mean'</span>) <span class="sc">+</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Year-Month'</span>, <span class="at">y =</span> <span class="st">'Monthly Mean Concentration (mg/L)'</span>, <span class="at">title =</span> <span class="st">"Phosphorus in Chesapeake Bay (2010-2019)"</span>) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_minor_breaks =</span> <span class="st">"6 months"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<p>Similar to the nitrogen plot, phosphorus also seems to exhibit a distinct seasonal trend. Again, it also is unclear whether there is non-seasonal trend.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<section id="moving-average" class="level4">
-<h4 class="anchored" data-anchor-id="moving-average">Moving average</h4>
-</section>
 <section id="autocorrelation-function" class="level4">
 <h4 class="anchored" data-anchor-id="autocorrelation-function">Autocorrelation function</h4>
+<p>The autocorrelation function calculates the correlation between the dependent variable at a given point in time and various time lags for this same variable. For us, the autocorrelation will provide us with a useful glimpse into the nature of the seasonality going on with nitrogen and phosphorus concentrations.</p>
 </section>
-<section id="seasonal-trend-decomposition-model-using-locally-estimated-scatterplot-smoothing-loess" class="level4">
-<h4 class="anchored" data-anchor-id="seasonal-trend-decomposition-model-using-locally-estimated-scatterplot-smoothing-loess">Seasonal-trend decomposition model using locally estimated scatterplot smoothing (LOESS)</h4>
+<section id="stl-decomposition" class="level4">
+<h4 class="anchored" data-anchor-id="stl-decomposition">STL decomposition</h4>
+<p>As a core part of this time series analysis, I’ll be constructing a seasonal-trend decomposition using locally estimated scatterplot smoothing (LOESS), which is often abbreviated as a STL decomposition model. STL allows us to separate our monthly average concentrations into three components: seasonal trend, non-seasonal trend, and remainder. Through plotting these components next to each other, we gain a more intuitive understanding on the underlying forces contributing to variation in our dependent variable, which in this case is the monthly average concentration.</p>
+<p>As opposed to other decomposition methods, one thing that is particular to STL models is the ability to specify the length of a season. It can be helpful to adjust this input depending on our desired level of smoothing for the non-seasonal trend. We will use our results from the autocorrelation function to inform our chosen length of seasons. The autocorrelation function is useful in this context because it can tell us after how many lags we see a drop-off in correlation, indicating there is a drop in the significance of the seasonal trend.</p>
 </section>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="autocorrelation-function-1" class="level4">
+<h4 class="anchored" data-anchor-id="autocorrelation-function-1">Autocorrelation function</h4>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute nitrogen monthly moving average, and store as tsibble</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_ts <span class="ot">&lt;-</span> nitr_data <span class="sc">%&gt;%</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yr_mo =</span> tsibble<span class="sc">::</span><span class="fu">yearmonth</span>(SampleDate)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yr_mo) <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">monthly_avg =</span> <span class="fu">mean</span>(MeasureValue, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  tsibble<span class="sc">::</span><span class="fu">as_tsibble</span>()</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame version, and convert year-months to Date class (helpful for plotting)</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(nitr_monthly_avgs_ts)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_df<span class="sc">$</span>yr_mo <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(nitr_monthly_avgs_ts<span class="sc">$</span>yr_mo, <span class="at">format =</span> <span class="st">"%Y-%m"</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot monthly average nitrogen concentration as a function of year-month</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>nitr_monthly_avgs_df <span class="sc">%&gt;%</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> yr_mo, <span class="at">y =</span> monthly_avg)) <span class="sc">+</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">'line'</span>, <span class="at">fun =</span> <span class="st">'mean'</span>) <span class="sc">+</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Year-Month'</span>, <span class="at">y =</span> <span class="st">'Monthly Mean Concentration (mg/L)'</span>, <span class="at">title =</span> <span class="st">"Nitrogen in Chesapeake Bay (2010-2019)"</span>) <span class="sc">+</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_minor_breaks =</span> <span class="st">"6 months"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot autocorrelation function for nitrogen with lags going back three years</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(nitr_monthly_avgs_ts, <span class="at">lag.max =</span> <span class="dv">36</span>, <span class="at">i=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Looking at this autocorrelation plot for nitrogen, I see that the <em>t-16</em> lag is significant at the alpha equals 0.05 level, indicated by the black line extending beyond the blue dashed line. Meanwhile, the <em>t-4</em> lag is not statistically significant. The rest of the lags remain the same or slightly decrease when comparing from the first and second year of lags. In the third year, there is a drop off in the <em>t-28</em> lag compared to <em>t-12</em>, and there continues to be what seems like a marginal decrease in correlation across most lags. Considering all of this, I decided to set the seasonality of my STL model for nitrogen to 24 months.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute phosphorus monthly moving average, and store as tsibble</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>phos_monthly_avgs_ts <span class="ot">&lt;-</span> phos_data <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yr_mo =</span> tsibble<span class="sc">::</span><span class="fu">yearmonth</span>(SampleDate)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yr_mo) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">monthly_avg =</span> <span class="fu">mean</span>(MeasureValue, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  tsibble<span class="sc">::</span><span class="fu">as_tsibble</span>()</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame version, and convert year-months to Date class (helpful for plotting)</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>phos_monthly_avgs_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(phos_monthly_avgs_ts)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>phos_monthly_avgs_df<span class="sc">$</span>yr_mo <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(phos_monthly_avgs_ts<span class="sc">$</span>yr_mo, <span class="at">format =</span> <span class="st">"%Y-%m"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot monthly average phosphorus concentration as a function of year-month</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>phos_monthly_avgs_df <span class="sc">%&gt;%</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> yr_mo, <span class="at">y =</span> monthly_avg)) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">'line'</span>, <span class="at">fun =</span> <span class="st">'mean'</span>) <span class="sc">+</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Year-Month'</span>, <span class="at">y =</span> <span class="st">'Monthly Mean Concentration (mg/L)'</span>, <span class="at">title =</span> <span class="st">"Phosphorus in Chesapeake Bay (2010-2019)"</span>) <span class="sc">+</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_minor_breaks =</span> <span class="st">"6 months"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot autocorrelation function for phosphorus with lags going back three years</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(phos_monthly_avgs_ts, <span class="at">lag.max =</span> <span class="dv">36</span>, <span class="at">i =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>For phosphorus, there is a very consistent marginal decline for each set of lags over the course of the three years. This is good news for our STL because it means that the seasonal trend will be easier to separate from the non-seasonal trend. Like I did with nitrogen, I’m also going to use two-year seasons for phosphorus. Similar to the case with nitrogen, it seems to me like the drop-off in lag correlations from year two to year three is a bit larger than from year one to year two. This suggests that a two-year seasonal cycle will give us an informative nonseasonal-trend component that is neither too eager nor too hesitant to categorize differences as trends.</p>
+</section>
+<section id="stl-decomposition-1" class="level4">
+<h4 class="anchored" data-anchor-id="stl-decomposition-1">STL decomposition</h4>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot autocorrelation function for nitrogen with lags going back three years</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(nitr_monthly_avgs_ts, <span class="at">lag.max =</span> <span class="dv">36</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct STL time series analysis for nitrogen with two-year seasons, and extract components</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nitr_decomp <span class="ot">&lt;-</span> nitr_monthly_avgs_ts <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  fabletools<span class="sc">::</span><span class="fu">model</span>(feasts<span class="sc">::</span><span class="fu">STL</span>(monthly_avg, <span class="at">t.window =</span> <span class="dv">24</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  generics<span class="sc">::</span><span class="fu">components</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot STL time series analysis of nitrogen concentration</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(nitr_decomp) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"STL Time Series Analysis of Nitrogen Concentration"</span>, <span class="at">x =</span> <span class="st">"Year Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>In this plot of the three STL components for nitrogen, it is still difficult to see a long-term trend, despite the line being fairly smooth. There does seem to be a slight downward trend until around 2018 things really begin increasing. In addition the grey bars on the left all represent the same range, implying that the remainder components contributed the most to nitrogen concentration. However, this seems to be very influenced by the high spike in 2014.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot autocorrelation function for phosphorus with lags going back three years</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(phos_monthly_avgs_ts, <span class="at">lag.max =</span> <span class="dv">36</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct STL time series analysis for phosphorus with two-year seasons, and extract components</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>phos_decomp <span class="ot">&lt;-</span> phos_monthly_avgs_ts <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  fabletools<span class="sc">::</span><span class="fu">model</span>(feasts<span class="sc">::</span><span class="fu">STL</span>(monthly_avg, <span class="at">t.window =</span> <span class="dv">24</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  generics<span class="sc">::</span><span class="fu">components</span>()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot STL time series analysis</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(phos_decomp) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"STL Time Series Analysis of Phosphorus Concentration"</span>, <span class="at">x =</span> <span class="st">"Year Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The STL plot for phosphorus does make it seem like there is a long-term downward trend, but it is difficult to tell how significant it is because of the long grey bar, which indicates it is least influential of the three components. In this case, the grey bars show us that seasonality contributes the most to the variation in phosphorus concentration.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct STL time series analysis for nitrogen with two-year seasons, and extract components</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>nitr_decomp_yearly <span class="ot">&lt;-</span> nitr_monthly_avgs_ts <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  fabletools<span class="sc">::</span><span class="fu">model</span>(feasts<span class="sc">::</span><span class="fu">STL</span>(monthly_avg, <span class="at">t.window =</span> <span class="dv">24</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  generics<span class="sc">::</span><span class="fu">components</span>()</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot STL time series analysis of nitrogen concentration</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(nitr_decomp_yearly) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"STL Time Series Analysis of Nitrogen Concentration"</span>, <span class="at">x =</span> <span class="st">"Year Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For nitrogen, plot monthly mean, seasonally adjusted monthly mean, STL seasonality, and STL trend</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nitr_monthly_avgs_df, <span class="fu">aes</span>(yr_mo)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_minor_breaks =</span> <span class="st">"6 months"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>nitr_decomp<span class="sc">$</span>monthly_avg, <span class="at">color =</span> <span class="st">"Monthly mean"</span>)) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>nitr_decomp<span class="sc">$</span>season_adjust, <span class="at">color =</span> <span class="st">"Seasonally adjusted monthly mean"</span>), <span class="at">linewidth=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>nitr_decomp<span class="sc">$</span>trend, <span class="at">color =</span> <span class="st">"STL trend"</span>), <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>nitr_decomp<span class="sc">$</span>season_year, <span class="at">color =</span> <span class="st">"STL seasonality"</span>)) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Year-Month'</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">'Concentration (mg/L)'</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Nitrogen in Chesapeake Bay (2010-2019)"</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">""</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Monthly mean"</span> <span class="ot">=</span> <span class="st">"black"</span>, <span class="st">"Seasonally adjusted monthly mean"</span> <span class="ot">=</span> <span class="st">"cornflowerblue"</span>, <span class="st">"STL seasonality"</span> <span class="ot">=</span> <span class="st">"seagreen"</span>, <span class="st">"STL trend"</span> <span class="ot">=</span> <span class="st">"red"</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Monthly mean"</span>, <span class="st">"Seasonally adjusted monthly mean"</span>, <span class="st">"STL seasonality"</span>, <span class="st">"STL trend"</span>)) <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>I decided to make this visualization to get a better idea of exactly how these components map on to each other. This plot seems to confirm the idea of negligible trend for nitrogen. Since the x-axis is labeled for each year here, it is also easier to see the seasonal trend. Each year, nitrogen concentrations increase sharply around December. They then peak around February to March, before decreasing substantially and reaching their minimum around July.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct STL time series analysis for phosphorus with two-year seasons, and extract components</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>phos_decomp_yearly <span class="ot">&lt;-</span> phos_monthly_avgs_ts <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  fabletools<span class="sc">::</span><span class="fu">model</span>(feasts<span class="sc">::</span><span class="fu">STL</span>(monthly_avg, <span class="at">t.window =</span> <span class="dv">24</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  generics<span class="sc">::</span><span class="fu">components</span>()</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot STL time series analysis</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(phos_decomp_yearly) <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"STL Time Series Analysis of Phosphorus Concentration"</span>, <span class="at">x =</span> <span class="st">"Year Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For phosphorus, plot monthly mean, seasonally adjusted monthly mean, STL seasonality, and STL trend</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(phos_monthly_avgs_df, <span class="fu">aes</span>(yr_mo)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_minor_breaks =</span> <span class="st">"6 months"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>phos_decomp<span class="sc">$</span>monthly_avg, <span class="at">color =</span> <span class="st">"Monthly mean"</span>)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>phos_decomp<span class="sc">$</span>season_adjust, <span class="at">color =</span> <span class="st">"Seasonally adjusted monthly mean"</span>), <span class="at">linewidth=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>phos_decomp<span class="sc">$</span>trend, <span class="at">color =</span> <span class="st">"STL trend"</span>), <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>phos_decomp<span class="sc">$</span>season_year, <span class="at">color =</span> <span class="st">"STL seasonality"</span>)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Year-Month'</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">'Concentration (mg/L)'</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Phosphorus in Chesapeake Bay (2010-2019)"</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">""</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Monthly mean"</span> <span class="ot">=</span> <span class="st">"black"</span>, <span class="st">"Seasonally adjusted monthly mean"</span> <span class="ot">=</span> <span class="st">"cornflowerblue"</span>, <span class="st">"STL seasonality"</span> <span class="ot">=</span> <span class="st">"seagreen"</span>, <span class="st">"STL trend"</span> <span class="ot">=</span> <span class="st">"red"</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Monthly mean"</span>, <span class="st">"Seasonally adjusted monthly mean"</span>, <span class="st">"STL seasonality"</span>, <span class="st">"STL trend"</span>)) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Our plot for phosphorus further supports the idea that there is a slight downward trend over the ten years. If you independently trace the maximums or minimums, the line does seem to be moving downward at an oscillating but fairly consistent rate. Unlike nitrogen, phosphorus concentrations shoot up in the middle of the year around May, have a relatively flat peak lasting from June to August, and then shoot down at the end of Summer.</p>
+</section>
+<section id="simple-linear-regressions-based-on-stl-model-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="simple-linear-regressions-based-on-stl-model-parameters">Simple linear regressions based on STL model parameters</h4>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For nitrogen, plot monthly mean, seasonally adjusted monthly mean, STL seasonality, and STL trend</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nitr_monthly_avgs_df, <span class="fu">aes</span>(yr_mo)) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_minor_breaks =</span> <span class="st">"6 months"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>nitr_decomp_yearly<span class="sc">$</span>monthly_avg, <span class="at">color =</span> <span class="st">"Monthly mean"</span>)) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>nitr_decomp_yearly<span class="sc">$</span>season_adjust, <span class="at">color =</span> <span class="st">"Seasonally adjusted monthly mean"</span>), <span class="at">linewidth=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>nitr_decomp_yearly<span class="sc">$</span>trend, <span class="at">color =</span> <span class="st">"STL trend"</span>), <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>nitr_decomp_yearly<span class="sc">$</span>season_year, <span class="at">color =</span> <span class="st">"STL seasonality"</span>)) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Year-Month'</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">'Concentration (mg/L)'</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Nitrogen in Chesapeake Bay (2010-2019)"</span>) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">""</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Monthly mean"</span> <span class="ot">=</span> <span class="st">"black"</span>, <span class="st">"Seasonally adjusted monthly mean"</span> <span class="ot">=</span> <span class="st">"cornflowerblue"</span>, <span class="st">"STL seasonality"</span> <span class="ot">=</span> <span class="st">"seagreen"</span>, <span class="st">"STL trend"</span> <span class="ot">=</span> <span class="st">"red"</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Monthly mean"</span>, <span class="st">"Seasonally adjusted monthly mean"</span>, <span class="st">"STL seasonality"</span>, <span class="st">"STL trend"</span>)) <span class="sc">+</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For phosphorus, plot monthly mean, seasonally adjusted monthly mean, STL seasonality, and STL trend</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(phos_monthly_avgs_df, <span class="fu">aes</span>(yr_mo)) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_minor_breaks =</span> <span class="st">"6 months"</span>, <span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>phos_decomp_yearly<span class="sc">$</span>monthly_avg, <span class="at">color =</span> <span class="st">"Monthly mean"</span>)) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>phos_decomp_yearly<span class="sc">$</span>season_adjust, <span class="at">color =</span> <span class="st">"Seasonally adjusted monthly mean"</span>), <span class="at">linewidth=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>phos_decomp_yearly<span class="sc">$</span>trend, <span class="at">color =</span> <span class="st">"STL trend"</span>), <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>phos_decomp_yearly<span class="sc">$</span>season_year, <span class="at">color =</span> <span class="st">"STL seasonality"</span>)) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Year-Month'</span>,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">'Concentration (mg/L)'</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Phosphorus in Chesapeake Bay (2010-2019)"</span>) <span class="sc">+</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">""</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Monthly mean"</span> <span class="ot">=</span> <span class="st">"black"</span>, <span class="st">"Seasonally adjusted monthly mean"</span> <span class="ot">=</span> <span class="st">"cornflowerblue"</span>, <span class="st">"STL seasonality"</span> <span class="ot">=</span> <span class="st">"seagreen"</span>, <span class="st">"STL trend"</span> <span class="ot">=</span> <span class="st">"red"</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Monthly mean"</span>, <span class="st">"Seasonally adjusted monthly mean"</span>, <span class="st">"STL seasonality"</span>, <span class="st">"STL trend"</span>)) <span class="sc">+</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a regression</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nitr_season_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(monthly_avg <span class="sc">~</span> season_year, <span class="at">data =</span> nitr_decomp_yearly)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the results</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nitr_season_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of season component on monthly average nitrogen</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nitr_season_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(monthly_avg <span class="sc">~</span> season_year, <span class="at">data =</span> nitr_decomp)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nitr_season_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = monthly_avg ~ season_year, data = nitr_decomp_yearly)
+lm(formula = monthly_avg ~ season_year, data = nitr_decomp)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
@@ -475,19 +494,18 @@ Multiple R-squared:  0.5513,    Adjusted R-squared:  0.5475
 F-statistic:   145 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
+<p>Adjusted R-squared of 0.55 indicates that seasonal trends can explain a bit over half (55%) of the variation in nitrogen monthly mean.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a regression</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>phos_season_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(monthly_avg <span class="sc">~</span> season_year, <span class="at">data =</span> phos_decomp_yearly)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the results</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(phos_season_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of season component on monthly average phosphorus</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>phos_season_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(monthly_avg <span class="sc">~</span> season_year, <span class="at">data =</span> phos_decomp)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(phos_season_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = monthly_avg ~ season_year, data = phos_decomp_yearly)
+lm(formula = monthly_avg ~ season_year, data = phos_decomp)
 
 Residuals:
        Min         1Q     Median         3Q        Max 
@@ -505,139 +523,18 @@ Multiple R-squared:  0.7587,    Adjusted R-squared:  0.7567
 F-statistic: 371.1 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
+<p>For phosphorus, adjusted R-squared of this regression is 0.76, confirming our idea that seasonality is more pronounced with phosphorus.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a regression</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>nitr_trend_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(season_adjust <span class="sc">~</span> trend, <span class="at">data =</span> nitr_decomp_yearly)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the results</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nitr_trend_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of year-month on trend component for nitrogen</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>nitr_trend_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(trend <span class="sc">~</span> yr_mo, <span class="at">data =</span> nitr_decomp)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nitr_trend_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = season_adjust ~ trend, data = nitr_decomp_yearly)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.23711 -0.06182 -0.00003  0.04863  0.42548 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  -0.3337     0.1177  -2.834  0.00541 ** 
-trend         1.3731     0.1310  10.478  &lt; 2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.08117 on 118 degrees of freedom
-Multiple R-squared:  0.482, Adjusted R-squared:  0.4776 
-F-statistic: 109.8 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a regression</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>phos_trend_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(season_adjust <span class="sc">~</span> trend, <span class="at">data =</span> phos_decomp_yearly)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the results</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(phos_trend_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = season_adjust ~ trend, data = phos_decomp_yearly)
-
-Residuals:
-       Min         1Q     Median         3Q        Max 
--0.0094940 -0.0030672 -0.0005091  0.0028284  0.0122709 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -0.008829   0.007288  -1.212    0.228    
-trend        1.157817   0.128921   8.981 5.11e-15 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.004259 on 118 degrees of freedom
-Multiple R-squared:  0.406, Adjusted R-squared:  0.401 
-F-statistic: 80.66 on 1 and 118 DF,  p-value: 5.115e-15</code></pre>
-</div>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a regression</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nitr_rem_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(season_adjust <span class="sc">~</span> remainder, <span class="at">data =</span> nitr_decomp_yearly)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the results</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nitr_rem_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = season_adjust ~ remainder, data = nitr_decomp_yearly)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.10433 -0.05031  0.01394  0.03938  0.09735 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 0.896582   0.005036  178.05   &lt;2e-16 ***
-remainder   1.172299   0.060511   19.37   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.05516 on 118 degrees of freedom
-Multiple R-squared:  0.7608,    Adjusted R-squared:  0.7588 
-F-statistic: 375.3 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a regression</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>phos_rem_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(season_adjust <span class="sc">~</span> remainder, <span class="at">data =</span> phos_decomp_yearly)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the results</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(phos_rem_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = season_adjust ~ remainder, data = phos_decomp_yearly)
-
-Residuals:
-       Min         1Q     Median         3Q        Max 
--0.0098639 -0.0020605 -0.0002014  0.0022335  0.0048012 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 0.0564406  0.0002759  204.57   &lt;2e-16 ***
-remainder   1.0794588  0.0649103   16.63   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.003022 on 118 degrees of freedom
-Multiple R-squared:  0.7009,    Adjusted R-squared:  0.6984 
-F-statistic: 276.6 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a regression</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>nitr_trend_est <span class="ot">&lt;-</span> <span class="fu">lm</span>(trend <span class="sc">~</span> yr_mo, <span class="at">data =</span> nitr_decomp_yearly)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the results</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nitr_trend_est)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = trend ~ yr_mo, data = nitr_decomp_yearly)
+lm(formula = trend ~ yr_mo, data = nitr_decomp)
 
 Residuals:
       Min        1Q    Median        3Q       Max 
@@ -654,20 +551,39 @@ Residual standard error: 0.05514 on 118 degrees of freedom
 Multiple R-squared:  0.0648,    Adjusted R-squared:  0.05687 
 F-statistic: 8.176 on 1 and 118 DF,  p-value: 0.005022</code></pre>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the confidence interval for the coefficient of yr_mo</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply by 120 to estimate trend over 10 years</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>nitr_trend_10_yr <span class="ot">&lt;-</span> <span class="dv">120</span> <span class="sc">*</span> <span class="fu">confint</span>(nitr_trend_reg, <span class="st">"yr_mo"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'nitr_trend_10_yr:'</span>, <span class="fu">signif</span>(nitr_trend_10_yr, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>nitr_trend_10_yr: -0.00277 -0.000504</code></pre>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to percent change since January 2010 observation</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nitr_percent_trend_10_yr <span class="ot">&lt;-</span> (nitr_trend_10_yr <span class="sc">/</span> nitr_decomp<span class="sc">$</span>monthly_avg[<span class="dv">1</span>]) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'</span><span class="sc">\n</span><span class="st">nitr_percent_trend_10_yr:'</span>, <span class="fu">signif</span>(nitr_percent_trend_10_yr, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+nitr_percent_trend_10_yr: -0.237 -0.043</code></pre>
+</div>
+</div>
+<p>In this linear regression, we look at the influence of year-month on our non-seasonal trend component for nitrogen. The regression output tells us that we can say at an alpha equals 0.01 significance level that the 10-year non-seasonal trend component is negative. However, the low adjusted R-squared also tells us that variation in year-month explains very little of the variation in trend component. Then, the first interval tells us that there is a 95% chance that the interval from -0.00277 mg/L to -0.000504 mg/L contains the true 10-year non-seasonal trend component. The second interval is telling us that this represents a -0.237% to -0.043% change as compared to the monthly average in January 2010.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a regression</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>phos_trend_est <span class="ot">&lt;-</span> <span class="fu">lm</span>(trend <span class="sc">~</span> yr_mo, <span class="at">data =</span> phos_decomp_yearly)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the results</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(phos_trend_est)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of year-month on trend component for phosphorus</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>phos_trend_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(trend <span class="sc">~</span> yr_mo, <span class="at">data =</span> phos_decomp)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(phos_trend_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = trend ~ yr_mo, data = phos_decomp_yearly)
+lm(formula = trend ~ yr_mo, data = phos_decomp)
 
 Residuals:
        Min         1Q     Median         3Q        Max 
@@ -684,15 +600,54 @@ Residual standard error: 0.002006 on 118 degrees of freedom
 Multiple R-squared:  0.5649,    Adjusted R-squared:  0.5612 
 F-statistic: 153.2 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the confidence interval for the coefficient of yr_mo</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply by 120 to estimate trend over 10 years</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>phos_trend_10_yr <span class="ot">&lt;-</span> <span class="dv">120</span> <span class="sc">*</span> <span class="fu">confint</span>(phos_trend_reg, <span class="st">"yr_mo"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'phos_trend_10_yr:'</span>, <span class="fu">signif</span>(phos_trend_10_yr, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>phos_trend_10_yr: -0.000299 -0.000217</code></pre>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to percent change since January 2010 observation</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>phos_percent_trend_10_yr <span class="ot">&lt;-</span> (phos_trend_10_yr <span class="sc">/</span> phos_decomp<span class="sc">$</span>monthly_avg[<span class="dv">1</span>]) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'</span><span class="sc">\n</span><span class="st">phos_percent_trend_10_yr:'</span>, <span class="fu">signif</span>(phos_percent_trend_10_yr, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+phos_percent_trend_10_yr: -0.524 -0.38</code></pre>
+</div>
+</div>
+<p>For phosphorus, the linear regression output tells us that we are confident at the alpha equals 0.01 level that the 10-year non-seasonal trend component was negative. It is also worth noting that the adjusted R-squared tells us that over half (56%) of the the variation in trend component can be explained by variation in year-month. Lastly, we find that there is a 95% chance that the interval between -0.000299 mg/L and -0.000217 mg/L contains the true 10-year non-seasonal trend component. This represents a -0.524% to -0.380% change as compared to the monthly average in January 2010.</p>
+</section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>My time series analysis suggests that seasonality plays a substantial role in contributing to variation in the monthly mean concentration of nitrogen and phosphorus in tidal regions of the Chesapeake Bay. For nitrogen, seasonal trends explained 55% of the variation in monthly means, and the relationship was even stronger for phosphorus, with seasonal-trends explaining 76% of the variation. While the seasonal component for nitrogen was highest during Winter, the seasonal component for phosphorus was highest during Summer.</p>
+<p>This analysis was also interested in any non-seasonal trend that has occurred since the introduction of TMDL requirements in 2010. For both nitrogen and phosphorus, we find evidence at an alpha level of 0.01 that the 10-year non-seasonal trend is negative. However, our confidence intervals suggest that such trends represent a less than 1% decrease in concentration over the course of the 10 years for both nutrient pollutants. It was also notable how the non-seasonal trend was much more consistent for phosphorus than nitrogen, as this can be seen in our STL visualization and is also reflected by the larger adjusted R-squared phosphorus (0.56) compared to nitrogen (0.06) computed in the linear regression of non-seasonal trend against year-month.</p>
+<p>The main limitation of this analysis was that no form of spatial interpolation was employed to estimate concentrations across the tidal region based on location of measurements. It would be interesting to compare such an analysis to what we did here, as a significant differences might indicate that sampled areas are not spread throughout the region in a representative manner. Further analysis might also investigate what happened at the beginning of 2014 that could have led to the high spike in nitrogen levels at that time, in addition to factors that might have fueled the gradual increase seen over the course of 2018.</p>
+
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2023,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-burns_atmospheric_2021" class="csl-entry" role="listitem">
+Burns, Douglas A., Gopal Bhatt, Lewis C. Linker, Jesse O. Bash, Paul D. Capel, and Gary W. Shenk. 2021. <span>“Atmospheric Nitrogen Deposition in the <span>Chesapeake</span> <span>Bay</span> Watershed: <span>A</span> History of Change.”</span> <em>Atmospheric Environment</em> 251 (April): 118277. <a href="https://doi.org/10.1016/j.atmosenv.2021.118277">https://doi.org/10.1016/j.atmosenv.2021.118277</a>.
+</div>
+<div id="ref-chesapeake_bay_program_datahub_traditional_nodate" class="csl-entry" role="listitem">
+Chesapeake Bay Program DataHub. n.d. <span>“Traditional <span>Partner</span> <span>Tidal</span> (<span>Tier</span> 3) <span>Data</span>.”</span> <a href="https://datahub.chesapeakebay.net/FileDownloads">https://datahub.chesapeakebay.net/FileDownloads</a>.
+</div>
+<div id="ref-chesapeake_progress_2025_nodate" class="csl-entry" role="listitem">
+Chesapeake Progress. n.d. <span>“2025 <span>Watershed</span> <span>Implementation</span> <span>Plans</span> (<span>WIPs</span>).”</span> <a href="https://www.chesapeakeprogress.com/clean-water/watershed-implementation-plans">https://www.chesapeakeprogress.com/clean-water/watershed-implementation-plans</a>.
+</div>
+<div id="ref-us_environmental_protection_agency_chesapeake_2023" class="csl-entry" role="listitem">
+U.S. Environmental Protection Agency. 2023. <span>“Chesapeake <span>Bay</span> <span>TMDL</span> <span>Fact</span> <span>Sheet</span>.”</span> <a href="https://www.epa.gov/chesapeake-bay-tmdl/chesapeake-bay-tmdl-fact-sheet">https://www.epa.gov/chesapeake-bay-tmdl/chesapeake-bay-tmdl-fact-sheet</a>.
+</div>
+</div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2023,
   author = {Ghanadan, Linus},
   title = {Time Series Analysis of Nitrogen and Phosphorus
     Concentrations in {Chesapeake} {Bay} Tidal Regions Since 2010
