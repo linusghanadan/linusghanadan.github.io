@@ -15,7 +15,6 @@ bibliography: 223_blog.bib
 citation:
   url: https://linusghanadan.github.io/blog/2023-12-13-post/
 image: fish_farm.jpeg
-page-navigation: true
 draft: false
 format:
     html:
