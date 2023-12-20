@@ -1,6 +1,6 @@
 ---
 title: "Reproducible workflow to gauge suitability of species for U.S. West Coast marine aquaculture"
-description: "This analysis starts by assessing the suitability of oyster aquaculture in U.S. West Coast Exclusive Economic Zones. Then, a generalized model that provides total and percent area of suitability for any species based on input ranges of suitable temperature and depth."
+description: "This analysis starts by assessing the suitability of oyster aquaculture in Exclusive Economic Zones adjacent to the U.S. West Coast. Then, I create a generalized model that provides total and percent area of suitability for any species based on input ranges of suitable temperature and depth."
 author: 
   - name: Linus Ghanadan
     url: https://linusghanadan.github.io/
@@ -15,8 +15,7 @@ bibliography: 223_blog.bib
 citation:
   url: https://linusghanadan.github.io/blog/2023-12-13-post/
 image: fish_farm.jpeg
-sidebar:
-    title: "Outline"
+page-navigation: true
 draft: false
 format:
     html:
