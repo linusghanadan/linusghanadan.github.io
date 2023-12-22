@@ -87,7 +87,7 @@ mean_sst <- mean_sst - 273.15
 
 #### 2022 global Bathymetry TIF (1 meter grid cells)
 
-The bathymetry raster that we will be using characterizes ocean depth at a spatial resolution of one meter grid cells. We get this data from the General Bathymetric Chart of the Oceans [@general_bathymetric_chart_of_the_oceans_gebco_gridded_2023].
+The bathymetry raster that we will be using characterizes ocean depth at a spatial resolution of 1 meter grid cells. We get this data from the General Bathymetric Chart of the Oceans [@general_bathymetric_chart_of_the_oceans_gebco_gridded_2023].
 
 ```{r}
 # Load bathymetry raster
