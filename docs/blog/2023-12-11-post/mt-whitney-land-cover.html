@@ -167,6 +167,8 @@ div.csl-indent {
         </div>
       </div>
                           <div class="quarto-categories">
+                <div class="quarto-category">Geospatial Analysis</div>
+                <div class="quarto-category">Land Cover Analysis</div>
                 <div class="quarto-category">Python</div>
               </div>
                   </div>
@@ -208,7 +210,7 @@ div.csl-indent {
 </section>
 <section id="purpose" class="level2">
 <h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
-<p>In this analysis, we will use a raster dataset from the U.S. Geological Survey (USGS) to extract land cover statistics in a small region surrounding Mount Whitney in California. We will also be creating a simple map showing the area of analysis relative to Mount Whitney. An analysis of this kind has potential use for government agencies seeking to better understand land cover in a region.</p>
+<p>In this analysis, we will use a raster dataset from the U.S. Geological Survey (USGS) to extract land cover statistics in a small region surrounding Mount Whitney in California. We will also be creating a simple map showing the area of analysis relative to Mount Whitney. An analysis of this kind has potential use for environmental planners seeking to better understand land cover in a region.</p>
 <p><img src="mount_whitney.jpeg" class="img-fluid"></p>
 <p><a href="https://commons.wikimedia.org/wiki/File:Thor_Peak,_Mount_Whitney.jpg">Penny Higgins</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a>, via Wikimedia Commons</p>
 </section>
@@ -220,7 +222,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="highlights-of-analysis">Highlights of analysis</h2>
 <ul>
 <li>Exracting pixels per land cover class from raster dataset</li>
-<li>Marging extracted pixels with tabular dataset matching numeric codes to character strings</li>
+<li>Merging extracted pixels with tabular dataset matching numeric codes to character strings</li>
 <li>Creating horizontal bar plot showing percent area of different land cover classes</li>
 <li>Extracting bounding box of raster dataset</li>
 <li>Creating map that shows area of land cover analysis relative to Mount Whitney with California boundaries as a basemap</li>
@@ -246,8 +248,8 @@ div.csl-indent {
 </section>
 <section id="usgs-land-cover-tabular-dataset" class="level4">
 <h4 class="anchored" data-anchor-id="usgs-land-cover-tabular-dataset">USGS land cover tabular dataset</h4>
-<p>Our second dataset is also from the 2011 National Terrestrial Ecosystems data and helps us make sense of data in the raster dataset. This tabular dataset is a CSV file and has the land cover classification names associated with each code used in the raster dataset. This dataset was accessed from the same online source as the raster dataset <span class="citation" data-cites="us_geological_survey_gaplandfire_2016">(<a href="#ref-us_geological_survey_gaplandfire_2016" role="doc-biblioref">U.S. Geological Survey 2016</a>)</span>.</p>
-<div class="cell" data-execution_count="2">
+<p>Our second dataset is also from the 2011 National Terrestrial Ecosystems data and helps us make sense of values in the raster dataset. This tabular dataset is a CSV file and has the land cover classification names associated with each code used in the raster dataset. This dataset was accessed from the same online source as the raster dataset <span class="citation" data-cites="us_geological_survey_gaplandfire_2016">(<a href="#ref-us_geological_survey_gaplandfire_2016" role="doc-biblioref">U.S. Geological Survey 2016</a>)</span>.</p>
+<div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -330,7 +332,7 @@ div.csl-indent {
 </section>
 <section id="create-horizontal-bar-plot" class="level2">
 <h2 class="anchored" data-anchor-id="create-horizontal-bar-plot">5) Create horizontal bar plot</h2>
-<p>Next, we will our percent values with a horizontal bar plot, which shows us the percent for each land cover classification that takes up at least 1% of the area. We filter for just these land cover classes to reduce the amount of output, as it is likely irrelevant for an audience to see the percent for land cover classes that only take up a very small area. We also use the <code>sort_values</code> function, so we can plot our horizontal bars in ascending order, making our plot easier to interpret.</p>
+<p>Next, we will visualize our percent values with a horizontal bar plot, which shows us the percent for each land cover classification that takes up at least 1% of the area. We filter for just these land cover classes to reduce the amount of output, as it is likely irrelevant for an audience to see the percent for land cover classes that only take up a very small area. We also use the <code>sort_values</code> function, so we can plot our horizontal bars in ascending order, making our plot easier to interpret.</p>
 <div class="cell" data-execution_count="7">
 <details>
 <summary>Code</summary>
@@ -352,7 +354,7 @@ div.csl-indent {
 <p><img src="mt-whitney-land-cover_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>The horizontal bar plot shows the percent area of different land cover classes in the area around Mount Whitney. Of any one class, “Mediterrabean California Alpine Bedrock and Scree” takes up the most land, constituting just over 15% of the analysis area. “California Central Valley and Southern Coastal Grassland”, “Sierra Nevada Subalpine Lodgepole Pine Forest and Woodland”, and “Mediterranean California Mesic Mixed Conifer Forest and Woodland” each make up about 8-10% of the area. Seeveral other land cover classifications make up less than 8% of the area.</p>
+<p>The horizontal bar plot shows the percent area of different land cover classes in the area around Mount Whitney. Of any one class, <strong>Mediterrabean California Alpine Bedrock and Scree</strong> takes up the most land, constituting just over <strong>15%</strong> of the analysis area. <strong>California Central Valley and Southern Coastal Grassland</strong>, <strong>Sierra Nevada Subalpine Lodgepole Pine Forest and Woodland</strong>, and <strong>Mediterranean California Mesic Mixed Conifer Forest and Woodland</strong> each make up about <strong>8-10%</strong> of the area. Several other land cover classifications make up less than 8% of the area.</p>
 </section>
 <section id="create-geodataframes-for-area-of-analysis-and-mount-whitney" class="level2">
 <h2 class="anchored" data-anchor-id="create-geodataframes-for-area-of-analysis-and-mount-whitney">6) Create GeoDataFrames for area of analysis and Mount Whitney</h2>
