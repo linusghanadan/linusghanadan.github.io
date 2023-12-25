@@ -1,13 +1,16 @@
 ---
-title: "Time series analysis of nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions since 2010 introduction of TMDL requirements"
-description: "This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends over the last decade."
+title: "Time series analysis of nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions"
+description: "This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends since 2010."
 author: 
   - name: Linus Ghanadan
     url: https://linusghanadan.github.io/
     affiliation: MEDS
     affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
 date: 12-12-2023
-categories: [Statistics]
+categories:
+  - [Statistical Analysis]
+  - [Water Pollution]
+  - [R]
 bibliography: stats_blog.bib
 citation:
   url: https://linusghanadan.github.io/blog/2023-12-12-post/
@@ -20,13 +23,15 @@ format:
 
 ## Question
 
-Since the 2010 introduction of TMDL requirements, what seasonal and non-seasonal trends are present for nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions?
+Since the 2010 introduction of Total Maximum Daily Load (TMDL) requirements, what seasonal and non-seasonal trends are present for nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions?
 
 ## Introduction
 
-In December 2010, the EPA took an unprecedented step in enacting federal policy specific to the Chesapeake Bay, the largest estuary in the United States [@us_environmental_protection_agency_chesapeake_2023]. Specifically, the EPA established Total Maximum Daily Load (TMDL) requirements for the amount of nitrogen, phosphorus, and sediment that is allowed in the Bay. Nitrogen and phosphorus are the two pollutants primarily responsible for algal blooms, which cause marine dead zones through taking in dissolved oxygen and blocking sunlight. Sediment also contributes to dead zones by blocking sunlight, leading it to be included in the 2010 TMDL requirements.
+The Chesapeake Bay is the largest estuary in the United States, and the largest body of water that is regulated under the Clean Water Act [@us_environmental_protection_agency_chesapeake_2023]. Due to its large size and the many stakeholders having opinions about activities impacting the Bay, federal regulation pertaining to the Chesapeake Bay took decades to implement. In the 1970s, the Bay was identified as one of the first areas in the world to have a marine dead zone, a phenomenon that literally suffocates aquatic life. Despite dead zones being identified in the 1970s, it was not until 2000 that the Bay was designated as an "impaired water" under the Clean Water Act. Then, it took another ten years, until 2010, for the EPA to take the next step of issuing **Total Maximum Daily Load** (TMDL) requirements, the regulatory action mandating water quality improvement.
 
-This analysis will focus on nitrogen and phosphorus, the two nutrient pollutants regulated under the 2010 TMDL requirements. A 2022 study found that agricultural runoff was the largest source of nutrient pollution, accounting for 48% of nitrogen and 27% of phosphorus in the Chesapeake Bay [@chesapeake_progress_2025_nodate]. Both of these pollutants also get to the Bay as a result of urban and suburban runoff, wastewater treatment plants releasing treated water, and natural sources (i.e., runoff from forests, wetlands, etc.). In addition, about 25% of nitrogen that ends up in the Bay comes from air pollution that is originally emitted to the atmosphere by sources such as cars and factories [@burns_atmospheric_2021]. Through a process called atmospheric deposition, these nitrogen compounds react with other chemicals to become nitrous oxides, which can be deposited back to Earth's surface through precipitation or as dry deposition.
+Specifically, a TMDL is the maximum amount of a particular pollutant that a body of water can receive and still meet applicable water quality standards [@us_environmental_protection_agency_chesapeake_2023]. This maximum amount is calculated in pounds based on measurements taken at areas where pollution is likely to end up in the Bay. In their 2010 regulation, the EPA established TMDL requirements for nitrogen, phosphorus, and sediment. Nitrogen and phosphorus, referred to as nutrients because of their role in providing nutrition to many animals and plants, cause algal blooms, which cause marine dead zones through taking in dissolved oxygen and blocking sunlight. Sediment also contributes to dead zones by blocking sunlight, leading it to be included in the 2010 TMDL requirements.
+
+This analysis will focus on nitrogen and phosphorus, the two pollutants responsible for algal blooms in the Chesapeake Bay. A 2022 study found that agricultural runoff was the largest source of nutrient pollution, accounting for 48% of nitrogen and 27% of phosphorus in the Chesapeake Bay [@chesapeake_progress_2025_nodate]. Both of these pollutants also get to the Bay as a result of urban and suburban runoff, wastewater treatment plants releasing treated water, and natural sources (i.e., runoff from forests, wetlands, etc.). In addition, about 25% of nitrogen that ends up in the Bay comes from air pollution that is originally emitted to the atmosphere by sources such as cars and factories [@burns_atmospheric_2021]. Through a process called atmospheric deposition, these nitrogen compounds react with other chemicals to become nitrous oxides, which can be deposited back to Earth's surface through precipitation or as dry deposition.
 
 Through conducting a time series analysis of post-2010 nitrogen and phosphorus concentration measurements, my goal is to better understand how concentrations have changed since the introduction of TMDL requirements. I'm also interested in the nature of any seasonality and whether the three time series components (i.e., seasonal, trend, and random) are consistent across both nitrogen and phosphorus.
 
@@ -153,7 +158,7 @@ Similar to the nitrogen plot, phosphorus also seems to exhibit a distinct season
 
 #### Autocorrelation function
 
-The autocorrelation function calculates the correlation between the dependent variable at a given point in time and various time lags for this same variable. For us, the autocorrelation will provide us with a useful glimpse into the nature of the seasonality going on with nitrogen and phosphorus concentrations.
+The autocorrelation function calculates the correlation between the dependent variable at a given point in time and various time lags for this same variable. Thus, the autocorrelation function provides us with a tool that allows us to better understand any seasonal trends present in our data. This will be useful for us in subsequent steps of our time series analysis.
 
 #### STL decomposition
 
