@@ -8,9 +8,9 @@
 
 <meta name="author" content="Linus Ghanadan">
 <meta name="dcterms.date" content="2023-12-12">
-<meta name="description" content="This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends over the last decade.">
+<meta name="description" content="This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends since 2010.">
 
-<title>Linus Ghanadan - Time series analysis of nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions since 2010 introduction of TMDL requirements</title>
+<title>Linus Ghanadan - Time series analysis of nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,14 +160,16 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Time series analysis of nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions since 2010 introduction of TMDL requirements</h1>
+      <h1 class="title">Time series analysis of nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions</h1>
                   <div>
         <div class="description">
-          This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends over the last decade.
+          This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends since 2010.
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Statistics</div>
+                <div class="quarto-category">Statistical Analysis</div>
+                <div class="quarto-category">Water Pollution</div>
+                <div class="quarto-category">R</div>
               </div>
                   </div>
   </div>
@@ -212,21 +214,25 @@ div.csl-indent {
 
 
 
+<section id="link-to-github-repository" class="level2">
+<h2 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/chesapeake-bay-nutrient-pollution">Link to GitHub repository</a></h2>
+</section>
 <section id="question" class="level2">
 <h2 class="anchored" data-anchor-id="question">Question</h2>
-<p>Since the 2010 introduction of TMDL requirements, what seasonal and non-seasonal trends are present for nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions?</p>
+<p>Since the 2010 introduction of Total Maximum Daily Load (TMDL) requirements, what seasonal and non-seasonal trends are present for nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions?</p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In December 2010, the EPA took an unprecedented step in enacting federal policy specific to the Chesapeake Bay, the largest estuary in the United States <span class="citation" data-cites="us_environmental_protection_agency_chesapeake_2023">(<a href="#ref-us_environmental_protection_agency_chesapeake_2023" role="doc-biblioref">U.S. Environmental Protection Agency 2023</a>)</span>. Specifically, the EPA established Total Maximum Daily Load (TMDL) requirements for the amount of nitrogen, phosphorus, and sediment that is allowed in the Bay. Nitrogen and phosphorus are the two pollutants primarily responsible for algal blooms, which cause marine dead zones through taking in dissolved oxygen and blocking sunlight. Sediment also contributes to dead zones by blocking sunlight, leading it to be included in the 2010 TMDL requirements.</p>
-<p>This analysis will focus on nitrogen and phosphorus, the two nutrient pollutants regulated under the 2010 TMDL requirements. A 2022 study found that agricultural runoff was the largest source of nutrient pollution, accounting for 48% of nitrogen and 27% of phosphorus in the Chesapeake Bay <span class="citation" data-cites="chesapeake_progress_2025_nodate">(<a href="#ref-chesapeake_progress_2025_nodate" role="doc-biblioref">Chesapeake Progress, n.d.</a>)</span>. Both of these pollutants also get to the Bay as a result of urban and suburban runoff, wastewater treatment plants releasing treated water, and natural sources (i.e., runoff from forests, wetlands, etc.). In addition, about 25% of nitrogen that ends up in the Bay comes from air pollution that is originally emitted to the atmosphere by sources such as cars and factories <span class="citation" data-cites="burns_atmospheric_2021">(<a href="#ref-burns_atmospheric_2021" role="doc-biblioref">Burns et al. 2021</a>)</span>. Through a process called atmospheric deposition, these nitrogen compounds react with other chemicals to become nitrous oxides, which can be deposited back to Earth’s surface through precipitation or as dry deposition.</p>
+<p>The Chesapeake Bay is the largest estuary in the United States, and the largest body of water that is regulated under the Clean Water Act <span class="citation" data-cites="us_environmental_protection_agency_chesapeake_2023">(<a href="#ref-us_environmental_protection_agency_chesapeake_2023" role="doc-biblioref">U.S. Environmental Protection Agency 2023</a>)</span>. Federal regulation pertaining to the Bay took decades to implement, and this is in large part because of the Bay’s large size and the many stakeholders involved. In the 1970s, the Bay was identified as one of the first areas in the world to have a marine dead zone, a phenomenon that literally suffocates aquatic life due to lack of oxygen in the water. Despite dead zones being identified in the 1970s, it was not until 2000 that the Bay was designated as an “impaired water” under the Clean Water Act. Then, it took another ten years, until 2010, for the EPA to take the next step of issuing <strong>Total Maximum Daily Load</strong> (TMDL) requirements, the regulatory action mandating water quality improvement.</p>
+<p>Specifically, a TMDL is the maximum amount of a particular pollutant that a body of water can receive and still meet applicable water quality standards <span class="citation" data-cites="us_environmental_protection_agency_chesapeake_2023">(<a href="#ref-us_environmental_protection_agency_chesapeake_2023" role="doc-biblioref">U.S. Environmental Protection Agency 2023</a>)</span>. This maximum amount is calculated in pounds based on measurements taken at areas where pollution is likely to end up in the Bay. In their 2010 regulation, the EPA established TMDL requirements for nitrogen, phosphorus, and sediment. Nitrogen and phosphorus, referred to as nutrients because of their role in providing nutrition to many animals and plants, cause algal blooms, which cause marine dead zones through taking in dissolved oxygen and blocking sunlight. Sediment contributes to dead zones by blocking sunlight as well, leading it to also be included in the 2010 TMDL requirements.</p>
+<p>This analysis will focus on nitrogen and phosphorus, the two pollutants responsible for algal blooms in the Chesapeake Bay. A 2022 study found that agricultural runoff was the largest source of nutrient pollution, accounting for 48% of nitrogen and 27% of phosphorus in the Chesapeake Bay <span class="citation" data-cites="chesapeake_progress_2025_nodate">(<a href="#ref-chesapeake_progress_2025_nodate" role="doc-biblioref">Chesapeake Progress, n.d.</a>)</span>. Both of these pollutants also get to the Bay as a result of urban and suburban runoff, wastewater treatment plants releasing treated water, and natural sources (e.g., runoff from forests, wetlands, etc.). In addition, about 25% of nitrogen that ends up in the Bay comes from air pollution that is originally emitted to the atmosphere by sources such as cars and factories <span class="citation" data-cites="burns_atmospheric_2021">(<a href="#ref-burns_atmospheric_2021" role="doc-biblioref">Burns et al. 2021</a>)</span>. Through a process called atmospheric deposition, these nitrogen compounds react with other chemicals to become nitrous oxides, which can be deposited back to Earth’s surface through precipitation or as dry deposition.</p>
 <p>Through conducting a time series analysis of post-2010 nitrogen and phosphorus concentration measurements, my goal is to better understand how concentrations have changed since the introduction of TMDL requirements. I’m also interested in the nature of any seasonality and whether the three time series components (i.e., seasonal, trend, and random) are consistent across both nitrogen and phosphorus.</p>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>Yearly water quality data on the Chesapeake Bay’s tidal and non-tidal regions going back to 1984 is publicly available on the Chesapeake Bay Program DataHub <span class="citation" data-cites="chesapeake_bay_program_datahub_traditional_nodate">(<a href="#ref-chesapeake_bay_program_datahub_traditional_nodate" role="doc-biblioref">Chesapeake Bay Program DataHub, n.d.</a>)</span>. Data is organized into either Tier 1, 2, or 3 depending on how it was collected. While Tier 1 and 2 data can be collected by any interested group, Tier 3 data is collected by monitoring stations overseen by experienced professionals. Only Tier 3 data can be used for governmental regulatory assessments.</p>
+<p>Yearly water quality data on the Chesapeake Bay’s tidal and non-tidal regions going back to 1984 is publicly available on the Chesapeake Bay Program (CBP) DataHub <span class="citation" data-cites="chesapeake_bay_program_datahub_traditional_nodate">(<a href="#ref-chesapeake_bay_program_datahub_traditional_nodate" role="doc-biblioref">Chesapeake Bay Program DataHub, n.d.</a>)</span>. Data is organized into either Tier 1, 2, or 3 depending on how it was collected. While Tier 1 and 2 data can be collected by any interested group, Tier 3 data is collected by monitoring stations overseen by experienced professionals. Only Tier 3 data can be used for governmental regulatory assessments.</p>
 <p>For my analysis, I will be using 2010 to 2019 Tier 3 data collected at 143 different monitoring stations positioned throughout the Chesapeake Bay tidal regions, which includes the mainstem Bay and tributary components. Across the 10 years that we are looking at, we’ll have a total of 43,809 nitrogen observations and 43,590 phosphorus observations.</p>
-<p>Below, we import the R packages used in this analysis. Then, we read in the yearly water quality data using their CBP DataHub URL. We also process the data by creating separate data.frames for total nitrogen and phosphorus measurements.</p>
+<p>Below, we import the R packages used in this analysis. Then, we read in the yearly water quality data using their CBP DataHub URL. We also process the data by creating separate <em>data.frames</em> for total nitrogen and phosphorus measurements.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -236,57 +242,58 @@ div.csl-indent {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(generics)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector of data URLs</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>excel_urls <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2019_CEDR_tidal_data_01jun21.xlsx'</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2018_CEDR_tidal_data_01jun21.xlsx'</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2017_CEDR_tidal_data_11oct18.xlsx'</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2016_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2015_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2014_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2013_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2012_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2011_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2010_CEDR_tidal_data_15jun17.xlsx'</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary directory to store downloaded files</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>temp_dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty list to store data frames</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>dfs <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each URL, extract file name, define local file path, download file, read into R, and append to list of data frames</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (url <span class="cf">in</span> excel_urls) {</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  file_name <span class="ot">&lt;-</span> <span class="fu">basename</span>(url)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  local_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(temp_dir, file_name)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(url, <span class="at">destfile =</span> local_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  wq_data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(local_path, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  dfs[[file_name]] <span class="ot">&lt;-</span> wq_data</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all data frames into a single data frame</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>wq_data_combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(dfs)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data for relevant column variables, and filter for TN (total nitrogen)</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>nitr_data <span class="ot">&lt;-</span> wq_data_combined <span class="sc">%&gt;%</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"MonitoringLocation"</span>, <span class="st">"SampleDate"</span>, <span class="st">"Parameter"</span>, <span class="st">"MeasureValue"</span>, <span class="st">"Unit"</span>, <span class="st">"Latitude"</span>, <span class="st">"Longitude"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Parameter<span class="sc">==</span><span class="st">"TN"</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data for relevant column variables, and filter for TP (total phosphorus)</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>phos_data <span class="ot">&lt;-</span> wq_data_combined <span class="sc">%&gt;%</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"MonitoringLocation"</span>, <span class="st">"SampleDate"</span>, <span class="st">"Parameter"</span>, <span class="st">"MeasureValue"</span>, <span class="st">"Unit"</span>, <span class="st">"Latitude"</span>, <span class="st">"Longitude"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Parameter<span class="sc">==</span><span class="st">"TP"</span>)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove unnecessary data and values from environment</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(wq_data, wq_data_combined, dfs)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(excel_urls, file_name, local_path, temp_dir, url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector of data URLs</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>excel_urls <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2019_CEDR_tidal_data_01jun21.xlsx'</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2018_CEDR_tidal_data_01jun21.xlsx'</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2017_CEDR_tidal_data_11oct18.xlsx'</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2016_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2015_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2014_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2013_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2012_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2011_CEDR_tidal_data_15jun17.xlsx'</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2010_CEDR_tidal_data_15jun17.xlsx'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary directory to store downloaded files</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>temp_dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty list to store data frames</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>dfs <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each URL, extract file name, define local file path, download file, read into R, and append to list of data frames</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (url <span class="cf">in</span> excel_urls) {</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  file_name <span class="ot">&lt;-</span> <span class="fu">basename</span>(url)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  local_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(temp_dir, file_name)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(url, <span class="at">destfile =</span> local_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  wq_data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(local_path, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  dfs[[file_name]] <span class="ot">&lt;-</span> wq_data</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all data frames into a single data frame</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>wq_data_combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(dfs)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data for relevant column variables, and filter for TN (total nitrogen)</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>nitr_data <span class="ot">&lt;-</span> wq_data_combined <span class="sc">%&gt;%</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"MonitoringLocation"</span>, <span class="st">"SampleDate"</span>, <span class="st">"Parameter"</span>, <span class="st">"MeasureValue"</span>, <span class="st">"Unit"</span>, <span class="st">"Latitude"</span>, <span class="st">"Longitude"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Parameter<span class="sc">==</span><span class="st">"TN"</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data for relevant column variables, and filter for TP (total phosphorus)</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>phos_data <span class="ot">&lt;-</span> wq_data_combined <span class="sc">%&gt;%</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"MonitoringLocation"</span>, <span class="st">"SampleDate"</span>, <span class="st">"Parameter"</span>, <span class="st">"MeasureValue"</span>, <span class="st">"Unit"</span>, <span class="st">"Latitude"</span>, <span class="st">"Longitude"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Parameter<span class="sc">==</span><span class="st">"TP"</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove unnecessary data and values from environment</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(wq_data, wq_data_combined, dfs)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(excel_urls, file_name, local_path, temp_dir, url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="exploratory-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-analysis">Exploratory analysis</h2>
-<p>To get an idea of what is going on with the data, we’ll first calculate moving averages for each year-month, storing as both a tsibble and data.frame. We’ll plot these moving averages just to get a general idea of what types of trends we might be looking at.</p>
+<p>To get an idea of what is going on with the data, we’ll first calculate moving averages for each year-month, storing the resulting output as both a <em>tsibble</em> and <em>data.frame</em>. We’ll plot these moving averages just to get a general idea of what types of trends we might be looking at.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -342,17 +349,17 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Similar to the nitrogen plot, phosphorus also seems to exhibit a distinct seasonal trend. Again, it also is unclear whether there is non-seasonal trend.</p>
+<p>Similar to the nitrogen plot, phosphorus also seems to exhibit a distinct seasonal trend. Again, it is unclear whether there is a non-seasonal trend.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <section id="autocorrelation-function" class="level4">
 <h4 class="anchored" data-anchor-id="autocorrelation-function">Autocorrelation function</h4>
-<p>The autocorrelation function calculates the correlation between the dependent variable at a given point in time and various time lags for this same variable. For us, the autocorrelation will provide us with a useful glimpse into the nature of the seasonality going on with nitrogen and phosphorus concentrations.</p>
+<p>The autocorrelation function calculates the correlation between the dependent variable at a given point in time and various time lags for this same variable. Thus, the autocorrelation function provides us with a tool that allows us to better understand any seasonal trends present in our data. This will be useful for us in subsequent steps of our time series analysis.</p>
 </section>
 <section id="stl-decomposition" class="level4">
 <h4 class="anchored" data-anchor-id="stl-decomposition">STL decomposition</h4>
-<p>As a core part of this time series analysis, I’ll be constructing a seasonal-trend decomposition using locally estimated scatterplot smoothing (LOESS), which is often abbreviated as a STL decomposition model. STL allows us to separate our monthly average concentrations into three components: seasonal trend, non-seasonal trend, and remainder. Through plotting these components next to each other, we gain a more intuitive understanding on the underlying forces contributing to variation in our dependent variable, which in this case is the monthly average concentration.</p>
+<p>As a core part of this time series analysis, I’ll be constructing a seasonal-trend decomposition using locally estimated scatterplot smoothing (LOESS), which is often abbreviated as a STL decomposition model. STL allows us to separate our monthly average concentrations into three components: seasonal trend, non-seasonal trend, and remainder. Through plotting these components next to each other, we gain a more intuitive understanding of the underlying forces contributing to variation in our dependent variable, which in this case is the monthly average concentration.</p>
 <p>As opposed to other decomposition methods, one thing that is particular to STL models is the ability to specify the length of a season. It can be helpful to adjust this input depending on our desired level of smoothing for the non-seasonal trend. We will use our results from the autocorrelation function to inform our chosen length of seasons. The autocorrelation function is useful in this context because it can tell us after how many lags we see a drop-off in correlation, indicating there is a drop in the significance of the seasonal trend.</p>
 </section>
 </section>
@@ -381,7 +388,7 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>For phosphorus, there is a very consistent marginal decline for each set of lags over the course of the three years. This is good news for our STL because it means that the seasonal trend will be easier to separate from the non-seasonal trend. Like I did with nitrogen, I’m also going to use two-year seasons for phosphorus. Similar to the case with nitrogen, it seems to me like the drop-off in lag correlations from year two to year three is a bit larger than from year one to year two. This suggests that a two-year seasonal cycle will give us an informative nonseasonal-trend component that is neither too eager nor too hesitant to categorize differences as trends.</p>
+<p>For phosphorus, there is a very consistent marginal decline for each set of lags over the course of the three years. This is good news for our STL because it means that the seasonal trend will be easier to separate from the non-seasonal trend. Like I did with nitrogen, I’m also going to use two-year seasons for phosphorus. Similar to the case with nitrogen, it seems to me like the drop-off in lag correlations from year two to year three is a bit larger than from year one to year two. This suggests that a two-year seasonal cycle will give us an informative nonseasonal-trend component that is neither too eager nor too hesitant to categorize differences as non-seasonal trends.</p>
 </section>
 <section id="stl-decomposition-1" class="level4">
 <h4 class="anchored" data-anchor-id="stl-decomposition-1">STL decomposition</h4>
@@ -401,7 +408,7 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>In this plot of the three STL components for nitrogen, it is still difficult to see a long-term trend, despite the line being fairly smooth. There does seem to be a slight downward trend until around 2018 things really begin increasing. In addition the grey bars on the left all represent the same range, implying that the remainder components contributed the most to nitrogen concentration. However, this seems to be very influenced by the high spike in 2014.</p>
+<p>In this plot of the three STL components for nitrogen, it is still difficult to see a long-term trend, despite the line being fairly smooth. There does seem to be a slight downward trend until 2018. From 2018 to 2019, there is a clear increase, but this change is then offset by an equivalent decrease over the course of 2019 to 2020. In addition the grey bars on the left all represent the same range, implying that the remainder components of our STL model contributed the most to variation in nitrogen concentration. However, this seems to be very influenced by the high spike in 2014.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -418,7 +425,7 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The STL plot for phosphorus does make it seem like there is a long-term downward trend, but it is difficult to tell how significant it is because of the long grey bar, which indicates it is least influential of the three components. In this case, the grey bars show us that seasonality contributes the most to the variation in phosphorus concentration.</p>
+<p>The STL plot for phosphorus does make it seem like there is a long-term downward trend, but it is difficult to tell how significant it is because of the long grey bar, which indicates it is least influential of the three components in our STL model. In this case, the grey bars show us that seasonality contributes the most to the variation in phosphorus concentration.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -471,56 +478,86 @@ div.csl-indent {
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of season component on monthly average nitrogen</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nitr_season_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(monthly_avg <span class="sc">~</span> season_year, <span class="at">data =</span> nitr_decomp)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nitr_season_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted regression table</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(nitr_season_reg, <span class="at">title =</span> <span class="st">"Regression of monthly nitrogen concentration against seasonal trend component"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Call:
-lm(formula = monthly_avg ~ season_year, data = nitr_decomp)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.28803 -0.07036 -0.01624  0.04451  0.50728 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.89766    0.01029   87.26   &lt;2e-16 ***
-season_year  1.03839    0.08624   12.04   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.1127 on 118 degrees of freedom
-Multiple R-squared:  0.5513,    Adjusted R-squared:  0.5475 
-F-statistic:   145 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
+% Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com
+% Date and time: Tue, Dec 26, 2023 - 14:21:04
+% Requires LaTeX packages: dcolumn 
+\begin{table}[!htbp] \centering 
+  \caption{Regression of monthly nitrogen concentration against seasonal trend component} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ &amp; \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &amp; \multicolumn{1}{c}{monthly\_avg} \\ 
+\hline \\[-1.8ex] 
+ season\_year &amp; 1.038^{***} \\ 
+  &amp; (0.086) \\ 
+  &amp; \\ 
+ Constant &amp; 0.898^{***} \\ 
+  &amp; (0.010) \\ 
+  &amp; \\ 
+\hline \\[-1.8ex] 
+Observations &amp; \multicolumn{1}{c}{120} \\ 
+R$^{2}$ &amp; \multicolumn{1}{c}{0.551} \\ 
+Adjusted R$^{2}$ &amp; \multicolumn{1}{c}{0.547} \\ 
+Residual Std. Error &amp; \multicolumn{1}{c}{0.113 (df = 118)} \\ 
+F Statistic &amp; \multicolumn{1}{c}{144.981$^{***}$ (df = 1; 118)} \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  &amp; \multicolumn{1}{r}{$^{*}$p$&lt;$0.1; $^{**}$p$&lt;$0.05; $^{***}$p$&lt;$0.01} \\ 
+\end{tabular} 
+\end{table} </code></pre>
 </div>
 </div>
-<p>Adjusted R-squared of 0.55 indicates that seasonal trends can explain a bit over half (55%) of the variation in nitrogen monthly mean.</p>
+<p>The adjusted R-squared of 0.55 indicates that seasonal trends can explain a bit over half (55%) of the variation in nitrogen monthly mean.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of season component on monthly average phosphorus</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>phos_season_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(monthly_avg <span class="sc">~</span> season_year, <span class="at">data =</span> phos_decomp)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(phos_season_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted regression table</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(phos_season_reg, <span class="at">title =</span> <span class="st">"Regression of monthly phosphorus average concentration against seasonal trend component"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Call:
-lm(formula = monthly_avg ~ season_year, data = phos_decomp)
-
-Residuals:
-       Min         1Q     Median         3Q        Max 
--0.0144318 -0.0031716 -0.0003977  0.0037799  0.0156940 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 0.0565260  0.0005042  112.11   &lt;2e-16 ***
-season_year 0.9844122  0.0511039   19.26   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.005523 on 118 degrees of freedom
-Multiple R-squared:  0.7587,    Adjusted R-squared:  0.7567 
-F-statistic: 371.1 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
+% Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com
+% Date and time: Tue, Dec 26, 2023 - 14:21:04
+% Requires LaTeX packages: dcolumn 
+\begin{table}[!htbp] \centering 
+  \caption{Regression of monthly phosphorus average concentration against seasonal trend component} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ &amp; \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &amp; \multicolumn{1}{c}{monthly\_avg} \\ 
+\hline \\[-1.8ex] 
+ season\_year &amp; 0.984^{***} \\ 
+  &amp; (0.051) \\ 
+  &amp; \\ 
+ Constant &amp; 0.057^{***} \\ 
+  &amp; (0.001) \\ 
+  &amp; \\ 
+\hline \\[-1.8ex] 
+Observations &amp; \multicolumn{1}{c}{120} \\ 
+R$^{2}$ &amp; \multicolumn{1}{c}{0.759} \\ 
+Adjusted R$^{2}$ &amp; \multicolumn{1}{c}{0.757} \\ 
+Residual Std. Error &amp; \multicolumn{1}{c}{0.006 (df = 118)} \\ 
+F Statistic &amp; \multicolumn{1}{c}{371.062$^{***}$ (df = 1; 118)} \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  &amp; \multicolumn{1}{r}{$^{*}$p$&lt;$0.1; $^{**}$p$&lt;$0.05; $^{***}$p$&lt;$0.01} \\ 
+\end{tabular} 
+\end{table} </code></pre>
 </div>
 </div>
 <p>For phosphorus, adjusted R-squared of this regression is 0.76, confirming our idea that seasonality is more pronounced with phosphorus.</p>
@@ -529,27 +566,42 @@ F-statistic: 371.1 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of year-month on trend component for nitrogen</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>nitr_trend_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(trend <span class="sc">~</span> yr_mo, <span class="at">data =</span> nitr_decomp)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nitr_trend_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted regression table</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(nitr_trend_reg, <span class="at">title =</span> <span class="st">"Regression of nitrogen non-seasonal trend component against year-month"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Call:
-lm(formula = trend ~ yr_mo, data = nitr_decomp)
-
-Residuals:
-      Min        1Q    Median        3Q       Max 
--0.084653 -0.045620 -0.000179  0.032870  0.135876 
-
-Coefficients:
-              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  1.121e+00  7.856e-02  14.268  &lt; 2e-16 ***
-yr_mo       -1.365e-05  4.775e-06  -2.859  0.00502 ** 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.05514 on 118 degrees of freedom
-Multiple R-squared:  0.0648,    Adjusted R-squared:  0.05687 
-F-statistic: 8.176 on 1 and 118 DF,  p-value: 0.005022</code></pre>
+% Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com
+% Date and time: Tue, Dec 26, 2023 - 14:21:04
+% Requires LaTeX packages: dcolumn 
+\begin{table}[!htbp] \centering 
+  \caption{Regression of nitrogen non-seasonal trend component against year-month} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ &amp; \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &amp; \multicolumn{1}{c}{trend} \\ 
+\hline \\[-1.8ex] 
+ yr\_mo &amp; -0.00001^{***} \\ 
+  &amp; (0.00000) \\ 
+  &amp; \\ 
+ Constant &amp; 1.121^{***} \\ 
+  &amp; (0.079) \\ 
+  &amp; \\ 
+\hline \\[-1.8ex] 
+Observations &amp; \multicolumn{1}{c}{120} \\ 
+R$^{2}$ &amp; \multicolumn{1}{c}{0.065} \\ 
+Adjusted R$^{2}$ &amp; \multicolumn{1}{c}{0.057} \\ 
+Residual Std. Error &amp; \multicolumn{1}{c}{0.055 (df = 118)} \\ 
+F Statistic &amp; \multicolumn{1}{c}{8.176$^{***}$ (df = 1; 118)} \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  &amp; \multicolumn{1}{r}{$^{*}$p$&lt;$0.1; $^{**}$p$&lt;$0.05; $^{***}$p$&lt;$0.01} \\ 
+\end{tabular} 
+\end{table} </code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -572,33 +624,48 @@ F-statistic: 8.176 on 1 and 118 DF,  p-value: 0.005022</code></pre>
 nitr_percent_trend_10_yr: -0.237 -0.043</code></pre>
 </div>
 </div>
-<p>In this linear regression, we look at the influence of year-month on our non-seasonal trend component for nitrogen. The regression output tells us that we can say at an alpha equals 0.01 significance level that the 10-year non-seasonal trend component is negative. However, the low adjusted R-squared also tells us that variation in year-month explains very little of the variation in trend component. Then, the first interval tells us that there is a 95% chance that the interval from -0.00277 mg/L to -0.000504 mg/L contains the true 10-year non-seasonal trend component. The second interval is telling us that this represents a -0.237% to -0.043% change as compared to the monthly average in January 2010.</p>
+<p>In this linear regression, we look at the influence of year-month on our non-seasonal trend component for nitrogen. The regression output tells us that we can say at an alpha equals 0.01 significance level that the 10-year non-seasonal trend component was negative. However, the low adjusted R-squared also tells us that variation in year-month explains very little of the variation in trend component. Then, the first interval tells us that there is a 95% chance that the interval from -0.00277 mg/L to -0.000504 mg/L contains the true 10-year non-seasonal trend component. The second interval is telling us that this represents a -0.237% to -0.043% change as compared to the monthly average in January 2010.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of year-month on trend component for phosphorus</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>phos_trend_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(trend <span class="sc">~</span> yr_mo, <span class="at">data =</span> phos_decomp)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(phos_trend_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted regression table</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(phos_trend_reg, <span class="at">title =</span> <span class="st">"Regression of phosphorus non-seasonal trend component against year-month"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Call:
-lm(formula = trend ~ yr_mo, data = phos_decomp)
-
-Residuals:
-       Min         1Q     Median         3Q        Max 
--0.0054726 -0.0011369 -0.0002914  0.0014229  0.0039014 
-
-Coefficients:
-              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  9.174e-02  2.858e-03   32.10   &lt;2e-16 ***
-yr_mo       -2.150e-06  1.737e-07  -12.38   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.002006 on 118 degrees of freedom
-Multiple R-squared:  0.5649,    Adjusted R-squared:  0.5612 
-F-statistic: 153.2 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
+% Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com
+% Date and time: Tue, Dec 26, 2023 - 14:21:04
+% Requires LaTeX packages: dcolumn 
+\begin{table}[!htbp] \centering 
+  \caption{Regression of phosphorus non-seasonal trend component against year-month} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} } 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ &amp; \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] &amp; \multicolumn{1}{c}{trend} \\ 
+\hline \\[-1.8ex] 
+ yr\_mo &amp; -0.00000^{***} \\ 
+  &amp; (0.00000) \\ 
+  &amp; \\ 
+ Constant &amp; 0.092^{***} \\ 
+  &amp; (0.003) \\ 
+  &amp; \\ 
+\hline \\[-1.8ex] 
+Observations &amp; \multicolumn{1}{c}{120} \\ 
+R$^{2}$ &amp; \multicolumn{1}{c}{0.565} \\ 
+Adjusted R$^{2}$ &amp; \multicolumn{1}{c}{0.561} \\ 
+Residual Std. Error &amp; \multicolumn{1}{c}{0.002 (df = 118)} \\ 
+F Statistic &amp; \multicolumn{1}{c}{153.180$^{***}$ (df = 1; 118)} \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  &amp; \multicolumn{1}{r}{$^{*}$p$&lt;$0.1; $^{**}$p$&lt;$0.05; $^{***}$p$&lt;$0.01} \\ 
+\end{tabular} 
+\end{table} </code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -627,8 +694,8 @@ phos_percent_trend_10_yr: -0.524 -0.38</code></pre>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>My time series analysis suggests that seasonality plays a substantial role in contributing to variation in the monthly mean concentration of nitrogen and phosphorus in tidal regions of the Chesapeake Bay. For nitrogen, seasonal trends explained 55% of the variation in monthly means, and the relationship was even stronger for phosphorus, with seasonal-trends explaining 76% of the variation. While the seasonal component for nitrogen was highest during Winter, the seasonal component for phosphorus was highest during Summer.</p>
-<p>This analysis was also interested in any non-seasonal trend that has occurred since the introduction of TMDL requirements in 2010. For both nitrogen and phosphorus, we find evidence at an alpha level of 0.01 that the 10-year non-seasonal trend is negative. However, our confidence intervals suggest that such trends represent a less than 1% decrease in concentration over the course of the 10 years for both nutrient pollutants. It was also notable how the non-seasonal trend was much more consistent for phosphorus than nitrogen, as this can be seen in our STL visualization and is also reflected by the larger adjusted R-squared phosphorus (0.56) compared to nitrogen (0.06) computed in the linear regression of non-seasonal trend against year-month.</p>
-<p>The main limitation of this analysis was that no form of spatial interpolation was employed to estimate concentrations across the tidal region based on location of measurements. It would be interesting to compare such an analysis to what we did here, as a significant differences might indicate that sampled areas are not spread throughout the region in a representative manner. Further analysis might also investigate what happened at the beginning of 2014 that could have led to the high spike in nitrogen levels at that time, in addition to factors that might have fueled the gradual increase seen over the course of 2018.</p>
+<p>This analysis was also interested in any non-seasonal trend that has occurred since the introduction of TMDL requirements in 2010. For both nitrogen and phosphorus, we find evidence at an alpha level of 0.01 that the 10-year non-seasonal trend is negative. However, our confidence intervals suggest that such trends represent a less than 1% decrease in concentration over the course of the 10 years for both nutrient pollutants. It was also notable how the non-seasonal trend was much more consistent for phosphorus than nitrogen. This can be seen in our STL visualization and is also reflected by the larger adjusted R-squared for phosphorus (0.56) compared to nitrogen (0.06) computed in the linear regression of non-seasonal trend component against year-month.</p>
+<p>The main limitation of this analysis was that no form of spatial interpolation was employed to estimate concentrations across the tidal region based on the location of measurements. It would be interesting to compare such an analysis to what we did here, as any significant differences would imply that sampled areas are not spread throughout the region in a representative manner. Further analysis might also investigate what happened at the beginning of 2014 that could have led to the high spike in nitrogen levels at that time, in addition to factors that might have fueled the increase seen over the course of 2018.</p>
 
 
 
@@ -650,16 +717,15 @@ U.S. Environmental Protection Agency. 2023. <span>“Chesapeake <span>Bay</span>
 </div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2023,
   author = {Ghanadan, Linus},
   title = {Time Series Analysis of Nitrogen and Phosphorus
-    Concentrations in {Chesapeake} {Bay} Tidal Regions Since 2010
-    Introduction of {TMDL} Requirements},
+    Concentrations in {Chesapeake} {Bay} Tidal Regions},
   date = {2023-12-12},
   url = {https://linusghanadan.github.io/blog/2023-12-12-post/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ghanadan2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 Ghanadan, Linus. 2023. <span>“Time Series Analysis of Nitrogen and
-Phosphorus Concentrations in Chesapeake Bay Tidal Regions Since 2010
-Introduction of TMDL Requirements.”</span> December 12, 2023. <a href="https://linusghanadan.github.io/blog/2023-12-12-post/">https://linusghanadan.github.io/blog/2023-12-12-post/</a>.
+Phosphorus Concentrations in Chesapeake Bay Tidal Regions.”</span>
+December 12, 2023. <a href="https://linusghanadan.github.io/blog/2023-12-12-post/">https://linusghanadan.github.io/blog/2023-12-12-post/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

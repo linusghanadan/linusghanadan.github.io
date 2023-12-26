@@ -21,6 +21,7 @@ format:
         code-fold: true
 ---
 
+
 ## [Link to GitHub repository](https://github.com/linusghanadan/chesapeake-bay-nutrient-pollution)
 
 ## Question
@@ -44,6 +45,7 @@ Yearly water quality data on the Chesapeake Bay's tidal and non-tidal regions go
 For my analysis, I will be using 2010 to 2019 Tier 3 data collected at 143 different monitoring stations positioned throughout the Chesapeake Bay tidal regions, which includes the mainstem Bay and tributary components. Across the 10 years that we are looking at, we'll have a total of 43,809 nitrogen observations and 43,590 phosphorus observations.
 
 Below, we import the R packages used in this analysis. Then, we read in the yearly water quality data using their CBP DataHub URL. We also process the data by creating separate *data.frames* for total nitrogen and phosphorus measurements.
+
 
 ```{r setup, include=FALSE}
 # Configure code chunk settings for what to include in rendered HTML document
@@ -105,9 +107,11 @@ rm(wq_data, wq_data_combined, dfs)
 rm(excel_urls, file_name, local_path, temp_dir, url)
 ```
 
+
 ## Exploratory analysis
 
 To get an idea of what is going on with the data, we'll first calculate moving averages for each year-month, storing the resulting output as both a *tsibble* and *data.frame*. We'll plot these moving averages just to get a general idea of what types of trends we might be looking at.
+
 
 ```{r}
 # Compute nitrogen monthly moving average, and store as tsibble
@@ -131,7 +135,9 @@ nitr_monthly_avgs_df %>%
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
+
 From this plot, there does appear to be a seasonal trend for nitrogen concentrations, but there is no clear non-seasonal trend. In addition, there is a notable spike in early 2014.
+
 
 ```{r}
 # Compute phosphorus monthly moving average, and store as tsibble
@@ -155,6 +161,7 @@ phos_monthly_avgs_df %>%
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
+
 Similar to the nitrogen plot, phosphorus also seems to exhibit a distinct seasonal trend. Again, it is unclear whether there is a non-seasonal trend.
 
 ## Methods
@@ -173,21 +180,26 @@ As opposed to other decomposition methods, one thing that is particular to STL m
 
 #### Autocorrelation function
 
+
 ```{r}
 # Plot autocorrelation function for nitrogen with lags going back three years
 acf(nitr_monthly_avgs_ts, lag.max = 36, i=2)
 ```
 
+
 Looking at this autocorrelation plot for nitrogen, I see that the *t-16* lag is significant at the alpha equals 0.05 level, indicated by the black line extending beyond the blue dashed line. Meanwhile, the *t-4* lag is not statistically significant. The rest of the lags remain the same or slightly decrease when comparing from the first and second year of lags. In the third year, there is a drop off in the *t-28* lag compared to *t-12*, and there continues to be what seems like a marginal decrease in correlation across most lags. Considering all of this, I decided to set the seasonality of my STL model for nitrogen to 24 months.
+
 
 ```{r}
 # Plot autocorrelation function for phosphorus with lags going back three years
 acf(phos_monthly_avgs_ts, lag.max = 36, i = 2)
 ```
 
+
 For phosphorus, there is a very consistent marginal decline for each set of lags over the course of the three years. This is good news for our STL because it means that the seasonal trend will be easier to separate from the non-seasonal trend. Like I did with nitrogen, I'm also going to use two-year seasons for phosphorus. Similar to the case with nitrogen, it seems to me like the drop-off in lag correlations from year two to year three is a bit larger than from year one to year two. This suggests that a two-year seasonal cycle will give us an informative non-seasonal trend component that is neither too eager nor too hesitant to categorize differences as non-seasonal trends.
 
 #### STL decomposition
+
 
 ```{r}
 # Conduct STL time series analysis for nitrogen with two-year seasons, and extract components
@@ -200,7 +212,9 @@ autoplot(nitr_decomp) +
   labs(title = "STL Time Series Analysis of Nitrogen Concentration", x = "Year Month")
 ```
 
+
 In this plot of the three STL components for nitrogen, it is still difficult to see a long-term trend, despite the line being fairly smooth. There does seem to be a slight downward trend until 2018. From 2018 to 2019, there is a clear increase, but this change is then offset by an equivalent decrease over the course of 2019 to 2020. In addition the grey bars on the left all represent the same range, implying that the remainder components of our STL model contributed the most to variation in nitrogen concentration. However, this seems to be very influenced by the high spike in 2014.
+
 
 ```{r}
 # Conduct STL time series analysis for phosphorus with two-year seasons, and extract components
@@ -214,7 +228,9 @@ autoplot(phos_decomp) +
 
 ```
 
+
 The STL plot for phosphorus does make it seem like there is a long-term downward trend, but it is difficult to tell how significant it is because of the long grey bar, which indicates it is least influential of the three components in our STL model. In this case, the grey bars show us that seasonality contributes the most to the variation in phosphorus concentration.
+
 
 ```{r}
 # For nitrogen, plot monthly mean, seasonally adjusted monthly mean, STL seasonality, and STL trend
@@ -232,7 +248,9 @@ ggplot(nitr_monthly_avgs_df, aes(yr_mo)) +
   theme(legend.position = "top", plot.title = element_text(hjust = 0.5))
 ```
 
+
 I decided to make this visualization to get a better idea of exactly how these components map on to each other. This plot seems to confirm the idea of negligible trend for nitrogen. Since the x-axis is labeled for each year here, it is also easier to see the seasonal trend. Each year, nitrogen concentrations increase sharply around December. They then peak around February to March, before decreasing substantially and reaching their minimum around July.
+
 
 ```{r}
 # For phosphorus, plot monthly mean, seasonally adjusted monthly mean, STL seasonality, and STL trend
@@ -250,9 +268,11 @@ ggplot(phos_monthly_avgs_df, aes(yr_mo)) +
   theme(legend.position = "top", plot.title = element_text(hjust = 0.5))
 ```
 
+
 Our plot for phosphorus further supports the idea that there is a slight downward trend over the decade. If you independently trace the maximums or minimums, the line does seem to be moving downward at an oscillating but fairly consistent rate. Unlike nitrogen, phosphorus concentrations shoot up in the middle of the year around May, have a relatively flat peak lasting from June to August, and then shoot down at the end of Summer.
 
 #### Simple linear regressions based on STL model parameters
+
 
 ```{r, results='asis'}
 # Run regression of season component on monthly average nitrogen
@@ -262,7 +282,9 @@ nitr_season_reg <- lm(monthly_avg ~ season_year, data = nitr_decomp)
 stargazer(nitr_season_reg, title = "Regression of monthly nitrogen concentration against seasonal trend component", align = TRUE, type = 'html')
 ```
 
+
 The adjusted R-squared of 0.55 indicates that seasonal trends can explain a bit over half (55%) of the variation in nitrogen monthly mean.
+
 
 ```{r, results='asis'}
 # Run regression of season component on monthly average phosphorus
@@ -272,7 +294,9 @@ phos_season_reg <- lm(monthly_avg ~ season_year, data = phos_decomp)
 stargazer(phos_season_reg, title = "Regression of monthly phosphorus concentration against seasonal trend component", align = TRUE, type = 'html')
 ```
 
+
 For phosphorus, adjusted R-squared of this regression is 0.76, confirming our idea that seasonality is more pronounced with phosphorus.
+
 
 ```{r, results='asis'}
 # Run regression of year-month on trend component for nitrogen
@@ -306,7 +330,9 @@ cat('95% confidence interval for 10-year percent change in nitrogen non-seasonal
 ```
 
 
+
 In this linear regression, we look at the influence of year-month on our non-seasonal trend component for nitrogen. The regression output tells us that we can say at an alpha equals 0.01 significance level that the 10-year change in non-seasonal trend component was negative. However, the low adjusted R-squared also tells us that variation in year-month explains very little of the variation in trend component. Then, the first interval tells us that there is a 95% chance that the interval from -0.0028 mg/L to -0.0005 mg/L contains the true 10-year change in non-seasonal trend component. The second interval is telling us that this represents a -0.28% to -0.05% change as compared to the non-seasonal trend component in January 2010.
+
 
 ```{r, results='asis'}
 # Run regression of year-month on trend component for phosphorus
@@ -340,6 +366,7 @@ cat('95% confidence interval for 10-year percent change in phosphorus non-season
 ```
 
 
+
 For phosphorus, the linear regression output tells us that we are confident at the alpha equals 0.01 level that the 10-year change in non-seasonal trend component was negative. It is also worth noting that the adjusted R-squared tells us that over half (56%) of the the variation in trend component can be explained by variation in year-month. Lastly, we find that there is a 95% chance that the interval between -0.00030 mg/L and -0.00022 mg/L contains the true 10-year change in non-seasonal trend component. This represents a -0.52% to -0.38% change as compared to the non-seasonal trend component in January 2010.
 
 ## Conclusion
@@ -349,3 +376,4 @@ My time series analysis suggests that seasonality plays a substantial role in co
 This analysis was also interested in any non-seasonal trend that has occurred since the introduction of TMDL requirements in 2010. For both nitrogen and phosphorus, we find evidence at an alpha level of 0.01 that the 10-year change in non-seasonal trend is negative. However, our confidence intervals suggest that, for both nutrient pollutants, these changes in trend represent a less than 1% decrease in concentration over the decade. It was also notable how the non-seasonal trend was much more consistent for phosphorus than nitrogen. This can be seen in our STL visualization and is also reflected by the larger adjusted R-squared for phosphorus (0.56) compared to nitrogen (0.06) computed in the linear regression of non-seasonal trend component against year-month.
 
 The main limitation of this analysis was that no form of spatial interpolation was employed to estimate concentrations across the tidal region based on the location of measurements. It would be interesting to compare such an analysis to what we did here, as any significant differences would imply that sampled areas are not spread throughout the region in a representative manner. Further analysis might also investigate what happened at the beginning of 2014 that could have led to the high spike in nitrogen levels at that time, in addition to factors that might have fueled the increase seen over the course of 2018.
+
