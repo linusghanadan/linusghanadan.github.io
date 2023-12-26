@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2023-12-12">
 <meta name="description" content="This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends since 2010.">
 
-<title>Linus Ghanadan - Time series analysis of nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions</title>
+<title>Linus Ghanadan - Time series analysis of nitrogen and phosphorus in Chesapeake Bay tidal regions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,7 +160,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Time series analysis of nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions</h1>
+      <h1 class="title">Time series analysis of nitrogen and phosphorus in Chesapeake Bay tidal regions</h1>
                   <div>
         <div class="description">
           This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends since 2010.
@@ -395,14 +395,14 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct STL time series analysis for nitrogen with two-year seasons, and extract components</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct STL for nitrogen with two-year seasons, and extract components</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nitr_decomp <span class="ot">&lt;-</span> nitr_monthly_avgs_ts <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  fabletools<span class="sc">::</span><span class="fu">model</span>(feasts<span class="sc">::</span><span class="fu">STL</span>(monthly_avg, <span class="at">t.window =</span> <span class="dv">24</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  generics<span class="sc">::</span><span class="fu">components</span>()</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot STL time series analysis of nitrogen concentration</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot STL model</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(nitr_decomp) <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"STL Time Series Analysis of Nitrogen Concentration"</span>, <span class="at">x =</span> <span class="st">"Year Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"STL model of nitrogen concentration"</span>, <span class="at">x =</span> <span class="st">"Year Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
@@ -412,14 +412,14 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct STL time series analysis for phosphorus with two-year seasons, and extract components</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct STL for phosphorus with two-year seasons, and extract components</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>phos_decomp <span class="ot">&lt;-</span> phos_monthly_avgs_ts <span class="sc">%&gt;%</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  fabletools<span class="sc">::</span><span class="fu">model</span>(feasts<span class="sc">::</span><span class="fu">STL</span>(monthly_avg, <span class="at">t.window =</span> <span class="dv">24</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  generics<span class="sc">::</span><span class="fu">components</span>()</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot STL time series analysis</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot STL model</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(phos_decomp) <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"STL Time Series Analysis of Phosphorus Concentration"</span>, <span class="at">x =</span> <span class="st">"Year Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"STL model of phosphorus concentration"</span>, <span class="at">x =</span> <span class="st">"Year Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
@@ -479,7 +479,7 @@ div.csl-indent {
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nitr_season_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(monthly_avg <span class="sc">~</span> season_year, <span class="at">data =</span> nitr_decomp)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted regression table</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(nitr_season_reg, <span class="at">title =</span> <span class="st">"Regression of monthly nitrogen concentration against seasonal trend component"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"[0.*]; [0.**]; [0.***]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(nitr_season_reg, <span class="at">title =</span> <span class="st">"Regression of monthly nitrogen concentration against seasonal trend component"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"*p&lt;0.1; **p&lt;0.05; ***p&lt;0.001]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 <table style="text-align:center">
@@ -609,7 +609,7 @@ F Statistic
 <em>Note:</em>
 </td>
 <td style="text-align:right">
-[0.*]; [0.**]; [0.***]
+<em>p&lt;0.1; <strong>p&lt;0.05; </strong></em>p&lt;0.001]
 </td>
 </tr>
 
@@ -1138,16 +1138,16 @@ U.S. Environmental Protection Agency. 2023. <span>“Chesapeake <span>Bay</span>
 </div>
 </div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2023,
   author = {Ghanadan, Linus},
-  title = {Time Series Analysis of Nitrogen and Phosphorus
-    Concentrations in {Chesapeake} {Bay} Tidal Regions},
+  title = {Time Series Analysis of Nitrogen and Phosphorus in
+    {Chesapeake} {Bay} Tidal Regions},
   date = {2023-12-12},
   url = {https://linusghanadan.github.io/blog/2023-12-12-post/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ghanadan2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 Ghanadan, Linus. 2023. <span>“Time Series Analysis of Nitrogen and
-Phosphorus Concentrations in Chesapeake Bay Tidal Regions.”</span>
-December 12, 2023. <a href="https://linusghanadan.github.io/blog/2023-12-12-post/">https://linusghanadan.github.io/blog/2023-12-12-post/</a>.
+Phosphorus in Chesapeake Bay Tidal Regions.”</span> December 12, 2023.
+<a href="https://linusghanadan.github.io/blog/2023-12-12-post/">https://linusghanadan.github.io/blog/2023-12-12-post/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
