@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2023-12-12">
 <meta name="description" content="This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends since 2010.">
 
-<title>Linus Ghanadan - Time series analysis of nitrogen and phosphorus in Chesapeake Bay tidal regions</title>
+<title>Linus Ghanadan - Time series analysis of nutrient pollution in Chesapeake Bay tidal regions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,7 +160,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Time series analysis of nitrogen and phosphorus in Chesapeake Bay tidal regions</h1>
+      <h1 class="title">Time series analysis of nutrient pollution in Chesapeake Bay tidal regions</h1>
                   <div>
         <div class="description">
           This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends since 2010.
@@ -479,7 +479,7 @@ div.csl-indent {
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nitr_season_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(monthly_avg <span class="sc">~</span> season_year, <span class="at">data =</span> nitr_decomp)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted regression table</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(nitr_season_reg, <span class="at">title =</span> <span class="st">"Regression of monthly nitrogen concentration against seasonal trend component"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"*p&lt;0.1; **p&lt;0.05; ***p&lt;0.001]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(nitr_season_reg, <span class="at">title =</span> <span class="st">"Regression of monthly nitrogen concentration against seasonal trend component"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"[***]p&lt;0.01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 <table style="text-align:center">
@@ -609,7 +609,7 @@ F Statistic
 <em>Note:</em>
 </td>
 <td style="text-align:right">
-<em>p&lt;0.1; <strong>p&lt;0.05; </strong></em>p&lt;0.001]
+[***]p&lt;0.01
 </td>
 </tr>
 
@@ -621,7 +621,7 @@ F Statistic
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>phos_season_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(monthly_avg <span class="sc">~</span> season_year, <span class="at">data =</span> phos_decomp)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted regression table</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(phos_season_reg, <span class="at">title =</span> <span class="st">"Regression of monthly phosphorus concentration against seasonal trend component"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"[0.*]; [0.**]; [0.***]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(phos_season_reg, <span class="at">title =</span> <span class="st">"Regression of monthly phosphorus concentration against seasonal trend component"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"[***]p&lt;0.01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 <table style="text-align:center">
@@ -751,7 +751,7 @@ F Statistic
 <em>Note:</em>
 </td>
 <td style="text-align:right">
-[0.*]; [0.**]; [0.***]
+[***]p&lt;0.01
 </td>
 </tr>
 
@@ -763,7 +763,7 @@ F Statistic
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nitr_trend_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(trend <span class="sc">~</span> yr_mo, <span class="at">data =</span> nitr_decomp)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted regression table</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(nitr_trend_reg, <span class="at">title =</span> <span class="st">"Regression of nitrogen non-seasonal trend component against year-month"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"[0.*]; [0.**]; [0.***]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(nitr_trend_reg, <span class="at">title =</span> <span class="st">"Regression of nitrogen non-seasonal trend component against year-month"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"[***]p&lt;0.01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 <table style="text-align:center">
@@ -893,7 +893,7 @@ F Statistic
 <em>Note:</em>
 </td>
 <td style="text-align:right">
-[0.*]; [0.**]; [0.***]
+[***]p&lt;0.01
 </td>
 </tr>
 
@@ -940,7 +940,7 @@ F Statistic
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>phos_trend_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(trend <span class="sc">~</span> yr_mo, <span class="at">data =</span> phos_decomp)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted regression table</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(phos_trend_reg, <span class="at">title =</span> <span class="st">"Regression of phosphorus non-seasonal trend component against year-month"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"[0.*]; [0.**]; [0.***]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(phos_trend_reg, <span class="at">title =</span> <span class="st">"Regression of phosphorus non-seasonal trend component against year-month"</span>, <span class="at">align =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">'html'</span>, <span class="at">notes.append =</span> <span class="cn">FALSE</span>, <span class="at">notes =</span> <span class="st">"[***]p&lt;0.01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 <table style="text-align:center">
@@ -1070,7 +1070,7 @@ F Statistic
 <em>Note:</em>
 </td>
 <td style="text-align:right">
-[0.*]; [0.**]; [0.***]
+[***]p&lt;0.01
 </td>
 </tr>
 
@@ -1138,16 +1138,15 @@ U.S. Environmental Protection Agency. 2023. <span>“Chesapeake <span>Bay</span>
 </div>
 </div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2023,
   author = {Ghanadan, Linus},
-  title = {Time Series Analysis of Nitrogen and Phosphorus in
-    {Chesapeake} {Bay} Tidal Regions},
+  title = {Time Series Analysis of Nutrient Pollution in {Chesapeake}
+    {Bay} Tidal Regions},
   date = {2023-12-12},
   url = {https://linusghanadan.github.io/blog/2023-12-12-post/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ghanadan2023" class="csl-entry quarto-appendix-citeas" role="listitem">
-Ghanadan, Linus. 2023. <span>“Time Series Analysis of Nitrogen and
-Phosphorus in Chesapeake Bay Tidal Regions.”</span> December 12, 2023.
-<a href="https://linusghanadan.github.io/blog/2023-12-12-post/">https://linusghanadan.github.io/blog/2023-12-12-post/</a>.
+Ghanadan, Linus. 2023. <span>“Time Series Analysis of Nutrient Pollution
+in Chesapeake Bay Tidal Regions.”</span> December 12, 2023. <a href="https://linusghanadan.github.io/blog/2023-12-12-post/">https://linusghanadan.github.io/blog/2023-12-12-post/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
