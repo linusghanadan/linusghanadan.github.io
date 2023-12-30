@@ -1,4 +1,5 @@
 # Enables banner style title blocks to all posts inside /blog folder
 title-block-banner: true
+
 # Automatically re-render individual posts that have been changed when select "Render Website"
 freeze: auto
