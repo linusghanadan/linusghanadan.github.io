@@ -305,7 +305,6 @@ cat('95% confidence interval for 10-year percent change in nitrogen non-seasonal
     ']')
 ```
 
-
 In this linear regression, we look at the influence of year-month on our non-seasonal trend component for nitrogen. The regression output tells us that we can say at an alpha equals 0.01 significance level that the 10-year change in non-seasonal trend component was negative. However, the low adjusted R-squared also tells us that variation in year-month explains very little of the variation in trend component. Then, the first interval tells us that there is a 95% chance that the interval from -0.0028 mg/L to -0.0005 mg/L contains the true 10-year change in non-seasonal trend component. The second interval is telling us that this represents a -0.28% to -0.05% change as compared to the non-seasonal trend component in January 2010.
 
 ```{r, results='asis'}
@@ -338,7 +337,6 @@ cat('95% confidence interval for 10-year percent change in phosphorus non-season
     sprintf("%.2f", phos_percent_trend_10_yr[2]),
     ']')
 ```
-
 
 For phosphorus, the linear regression output tells us that we are confident at the alpha equals 0.01 level that the 10-year change in non-seasonal trend component was negative. It is also worth noting that the adjusted R-squared tells us that over half (56%) of the the variation in trend component can be explained by variation in year-month. Lastly, we find that there is a 95% chance that the interval between -0.00030 mg/L and -0.00022 mg/L contains the true 10-year change in non-seasonal trend component. This represents a -0.52% to -0.38% change as compared to the non-seasonal trend component in January 2010.
 
