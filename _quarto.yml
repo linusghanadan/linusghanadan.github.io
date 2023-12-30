@@ -8,8 +8,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: linus_resume.pdf
-        text: Resume
       - href: blog.qmd
         text: Blog
         
