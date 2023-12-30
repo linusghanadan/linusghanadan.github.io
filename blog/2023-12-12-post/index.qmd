@@ -1,6 +1,6 @@
 ---
-title: "Time series analysis of nutrient pollution in Chesapeake Bay tidal regions"
-description: "This analysis seeks to better understand the seasonality of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions, in addition to any non-seasonal trends since 2010."
+title: "2010-2019 time series analysis of nutrient concentration in Chesapeake Bay tidal regions"
+description: "This analysis seeks to better understand the seasonality and trends of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions since the 2010 introduction of federal water quality requirements under the Clean Water Act."
 author: 
   - name: Linus Ghanadan
     url: https://linusghanadan.github.io/
@@ -25,7 +25,7 @@ format:
 
 ## Question
 
-Since the 2010 introduction of Total Maximum Daily Load (TMDL) requirements, what seasonal and non-seasonal trends are present for nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions?
+Since the 2010 introduction of federal water quality requirements, what seasonal and non-seasonal trends are present for nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions?
 
 ## Introduction
 
