@@ -12,10 +12,10 @@ categories:
   - [Methane]
   - [Energy Transition]
   - [R]
-bibliography: stats_blog.bib
+bibliography: viz_blog.bib
 citation:
   url: https://linusghanadan.github.io/blog/2023-3-12-post/
-image: chesapeake-bay.jpeg
+image: infographic.jpeg
 draft: false
 format:
     html:
@@ -28,13 +28,13 @@ In my infographic, the overarching question that I will be answering is where an
 
 ## Data
 
-The data set that I will use comes from the International Energy Agency (IEA), a Paris-based intergovernmental organization with 31 member countries and 13 association countries. The group was created following the 1973 oil crisis by the Organisation for Economic Co-operation and Development (OECD) to oversee and collect data on global energy markets. In the last decade, the group has increasingly played an important role in guiding and advocating for an accelerated global energy transition away from fossil fuels.
+The data set that I will use comes from the International Energy Agency (IEA), a Paris-based intergovernmental organization with 31 member countries and 13 association countries. The group was created following the 1973 oil crisis by the Organisation for Economic Co-operation and Development (OECD) to oversee and collect data on global energy markets. In the last decade, the group has increasingly played an important role in guiding and advocating for an accelerated global energy transition away from fossil fuels [@international_energy_agency_iea_history_2024].
 
-Since 2020, the IEA has published yearly data estimating global methane emissions at a country-level. For methane emissions resulting from oil and gas processes (upstream and downstream), these figures are calculated using a combination of measurement data (mostly from satellite readings) and activity data on the specific actions being taken that release vented, fugitive, or incomplete-flare emissions. Coal mine methane emissions are estimated primarily by looking at the ash content of coal produced in different countries, mine depth, and regulatory oversight. Furthermore, estimating country-level emissions from agriculture and waste mainly relies only satellite technology. Lastly, other methane sources are estimated using manufacturing data and the emissions factors associated with the industrial processes carried out in that country.
+Since 2020, the IEA has published yearly data estimating global methane emissions at a country-level. For methane emissions resulting from oil and gas processes (upstream and downstream), these figures are calculated using a combination of measurement data (mostly from satellite readings) and activity data on the specific actions being taken that release vented, fugitive, or incomplete-flare emissions. Coal mine methane emissions are estimated primarily by looking at the ash content of coal produced in different countries, mine depth, and regulatory oversight. Furthermore, estimating country-level emissions from agriculture and waste mainly relies only satellite technology. Lastly, other methane sources are estimated using manufacturing data and the emissions factors associated with the industrial processes carried out in that country [@international_energy_agency_iea_global_2022].
 
-I will be using the 2022 data set, which provides emissions estimates for the year 2021 (see footnotes for data citation). Anyone can access this data set for free after making an account on the IEA website.
+I will be using the 2022 data set, which provides emissions estimates for the year 2021 [@international_energy_agency_iea_methane_2022]. Anyone can access this data set for free after making an account on the IEA website.
 
-In addition to the methane data set, I also want data on 2021 population values of different countries for computing emissions per capita, so I downloaded a free data set from the World Bank website, which did not require me to have any sort of account (see footnotes for data citation).
+In addition to the methane data set, I also want data on 2021 population values of different countries for computing emissions per capita, so I downloaded a free data set from the World Bank website, which did not require me to have any sort of account [@the_world_bank_population_nodate].
 
 ## Setup & data import
 
@@ -152,12 +152,15 @@ wide_df <- methane_df %>%
 For my first plot, I'll start by making a treemap of how the four different categories (energy, agriculture, waste, and other) of methane emissions and the country that they are in contribute to total global emissions. To do this, I start by taking my methane data frame and making a version of it specifically for my treemap plot with altered names of countries (I didn't like the way that they looked when they were included) and the types of emissions (adding the percents in that I calculated from my general data wrangling). I then re-level the factors so they appear in descending order, define a custom color palette that I built using the website Coolers, and finally I'm ready to make my actual plot.
 
 ```{r}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                          plot 1 visualization                            ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 # rename countries to empty strings so that don't show up in plot
 treemap_df <- methane_df %>%
   mutate(country = case_when(country == "Mexico" ~ "",
                              country == "Algeria" ~ "",
                              country == "Libya" ~ "",
-                             #country == "Australia" ~ "",
                              country == "Venezuela" ~ "",
                              country == "Turkmenistan" ~ "",
                              country == "Nigeria" ~ "",
@@ -178,7 +181,6 @@ treemap_df <- methane_df %>%
 treemap_df <- treemap_df %>%
    mutate(type = factor(type, levels = c("Energy\n(55%)", "Agriculture\n(29%)", "Waste\n(14%)", "Other\n(2%)")))
 
-
 # define custom color palette
 custom_colors <- c(
   "Agriculture\n(29%)" = "#D2B48C",
@@ -187,29 +189,23 @@ custom_colors <- c(
   "Other\n(2%)" = "#2B4690")
 
 # create treemap
-ggplot(treemap_df, aes(area = total_emissions, fill = type, label = country, subgroup = type)) + # using sector for coloring and as subgroups (appear in legend), labeling based on source
-  geom_treemap(color = "white", size = 0.5) +
-  labs(x = "Data Source: International Energy Agency (IEA)\n\n*The EU is a group of 27 countries in Europe.") + # use x axis title for source information
+ggplot(treemap_df, aes(area = total_emissions, fill = type, label = country, subgroup = type)) + # using sector ('type') for coloring and as subgroups (appear in legend), labeling based on country
+  geom_treemap(color = "white", size = 0.5) + # adjust color and size of lines separating rectangles
+  labs(x = "Data Source: International Energy Agency (IEA)\n\n*The EU is a group of 27 countries in Europe.") + # use x axis title for caption
   geom_treemap_text(color = "white", place = "center", grow = TRUE, reflow = TRUE, family = "barlow", min.size = 12) + # for text inside the treemap, allow to grow with grow = TRUE, flow onto next line with reflow = TRUE, and set font family to barlow
   scale_fill_manual(values = custom_colors) +  # apply custom color palette
   labs(title = "Sources of Anthropogenic Methane Emissions in 2021") +
-  theme(axis.title.x = element_text(size = 8, hjust = 1, color = "grey30", family = "merri sans", margin = margin(20, 0, 0, 0)), # adjust font, fontface, size, and color of x axis title (use hjust = 1 to move to far right since this is source)
-        #legend.justification = "center",
-        legend.position = "top",
+  theme(axis.title.x = element_text(size = 8, hjust = 1, color = "grey30", family = "merri sans", margin = margin(20, 0, 0, 0)), # adjust font, fontface, size, and color of x axis title (use hjust = 1 to move to far right since this is caption)
+        legend.position = "top", # set legend to top
         legend.title = element_blank(),
         legend.text = element_text(size = 15, family = "barrow", face = "bold"), # set legend font to merri sans
-        legend.title.align = 0.5,
-        #legend.spacing = unit(5, "mm"),
-        legend.spacing.x = unit(5, "mm"),
-        #legend.text.align = 0.5,
-        #legend.margin = margin(0, 15, 0, 53), # Adjust overall margin around the legend
-        #legend.box.margin = margin(0, 5, 0, 5), # Adjust margin around the entire legend box
-        legend.background = element_rect(fill = "#FEF6EC", color = NA),
-        #legend.key.height = unit(2, "mm"),
-        legend.key.size = unit(4, "mm"),
+        legend.title.align = 0.5, # center legend
+        legend.spacing.x = unit(5, "mm"), # set space between legend keys
+        legend.background = element_rect(fill = "#FEF6EC", color = NA), # change legend background color
+        legend.key.size = unit(4, "mm"), # set legend key size
         plot.title = element_text(family = "merri sans", size = 16, hjust = 0.5), # set title font to merri sans
-        plot.background = element_rect(fill = "#FEF6EC", color = NA), # Change the plot background color
-        panel.background = element_rect(fill = "#FEF6EC", color = NA)) # Change the panel background color to match
+        plot.background = element_rect(fill = "#FEF6EC", color = NA), # change the plot background color
+        panel.background = element_rect(fill = "#FEF6EC", color = NA)) # change the panel background color to match
 ```
 
 ## Plot 2 visualization
@@ -218,9 +214,10 @@ For plot 2, I start by creating a new version of the wide-version of my methane 
 
 ```{r}
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-##                          plot 2 wrangling                                ----
+##                          joining data frames                             ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# change 'country' names to match population data set and store as new data frame
 scatter_df <- wide_df %>%
   mutate(country = case_when(
     country == "Congo" ~ "Congo, Rep.",
@@ -239,9 +236,10 @@ scatter_df <- wide_df %>%
     country == "Russia" ~ "Russian Federation",
     TRUE ~ country))
 
-# join methane and population to make new data frame
+# join this data frame with pop_df
 scatter_df <- left_join(x = scatter_df, y = pop_df, by = "country")
 
+# change 'country' names back to how they were
 scatter_df <- scatter_df %>%
   mutate(country = case_when(
     country == "Congo, Rep." ~ "Congo",
@@ -267,21 +265,23 @@ Now that the join is complete and my country names are back to normal, I create 
 Next, I create a new data frame only containing six countries (China, U.S., Russia, Brazil, Canada, and Australia) and the European Union, as I want to focus on the emissions from these places in my infographic. I take the sum of their emissions and populations and compare that to global emissions and populations, and the resulting percent values will also be included on my infographic as text.
 
 ```{r}
+# add 'emissions_pc' column and convert column units
 scatter_df <- scatter_df %>% 
-  mutate(emissions_pc = (total_emissions / population) * 1000000) %>% # create 'emissions_pc' column
+  mutate(emissions_pc = (total_emissions / population) * 1000000) %>% # create 'emissions_pc' column (in tons)
   mutate(population = population / 1000000) %>% # convert 'population' values from people to millions of people
   arrange(desc(emissions_pc))
 
-# obtain main 6 countries and select relevant columns
+# create new data frame with only the 7 countries of focus (including EU)
 main_countries <- scatter_df %>%
   filter(country %in% c("China", "U.S.", "Russia", "Brazil", "EU*", "Canada", "Australia")) %>% 
   arrange(desc(total_emissions))
 
+# add 'population' column to world_df
 world_df <- world_df %>%
   mutate(population = 7950946801) %>% # found from row 260 in pop_df
   mutate(population = population / 1000000) # convert 'population' values from people to millions of people
 
-
+# calculate the percents of global population and global emissions in countries of focus
 sum(main_countries$population, na.rm = TRUE) / sum(world_df$population, na.rm = TRUE)
 sum(main_countries$total_emissions, na.rm = TRUE) / sum(world_df$total_emissions, na.rm = TRUE)
 ```
@@ -289,60 +289,66 @@ sum(main_countries$total_emissions, na.rm = TRUE) / sum(world_df$total_emissions
 At this point, I just need to get a few more data frames in order to make my scatterplot. I create four new data frames: one for all the countries that I'm not focusing on in my infographic, one for notable countries that I want to include (but not highlight) in my infographic for the sake of comparison, one for just Australia (so I can adjust its label on the plot), and one for the remaining countries of focus. Importantly, I also make a new column that I will use to set the alpha value, which moduates transparency in ggplot, of each point in my scatter plot. I want my countries of focus to not be transparent at all, and the rest of my points to be reasonably transparent. After this, its time to make the scatterplot.
 
 ```{r}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                          plot 2 visualization                            ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# create new data frame excluding the countries of focus
 other_countries <- scatter_df %>% 
   filter(!(country %in% c("China", "U.S.", "Russia", "Brazil", "EU*", "Canada", "Australia")))
 
+# create new data frame with countries to label but not highlight (for context)
 other_notable_countries <- other_countries %>% 
   filter(country %in% c("India", "Indonesia", "Iran", "Mexico", "Congo", "Venezuela", "Bangladesh"))
 
-
-# define color palette
-#country_colors <- c("U.S." = "#020122", "Brazil" = "#020122", "Russia" = "#020122", "Canada" = "#020122", "EU*" = "#020122", "China" = "#020122", "Australia" = "#020122")
-
+# create new df for just Australia (so can adjust where label is on plot)
 australia_df <- scatter_df %>% subset(country == "Australia")
 
+# create new df for highlighted countries minus Australia (so can plot separately)
 other_main_countries <- main_countries %>% filter(!(country == "Australia"))
 
-# Add a new column for alpha values
-scatter_df$alpha_value <- ifelse(scatter_df$country %in% c("China", "U.S.", "Russia", "Brazil", "Australia", "Canada", "EU*"), 1, 0.2)
+# add new column for alpha values to scatter_df
+scatter_df$alpha_value <- ifelse(scatter_df$country %in% c("China", "U.S.", "Russia", "Brazil", "Australia", "Canada", "EU*"), 1, 0.2) # only countries of focus have alpha of 1, all else 0.2
 
-# Now, in your ggplot code, use this new column for the alpha aesthetic
+# create scatterplot
 ggplot(scatter_df) +
-  geom_point(aes(x = population, y = emissions_pc, alpha = alpha_value), color = "#020122") + # Use alpha values from the column
-  scale_alpha_identity() + # Tell ggplot to use the alpha values as given, without scaling
-  # Your other layers and customizations follow...
-  geom_text(data = australia_df, aes(label = country, x = population - 5, y = emissions_pc + 15), 
-            size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
-  geom_text(data = other_main_countries, aes(label = country, x = population + 15, y = emissions_pc), 
-            size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
-  # geom_text(data = russia_df, aes(label = country, x = population + 15, y = emissions_pc), 
-  #           size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
-  geom_text(data = other_notable_countries, aes(label = country, x = population + 15, y = emissions_pc), alpha = 0.2, size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
-  #geom_point(data = africa_df, aes(x = population, y = emissions_pc), color = "#C23E37") +
-  #geom_text(data = africa_df, aes(label = country, x = population + 20, y = emissions_pc),
-             # color = "#C23E37", size = 5, hjust = 0, vjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
-  labs(x = "Population (millions)", y = "Per Capita Methane Emissions (tons CO2eq)", 
+  geom_point(aes(x = population, y = emissions_pc, alpha = alpha_value), color = "#020122") + # use alpha values from the column
+  scale_alpha_identity() + # tell ggplot to use the alpha values as given (without scaling)
+  geom_text(data = australia_df, # add text for Australia
+            aes(label = country, x = population - 5, y = emissions_pc + 15), # position text so does not overlap
+            size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) + # adjust other text features
+  geom_text(data = other_main_countries, # add text for other main countries
+            aes(label = country, x = population + 15, y = emissions_pc), # position text
+            size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) + # adjust other text features
+  geom_text(data = other_notable_countries, # add text for other countries to label
+            aes(label = country, x = population + 15, y = emissions_pc), # position text
+            alpha = 0.2, size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) + # adjust other text features
+  labs(x = "Population (millions)",
+       y = "Per Capita Methane Emissions (tons CO2eq)", 
        title = "Population and Per-Capita Anthropogenic Methane Emissions in 2021",
-       #subtitle = "Other countries shown with grey points",
-       caption = "Note: 8 countries had per capita emissions >350 tons CO2eq and are not displayed.\nData Sources: International Energy Agency (IEA), World Bank\n\n*The EU is a group of 27 countries in Europe.\n**Based on calculation from BBC News in 2021 article.⁵") + # Add label for size legend
-  scale_x_continuous(limits = c(0, 1550), expand = c(0, 0)) +
-  scale_y_continuous(limits = c(0, 350), expand = c(0, 0)) +
+       caption = "Note: 8 countries had per capita emissions >350 tons CO2eq and are not displayed.\nData Sources: International Energy Agency (IEA), World Bank\n\n*The EU is a group of 27 countries in Europe.\n**Based on calculation from BBC News in 2021 article.⁵") +
+  scale_x_continuous(limits = c(0, 1550), expand = c(0, 0)) + # set limits on min/max x axis values, use expand to tell to have where two axis meet as origin point
+  scale_y_continuous(limits = c(0, 350), expand = c(0, 0)) + # set limits on min/max y axis values, use expand to tell to have where two axis meet as origin point
   theme_minimal() +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank(),
-        axis.title.x = element_text(family = "barlow", face = "bold", size = 15, color = "grey30", margin = margin(20, 0, 0, 0)),
-        axis.title.y = element_text(family = "barlow", face = "bold", size = 15, color = "grey30", margin = margin(0, 20, 0, 0)),
-        panel.grid.major.y = element_line(color = "grey90", size = 0.5), # Add horizontal gridlines (major)
-        panel.grid.minor.y = element_line(color = "grey90", size = 0.25), # Add horizontal gridlines (minor)
-        axis.text.x = element_text(family = "barlow", face = "bold", size = 13),
-        axis.text.y = element_text(family = "barlow", face = "bold", size = 13),
-        axis.line = element_line(color = "black", size = 0.5),
-        plot.title = element_text(family = "merri sans", size = 12.5, hjust = 0.5),
-        #plot.subtitle = element_text(family = "merri sans", size = 10),
-        plot.caption = element_text(hjust = 1, size = 8, color = "grey30", family = "merri sans", margin = margin(20, 0, 0, 0)),
-        plot.background = element_rect(fill = "#FEF6EC", color = NA),
-        panel.background = element_rect(fill = "#FEF6EC", color = NA)) +
-  geom_hline(yintercept = 197, linetype = "dashed", linewidth = 0.8, color = "cornflowerblue") + # Add horizontal line at y = 1
-  annotate("text", x = 700, y = 240, label = "Carbon footprint of a typical\nprivate jet flying for 48 hours**", size = 5, hjust = 0, color = "cornflowerblue", family = "barlow", fontface = "bold")
+        axis.title.x = element_text(family = "barlow", face = "bold", size = 15, color = "grey30", # adjust text features for x axis title
+                                    margin = margin(20, 0, 0, 0)), # set margin
+        axis.title.y = element_text(family = "barlow", face = "bold", size = 15, color = "grey30", # adjust text features for y axis title
+                                    margin = margin(0, 20, 0, 0)), # set margin
+        panel.grid.major.y = element_line(color = "grey90", size = 0.5), # add horizontal gridlines (major)
+        panel.grid.minor.y = element_line(color = "grey90", size = 0.25), # add horizontal gridlines (minor)
+        axis.text.x = element_text(family = "barlow", face = "bold", size = 13), # adjust x axis text
+        axis.text.y = element_text(family = "barlow", face = "bold", size = 13), # adjust y axis text
+        axis.line = element_line(color = "black", size = 0.5), # adjust color and size of axis lines
+        plot.title = element_text(family = "merri sans", size = 12.5, hjust = 0.5), # adjust plot title text
+        plot.caption = element_text(hjust = 1, size = 8, color = "grey30", family = "merri sans", # adjust caption text
+                                    margin = margin(20, 0, 0, 0)), # set margin
+        plot.background = element_rect(fill = "#FEF6EC", color = NA), # set plot background
+        panel.background = element_rect(fill = "#FEF6EC", color = NA)) + # set panel background
+  geom_hline(yintercept = 197, linetype = "dashed", linewidth = 0.8, color = "cornflowerblue") + # add dashed horizontal line at y = 197
+  annotate("text", x = 700, y = 240, # position text annotation
+           label = "Carbon footprint of a typical\nprivate jet flying for 48 hours**",
+           size = 5, hjust = 0, color = "cornflowerblue", family = "barlow", fontface = "bold") # adjust text features
 ```
 
 ## Plot 3 visualization
@@ -354,6 +360,7 @@ For my third plot, I don't have too much extra wrangling to do. I have to make a
 ##                          plot 3 visualization                            ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# filter methane_df to create long format of main_countries
 cols_df <- methane_df %>% 
   filter(country %in% c("China", "U.S.", "Russia", "Brazil", "EU*", "Canada", "Australia"))
 
@@ -375,24 +382,29 @@ custom_colors <- c(
 
 # create dodged column plot
 ggplot(cols_df, aes(x = country, y = total_emissions, fill = type)) + # fill columns based on sector
-  geom_col(position = "stack") + # specify dodged position so to create space between countries
-  labs(x = "", y = "Methane Emissions (million tons CO2eq)", title = "Sources of 2021 Anthropogenic Methane Emissions in selected countries", caption = "Data Source: International Energy Agency (IEA)\n\n*The EU is a group of 27 countries in Europe.") + # add source as x axis title
+  geom_col(position = "stack") + # specify dodged position to add space between countries
+  labs(x = "", # no x axis title
+       y = "Methane Emissions (million tons CO2eq)",
+       title = "Sources of 2021 Anthropogenic Methane Emissions in selected countries",
+       caption = "Data Source: International Energy Agency (IEA)\n\n*The EU is a group of 27 countries in Europe.") +
   scale_fill_manual(values = custom_colors) + # apply custom color palette
   theme_minimal() +
-  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank(),
-        panel.grid.major.y = element_line(color = "grey90", size = 0.5), # Add horizontal gridlines (major)
-        panel.grid.minor.y = element_line(color = "grey90", size = 0.25), # Add horizontal gridlines 
-        plot.caption = element_text(size = 8, hjust = 1, colour = "grey30", family = "merri sans", margin = margin(20, 0, 0, 0)), # adjust font, fontface, size, and color of x axis title (use hjust = 1 to move to far right since this is source)
-        axis.title.y = element_text(family = "barlow", face = "bold", size = 15, color = "grey30", margin = margin(0, 20, 0, 0)), # adjust font, fontface, size, and color of y axis title
-        axis.text.x = element_text(family = "barlow", face = "bold", size = 16), # adjust font and fontface of x axis text
-        axis.text.y = element_text(family = "barlow", size = 13, face = "bold"), # adjust font and fontface of y axis text
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor.x = element_blank(), # remove major and minor vertical grid lines
+        panel.grid.major.y = element_line(color = "grey90", size = 0.5), # add horizontal grid lines (major)
+        panel.grid.minor.y = element_line(color = "grey90", size = 0.25), # add horizontal grid lines(minor)
+        plot.caption = element_text(size = 8, hjust = 1, colour = "grey30", family = "merri sans", # adjust caption text
+                                    margin = margin(20, 0, 0, 0)), # set margin
+        axis.title.y = element_text(family = "barlow", face = "bold", size = 15, color = "grey30", # adjust y axis title text
+                                    margin = margin(0, 20, 0, 0)), # set margin
+        axis.text.x = element_text(family = "barlow", face = "bold", size = 16), # adjust x axis text
+        axis.text.y = element_text(family = "barlow", size = 13, face = "bold"), # adjust x axis text
         legend.position = c(0.88, 0.85), # specify legend position
-        legend.text = element_text(color = "grey30", face = "bold", size = 16, family = "barlow"), # adjust font, fontface, size, and color of y axis legend title
+        legend.text = element_text(color = "grey30", face = "bold", size = 16, family = "barlow"), # adjust legend text
         legend.title = element_blank(),
-        plot.title = element_text(family = "merri sans", size = 12.5, hjust = 0.5),
-        legend.background = element_rect(fill = "#FEF6EC", color = NA),
-        plot.background = element_rect(fill = "#FEF6EC", color = NA), # Change the plot background color
-        panel.background = element_rect(fill = "#FEF6EC", color = NA)) # Change the panel background color to)
+        plot.title = element_text(family = "merri sans", size = 12.5, hjust = 0.5), # adjust plot title text and alignment
+        legend.background = element_rect(fill = "#FEF6EC", color = NA), # change legend background color
+        plot.background = element_rect(fill = "#FEF6EC", color = NA), # change plot background color
+        panel.background = element_rect(fill = "#FEF6EC", color = NA)) # change panel background color
 ```
 
 ## Making infographic
@@ -438,15 +450,15 @@ I think that the map that I included alongside the large text in the middle of m
 
 #### Considering accessibility
 
-I spent a great deal of time ensuring that the colors I chose were color-blind friendly using the "let's get color blind" Chrome Extension. I tested using the simulate, daltonized, and simulate daltonized versions of Deuteranomaly, Protanomaly, and Tritanomaly. I also used alt text for all of three of my plots and my map to ensure that blind users could still understand the figures in my infographic.
+I spent a great deal of time ensuring that the colors I chose were color-blind friendly using the "let's get color blind" Chrome Extension. I tested using the simulate, daltonized, and simulate daltonized versions of Deuteranomaly, Protanomaly, and Tritanomaly. I also wrote alt text (embedded in images below) for all three of my plots (and my map) to ensure that blind users could still understand the figures in my infographic.
 
-![Treemap (rectangle divided up into smaller rectangles) where each smaller rectangle represents anthropogenic methane emissions in 2021 from a specific country and sector (rectangles are colored by sector). Energy makes up 55% of global emissions, about half of which comes from the China, Russia, the U.S., Iran, and India. Agriculture makes up 29% of global emissions, waste makes up 14%, and 2% are from other sources.](my_plot.png)
+![Treemap (rectangle divided up into smaller rectangles) where each smaller rectangle represents anthropogenic methane emissions in 2021 from a specific country and sector (rectangles are colored by sector). Energy makes up 55% of global emissions, about half of which comes from the China, Russia, the U.S., Iran, and India. Agriculture makes up 29% of global emissions, waste makes up 14%, and 2% are from other sources.](plot-1.jpeg)
 
-![Map of the world where six countries (Canada, the U.S., Brazil, Russia, China, and Australia) and the 27 countries of the European Union are highlighted.](my_plot.png)
+![Map of the world where six countries (Canada, the U.S., Brazil, Russia, China, and Australia) and the 27 countries of the European Union are highlighted.](world.jpeg)
 
-![Scatterplot of many countries showing 2021 population on the x-axis and 2021 per-capita methane emissions (in tons of CO2eq) on the y-axis. Canada, the U.S., Brazil, Russia, China, and Australia are labeled and emphasized. Australia and Russia are in the top left of the plot, with per-capita emissions around 300 tons CO2eq. Australia's population is about 25 million people, while Russia's is about 200 million. Canada is around 200 tons CO2 eq, right below a dashed line indicating the carbon footprint of a typical private jet flying for 48 hours. Canada's population is around 35 million people. The U.S. is at around 150 tons CO2eq and has a population of about 300 million people. Brazil is at around 100 tons CO2eq and has a population of about 250 million people. China is at around 55 tons CO2eq and has a population of about 1,400 million (1.4 billion) people. Latley, the EU is at around 45 tons CO2eq and has a population of about 450 million people.](my_plot.png)
+![Scatterplot of many countries showing 2021 population on the x-axis and 2021 per-capita methane emissions (in tons of CO2eq) on the y-axis. Canada, the U.S., Brazil, Russia, China, and Australia are labeled and emphasized. Australia and Russia are in the top left of the plot, with per-capita emissions around 300 tons CO2eq. Australia's population is about 25 million people, while Russia's is about 200 million. Canada is around 200 tons CO2 eq, right below a dashed line indicating the carbon footprint of a typical private jet flying for 48 hours. Canada's population is around 35 million people. The U.S. is at around 150 tons CO2eq and has a population of about 300 million people. Brazil is at around 100 tons CO2eq and has a population of about 250 million people. China is at around 55 tons CO2eq and has a population of about 1,400 million (1.4 billion) people. Latley, the EU is at around 45 tons CO2eq and has a population of about 450 million people.](plot-2.jpeg)
 
-![Bar graph with 7 vertical columns, where the height represents the total methane emissions in 2021 (measured in million tons of CO2eq). From left to right (aligns with highest to lowest total emissions), the 7 vertical columns are China, the U.S. Russia, Brazil, the EU, Canada, and Australia. China is at about 80,000 million tons CO2eq, the U.S. and Russia are both close to 45,000 tons CO2eq, Brazil and the EU are both around 20,000 tons CO2eq, and Canada and Australia are both less than 10,000 tons CO2eq. The 7 columns are each seperated into four colored components, one for each type of emissions source (energy, agriculture, waste, and other). Russia’s energy sector (85%) and Brazil’s agricultural sector (65%) stand out as particularly high. Emissions from energy in the EU (29%) and Brazil (16%) make up a relatively low share of their total emissions, compared to about 60 to 70% in China, the U.S., Canada, and Australia.](my_plot.png)
+![Bar graph with 7 vertical columns, where the height represents the total methane emissions in 2021 (measured in million tons of CO2eq). From left to right (aligns with highest to lowest total emissions), the 7 vertical columns are China, the U.S. Russia, Brazil, the EU, Canada, and Australia. China is at about 80,000 million tons CO2eq, the U.S. and Russia are both close to 45,000 tons CO2eq, Brazil and the EU are both around 20,000 tons CO2eq, and Canada and Australia are both less than 10,000 tons CO2eq. The 7 columns are each seperated into four colored components, one for each type of emissions source (energy, agriculture, waste, and other). Russia’s energy sector (85%) and Brazil’s agricultural sector (65%) stand out as particularly high. Emissions from energy in the EU (29%) and Brazil (16%) make up a relatively low share of their total emissions, compared to about 60 to 70% in China, the U.S., Canada, and Australia.](plot-3.jpeg)
 
 
 #### Applying a lense of Diversity, Equity, & Inclusion (DEI)
