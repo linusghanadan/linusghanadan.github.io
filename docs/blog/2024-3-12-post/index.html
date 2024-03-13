@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Linus Ghanadan">
+<meta name="dcterms.date" content="2024-03-12">
+<meta name="description" content="This blog post explains the process of creating an infographic on anthropogenic methane emissions in 2021, with a particular focus on the data visualization considerations and choices made.">
+
+<title>Linus Ghanadan - Creating an infographic on anthropogenic methane emissions in 2021</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Linus Ghanadan</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Creating an infographic on anthropogenic methane emissions in 2021</h1>
+                  <div>
+        <div class="description">
+          This blog post explains the process of creating an infographic on anthropogenic methane emissions in 2021, with a particular focus on the data visualization considerations and choices made.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Data Visualization</div>
+                <div class="quarto-category">Methane</div>
+                <div class="quarto-category">Energy Transition</div>
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://linusghanadan.github.io/">Linus Ghanadan</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://bren.ucsb.edu/masters-programs/master-environmental-data-science">
+              MEDS
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 12, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="completed-infographic-where-we-are-heading" class="level2">
+<h2 class="anchored" data-anchor-id="completed-infographic-where-we-are-heading">Completed infographic (where we are heading!)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="infographic.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Infographic on anthropogenic methane emissions in 2021</figcaption>
+</figure>
+</div>
+</section>
+<section id="link-to-github-repository-coming-soon" class="level2">
+<h2 class="anchored" data-anchor-id="link-to-github-repository-coming-soon">Link to GitHub repository (coming soon!)</h2>
+</section>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>In my infographic, the overarching question that I will be answering is where anthropogenic methane emissions came from in 2021. This includes the countries where emissions are occurring most frequently and also the human activities (e.g., agriculture) that contribute the most to these emissions.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The data set that I will use comes from the International Energy Agency (IEA), a Paris-based intergovernmental organization with 31 member countries and 13 association countries. The group was created following the 1973 oil crisis by the Organisation for Economic Co-operation and Development (OECD) to oversee and collect data on global energy markets. In the last decade, the group has increasingly played an important role in guiding and advocating for an accelerated global energy transition away from fossil fuels <span class="citation" data-cites="international_energy_agency_iea_history_2024">(<a href="#ref-international_energy_agency_iea_history_2024" role="doc-biblioref">International Energy Agency (IEA) 2024</a>)</span>.</p>
+<p>Since 2020, the IEA has published yearly data estimating global methane emissions at a country-level. For methane emissions resulting from oil and gas processes (upstream and downstream), these figures are calculated using a combination of measurement data (mostly from satellite readings) and activity data on the specific actions being taken that release vented, fugitive, or incomplete-flare emissions. Coal mine methane emissions are estimated primarily by looking at the ash content of coal produced in different countries, mine depth, and regulatory oversight. Furthermore, estimating country-level emissions from agriculture and waste mainly relies only satellite technology. Lastly, other methane sources are estimated using manufacturing data and the emissions factors associated with the industrial processes carried out in that country <span class="citation" data-cites="international_energy_agency_iea_global_2022">(<a href="#ref-international_energy_agency_iea_global_2022" role="doc-biblioref">International Energy Agency (IEA) 2022b</a>)</span>.</p>
+<p>I will be using the 2022 data set, which provides emissions estimates for the year 2021 <span class="citation" data-cites="international_energy_agency_iea_methane_2022">(<a href="#ref-international_energy_agency_iea_methane_2022" role="doc-biblioref">International Energy Agency (IEA) 2022a</a>)</span>. Anyone can access this data set for free after making an account on the IEA website.</p>
+<p>In addition to the methane data set, I also want data on 2021 population values of different countries for computing emissions per capita, so I downloaded a free data set from the World Bank website, which did not require me to have any sort of account <span class="citation" data-cites="the_world_bank_population_nodate">(<a href="#ref-the_world_bank_population_nodate" role="doc-biblioref">The World Bank, n.d.</a>)</span>.</p>
+</section>
+<section id="setup-data-import" class="level2">
+<h2 class="anchored" data-anchor-id="setup-data-import">Setup &amp; data import</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                                setup                                     ----</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(treemapify)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># import fonts</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="at">name =</span> <span class="st">"Merriweather Sans"</span>, <span class="at">family =</span> <span class="st">"merri sans"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="at">name =</span> <span class="st">"Barlow Condensed"</span>, <span class="at">regular.wt =</span> <span class="dv">200</span>, <span class="at">family =</span> <span class="st">"barlow"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># enable {showtext} for rendering</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># set scipen option to a high value to avoid scientific notation</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                                import data                               ----</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># read in methane data</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>methane_df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"2024-3-12-post-data"</span>, <span class="st">"IEA-MethaneEmissionsComparison-World.csv"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> <span class="co"># convert column names to lower_case_snake format</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">'country'</span>, <span class="st">'emissions'</span>, <span class="st">'type'</span>) <span class="co"># select relevant columns</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># read in population data</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>pop_df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"2024-3-12-post-data"</span>, <span class="st">"worldbank_pop.csv"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">'population'</span> <span class="ot">=</span> <span class="st">'x2021'</span>, <span class="co"># rename column with 2022 populations to 'population'</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>         <span class="st">'country'</span> <span class="ot">=</span> <span class="st">'country_name'</span>) <span class="sc">%&gt;%</span> <span class="co"># rename columns with countries (for joining)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">'country'</span>, <span class="st">'population'</span>) <span class="co"># select these two columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="general-data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="general-data-wrangling">General data wrangling</h2>
+<p>To start, I have some general data wrangling steps that allowed me to explore the data and calculate some of the statistics that I ended up including in my infographic. In the code chunk below, I’m storing the world-level rows in the IEA data set as their own data frame, and reconfiguring the data frame to find the percent of total global emissions coming from each of the four sectors, which I ended up including in the legend of my first plot.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store observations regarding entire world as its own df</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>world_df <span class="ot">&lt;-</span> methane_df <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(country)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country, type) <span class="sc">%&gt;%</span> <span class="co"># group by input variables ('type' must be last to combine observations in next line)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_emissions =</span> <span class="fu">sum</span>(emissions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="co"># create summary df that combines observations with same 'type'</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type, <span class="at">values_from =</span> total_emissions) <span class="sc">%&gt;%</span> <span class="co"># create new columns named based on 'type' and containing values from 'total_emissions'</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_emissions =</span> agriculture <span class="sc">+</span> energy <span class="sc">+</span> waste <span class="sc">+</span> other) <span class="sc">%&gt;%</span> <span class="co"># re-create 'total_emissions' column</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>country)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate percents of 'total_emissions' coming from each type of emissions (to be put in legend of treemap)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>world_df<span class="sc">$</span>agriculture <span class="sc">/</span> world_df<span class="sc">$</span>total_emissions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2902036</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>world_df<span class="sc">$</span>energy <span class="sc">/</span> world_df<span class="sc">$</span>total_emissions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.545233</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>world_df<span class="sc">$</span>waste <span class="sc">/</span> world_df<span class="sc">$</span>total_emissions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1446558</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>world_df<span class="sc">$</span>other <span class="sc">/</span> world_df<span class="sc">$</span>total_emissions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01990765</code></pre>
+</div>
+</div>
+<p>I also perform some general data wrangling on my methane data frame, which will be important moving forward. After removing the world-level rows that I subsetted in the previous code chunk, I’m doing a ‘group_by’ command followed by a ‘summarize’ command to combine observations that are of the same type. Before doing this, there were multiple observations for energy emissions, breaking down into further levels of granularity based on other columns that are not selected here. I’m also combining all countries that are part of the European Union by changing their country names to the same string and then again using the ‘group_by’ and ‘summarize’ commands to combine rows. Lastley, I decided to make a wide form of this same data frame, which will be helpful when we get to plot 2 of my infographic.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>methane_df <span class="ot">&lt;-</span> methane_df <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(<span class="fu">is.na</span>(country))) <span class="sc">%&gt;%</span> <span class="co"># remove observations regarding entire world</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country, type) <span class="sc">%&gt;%</span> <span class="co"># group by input variables ('type' must be last to combine observations in next line)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_emissions =</span> <span class="fu">sum</span>(emissions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="co"># create summary df that combines observations with same 'type'</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">case_when</span>(country <span class="sc">==</span> <span class="st">"Other EU17 countries"</span> <span class="sc">~</span> <span class="st">"EU*"</span>, <span class="co"># reassign country names for countries in EU so we can combine these observations</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Other EU7 countries"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"France"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Italy"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Germany"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Sweden"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Norway"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Poland"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Denmark"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Estonia"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Netherlands"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Slovenia"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Romania"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"United States"</span> <span class="sc">~</span> <span class="st">"U.S."</span>, <span class="co"># shorten United States to U.S.</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> country)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type, country) <span class="sc">%&gt;%</span> <span class="co"># group by input variables ('country' must be last to combine observations in next line)</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_emissions =</span> <span class="fu">sum</span>(total_emissions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="co"># combine observations</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># create wide version of methane_df so that there is one observation for each 'country' (to be used for next graph)</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>wide_df <span class="ot">&lt;-</span> methane_df <span class="sc">%&gt;%</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(country <span class="sc">==</span> <span class="st">"Other"</span>)) <span class="sc">%&gt;%</span> <span class="co"># remove observations where 'country' is other</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(country <span class="sc">==</span> <span class="st">"Other countries in Europe"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(country <span class="sc">==</span> <span class="st">"Other countries in Southeast Asia"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type, <span class="at">values_from =</span> total_emissions) <span class="sc">%&gt;%</span> <span class="co"># create new columns named based on 'type' and containing values from 'total_emissions'</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">energy =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(energy), <span class="dv">0</span>, energy)) <span class="sc">%&gt;%</span> <span class="co"># set NA in 'energy' column to 0 so that next line works</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_emissions =</span> energy <span class="sc">+</span> agriculture <span class="sc">+</span> waste <span class="sc">+</span> other) <span class="sc">%&gt;%</span>  <span class="co"># re-create 'total_emissions' column</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_emissions))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plot-1-vizualization" class="level2">
+<h2 class="anchored" data-anchor-id="plot-1-vizualization">Plot 1 vizualization</h2>
+<p>For my first plot, I’ll start by making a treemap of how the four different categories (energy, agriculture, waste, and other) of methane emissions and the country that they are in contribute to total global emissions. To do this, I start by taking my methane data frame and making a version of it specifically for my treemap plot with altered names of countries (I didn’t like the way that they looked when they were included) and the types of emissions (adding the percents in that I calculated from my general data wrangling). I then re-level the factors so they appear in descending order, define a custom color palette that I built using the website Coolers, and finally I’m ready to make my actual plot.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                          plot 1 visualization                            ----</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rename countries to empty strings so that don't show up in plot</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>treemap_df <span class="ot">&lt;-</span> methane_df <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">case_when</span>(country <span class="sc">==</span> <span class="st">"Mexico"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Algeria"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Libya"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Venezuela"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Turkmenistan"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Nigeria"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Pakistan"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Kazakhstan"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Kuwait"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Qatar"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Indonesia"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                             country <span class="sc">==</span> <span class="st">"Other"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> country)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">case_when</span>(type <span class="sc">==</span> <span class="st">"Agriculture"</span> <span class="sc">~</span> <span class="st">"Agriculture</span><span class="sc">\n</span><span class="st">(29%)"</span>, <span class="co"># rename types of emissions to include percents (for legend in plot)</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>                          type <span class="sc">==</span> <span class="st">"Energy"</span> <span class="sc">~</span> <span class="st">"Energy</span><span class="sc">\n</span><span class="st">(55%)"</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>                          type <span class="sc">==</span> <span class="st">"Waste"</span> <span class="sc">~</span> <span class="st">"Waste</span><span class="sc">\n</span><span class="st">(14%)"</span>,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>                          type <span class="sc">==</span> <span class="st">"Other"</span> <span class="sc">~</span> <span class="st">"Other</span><span class="sc">\n</span><span class="st">(2%)"</span>,</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>                          <span class="cn">TRUE</span> <span class="sc">~</span> type))</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># re-order sector factors (for legend in plot)</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>treemap_df <span class="ot">&lt;-</span> treemap_df <span class="sc">%&gt;%</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">factor</span>(type, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Energy</span><span class="sc">\n</span><span class="st">(55%)"</span>, <span class="st">"Agriculture</span><span class="sc">\n</span><span class="st">(29%)"</span>, <span class="st">"Waste</span><span class="sc">\n</span><span class="st">(14%)"</span>, <span class="st">"Other</span><span class="sc">\n</span><span class="st">(2%)"</span>)))</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co"># define custom color palette</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>custom_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Agriculture</span><span class="sc">\n</span><span class="st">(29%)"</span> <span class="ot">=</span> <span class="st">"#D2B48C"</span>,</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Energy</span><span class="sc">\n</span><span class="st">(55%)"</span> <span class="ot">=</span> <span class="st">"#2F2720"</span>,</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Waste</span><span class="sc">\n</span><span class="st">(14%)"</span> <span class="ot">=</span> <span class="st">"#2ca02c"</span>,</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Other</span><span class="sc">\n</span><span class="st">(2%)"</span> <span class="ot">=</span> <span class="st">"#2B4690"</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co"># create treemap</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(treemap_df, <span class="fu">aes</span>(<span class="at">area =</span> total_emissions, <span class="at">fill =</span> type, <span class="at">label =</span> country, <span class="at">subgroup =</span> type)) <span class="sc">+</span> <span class="co"># using sector ('type') for coloring and as subgroups (appear in legend), labeling based on country</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="co"># adjust color and size of lines separating rectangles</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Data Source: International Energy Agency (IEA)</span><span class="sc">\n\n</span><span class="st">*The EU is a group of 27 countries in Europe."</span>) <span class="sc">+</span> <span class="co"># use x axis title for caption</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap_text</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">place =</span> <span class="st">"center"</span>, <span class="at">grow =</span> <span class="cn">TRUE</span>, <span class="at">reflow =</span> <span class="cn">TRUE</span>, <span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">min.size =</span> <span class="dv">12</span>) <span class="sc">+</span> <span class="co"># for text inside the treemap, allow to grow with grow = TRUE, flow onto next line with reflow = TRUE, and set font family to barlow</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> custom_colors) <span class="sc">+</span>  <span class="co"># apply custom color palette</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sources of Anthropogenic Methane Emissions in 2021"</span>) <span class="sc">+</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"grey30"</span>, <span class="at">family =</span> <span class="st">"merri sans"</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)), <span class="co"># adjust font, fontface, size, and color of x axis title (use hjust = 1 to move to far right since this is caption)</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="co"># set legend to top</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">family =</span> <span class="st">"barrow"</span>, <span class="at">face =</span> <span class="st">"bold"</span>), <span class="co"># set legend font to merri sans</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title.align =</span> <span class="fl">0.5</span>, <span class="co"># center legend</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.spacing.x =</span> <span class="fu">unit</span>(<span class="dv">5</span>, <span class="st">"mm"</span>), <span class="co"># set space between legend keys</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>), <span class="co"># change legend background color</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">4</span>, <span class="st">"mm"</span>), <span class="co"># set legend key size</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"merri sans"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>), <span class="co"># set title font to merri sans</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>), <span class="co"># change the plot background color</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>)) <span class="co"># change the panel background color to match</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plot-2-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="plot-2-visualization">Plot 2 visualization</h2>
+<p>For plot 2, I start by creating a new version of the wide-version of my methane data frame for the scatterplot that I will make. I start by changing the names of certain countries to match to the World Bank data set that I’m joining with. After I perform my join, I change the names back.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                          joining data frames                             ----</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># change 'country' names to match population data set and store as new data frame</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>scatter_df <span class="ot">&lt;-</span> wide_df <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Congo"</span> <span class="sc">~</span> <span class="st">"Congo, Rep."</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Democratic Republic of Congo"</span> <span class="sc">~</span> <span class="st">"Congo, Dem. Rep."</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Egypt"</span> <span class="sc">~</span> <span class="st">"Egypt, Arab Rep."</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Gambia"</span> <span class="sc">~</span> <span class="st">"Gambia, The"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Brunei"</span> <span class="sc">~</span> <span class="st">"Brunei Darussalam"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Korea"</span> <span class="sc">~</span> <span class="st">"Korea, Rep."</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Vietnam"</span> <span class="sc">~</span> <span class="st">"Viet Nam"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"U.S."</span> <span class="sc">~</span> <span class="st">"United States"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"EU*"</span> <span class="sc">~</span> <span class="st">"European Union"</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Venezuela"</span> <span class="sc">~</span> <span class="st">"Venezuela, RB"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Iran"</span> <span class="sc">~</span> <span class="st">"Iran, Islamic Rep."</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Syria"</span> <span class="sc">~</span> <span class="st">"Syrian Arab Republic"</span>,</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Yemen"</span> <span class="sc">~</span> <span class="st">"Yemen, Rep."</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Russia"</span> <span class="sc">~</span> <span class="st">"Russian Federation"</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> country))</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># join this data frame with pop_df</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>scatter_df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(<span class="at">x =</span> scatter_df, <span class="at">y =</span> pop_df, <span class="at">by =</span> <span class="st">"country"</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># change 'country' names back to how they were</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>scatter_df <span class="ot">&lt;-</span> scatter_df <span class="sc">%&gt;%</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Congo, Rep."</span> <span class="sc">~</span> <span class="st">"Congo"</span>,</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Congo, Dem. Rep."</span> <span class="sc">~</span> <span class="st">"Democratic Republic of Congo"</span>,</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Egypt, Arab Rep."</span> <span class="sc">~</span> <span class="st">"Egypt"</span>,</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Gambia, The"</span> <span class="sc">~</span> <span class="st">"Gambia"</span>,</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Brunei Darussalam"</span> <span class="sc">~</span> <span class="st">"Brunei"</span>,</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Korea, Rep."</span> <span class="sc">~</span> <span class="st">"Korea"</span>,</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Viet Nam"</span> <span class="sc">~</span> <span class="st">"Vietnam"</span>,</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"United States"</span> <span class="sc">~</span> <span class="st">"U.S."</span>,</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"European Union"</span> <span class="sc">~</span> <span class="st">"EU*"</span>,</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Venezuela, RB"</span> <span class="sc">~</span> <span class="st">"Venezuela"</span>,</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Iran, Islamic Rep."</span> <span class="sc">~</span> <span class="st">"Iran"</span>,</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Syrian Arab Republic"</span> <span class="sc">~</span> <span class="st">"Syria"</span>,</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Yemen, Rep."</span> <span class="sc">~</span> <span class="st">"Yemen"</span>,</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    country <span class="sc">==</span> <span class="st">"Russian Federation"</span> <span class="sc">~</span> <span class="st">"Russia"</span>,</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> country</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now that the join is complete and my country names are back to normal, I create a new column in my data frame for emissions per capita, which divides total emissions by population. I also multiply this new column by 1,000,000 to convert units from million tons to tons, which produces values that are easier to understand when talking about emissions per person.</p>
+<p>Next, I create a new data frame only containing six countries (China, U.S., Russia, Brazil, Canada, and Australia) and the European Union, as I want to focus on the emissions from these places in my infographic. I take the sum of their emissions and populations and compare that to global emissions and populations, and the resulting percent values will also be included on my infographic as text.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add 'emissions_pc' column and convert column units</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>scatter_df <span class="ot">&lt;-</span> scatter_df <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">emissions_pc =</span> (total_emissions <span class="sc">/</span> population) <span class="sc">*</span> <span class="dv">1000000</span>) <span class="sc">%&gt;%</span> <span class="co"># create 'emissions_pc' column (in tons)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">population =</span> population <span class="sc">/</span> <span class="dv">1000000</span>) <span class="sc">%&gt;%</span> <span class="co"># convert 'population' values from people to millions of people</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(emissions_pc))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create new data frame with only the 7 countries of focus (including EU)</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>main_countries <span class="ot">&lt;-</span> scatter_df <span class="sc">%&gt;%</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"U.S."</span>, <span class="st">"Russia"</span>, <span class="st">"Brazil"</span>, <span class="st">"EU*"</span>, <span class="st">"Canada"</span>, <span class="st">"Australia"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_emissions))</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># add 'population' column to world_df</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>world_df <span class="ot">&lt;-</span> world_df <span class="sc">%&gt;%</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">population =</span> <span class="dv">7950946801</span>) <span class="sc">%&gt;%</span> <span class="co"># found from row 260 in pop_df</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">population =</span> population <span class="sc">/</span> <span class="dv">1000000</span>) <span class="co"># convert 'population' values from people to millions of people</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the percents of global population and global emissions in countries of focus</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(main_countries<span class="sc">$</span>population, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sum</span>(world_df<span class="sc">$</span>population, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3287581</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(main_countries<span class="sc">$</span>total_emissions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sum</span>(world_df<span class="sc">$</span>total_emissions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4664618</code></pre>
+</div>
+</div>
+<p>At this point, I just need to get a few more data frames in order to make my scatterplot. I create four new data frames: one for all the countries that I’m not focusing on in my infographic, one for notable countries that I want to include (but not highlight) in my infographic for the sake of comparison, one for just Australia (so I can adjust its label on the plot), and one for the remaining countries of focus. Importantly, I also make a new column that I will use to set the alpha value, which moduates transparency in ggplot, of each point in my scatter plot. I want my countries of focus to not be transparent at all, and the rest of my points to be reasonably transparent. After this, its time to make the scatterplot.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                          plot 2 visualization                            ----</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create new data frame excluding the countries of focus</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>other_countries <span class="ot">&lt;-</span> scatter_df <span class="sc">%&gt;%</span> </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"U.S."</span>, <span class="st">"Russia"</span>, <span class="st">"Brazil"</span>, <span class="st">"EU*"</span>, <span class="st">"Canada"</span>, <span class="st">"Australia"</span>)))</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create new data frame with countries to label but not highlight (for context)</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>other_notable_countries <span class="ot">&lt;-</span> other_countries <span class="sc">%&gt;%</span> </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"India"</span>, <span class="st">"Indonesia"</span>, <span class="st">"Iran"</span>, <span class="st">"Mexico"</span>, <span class="st">"Congo"</span>, <span class="st">"Venezuela"</span>, <span class="st">"Bangladesh"</span>))</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># create new df for just Australia (so can adjust where label is on plot)</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>australia_df <span class="ot">&lt;-</span> scatter_df <span class="sc">%&gt;%</span> <span class="fu">subset</span>(country <span class="sc">==</span> <span class="st">"Australia"</span>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co"># create new df for highlighted countries minus Australia (so can plot separately)</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>other_main_countries <span class="ot">&lt;-</span> main_countries <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>(country <span class="sc">==</span> <span class="st">"Australia"</span>))</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co"># add new column for alpha values to scatter_df</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>scatter_df<span class="sc">$</span>alpha_value <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(scatter_df<span class="sc">$</span>country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"U.S."</span>, <span class="st">"Russia"</span>, <span class="st">"Brazil"</span>, <span class="st">"Australia"</span>, <span class="st">"Canada"</span>, <span class="st">"EU*"</span>), <span class="dv">1</span>, <span class="fl">0.2</span>) <span class="co"># only countries of focus have alpha of 1, all else 0.2</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co"># create scatterplot</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scatter_df) <span class="sc">+</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> population, <span class="at">y =</span> emissions_pc, <span class="at">alpha =</span> alpha_value), <span class="at">color =</span> <span class="st">"#020122"</span>) <span class="sc">+</span> <span class="co"># use alpha values from the column</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_identity</span>() <span class="sc">+</span> <span class="co"># tell ggplot to use the alpha values as given (without scaling)</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> australia_df, <span class="co"># add text for Australia</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label =</span> country, <span class="at">x =</span> population <span class="sc">-</span> <span class="dv">5</span>, <span class="at">y =</span> emissions_pc <span class="sc">+</span> <span class="dv">15</span>), <span class="co"># position text so does not overlap</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># adjust other text features</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> other_main_countries, <span class="co"># add text for other main countries</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label =</span> country, <span class="at">x =</span> population <span class="sc">+</span> <span class="dv">15</span>, <span class="at">y =</span> emissions_pc), <span class="co"># position text</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># adjust other text features</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> other_notable_countries, <span class="co"># add text for other countries to label</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label =</span> country, <span class="at">x =</span> population <span class="sc">+</span> <span class="dv">15</span>, <span class="at">y =</span> emissions_pc), <span class="co"># position text</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># adjust other text features</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Population (millions)"</span>,</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Per Capita Methane Emissions (tons CO2eq)"</span>, </span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Population and Per-Capita Anthropogenic Methane Emissions in 2021"</span>,</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Note: 8 countries had per capita emissions &gt;350 tons CO2eq and are not displayed.</span><span class="sc">\n</span><span class="st">Data Sources: International Energy Agency (IEA), World Bank</span><span class="sc">\n\n</span><span class="st">*The EU is a group of 27 countries in Europe.</span><span class="sc">\n</span><span class="st">**Based on calculation from BBC News in 2021 article.⁵"</span>) <span class="sc">+</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1550</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span> <span class="co"># set limits on min/max x axis values, use expand to tell to have where two axis meet as origin point</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">350</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span> <span class="co"># set limits on min/max y axis values, use expand to tell to have where two axis meet as origin point</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="st">"grey30"</span>, <span class="co"># adjust text features for x axis title</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)), <span class="co"># set margin</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="st">"grey30"</span>, <span class="co"># adjust text features for y axis title</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>)), <span class="co"># set margin</span></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>, <span class="at">size =</span> <span class="fl">0.5</span>), <span class="co"># add horizontal gridlines (major)</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>, <span class="at">size =</span> <span class="fl">0.25</span>), <span class="co"># add horizontal gridlines (minor)</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">13</span>), <span class="co"># adjust x axis text</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">13</span>), <span class="co"># adjust y axis text</span></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.5</span>), <span class="co"># adjust color and size of axis lines</span></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"merri sans"</span>, <span class="at">size =</span> <span class="fl">12.5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>), <span class="co"># adjust plot title text</span></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">"grey30"</span>, <span class="at">family =</span> <span class="st">"merri sans"</span>, <span class="co"># adjust caption text</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)), <span class="co"># set margin</span></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>), <span class="co"># set plot background</span></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>)) <span class="sc">+</span> <span class="co"># set panel background</span></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">197</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"cornflowerblue"</span>) <span class="sc">+</span> <span class="co"># add dashed horizontal line at y = 197</span></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">700</span>, <span class="at">y =</span> <span class="dv">240</span>, <span class="co"># position text annotation</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"Carbon footprint of a typical</span><span class="sc">\n</span><span class="st">private jet flying for 48 hours**"</span>,</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"cornflowerblue"</span>, <span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="co"># adjust text features</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plot-3-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="plot-3-visualization">Plot 3 visualization</h2>
+<p>For my third plot, I don’t have too much extra wrangling to do. I have to make a new version of my data frame for my main countries. I can’t use the one from before because it is in wide format, and for my dodged column plot, I need it in long format. After making my new version just by filtering my original methane data frame, I re-order my country and type factors so that they are in descending order, redefine my custom color palette, and then make my dodged column plot.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                          plot 3 visualization                            ----</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># filter methane_df to create long format of main_countries</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>cols_df <span class="ot">&lt;-</span> methane_df <span class="sc">%&gt;%</span> </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"U.S."</span>, <span class="st">"Russia"</span>, <span class="st">"Brazil"</span>, <span class="st">"EU*"</span>, <span class="st">"Canada"</span>, <span class="st">"Australia"</span>))</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># re-order countries as factors (for plotting)</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>cols_df<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">factor</span>(cols_df<span class="sc">$</span>country,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"U.S."</span>, <span class="st">"Russia"</span>, <span class="st">"Brazil"</span>, <span class="st">"EU*"</span>, <span class="st">"Canada"</span>, <span class="st">"Australia"</span>))</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># re-order countries as factors (for plotting)</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>cols_df<span class="sc">$</span>type <span class="ot">&lt;-</span> <span class="fu">factor</span>(cols_df<span class="sc">$</span>type,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Energy"</span>, <span class="st">"Agriculture"</span>, <span class="st">"Waste"</span>, <span class="st">"Other"</span>))</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co"># define a custom color palette</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>custom_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Agriculture"</span> <span class="ot">=</span> <span class="st">"#D2B48C"</span>,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Energy"</span> <span class="ot">=</span> <span class="st">"#2F2720"</span>,</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Waste"</span> <span class="ot">=</span> <span class="st">"#2ca02c"</span>,</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Other"</span> <span class="ot">=</span> <span class="st">"#2B4690"</span>)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="co"># create dodged column plot</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cols_df, <span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> total_emissions, <span class="at">fill =</span> type)) <span class="sc">+</span> <span class="co"># fill columns based on sector</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span> <span class="co"># specify dodged position to add space between countries</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="co"># no x axis title</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Methane Emissions (million tons CO2eq)"</span>,</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Sources of 2021 Anthropogenic Methane Emissions in selected countries"</span>,</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data Source: International Energy Agency (IEA)</span><span class="sc">\n\n</span><span class="st">*The EU is a group of 27 countries in Europe."</span>) <span class="sc">+</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> custom_colors) <span class="sc">+</span> <span class="co"># apply custom color palette</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(), <span class="co"># remove major and minor vertical grid lines</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>, <span class="at">size =</span> <span class="fl">0.5</span>), <span class="co"># add horizontal grid lines (major)</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>, <span class="at">size =</span> <span class="fl">0.25</span>), <span class="co"># add horizontal grid lines(minor)</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"grey30"</span>, <span class="at">family =</span> <span class="st">"merri sans"</span>, <span class="co"># adjust caption text</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)), <span class="co"># set margin</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="st">"grey30"</span>, <span class="co"># adjust y axis title text</span></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>)), <span class="co"># set margin</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>), <span class="co"># adjust x axis text</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">size =</span> <span class="dv">13</span>, <span class="at">face =</span> <span class="st">"bold"</span>), <span class="co"># adjust x axis text</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.88</span>, <span class="fl">0.85</span>), <span class="co"># specify legend position</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey30"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">family =</span> <span class="st">"barlow"</span>), <span class="co"># adjust legend text</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"merri sans"</span>, <span class="at">size =</span> <span class="fl">12.5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>), <span class="co"># adjust plot title text and alignment</span></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>), <span class="co"># change legend background color</span></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>), <span class="co"># change plot background color</span></span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>)) <span class="co"># change panel background color</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="making-infographic" class="level2">
+<h2 class="anchored" data-anchor-id="making-infographic">Making infographic</h2>
+<p>To create my infographic, I rendered my work in R to an HTML document and dragged the embedded plots onto a Canva document, which I then designed further and added text to as well. At the end of all my diligent work, I made the following infographic!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="infographic.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Infographic on anthropogenic methane emissions in 2021</figcaption>
+</figure>
+</div>
+</section>
+<section id="my-visualization-approach" class="level2">
+<h2 class="anchored" data-anchor-id="my-visualization-approach">My visualization approach</h2>
+<p>When creating my plots in R and then my infographic in Canva, I thought through several aspects that are integral to effective data visualization practice. In this final section, I’ll go through each of these aspects and comment on my approach.</p>
+<section id="graphic-form" class="level4">
+<h4 class="anchored" data-anchor-id="graphic-form">Graphic form</h4>
+<p>For my first plot, I decided to do a treemap because it is a useful way to compare different parts of a ‘whole’, which in this case was total global emissions. Generally, treemaps are a better way to display this than a pie chart, as humans are much worse at understanding relative sizes that are part of a rounded object. In my second plot, I decided on scatterplot because I thought that seeing the distribution of per capita emissions among all countries, with the countries of focus highlighted, would be the easiest way to put understand how these countries compared to others. For my third plot, I made a dodged column plot because it seemed like a simple and effective way to communicate to my audience the nuances of how each of the countries of focus have emissions coming from different types of sources.</p>
+</section>
+<section id="text" class="level4">
+<h4 class="anchored" data-anchor-id="text">Text</h4>
+<p>This is a broad category, and I made a lot of decisions regarding the text used in my plots. Every word of text that I included was thoughtfully considered. My most major decisions were in my scatterplot, where I included labeled points (not only of focus countries but also other comparison countries), an annotation (for contextualizing emissions data), and a note in my caption to tell the audience directly that there were actually 8 countries with even higher per capita emissions than what was shown within the bounds of the plot.</p>
+</section>
+<section id="themes" class="level4">
+<h4 class="anchored" data-anchor-id="themes">Themes</h4>
+<p>I made a great deal of theme adjustments in each of my plots. For the first plot, the main theme choice was to orient my legend the way that I did, at the very top of the plot so the reader would read it immediately. In the second and third plot, I decided to get rid of vertical grid lines but keep some horizontal grid lines to help my audience to more easily see where countries lined up along the y-axis. I also moved the axis titled farther away from the axis in both of these plots, which I think is easier on the eyes.</p>
+</section>
+<section id="colors" class="level4">
+<h4 class="anchored" data-anchor-id="colors">Colors</h4>
+<p>I made a custom color palette that I thought was unique, aesthetically pleasing, color-blind friendly (checked using the “let’s get color blind” Chrome Extension), and fit the variables that I was representing. I reused the colors from my first plot in my last plot, where they represented the same thing in each. I also reused the dark blue color quite a bit in my infographic, most notabley for shading the highlighted areas in my map and then to highlight these same countries as point in my scatterplot. All of the text that I wrote in Canva was also this color.</p>
+</section>
+<section id="typography" class="level4">
+<h4 class="anchored" data-anchor-id="typography">Typography</h4>
+<p>I chose to use Merriweather Sans for the title and captions of my plots and Barlow Condensed to use for all other text within my plots (labeling rectangles in plot 1, labeling points in plot 2, plot 2 annotation, legend in plot 1 and 2, all axis titles and text). Using a condensed typeface within my plots was nice because it allowed me to fit text more easily. I also think that it gave my visuals a more serious tone, especially since it was so thin that I had to bold it everywhere that I used it. I definetly spent more time selecting this typeface, and then I determined that Merriweather Sans was a good matching typeface for titles and captions of my plots. In Canva, I used the typeface Alike for most text, as it seemed both unique but still easy to read. I used Agrandir for my infographic title and other larger text in my infographic. Its a pretty basic typeface, but I couldn’t find anything that I liked better.</p>
+</section>
+<section id="general-design" class="level4">
+<h4 class="anchored" data-anchor-id="general-design">General design</h4>
+<p>I definitely thought a lot about where I wanted my readers eyes to go. This is why I re-ordered factors so that the legends where in descending order in the first and third plot. I also re-ordered the factors my columns to be in descending order in my third plot. To avoid information overload in my first plot, I changed the name of many countries to empty strings. I also selected points to label carefully in my second plot for this reason. In addition, I also feel like I did a good job combining the plot and text elements in Canva so that the ideas flowed naturally using a visual hierarchy.</p>
+</section>
+<section id="contextualizing-data" class="level4">
+<h4 class="anchored" data-anchor-id="contextualizing-data">Contextualizing data</h4>
+<p>As previously mentioned, I used an annotation in my second plot to contextualize emissions to my audience. Recently, there have been a lot of news stories about the use of private jets among celebrities, so I felt like this was a good way to contextualize emissions, especially since the plot had to do with emissions per individual and flying a private jet is a very individualistic action. In my second plot, I also added the labels for other countries that weren’t the primary focus, like Venezuela, Congo, Mexico, and Bangladesh, as a way to provide more context for the emissions of countries around the world.</p>
+</section>
+<section id="centering-my-primary-message" class="level4">
+<h4 class="anchored" data-anchor-id="centering-my-primary-message">Centering my primary message</h4>
+<p>I think that the map that I included alongside the large text in the middle of my infographic was very effective at centering my message that there are some countries that have a disproportionately large amount of methane emissions relative to their population. Another point that I wanted to emphasize was how methane is mostly from fossil fuels, which is one reason why I put my treemap first. I also feel like the point I discussed in the second paragraph of text, right after my intro, emphasized this point by mentioning the 2021 study by McGill University scientists.</p>
+</section>
+<section id="considering-accessibility" class="level4">
+<h4 class="anchored" data-anchor-id="considering-accessibility">Considering accessibility</h4>
+<p>I spent a great deal of time ensuring that the colors I chose were color-blind friendly using the “let’s get color blind” Chrome Extension. I tested using the simulate, daltonized, and simulate daltonized versions of Deuteranomaly, Protanomaly, and Tritanomaly. I also wrote alt text (embedded in images below) for all three of my plots (and my map) to ensure that blind users could still understand the figures in my infographic.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot-1.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Treemap (rectangle divided up into smaller rectangles) where each smaller rectangle represents anthropogenic methane emissions in 2021 from a specific country and sector (rectangles are colored by sector). Energy makes up 55% of global emissions, about half of which comes from the China, Russia, the U.S., Iran, and India. Agriculture makes up 29% of global emissions, waste makes up 14%, and 2% are from other sources.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="world.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Map of the world where six countries (Canada, the U.S., Brazil, Russia, China, and Australia) and the 27 countries of the European Union are highlighted.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot-2.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Scatterplot of many countries showing 2021 population on the x-axis and 2021 per-capita methane emissions (in tons of CO2eq) on the y-axis. Canada, the U.S., Brazil, Russia, China, and Australia are labeled and emphasized. Australia and Russia are in the top left of the plot, with per-capita emissions around 300 tons CO2eq. Australia’s population is about 25 million people, while Russia’s is about 200 million. Canada is around 200 tons CO2 eq, right below a dashed line indicating the carbon footprint of a typical private jet flying for 48 hours. Canada’s population is around 35 million people. The U.S. is at around 150 tons CO2eq and has a population of about 300 million people. Brazil is at around 100 tons CO2eq and has a population of about 250 million people. China is at around 55 tons CO2eq and has a population of about 1,400 million (1.4 billion) people. Latley, the EU is at around 45 tons CO2eq and has a population of about 450 million people.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot-3.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Bar graph with 7 vertical columns, where the height represents the total methane emissions in 2021 (measured in million tons of CO2eq). From left to right (aligns with highest to lowest total emissions), the 7 vertical columns are China, the U.S. Russia, Brazil, the EU, Canada, and Australia. China is at about 80,000 million tons CO2eq, the U.S. and Russia are both close to 45,000 tons CO2eq, Brazil and the EU are both around 20,000 tons CO2eq, and Canada and Australia are both less than 10,000 tons CO2eq. The 7 columns are each seperated into four colored components, one for each type of emissions source (energy, agriculture, waste, and other). Russia’s energy sector (85%) and Brazil’s agricultural sector (65%) stand out as particularly high. Emissions from energy in the EU (29%) and Brazil (16%) make up a relatively low share of their total emissions, compared to about 60 to 70% in China, the U.S., Canada, and Australia.</figcaption>
+</figure>
+</div>
+</section>
+<section id="applying-a-lense-of-diversity-equity-inclusion-dei" class="level4">
+<h4 class="anchored" data-anchor-id="applying-a-lense-of-diversity-equity-inclusion-dei">Applying a lense of Diversity, Equity, &amp; Inclusion (DEI)</h4>
+<p>One decision that I thought about through a DEI lense was the decision of which countries to highlight in my plots, as I had some leeway in these decisions. I wanted to ensure that I wasn’t being biased towards any specific country when excludeing or singling-out specific countries in my analysis. This was somewhat difficult when highlighting countries because I was kind of singling them out, but I tried my best to highlight many examples of countries around the world to avoid really placing the blame exclusively on a certain type of country.</p>
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-international_energy_agency_iea_methane_2022" class="csl-entry" role="listitem">
+International Energy Agency (IEA). 2022a. <span>“Methane <span>Tracker</span> <span>Database</span>.”</span> <a href="https://www.iea.org/data-and-statistics/data-product/methane-tracker-database">https://www.iea.org/data-and-statistics/data-product/methane-tracker-database</a>.
+</div>
+<div id="ref-international_energy_agency_iea_global_2022" class="csl-entry" role="listitem">
+———. 2022b. <span>“Global <span>Methane</span> <span>Tracker</span>: <span>Documentation</span>.”</span> <a href="https://iea.blob.core.windows.net/assets/b5f6bb13-76ce-48ea-8fdb-3d4f8b58c838/GlobalMethaneTracker_documentation.pdf">https://iea.blob.core.windows.net/assets/b5f6bb13-76ce-48ea-8fdb-3d4f8b58c838/GlobalMethaneTracker_documentation.pdf</a>.
+</div>
+<div id="ref-international_energy_agency_iea_history_2024" class="csl-entry" role="listitem">
+———. 2024. <span>“History: <span>From</span> Oil Security to Steering the World Toward Secure and Sustainable Energy Transitions.”</span> <a href="https://www.iea.org/about/history">https://www.iea.org/about/history</a>.
+</div>
+<div id="ref-the_world_bank_population_nodate" class="csl-entry" role="listitem">
+The World Bank. n.d. <span>“Population, Total.”</span> <a href="https://data.worldbank.org/indicator/SP.POP.TOTL">https://data.worldbank.org/indicator/SP.POP.TOTL</a>.
+</div>
+</div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2024,
+  author = {Ghanadan, Linus},
+  title = {Creating an Infographic on Anthropogenic Methane Emissions in
+    2021},
+  date = {2024-03-12},
+  url = {https://linusghanadan.github.io/blog/2024-03-12-post/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ghanadan2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Ghanadan, Linus. 2024. <span>“Creating an Infographic on Anthropogenic
+Methane Emissions in 2021.”</span> March 12, 2024. <a href="https://linusghanadan.github.io/blog/2024-03-12-post/">https://linusghanadan.github.io/blog/2024-03-12-post/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
