@@ -1,0 +1,216 @@
+---
+title: "Creating an infographic on anthropogenic methane emissions in 2021"
+description: "This blog post explains the process of creating an infographic on anthropogenic methane emissions in 2021, with a particular focus on the data visualization considerations and choices made."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+    affiliation: MEDS
+    affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
+date: 12-12-2023
+categories:
+  - [Data Visualization]
+  - [Methane]
+  - [Energy Transition]
+  - [R]
+bibliography: stats_blog.bib
+citation:
+  url: https://linusghanadan.github.io/blog/2023-3-12-post/
+image: chesapeake-bay.jpeg
+draft: false
+format:
+    html:
+        code-fold: true
+---
+
+## Purpose
+
+In my infographic, the overarching question that I will be answering is where anthropogenic methane emissions came from in 2021. This includes the countries where emissions are occurring most frequently and also the human activities (e.g., agriculture) that contribute the most to these emissions.
+
+## Data
+
+The data set that I will use comes from the International Energy Agency (IEA), a Paris-based intergovernmental organization with 31 member countries and 13 association countries. The group was created following the 1973 oil crisis by the Organisation for Economic Co-operation and Development (OECD) to oversee and collect data on global energy markets. In the last decade, the group has increasingly played an important role in guiding and advocating for an accelerated global energy transition away from fossil fuels.
+
+Since 2020, the IEA has published yearly data estimating global methane emissions at a country-level. For methane emissions resulting from oil and gas processes (upstream and downstream), these figures are calculated using a combination of measurement data (mostly from satellite readings) and activity data on the specific actions being taken that release vented, fugitive, or incomplete-flare emissions. Coal mine methane emissions are estimated primarily by looking at the ash content of coal produced in different countries, mine depth, and regulatory oversight. Furthermore, estimating country-level emissions from agriculture and waste mainly relies only satellite technology. Lastly, other methane sources are estimated using manufacturing data and the emissions factors associated with the industrial processes carried out in that country.
+
+I will be using the 2022 data set, which provides emissions estimates for the year 2021 (see footnotes for data citation). Anyone can access this data set for free after making an account on the IEA website.
+
+In addition to the methane data set, I also want data on 2021 population values of different countries for computing emissions per capita, so I downloaded a free data set from the World Bank website, which did not require me to have any sort of account (see footnotes for data citation).
+
+## Setup & data import
+
+```{r setup, include=FALSE}
+# Configure code chunk settings for what to include in rendered HTML document
+knitr::opts_chunk$set(include = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                                setup                                     ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# load packages
+library(here)
+library(tidyverse)
+library(ggtext)
+library(treemapify)
+library(showtext)
+
+# import fonts
+font_add_google(name = "Merriweather Sans", family = "merri sans")
+font_add_google(name = "Barlow Condensed", regular.wt = 200, family = "barlow")
+
+# enable {showtext} for rendering
+showtext_auto()
+
+# set scipen option to a high value to avoid scientific notation
+options(scipen = 999)
+```
+
+```{r}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                                import data                               ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# read in methane data
+methane_df <- readr::read_csv(here("data", "IEA-MethaneEmissionsComparison-World.csv")) %>% 
+  janitor::clean_names() %>% # convert column names to lower_case_snake format
+  select('country', 'emissions', 'type') # select relevant columns
+
+# read in population data
+pop_df <- readr::read_csv(here("data", "worldbank_pop.csv")) %>% 
+  janitor::clean_names() %>%
+  rename('population' = 'x2021', # rename column with 2022 populations to 'population'
+         'country' = 'country_name') %>% # rename columns with countries (for joining)
+  select('country', 'population') # select these two columns
+
+```
+
+## General data wrangling
+
+To start, I have some general data wrangling steps that allowed me to explore the data and calculate some of the statistics that I ended up including in my infographic. In the code chunk below, I'm storing the world-level rows in the IEA data set as their own data frame, and reconfiguring the data frame to find the percent of total global emissions coming from each of the four sectors, which I ended up including in the legend of my first plot.
+
+```{r}
+# store observations regarding entire world as its own df
+world_df <- methane_df %>%
+  filter(is.na(country)) %>% 
+  group_by(country, type) %>% # group by input variables ('type' must be last to combine observations in next line)
+  summarize(total_emissions = sum(emissions, na.rm = TRUE)) %>% # create summary df that combines observations with same 'type'
+  ungroup() %>% 
+  pivot_wider(names_from = type, values_from = total_emissions) %>% # create new columns named based on 'type' and containing values from 'total_emissions'
+  janitor::clean_names() %>%
+  mutate(total_emissions = agriculture + energy + waste + other) %>% # re-create 'total_emissions' column
+  select(-country)
+
+# calculate percents of 'total_emissions' coming from each type of emissions (to be put in legend of treemap)
+world_df$agriculture / world_df$total_emissions
+world_df$energy / world_df$total_emissions
+world_df$waste / world_df$total_emissions
+world_df$other / world_df$total_emissions
+```
+
+I also perform some general data wrangling on my methane data frame, which will be important moving forward. After removing the world-level rows that I subsetted in the previous code chunk, I'm doing a 'group_by' command followed by a 'summarize' command to combine observations that are of the same type. Before doing this, there were multiple observations for energy emissions, breaking down into further levels of granularity based on other columns that are not selected here. I'm also combining all countries that are part of the European Union by changing their country names to the same string and then again using the 'group_by' and 'summarize' commands to combine rows. Lastley, I decided to make a wide form of this same data frame, which will be helpful when we get to plot 2 of my infographic.
+
+```{r}
+methane_df <- methane_df %>%
+  filter(!(is.na(country))) %>% # remove observations regarding entire world
+  group_by(country, type) %>% # group by input variables ('type' must be last to combine observations in next line)
+  summarize(total_emissions = sum(emissions, na.rm = TRUE)) %>% # create summary df that combines observations with same 'type'
+  ungroup() %>% 
+  mutate(country = case_when(country == "Other EU17 countries" ~ "EU*", # reassign country names for countries in EU so we can combine these observations
+                             country == "Other EU7 countries" ~ "EU*",
+                             country == "France" ~ "EU*",
+                             country == "Italy" ~ "EU*",
+                             country == "Germany" ~ "EU*",
+                             country == "Sweden" ~ "EU*",
+                             country == "Norway" ~ "EU*",
+                             country == "Poland" ~ "EU*",
+                             country == "Denmark" ~ "EU*",
+                             country == "Estonia" ~ "EU*",
+                             country == "Netherlands" ~ "EU*",
+                             country == "Slovenia" ~ "EU*",
+                             country == "Romania" ~ "EU*",
+                             country == "United States" ~ "U.S.", # shorten United States to U.S.
+                             TRUE ~ country)) %>%
+  group_by(type, country) %>% # group by input variables ('country' must be last to combine observations in next line)
+  summarize(total_emissions = sum(total_emissions, na.rm = TRUE)) %>% # combine observations
+  ungroup()
+
+# create wide version of methane_df so that there is one observation for each 'country' (to be used for next graph)
+wide_df <- methane_df %>%
+  filter(!(country == "Other")) %>% # remove observations where 'country' is other
+  filter(!(country == "Other countries in Europe")) %>% 
+  filter(!(country == "Other countries in Southeast Asia")) %>% 
+  pivot_wider(names_from = type, values_from = total_emissions) %>% # create new columns named based on 'type' and containing values from 'total_emissions'
+  janitor::clean_names() %>% 
+  mutate(energy = ifelse(is.na(energy), 0, energy)) %>% # set NA in 'energy' column to 0 so that next line works
+  mutate(total_emissions = energy + agriculture + waste + other) %>%  # re-create 'total_emissions' column
+  arrange(desc(total_emissions))
+```
+
+## Plot 1 data wrangling
+
+For my first plot, I'll start by making a treemap of how the four different categories (energy, agriculture, waste, and other) of methane emissions and the country that they are in contribute to total global emissions. 
+
+```{r}
+# rename countries to empty strings so that don't show up in plot
+treemap_df <- methane_df %>%
+  mutate(country = case_when(country == "Mexico" ~ "",
+                             country == "Algeria" ~ "",
+                             country == "Libya" ~ "",
+                             #country == "Australia" ~ "",
+                             country == "Venezuela" ~ "",
+                             country == "Turkmenistan" ~ "",
+                             country == "Nigeria" ~ "",
+                             country == "Pakistan" ~ "",
+                             country == "Kazakhstan" ~ "",
+                             country == "Kuwait" ~ "",
+                             country == "Qatar" ~ "",
+                             country == "Indonesia" ~ "",
+                             country == "Other" ~ "",
+                             TRUE ~ country)) %>%
+  mutate(type = case_when(type == "Agriculture" ~ "Agriculture\n(29%)", # rename types of emissions to include percents (for legend in plot)
+                          type == "Energy" ~ "Energy\n(55%)",
+                          type == "Waste" ~ "Waste\n(14%)",
+                          type == "Other" ~ "Other\n(2%)",
+                          TRUE ~ type))
+
+# re-order sector factors (for legend in plot)
+treemap_df <- treemap_df %>%
+   mutate(type = factor(type, levels = c("Energy\n(55%)", "Agriculture\n(29%)", "Waste\n(14%)", "Other\n(2%)")))
+
+
+# define custom color palette
+custom_colors <- c(
+  "Agriculture\n(29%)" = "#D2B48C",
+  "Energy\n(55%)" = "#2F2720",
+  "Waste\n(14%)" = "#2ca02c",
+  "Other\n(2%)" = "#2B4690")
+
+# create treemap
+ggplot(treemap_df, aes(area = total_emissions, fill = type, label = country, subgroup = type)) + # using sector for coloring and as subgroups (appear in legend), labeling based on source
+  geom_treemap(color = "white", size = 0.5) +
+  labs(x = "Data Source: International Energy Agency (IEA)\n\n*The EU is a group of 27 countries in Europe.") + # use x axis title for source information
+  geom_treemap_text(color = "white", place = "center", grow = TRUE, reflow = TRUE, family = "barlow", min.size = 12) + # for text inside the treemap, allow to grow with grow = TRUE, flow onto next line with reflow = TRUE, and set font family to barlow
+  scale_fill_manual(values = custom_colors) +  # apply custom color palette
+  labs(title = "Sources of Anthropogenic Methane Emissions in 2021") +
+  theme(axis.title.x = element_text(size = 8, hjust = 1, color = "grey30", family = "merri sans", margin = margin(20, 0, 0, 0)), # adjust font, fontface, size, and color of x axis title (use hjust = 1 to move to far right since this is source)
+        #legend.justification = "center",
+        legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 15, family = "barrow", face = "bold"), # set legend font to merri sans
+        legend.title.align = 0.5,
+        #legend.spacing = unit(5, "mm"),
+        legend.spacing.x = unit(5, "mm"),
+        #legend.text.align = 0.5,
+        #legend.margin = margin(0, 15, 0, 53), # Adjust overall margin around the legend
+        #legend.box.margin = margin(0, 5, 0, 5), # Adjust margin around the entire legend box
+        legend.background = element_rect(fill = "#FEF6EC", color = NA),
+        #legend.key.height = unit(2, "mm"),
+        legend.key.size = unit(4, "mm"),
+        plot.title = element_text(family = "merri sans", size = 16, hjust = 0.5), # set title font to merri sans
+        plot.background = element_rect(fill = "#FEF6EC", color = NA), # Change the plot background color
+        panel.background = element_rect(fill = "#FEF6EC", color = NA)) # Change the panel background color to match
+```
+
+
+
