@@ -147,9 +147,11 @@ wide_df <- methane_df %>%
   arrange(desc(total_emissions))
 ```
 
-## Plot 1 data wrangling
+## Plot 1 vizualization
 
-For my first plot, I'll start by making a treemap of how the four different categories (energy, agriculture, waste, and other) of methane emissions and the country that they are in contribute to total global emissions. 
+For my first plot, I'll start by making a treemap of how the four different categories (energy, agriculture, waste, and other) of methane emissions and the country that they are in contribute to total global emissions. I decided to do a treemap because it is a useful way to compare different parts of a 'whole', which in this case is total global emissions. Generally, they are a better way to display this than a pie chart, as humans are much worse at understanding relative sizes that are part of a rounded object.
+
+I start by taking my methane data frame and making a version of it specifically for my treemap plot with altered names of countries (I didn't like the way that they looked when they were included) and the types of emissions (adding the percents in that I calculated from my general data wrangling). I then re-level the factors so they appear in descending order, define a custom color palette that I built using the website Coolers, and finally I'm ready to make my actual plot.
 
 ```{r}
 # rename countries to empty strings so that don't show up in plot
@@ -211,6 +213,199 @@ ggplot(treemap_df, aes(area = total_emissions, fill = type, label = country, sub
         plot.background = element_rect(fill = "#FEF6EC", color = NA), # Change the plot background color
         panel.background = element_rect(fill = "#FEF6EC", color = NA)) # Change the panel background color to match
 ```
+
+## Plot 2 visualization
+
+For plot 2, I start by creating a new version of the wide-version of my methane data frame for the scatterplot that I will make. I start by changing the names of certain countries to match to the World Bank data set that I'm joining with. After I perform my join, I change the names back.
+
+```{r}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                          plot 2 wrangling                                ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+scatter_df <- wide_df %>%
+  mutate(country = case_when(
+    country == "Congo" ~ "Congo, Rep.",
+    country == "Democratic Republic of Congo" ~ "Congo, Dem. Rep.",
+    country == "Egypt" ~ "Egypt, Arab Rep.",
+    country == "Gambia" ~ "Gambia, The",
+    country == "Brunei" ~ "Brunei Darussalam",
+    country == "Korea" ~ "Korea, Rep.",
+    country == "Vietnam" ~ "Viet Nam",
+    country == "U.S." ~ "United States",
+    country == "EU*" ~ "European Union",
+    country == "Venezuela" ~ "Venezuela, RB",
+    country == "Iran" ~ "Iran, Islamic Rep.",
+    country == "Syria" ~ "Syrian Arab Republic",
+    country == "Yemen" ~ "Yemen, Rep.",
+    country == "Russia" ~ "Russian Federation",
+    TRUE ~ country))
+
+# join methane and population to make new data frame
+scatter_df <- left_join(x = scatter_df, y = pop_df, by = "country")
+
+scatter_df <- scatter_df %>%
+  mutate(country = case_when(
+    country == "Congo, Rep." ~ "Congo",
+    country == "Congo, Dem. Rep." ~ "Democratic Republic of Congo",
+    country == "Egypt, Arab Rep." ~ "Egypt",
+    country == "Gambia, The" ~ "Gambia",
+    country == "Brunei Darussalam" ~ "Brunei",
+    country == "Korea, Rep." ~ "Korea",
+    country == "Viet Nam" ~ "Vietnam",
+    country == "United States" ~ "U.S.",
+    country == "European Union" ~ "EU*",
+    country == "Venezuela, RB" ~ "Venezuela",
+    country == "Iran, Islamic Rep." ~ "Iran",
+    country == "Syrian Arab Republic" ~ "Syria",
+    country == "Yemen, Rep." ~ "Yemen",
+    country == "Russian Federation" ~ "Russia",
+    TRUE ~ country
+  ))
+```
+
+Now that the join is complete and my country names are back to normal, I create a new column in my data frame for emissions per capita, which divides total emissions by population. I also multiply this new column by 1,000,000 to convert units from million tons to tons, which produces values that are easier to understand when talking about emissions per person.
+
+Next, I create a new data frame only containing six countries (China, U.S., Russia, Brazil, Canada, and Australia) and the European Union, as I want to focus on the emissions from these places in my infographic. I take the sum of their emissions and populations and compare that to global emissions and populations, and the resulting percent values will also be included on my infographic as text.
+
+```{r}
+scatter_df <- scatter_df %>% 
+  mutate(emissions_pc = (total_emissions / population) * 1000000) %>% # create 'emissions_pc' column
+  mutate(population = population / 1000000) %>% # convert 'population' values from people to millions of people
+  arrange(desc(emissions_pc))
+
+# obtain main 6 countries and select relevant columns
+main_countries <- scatter_df %>%
+  filter(country %in% c("China", "U.S.", "Russia", "Brazil", "EU*", "Canada", "Australia")) %>% 
+  arrange(desc(total_emissions))
+
+world_df <- world_df %>%
+  mutate(population = 7950946801) %>% # found from row 260 in pop_df
+  mutate(population = population / 1000000) # convert 'population' values from people to millions of people
+
+
+sum(main_countries$population, na.rm = TRUE) / sum(world_df$population, na.rm = TRUE)
+sum(main_countries$total_emissions, na.rm = TRUE) / sum(world_df$total_emissions, na.rm = TRUE)
+```
+
+At this point, I just need to get a few more data frames in order to make my scatterplot. I create four new data frames: one for all the countries that I'm not focusing on in my infographic, one for notable countries that I want to include (but not highlight) in my infographic for the sake of comparison, one for just Australia (so I can adjust its label on the plot), and one for the remaining countries of focus. Importantly, I also make a new column that I will use to set the alpha value, which moduates transparency in ggplot, of each point in my scatter plot. I want my countries of focus to not be transparent at all, and the rest of my points to be reasonably transparent. After this, its time to make the scatterplot.
+
+```{r}
+other_countries <- scatter_df %>% 
+  filter(!(country %in% c("China", "U.S.", "Russia", "Brazil", "EU*", "Canada", "Australia")))
+
+other_notable_countries <- other_countries %>% 
+  filter(country %in% c("India", "Indonesia", "Iran", "Mexico", "Congo", "Venezuela", "Bangladesh"))
+
+
+# define color palette
+#country_colors <- c("U.S." = "#020122", "Brazil" = "#020122", "Russia" = "#020122", "Canada" = "#020122", "EU*" = "#020122", "China" = "#020122", "Australia" = "#020122")
+
+australia_df <- scatter_df %>% subset(country == "Australia")
+
+other_main_countries <- main_countries %>% filter(!(country == "Australia"))
+
+# Add a new column for alpha values
+scatter_df$alpha_value <- ifelse(scatter_df$country %in% c("China", "U.S.", "Russia", "Brazil", "Australia", "Canada", "EU*"), 1, 0.2)
+
+# Now, in your ggplot code, use this new column for the alpha aesthetic
+ggplot(scatter_df) +
+  geom_point(aes(x = population, y = emissions_pc, alpha = alpha_value), color = "#020122") + # Use alpha values from the column
+  scale_alpha_identity() + # Tell ggplot to use the alpha values as given, without scaling
+  # Your other layers and customizations follow...
+  geom_text(data = australia_df, aes(label = country, x = population - 5, y = emissions_pc + 15), 
+            size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
+  geom_text(data = other_main_countries, aes(label = country, x = population + 15, y = emissions_pc), 
+            size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
+  # geom_text(data = russia_df, aes(label = country, x = population + 15, y = emissions_pc), 
+  #           size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
+  geom_text(data = other_notable_countries, aes(label = country, x = population + 15, y = emissions_pc), alpha = 0.2, size = 5, hjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
+  #geom_point(data = africa_df, aes(x = population, y = emissions_pc), color = "#C23E37") +
+  #geom_text(data = africa_df, aes(label = country, x = population + 20, y = emissions_pc),
+             # color = "#C23E37", size = 5, hjust = 0, vjust = 0, family = "barlow", fontface = "bold", check_overlap = TRUE) +
+  labs(x = "Population (millions)", y = "Per Capita Methane Emissions (tons CO2eq)", 
+       title = "Population and Per-Capita Anthropogenic Methane Emissions in 2021",
+       #subtitle = "Other countries shown with grey points",
+       caption = "Data Sources: International Energy Agency (IEA), World Bank\n\n*The EU is a group of 27 countries in Europe.\n**Based on calculation from BBC News in 2021 article.⁵\nNote: 8 countries had per capita emissions >350 tons CO2eq and are not displayed.") + # Add label for size legend
+  scale_x_continuous(limits = c(0, 1550), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 350), expand = c(0, 0)) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank(),
+        axis.title.x = element_text(family = "barlow", face = "bold", size = 15, color = "grey30", margin = margin(20, 0, 0, 0)),
+        axis.title.y = element_text(family = "barlow", face = "bold", size = 15, color = "grey30", margin = margin(0, 20, 0, 0)),
+        panel.grid.major.y = element_line(color = "grey90", size = 0.5), # Add horizontal gridlines (major)
+        panel.grid.minor.y = element_line(color = "grey90", size = 0.25), # Add horizontal gridlines (minor)
+        axis.text.x = element_text(family = "barlow", face = "bold", size = 13),
+        axis.text.y = element_text(family = "barlow", face = "bold", size = 13),
+        axis.line = element_line(color = "black", size = 0.5),
+        plot.title = element_text(family = "merri sans", size = 12.5, hjust = 0.5),
+        #plot.subtitle = element_text(family = "merri sans", size = 10),
+        plot.caption = element_text(hjust = 1, size = 8, color = "grey30", family = "merri sans", margin = margin(20, 0, 0, 0)),
+        plot.background = element_rect(fill = "#FEF6EC", color = NA),
+        panel.background = element_rect(fill = "#FEF6EC", color = NA)) +
+  geom_hline(yintercept = 197, linetype = "dashed", linewidth = 0.8, color = "cornflowerblue") + # Add horizontal line at y = 1
+  annotate("text", x = 700, y = 240, label = "Carbon footprint of a typical\nprivate jet flying for 48 hours**", size = 5, hjust = 0, color = "cornflowerblue", family = "barlow", fontface = "bold")
+```
+
+## Plot 3 visualization
+
+For my third plot, I don't have too much extra wrangling to do. I have to make a new version of my data frame for my main countries. I can't use the one from before because it is in wide format, and for my dodged column plot, I need it in long format. After making my new version just by filtering my original methane data frame, I re-order my country and type factors so that they are in descending order, redefine my custom color palette, and then make my dodged column plot.
+
+```{r}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                          plot 3 visualization                            ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+cols_df <- methane_df %>% 
+  filter(country %in% c("China", "U.S.", "Russia", "Brazil", "EU*", "Canada", "Australia"))
+
+# re-order countries as factors (for plotting)
+cols_df$country <- factor(cols_df$country,
+                          levels = c("China", "U.S.", "Russia", "Brazil", "EU*", "Canada", "Australia"))
+
+
+# re-order countries as factors (for plotting)
+cols_df$type <- factor(cols_df$type,
+                          levels = c("Energy", "Agriculture", "Waste", "Other"))
+
+# define a custom color palette
+custom_colors <- c(
+  "Agriculture" = "#D2B48C",
+  "Energy" = "#2F2720",
+  "Waste" = "#2ca02c",
+  "Other" = "#2B4690")
+
+# create dodged column plot
+ggplot(cols_df, aes(x = country, y = total_emissions, fill = type)) + # fill columns based on sector
+  geom_col(position = "stack") + # specify dodged position so to create space between countries
+  labs(x = "", y = "Methane Emissions (million tons CO2eq)", title = "Sources of 2021 Anthropogenic Methane Emissions in selected countries", caption = "Data Source: International Energy Agency (IEA)\n\n*The EU is a group of 27 countries in Europe.") + # add source as x axis title
+  scale_fill_manual(values = custom_colors) + # apply custom color palette
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_line(color = "grey90", size = 0.5), # Add horizontal gridlines (major)
+        panel.grid.minor.y = element_line(color = "grey90", size = 0.25), # Add horizontal gridlines 
+        plot.caption = element_text(size = 8, hjust = 1, colour = "grey30", family = "merri sans", margin = margin(20, 0, 0, 0)), # adjust font, fontface, size, and color of x axis title (use hjust = 1 to move to far right since this is source)
+        axis.title.y = element_text(family = "barlow", face = "bold", size = 15, color = "grey30", margin = margin(0, 20, 0, 0)), # adjust font, fontface, size, and color of y axis title
+        axis.text.x = element_text(family = "barlow", face = "bold", size = 16), # adjust font and fontface of x axis text
+        axis.text.y = element_text(family = "barlow", size = 13, face = "bold"), # adjust font and fontface of y axis text
+        legend.position = c(0.88, 0.85), # specify legend position
+        legend.text = element_text(color = "grey30", face = "bold", size = 16, family = "barlow"), # adjust font, fontface, size, and color of y axis legend title
+        legend.title = element_blank(),
+        plot.title = element_text(family = "merri sans", size = 12.5, hjust = 0.5),
+        legend.background = element_rect(fill = "#FEF6EC", color = NA),
+        plot.background = element_rect(fill = "#FEF6EC", color = NA), # Change the plot background color
+        panel.background = element_rect(fill = "#FEF6EC", color = NA)) # Change the panel background color to)
+```
+
+## Making infographic
+
+To create my infographic, I rendered my work in R to an HTML document and dragged the embedded plots onto a Canva document, which I then designed further and added text to as well. At the end of all my diligent work, I made the following infographic!
+
+## My visualization approach
+
+When creating my plots in R and then my infographic in Canva, I thought through several aspects that are integral to effective data visualization practice. In this final section, I'll go through each of these aspects and comment on my approach.
+
+#### Graphic form
 
 
 
