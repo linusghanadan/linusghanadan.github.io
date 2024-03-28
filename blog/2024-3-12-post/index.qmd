@@ -26,11 +26,11 @@ format:
 
 ![Infographic on anthropogenic methane emissions in 2021](infographic.jpeg)
 
-## Link to GitHub repository (coming soon!)
+## [Link to GitHub repository](https://github.com/linusghanadan/methane-infographic)
 
 ## Purpose
 
-In my infographic, the overarching question that I will be answering is where anthropogenic methane emissions came from in 2021. This includes the countries where emissions are occurring most frequently and also the human activities (e.g., agriculture) that contribute the most to these emissions.
+In my infographic, the overarching question that I will be answering is where anthropogenic methane emissions came from in 2021. This includes the countries where emissions are occurring most frequently and also the human activities (e.g., energy production, agriculture, etc.) that contribute the most to these emissions.
 
 ## Data
 
@@ -411,6 +411,98 @@ ggplot(cols_df, aes(x = country, y = total_emissions, fill = type)) + # fill col
         legend.background = element_rect(fill = "#FEF6EC", color = NA), # change legend background color
         plot.background = element_rect(fill = "#FEF6EC", color = NA), # change plot background color
         panel.background = element_rect(fill = "#FEF6EC", color = NA)) # change panel background color
+```
+
+## Map visualization
+
+I also want to add a world map that highlights the countries that I'm highlighting in the second and third visualizations (China, the U.S., Russia, the EU, Canada, and Australia), which requires two additional packages ({rnaturalearth} for basemap and {sf} for importing geometric objects).
+
+```{r}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                       setup & data wrangling                             ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# load additional packages
+library(rnaturalearth)
+library(sf)
+
+# get world map data
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+# exclude Antarctica from the dataset
+world <- world[world$name != "Antarctica", ]
+
+# specify the countries to highlight
+countries_to_highlight <- c("China", "United States of America", "Russia", "Brazil",
+                            "Australia", "Canada",
+                            "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", 
+                            "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", 
+                            "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", 
+                            "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden")
+
+# specify the countries that will receive a custom label (will use Denmark to label EU)
+countries_to_label <- c("China", "United States of America", "Russia", "Brazil",
+                        "Australia", "Canada", "Denmark")
+
+# filter world data for highlighted and labeled countries
+highlighted_countries <- world[world$name %in% countries_to_highlight, ]
+labeled_countries <- world[world$name %in% countries_to_label, ]
+
+
+# calculate centroids for countries to label and store in data frame
+centroids <- st_centroid(labeled_countries$geometry)
+centroids_df <- data.frame(name = labeled_countries$name,
+                           lon = st_coordinates(centroids)[,1],
+                           lat = st_coordinates(centroids)[,2])
+
+# change 'United States of America' to 'U.S.' and 'Denmark' to 'EU*'
+centroids_df$name <- recode(centroids_df$name,
+                            'United States of America' = 'U.S.',
+                            'Denmark' = 'EU*')
+
+# adjust centroid longitude to move the labels left or right
+centroids_df <- centroids_df %>%
+  mutate(lon = case_when(
+    name == "Russia" ~ lon + 50,
+    name == "U.S." ~ lon + 60,
+    name == "EU*" ~ lon - 20,
+    name == "Canada" ~ lon - 1,
+    name == "China" ~ lon + 55,
+    name == "Brazil" ~ lon + 45,
+    TRUE ~ lon
+  ))
+
+# adjust centroid latitude to move the labels up or down
+centroids_df <- centroids_df %>%
+  mutate(lat = case_when(
+    name == "Russia" ~ lat + 20,
+    name == "Canada" ~ lat + 24.5,
+    name == "U.S." ~ lat - 10,
+    name == "China" ~ lat - 10,
+    name == "Australia" ~ lat - 20,
+    name == "Brazil" ~ lat - 20,
+    TRUE ~ lat
+  ))
+
+```
+
+```{r}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                              create map                                  ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ggplot(data = world) +
+  geom_sf(fill = "gray", color = "grey90", linewidth = 0.05) +
+  geom_sf(data = highlighted_countries, fill = "#020122", size = 0.5) +
+  geom_text(data = centroids_df, aes(x = lon, y = lat, label = name), hjust = "right", color = "#020122", family = "barlow", fontface = "bold", size = 7) +
+  labs(caption = "*The EU is a group of 27 countries in Europe") +
+  theme_minimal() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+        axis.title = element_blank(),
+        plot.background = element_rect(fill = "#93B88E", color = NA),
+        panel.background = element_rect(fill = "#93B88E", color = NA),
+        plot.caption = element_text(hjust = 1, size = 11, color = "#020122", family = "merri sans", margin = margin(20, 0, 0, 0)),)
 ```
 
 ## Making infographic

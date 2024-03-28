@@ -9,12 +9,11 @@ author:
 date: 12-12-2023
 categories:
   - [Geospatial Analysis]
-  - [Aquaculture]
   - [R]
 bibliography: 223_blog.bib
 citation:
   url: https://linusghanadan.github.io/blog/2023-12-13-post/
-image: fish_farm.jpeg
+image: oyster.jpeg
 draft: false
 format:
     html:
