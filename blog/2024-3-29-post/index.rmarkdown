@@ -1,0 +1,581 @@
+---
+title: "Building predictive user classification models with data from Spotify Web API"
+description: "In this blog post, I build predictive models using a single decision tree, bagged decision trees, a random forest, and Stochastic Gradient Boosting (SGB) for predicting whether a given song was in my Spotify collection or that of my friend Maxwell. Then, I compare the performance of these four models."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+    affiliation: MEDS
+    affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
+date: 12-12-2023
+categories:
+  - [Machine Learning]
+  - [R]
+citation:
+  url: https://linusghanadan.github.io/blog/2024-3-29-post/
+image: plot.jpeg
+draft: false
+format:
+    html:
+        code-fold: true
+---
+
+
+## [Link to GitHub repository](https://github.com/linusghanadan/ml-spotify-lab)
+
+## Background
+
+The idea for this blog post comes from a group assignment in my machine learning class. For this assignment, my classmate Maxwell and I started by each using the Spotify Web API to access our recent liked songs data, and we each retrieved data on our 200 most recently liked songs (cite spotify web API). We then trained three decision tree models using 75% of the data (training set) and compared performance based on performance on the remaining 25% (testing set). Now, I've decided to go back and also build a model that uses Stochastic Gradient Boosted (SGB) decision trees and also update my model comparisons to include this SGB model.
+
+## Setup & data import
+
+Access the Spotify Web API requires having an existing Spotify account and creating a Spotify for Developers account on the [Spotify for Developers website](https://developer.spotify.com/documentation/web-api). For the purposes of this blog, which focuses on the model-building process, I'll skip over the API access steps. Instead, I'll just start by importing the CSV files, which were written using information from the API.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(include = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r}
+# load packages
+library(tidyverse)
+library(tidymodels)
+library(patchwork)
+library(baguette)
+library(vip)
+
+# read in my data (CSV that was previously written)
+linus_tracks <- read.csv(here::here("data", "2024-3-29-post-data", "linus_tracks.csv"))
+
+# read in partner data
+maxwell_tracks <- read.csv(here::here("data", "2024-3-29-post-data", "linus_tracks.csv")) %>% 
+  mutate(name = "maxwell")
+
+# bind my liked songs df with partner df
+combined_tracks <- rbind(linus_tracks, maxwell_tracks) %>% 
+  rename(time_sig = time_signature) %>% 
+  select(-track.name, -type, -id, -uri, -track_href, -analysis_url) # remove irrelevent columns
+```
+
+
+## Data exploration
+
+Our data set contains 13 features that might be useful for predicting whether a song is in my collection or Maxwell's. I'll start by exploring what these 13 features are and how some of them vary between Maxwell's liked songs and my own. Note that the first 13 columns contain the features we are looking at, and the 14th column contains our outcome variable 'name', which is either 'linus' or 'maxwell' depending on whose collection it is from.
+
+In the following code, we look at a summarized breakdown of each column in the combined tracks data frame and then take a closer look at how Maxwell and I differ in terms of the tempo and danceability of our liked songs.
+
+
+```{r}
+# look at summary of columns
+summary(combined_tracks)
+```
+
+```{r}
+# compare mean of tempo and danceability for Linus and Maxwell
+combined_tracks %>%
+  group_by(name) %>%
+  summarise(mean_tempo = mean(tempo),
+            mean_danceability = mean(danceability),
+            mean_instrumentalness = mean(instrumentalness)) %>% 
+  ungroup()
+```
+
+```{r}
+# compare distribution of tempo for Linus and Maxwell
+Hmisc::histbackback(split(combined_tracks$tempo, combined_tracks$name),
+             main = "Spotify liked songs comparison of tempo", 
+             ylab = "tempo",
+             xlab = c("linus", "maxwell"))
+```
+
+
+While the liked songs of Maxwell and I have a very similar mean tempo, the tempo of my liked songs exhibits a significantly wider distribution.
+
+
+```{r}
+# compare distribution of danceability for Linus and Maxwell
+Hmisc::histbackback(split(combined_tracks$instrumentalness, combined_tracks$name),
+             main = "Spotify liked songs comparison of danceability", 
+             ylab = "danceability",
+             xlab = c("linus", "maxwell"))
+```
+
+
+Maxwell's collection has a slightly higher mean danceability, and the distribution for his songs is more left skewed compared to mine.
+
+
+```{r}
+# compare distribution of instrumentalness for Linus and Maxwell
+Hmisc::histbackback(split(combined_tracks$instrumentalness, combined_tracks$name),
+             main = "Spotify liked songs comparison of instrumentalness", 
+             ylab = "instrumentalness",
+             xlab = c("linus", "maxwell"))
+```
+
+
+The mean instrumentalness of Maxwell's songs is more than twice that of the mean for my collection, and this is reflected in the histogram by the larger proportion of my songs with an instrumentalness of zero.
+
+## Data pre-processing
+
+To start, we'll set the seed. This sets the randomization for creating our cross validation folds such that our results will be reproduced if ran on my local device again. We set the seed in its own code chunk because sometimes it can interfere with other process if included in a larger code chunk.
+
+```{r}
+# set seed
+set.seed(123)
+```
+
+
+We split our data in training and testing sets. We'll use the training set to train the model during cross validation and the testing set to compare the performance of the different models. Next, we pre-process the data by specifying and prepping a recipe that converts all nominal features to dummy variables and normalizes all numeric features. We also create 10 folds of the training data to use for cross validation.
+
+```{r}
+# initial split of data into training and testing sets (default 75/25)
+tracks_split <- initial_split(combined_tracks)
+tracks_test <- testing(tracks_split)
+tracks_train <- training(tracks_split)
+
+# specify recipe for model preprocessing
+tracks_recipe <- recipe(name ~ ., data = tracks_train) %>%
+  step_dummy(all_nominal_predictors()) %>%
+  step_normalize(all_numeric_predictors()) %>%
+  prep() # prep recipe
+
+# create 10 folds of the training data set for CV
+cv_folds <- tracks_train %>% vfold_cv(v = 10)
+```
+
+
+## Decision tree model
+
+For our first model, we'll build just a single decision tree. A decision tree generates predictions by asking simple yes-or-no questions about the features. Which question to ask is determined by the partitioning objective. For our partitioning objective, we will be minimizing cross-entropy, which is the most common objective used for classification tasks.
+
+#### Build preliminary model & tune hyperparameters
+
+
+```{r}
+# specify model for tuning hyperparameters
+single_tree_spec <- decision_tree(
+  cost_complexity = tune(), # tune cost complexity for pruning tree
+  tree_depth = tune(), # tune maximum tree depth
+  min_n = tune()) %>% # tune minimum n for a terminal node (minimum number of data points in a node that is required for the node to be split further)
+  set_engine("rpart") %>%
+  set_mode("classification")
+
+# create tuning grid for hyperparameters
+tuning_grid <- grid_latin_hypercube(cost_complexity(),
+                                    tree_depth(),
+                                    min_n(),
+                                    size = 10)
+
+# create workflow for tuning hyperparameters
+single_tree_wf <- workflow() %>%
+  add_recipe(tracks_recipe) %>%
+  add_model(single_tree_spec)
+
+# tune hyperparameters using CV
+single_tree_tune <- tune_grid(single_tree_spec, 
+                              as.factor(name) ~ ., 
+                              resamples = cv_folds,
+                              grid = tuning_grid,
+                              metrics = metric_set(accuracy))
+```
+
+
+#### Build final model & predict testing data
+
+
+```{r}
+# specify final model with optimized hyperparameters
+single_tree_final <- finalize_model(single_tree_spec, select_best(single_tree_tune))
+
+# fit final model to training data
+single_tree_fit <- fit(single_tree_final, as.factor(name)~., tracks_train)
+
+# predict testing data
+single_tree_predict <- predict(single_tree_fit, tracks_test) %>%
+  bind_cols(tracks_test) %>%  # bind to testing df
+  mutate(name = as.factor(name))
+
+# get probabilities for predictions made on testing data (to calculate ROC AUC)
+single_tree_predict <- predict(single_tree_fit, tracks_test, type = "prob") %>%
+  bind_cols(single_tree_predict) %>%  # bind to df that was just created
+  mutate(name = as.factor(name))
+
+# store confusion matrix for predictions made on testing data
+single_tree_conf_matrix <- single_tree_predict %>% 
+  conf_mat(truth = name, estimate = .pred_class) %>% 
+  autoplot(type = "heatmap") +
+  ggtitle("Single DT") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+# store error metrics of testing data predictions
+single_tree_accuracy <- accuracy(single_tree_predict, truth = name, estimate = .pred_class)
+single_tree_roc_auc <- roc_auc(single_tree_predict, truth = name, .pred_linus)
+single_tree_sensitivity <- sensitivity(single_tree_predict, truth = name, estimate = .pred_class)
+single_tree_specificity <- specificity(single_tree_predict, truth = name, estimate = .pred_class)
+
+```
+
+
+## Bagged trees model
+
+Bagged, or "bootstrap aggregating", prediction models train multiple shallow decision tree models and then combines them to generate an aggregated prediction. Compared to building a single deep decision tree, building multiple shallow decision trees greatly reduces the potential for overfitting. However, in a bagged decision tree model, there is concern about the trees being correlated with one another, meaning they may not provide a substantial improvement in predictive power.
+
+#### Build final model & predict testing data (no tuning required)
+
+
+```{r}
+# specify model
+bagged_trees_spec <- bag_tree() %>%
+  set_engine("rpart", times = 50) %>% # specify number of trees (50-500 trees is usually sufficient)
+  set_mode("classification")
+
+# create workflow
+bagged_trees_wf <- workflow() %>%
+  add_recipe(tracks_recipe) %>%
+  add_model(bagged_trees_spec)
+
+# fit model to training data
+bagged_trees_fit <- bagged_trees_wf %>%
+  fit(data = tracks_train)
+
+# predict testing data
+bagged_trees_predict <- predict(bagged_trees_fit, tracks_test) %>% 
+  bind_cols(tracks_test) %>%  # bind to testing df
+  mutate(name = as.factor(name))
+
+# get probabilities for predictions made on testing data (to calculate ROC AUC)
+bagged_trees_predict <- predict(bagged_trees_fit, tracks_test, type = "prob") %>%
+  bind_cols(bagged_trees_predict) %>%  # bind to df that was just created
+  mutate(name = as.factor(name))
+
+# store confusion matrix for predictions made on testing data
+bagged_trees_conf_matrix <- bagged_trees_predict %>% 
+  conf_mat(truth = name, estimate = .pred_class) %>% 
+  autoplot(type = "heatmap") +
+  ggtitle("Bagged DTs") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+# store error metrics of testing data predictions
+bagged_trees_accuracy <- accuracy(bagged_trees_predict, truth = name, estimate = .pred_class)
+bagged_trees_roc_auc <- roc_auc(bagged_trees_predict, truth = name, .pred_linus)
+bagged_trees_sensitivity <- sensitivity(bagged_trees_predict, truth = name, estimate = .pred_class)
+bagged_trees_specificity <- specificity(bagged_trees_predict, truth = name, estimate = .pred_class)
+
+```
+
+
+## Random forest model
+
+Random forest models are a modification of bagged decision trees that builds a large collection of de-correlated trees to further improve predictive performance. Unlike with bagged decision trees, we now define an additional hyperparameter for the number of unique features that will be considered at each split in the decision tree. This hyperparameter, called mtry, makes it so we don't have to worry about the trees being correlated with one another because we are only looking at a randomized subset of the features at each split in each tree. Having these un-correlated trees allows us to build many trees that are also deep, without overfitting to the training data. Because there are many trees in this model and these trees are also built to be deep based on a randomized set of features, they are referred to as random forests.
+
+#### Build preliminary model & tune hyperparameters
+
+
+```{r}
+# specify model for tuning hyperparameters
+rf_spec <- rand_forest(trees = 500, # set number of trees to 500
+                       mtry = tune(), # tune mtry (number of unique feature variables that will be considered at each split)
+                       min_n = tune()) %>% # tune minimum n for a terminal node (minimum number of data points in a node that is required for the node to be split further)
+  set_engine("ranger") %>%
+  set_mode("classification")
+
+# create tuning grid for hyperparameters
+  tuning_grid <- grid_latin_hypercube(mtry(range = c(2, 4)), 
+                                      min_n(c(1, 10)),
+                                      size = 10)
+
+# create workflow for tuning hyperparameters
+rf_wf <- workflow() %>%
+  add_recipe(tracks_recipe) %>%
+  add_model(rf_spec)
+
+# tune hyperparameters using CV
+rf_tune <- tune_grid(rf_wf,
+                     resamples = cv_folds,
+                     grid = tuning_grid,
+                     metrics = metric_set(accuracy))
+```
+
+
+#### Build final model & predict testing data
+
+
+```{r}
+# specify final model with optimized hyperparameters
+rf_final <- finalize_model(rf_spec, select_best(rf_tune))
+
+# create workflow for final version of model
+rf_final_wf <- workflow() %>%
+  add_recipe(tracks_recipe) %>%
+  add_model(rf_final)
+
+# fit final workflow to training data
+rf_fit <- rf_final_wf %>%
+  fit(data = tracks_train)
+
+# predict testing data
+rf_predict <- predict(rf_fit, tracks_test) %>%
+  bind_cols(tracks_test) %>%  # bind to testing df
+  mutate(name = as.factor(name))
+
+# get probabilities for predictions made on testing data (to calculate ROC AUC)
+rf_predict <- predict(rf_fit, tracks_test, type = "prob") %>%
+  bind_cols(rf_predict) %>%  # bind to df that was just created
+  mutate(name = as.factor(name))
+
+# store confusion matrix for predictions made on testing data
+rf_conf_matrix <- rf_predict %>% 
+  conf_mat(truth = name, estimate = .pred_class) %>% 
+  autoplot(type = "heatmap") +
+  ggtitle("Random Forest") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+# store error metrics of testing data predictions
+rf_accuracy <- accuracy(rf_predict, truth = name, estimate = .pred_class)
+rf_roc_auc <- roc_auc(rf_predict, truth = name, .pred_linus)
+rf_sensitivity <- sensitivity(rf_predict, truth = name, estimate = .pred_class)
+rf_specificity <- specificity(rf_predict, truth = name, estimate = .pred_class)
+
+```
+
+
+## Stochastic Gradient Boosting (SGB) model
+
+Boosting is a general algorithm that is often applied to decision tree models as a way to improve predictive performance through introducing another form of randomization. Boosted models are built sequentially, as each version of the model is fit to the residuals from the previous version.
+
+SGB models use a large number of shallow decision trees as a base learner. These early versions of the model, which are called "weak models" are improved sequentially based on the residuals of the previous version. At each sequential step, these weak models are improved using the sequential fitting algorithm of stochastic gradient descent, which uses random sampling of features to optimize the defined loss function (for this classification problem, we will look to optimize accuracy) for each iteration based on the defined learning rate. We start by tuning the learning rate, which specifies the extent to which we want to change our weak models at each iteration. If we choose to low of a learning rate, it may require too many iterations for our model to improve at all, but if we choose a learning rate that is too high, we may accidently skip over a better performing version of the model.
+
+#### Build preliminary model & tune learning rate
+
+
+```{r}
+# specify model for tuning learning rate
+sgb_lr_spec <- boost_tree(mode = "classification",
+                      engine = "xgboost",
+                      learn_rate = tune())
+
+# create tuning grid for learning rate
+tuning_grid <- expand.grid(learn_rate = seq(0.0001, 0.3, length.out = 30))
+
+# create workflow for tuning learning rate
+sgb_lr_wf <- workflow() %>%
+  add_model(sgb_lr_spec) %>%
+  add_recipe(tracks_recipe)
+
+# tune learning rate using CV
+sgb_lr_tune <- tune_grid(sgb_lr_wf,
+                         resamples = cv_folds,
+                         grid = tuning_grid,
+                         metrics = metric_set(accuracy))
+
+# store optimized learning rate
+best_lr <- select_best(sgb_lr_tune)
+```
+
+
+#### Build preliminary model & tune tree parameters
+
+
+```{r}
+# specify model for tuning tree parameters
+sgb_tree_spec <- boost_tree(learn_rate = best_lr$learn_rate, # use optimized learning rate from previous step
+                            trees = 3000, # set number of trees to 3000
+                            tree_depth = tune(), # tune maximum tree depth
+                            min_n = tune(), # tune minimum n for a terminal node (minimum number of data points in a node that is required for the node to be split further)
+                            loss_reduction = tune(), # tune loss reduction (minimum loss required for further splits)
+                            mode = "classification",
+                            engine = "xgboost")
+
+# create tuning grid for tree parameters
+tuning_grid <- grid_latin_hypercube(tree_depth(),
+                                    min_n(),
+                                    loss_reduction(),
+                                    size = 10)
+
+# create workflow for tuning tree parameters
+sgb_tree_wf <- workflow() %>%
+  add_model(sgb_tree_spec) %>%
+  add_recipe(tracks_recipe)
+
+# tune tree parameters using CV
+sgb_tree_tune <- tune_grid(sgb_tree_wf,
+                           resamples = cv_folds,
+                           grid = tuning_grid,
+                           metrics = metric_set(accuracy))
+
+# store optimized tree parameters
+best_tree <- select_best(sgb_tree_tune)
+```
+
+
+#### Build preliminary model & tune stochasticity parameters
+
+
+```{r}
+# specify model for tuning stochasticity parameters
+sgb_stochastic_spec <- boost_tree(learn_rate = best_lr$learn_rate, # use optimized learning rate
+                                  trees = 3000, # set number of trees to 3000
+                                  tree_depth = best_tree$tree_depth, # use optimized maximum tree depth
+                                  min_n = best_tree$min_n, # use optimized minimum n for a terminal node (minimum number of data points in a node that is required for the node to be split further)
+                                  loss_reduction = best_tree$loss_reduction, # use optimized loss reduction (minimum loss required for further splits)
+                                  mtry = tune(), # tune mtry (number of unique feature variables in each subsample)
+                                  sample_size = tune(), # tune sample size (amount of randomly selected data exposed to the fitting routine when conducting stochastic gradient descent at each split)
+                                  mode = "classification",
+                                  engine = "xgboost")
+
+# specify mtry range based on the number of predictors
+mtry_final <- finalize(mtry(), tracks_train)
+
+# create tuning grid for stochasticity parameters
+tuning_grid <- grid_latin_hypercube(mtry_final,
+                                    sample_size = sample_prop(),
+                                    size = 10)
+
+# create workflow for tuning stochasticity parameters
+sgb_stochastic_wf <- workflow() %>%
+  add_model(sgb_stochastic_spec) %>%
+  add_recipe(tracks_recipe)
+
+# tune stochasticity parameters using CV
+sgb_stochastic_tune <- tune_grid(sgb_stochastic_wf,
+                                 resamples = cv_folds,
+                                 grid = tuning_grid,
+                                 metrics = metric_set(accuracy))
+
+# store optimized stochasticity parameters
+best_stochastic <- select_best(sgb_stochastic_tune)
+```
+
+
+#### Build final model & predict testing data
+
+
+```{r}
+# specify final model with optimized parameters
+sgb_final <- finalize_model(sgb_stochastic_spec, best_stochastic)
+
+# fit final model to training data
+sgb_fit <- fit(sgb_final, as.factor(name)~., tracks_train)
+
+# predict testing data
+sgb_predict <- predict(sgb_fit, tracks_test) %>%
+  bind_cols(tracks_test) %>%  # bind to testing df
+  mutate(name = as.factor(name))
+
+# get probabilities for predictions made on testing data (to calculate ROC AUC)
+sgb_predict <- predict(sgb_fit, tracks_test, type = "prob") %>%
+  bind_cols(sgb_predict) %>%  # bind to df that was just created
+  mutate(name = as.factor(name))
+
+# store confusion matrix for predictions made on testing data
+sgb_conf_matrix <- sgb_predict %>% 
+  conf_mat(truth = name, estimate = .pred_class) %>% 
+  autoplot(type = "heatmap") +
+  ggtitle("SGB") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+# store error metrics of testing data predictions
+sgb_accuracy <- accuracy(sgb_predict, truth = name, estimate = .pred_class)
+sgb_roc_auc <- roc_auc(sgb_predict, truth = name, .pred_linus)
+sgb_sensitivity <- sensitivity(sgb_predict, truth = name, estimate = .pred_class)
+sgb_specificity <- specificity(sgb_predict, truth = name, estimate = .pred_class)
+```
+
+
+## Compare models
+
+
+```{r}
+# display confusion matrices of all four models
+single_tree_conf_matrix + bagged_trees_conf_matrix + rf_conf_matrix + sgb_conf_matrix +
+  plot_layout(nrow = 2, ncol = 2)
+```
+
+```{r}
+# create tibble of accuracy and ROC AUC for all four models
+metrics_tibble <- tibble(
+  Method = factor(rep(c("Single DT", "Bagged DTs", "Random Forest", "SGB"), times = 2),
+                  levels = c("Single DT", "Bagged DTs", "Random Forest", "SGB")),
+  Metric = rep(c("Accuracy", "Area under Receiver Operating Characteristic (ROC) curve"), each = 4),
+  Value = c(single_tree_accuracy$.estimate[1], bagged_trees_accuracy$.estimate[1],
+            rf_accuracy$.estimate[1], sgb_accuracy$.estimate[1],
+            single_tree_roc_auc$.estimate[1], bagged_trees_roc_auc$.estimate[1],
+            rf_roc_auc$.estimate[1], sgb_roc_auc$.estimate[1]))
+
+# create bar plot comparing accuracy and ROC AUC across all four models
+ggplot(metrics_tibble, aes(x = Method, y = Value, fill = Metric)) + 
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = sprintf("%.2f", Value),
+                y = Value + 0.02),
+            position = position_dodge(width = 0.9),
+            vjust = 0,
+            size = 4) +
+  theme_minimal() +
+  labs(y = "Metric Value", x = "Model", title = "Model Comparison") +
+  scale_fill_brewer(palette = "BuPu") +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.title.x = element_blank(),
+        legend.position = "top",
+        legend.title = element_blank())
+```
+
+```{r}
+# create tibble of accuracy and ROC AUC for all four models
+metrics_tibble <- tibble(
+  Method = factor(rep(c("Single DT", "Bagged DTs", "Random Forest", "SGB"), times = 2),
+                  levels = c("Single DT", "Bagged DTs", "Random Forest", "SGB")),
+  Metric = rep(c("Sensitivity\n(Accuracy when truth was Linus)", "Specificity\n(Accuracy when truth was Maxwell)"), each = 4),
+  Value = c(single_tree_sensitivity$.estimate[1], bagged_trees_sensitivity$.estimate[1],
+            rf_sensitivity$.estimate[1], sgb_sensitivity$.estimate[1],
+            single_tree_specificity$.estimate[1], bagged_trees_specificity$.estimate[1],
+            rf_specificity$.estimate[1], sgb_specificity$.estimate[1]))
+
+
+# create bar plot comparing sensitivity and specificity across all four models
+ggplot(metrics_tibble, aes(x = Method, y = Value, fill = Metric)) + 
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = sprintf("%.2f", Value),
+                y = Value + 0.02),
+            position = position_dodge(width = 0.9),
+            vjust = 0,
+            size = 4) +
+  theme_minimal() +
+  labs(y = "Metric Value", x = "Model", title = "Model Comparison") +
+  scale_fill_brewer(palette = "Greens") +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.title.x = element_blank(),
+        legend.position = "top",
+        legend.title = element_blank(),
+        legend.key.height = unit(10, "mm"))
+```
+
+
+The Stochastic Gradient Boosting (SGB) model performed the best at predicting the testing data, slightly outperforming the random forest model. While both the SGB and random forest models had the same accuracy for correctly classifying songs that were in my collection, the SGB model was slightly better at accurately classifying songs that were in Maxwell's collection. When using a single decision tree, there was a significant drop-off in accuracy, largely due to difficulty classifying songs that were in Maxwell's collection.
+
+## Compare importance of predictor variables
+
+
+```{r}
+# compare importance of different predictor variables in best performing model
+vip(sgb_fit, method = "model", num_features = 13) +
+  ggtitle("Importance of features in SGB model") +
+  labs(caption = "Note: Importance of time_sig is <0.01") +
+  ylim(0.00, 0.20) +
+  geom_text(aes(label = sprintf("%.2f", Importance), # label values
+                x = Variable,
+                y = Importance + 0.001),
+            hjust = 0,
+            color = "black",
+            size = 3.5) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.text.y = element_text(color = "black", size = 12))
+```
+
+
+In the SGB model, which was the best performing model, tempo was the most important feature for predicting whether a song was in my collection or Maxwell's, with an importance close to 0.20. Valence, danceability, energy, and instrumentalness were also important features.
+
+
