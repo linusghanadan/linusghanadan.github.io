@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>linus_tracks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"2024-3-29-post-data"</span>, <span class="st">"linus_tracks.csv"</span>))</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># read in partner data</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>maxwell_tracks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"2024-3-29-post-data"</span>, <span class="st">"linus_tracks.csv"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>maxwell_tracks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"2024-3-29-post-data"</span>, <span class="st">"maxwell_songs.csv"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="st">"maxwell"</span>)</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># bind my liked songs df with partner df</span></span>
@@ -235,34 +235,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(combined_tracks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>  danceability        energy            key            loudness      
- Min.   :0.1550   Min.   :0.0844   Min.   : 0.000   Min.   :-20.149  
- 1st Qu.:0.5060   1st Qu.:0.4880   1st Qu.: 2.000   1st Qu.: -9.468  
- Median :0.6105   Median :0.6410   Median : 6.000   Median : -7.564  
- Mean   :0.6093   Mean   :0.6142   Mean   : 5.465   Mean   : -8.134  
- 3rd Qu.:0.7125   3rd Qu.:0.7390   3rd Qu.: 8.000   3rd Qu.: -6.026  
- Max.   :0.9730   Max.   :0.9610   Max.   :11.000   Max.   : -2.497  
-      mode        speechiness       acousticness       instrumentalness   
- Min.   :0.000   Min.   :0.02450   Min.   :0.0000075   Min.   :0.0000000  
- 1st Qu.:0.000   1st Qu.:0.03350   1st Qu.:0.0362500   1st Qu.:0.0000016  
- Median :1.000   Median :0.04140   Median :0.1460000   Median :0.0013150  
- Mean   :0.665   Mean   :0.07702   Mean   :0.2663466   Mean   :0.1574583  
- 3rd Qu.:1.000   3rd Qu.:0.06352   3rd Qu.:0.4212500   3rd Qu.:0.1320000  
- Max.   :1.000   Max.   :0.43200   Max.   :0.9780000   Max.   :0.9670000  
-    liveness         valence           tempo         duration_ms    
- Min.   :0.0299   Min.   :0.0601   Min.   : 61.85   Min.   : 57877  
- 1st Qu.:0.1010   1st Qu.:0.3578   1st Qu.: 98.01   1st Qu.:154846  
- Median :0.1230   Median :0.5275   Median :122.04   Median :195162  
- Mean   :0.1766   Mean   :0.5463   Mean   :124.89   Mean   :192555  
- 3rd Qu.:0.2125   3rd Qu.:0.7620   3rd Qu.:150.50   3rd Qu.:231826  
- Max.   :0.9330   Max.   :0.9810   Max.   :208.65   Max.   :349333  
+<pre><code>  danceability        energy            key           loudness      
+ Min.   :0.1440   Min.   :0.0844   Min.   : 0.00   Min.   :-20.149  
+ 1st Qu.:0.5570   1st Qu.:0.5350   1st Qu.: 2.00   1st Qu.: -9.371  
+ Median :0.6580   Median :0.6865   Median : 5.00   Median : -7.524  
+ Mean   :0.6428   Mean   :0.6608   Mean   : 5.27   Mean   : -8.053  
+ 3rd Qu.:0.7642   3rd Qu.:0.8215   3rd Qu.: 8.00   3rd Qu.: -5.899  
+ Max.   :0.9730   Max.   :0.9840   Max.   :11.00   Max.   : -2.421  
+      mode         speechiness       acousticness       instrumentalness   
+ Min.   :0.0000   Min.   :0.02450   Min.   :0.0000075   Min.   :0.0000000  
+ 1st Qu.:0.0000   1st Qu.:0.03610   1st Qu.:0.0121500   1st Qu.:0.0000229  
+ Median :1.0000   Median :0.04685   Median :0.0721000   Median :0.0198500  
+ Mean   :0.5975   Mean   :0.07576   Mean   :0.2068194   Mean   :0.2509544  
+ 3rd Qu.:1.0000   3rd Qu.:0.07193   3rd Qu.:0.3255000   3rd Qu.:0.5235000  
+ Max.   :1.0000   Max.   :0.51900   Max.   :0.9780000   Max.   :0.9670000  
+    liveness          valence           tempo         duration_ms    
+ Min.   :0.02990   Min.   :0.0322   Min.   : 61.85   Min.   : 57877  
+ 1st Qu.:0.09557   1st Qu.:0.2640   1st Qu.:112.08   1st Qu.:169776  
+ Median :0.11900   Median :0.4530   Median :126.03   Median :210192  
+ Mean   :0.16955   Mean   :0.4711   Mean   :125.03   Mean   :219639  
+ 3rd Qu.:0.19250   3rd Qu.:0.6843   3rd Qu.:135.12   3rd Qu.:257514  
+ Max.   :0.93300   Max.   :0.9810   Max.   :208.65   Max.   :627097  
     time_sig         name          
  Min.   :1.000   Length:400        
  1st Qu.:4.000   Class :character  
  Median :4.000   Mode  :character  
- Mean   :3.925                     
+ Mean   :3.947                     
  3rd Qu.:4.000                     
- Max.   :4.000                     </code></pre>
+ Max.   :5.000                     </code></pre>
 </div>
 </div>
 <div class="cell">
@@ -281,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   name    mean_tempo mean_danceability mean_instrumentalness
   &lt;chr&gt;        &lt;dbl&gt;             &lt;dbl&gt;                 &lt;dbl&gt;
 1 linus         125.             0.609                 0.157
-2 maxwell       125.             0.609                 0.157</code></pre>
+2 maxwell       125.             0.676                 0.344</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -482,7 +482,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="random-forest-model" class="level2">
 <h2 class="anchored" data-anchor-id="random-forest-model">Random forest model</h2>
-<p>Random forest models are a modification of bagged decision trees that builds a large collection of de-correlated trees to further improve predictive performance. Unlike with bagged decision trees, we now define an additional hyperparameter for the number of unique features that will be considered at each split in the decision tree. This hyperparameter, called mtry, makes it so we don’t have to worry about the trees being correlated with one another because we are only looking at a randomized subset of the features at each split in each tree. Having these un-correlated trees allows us to build many trees that are also deep, without overfitting to the training data. Because there are many trees in this model and these trees are also built to be deep based on a randomized set of features, they are referred to as random forests.</p>
+<p>Random forest models are a modification of bagged decision trees that builds a large collection of de-correlated trees to further improve predictive performance. Unlike with bagged decision trees, we now define an additional hyperparameter for the number of unique features that will be considered at each split in the decision tree. This hyperparameter, called mtry, makes it so we don’t have to worry about the trees being correlated with one another because we are only looking at a randomized subset of the features at each split in each tree. Having these un-correlated trees allows us to build many trees that are also deep, without overfitting to the training data. Because there are many trees in this model and these trees are also built to be deep based on a randomized set of features, they are referred to as a random forest.</p>
 <section id="build-preliminary-model-tune-hyperparameters-1" class="level4">
 <h4 class="anchored" data-anchor-id="build-preliminary-model-tune-hyperparameters-1">Build preliminary model &amp; tune hyperparameters</h4>
 <div class="cell">
@@ -811,7 +811,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>In the SGB model, which was the best performing model, tempo was the most important feature for predicting whether a song was in my collection or Maxwell’s, with an importance close to 0.20. Valence, danceability, energy, and instrumentalness were also important features.</p>
+<p>In the SGB model, which was the best performing model, tempo, valence, danceability, energy, and instrumentalness were the most important feature for predicting whether a song was in my collection or Maxwell’s.</p>
 
 
 </section>

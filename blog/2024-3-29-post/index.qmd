@@ -45,7 +45,7 @@ library(vip)
 linus_tracks <- read.csv(here::here("data", "2024-3-29-post-data", "linus_tracks.csv"))
 
 # read in partner data
-maxwell_tracks <- read.csv(here::here("data", "2024-3-29-post-data", "linus_tracks.csv")) %>% 
+maxwell_tracks <- read.csv(here::here("data", "2024-3-29-post-data", "maxwell_songs.csv")) %>% 
   mutate(name = "maxwell")
 
 # bind my liked songs df with partner df
@@ -108,12 +108,14 @@ The mean instrumentalness of Maxwell's songs is more than twice that of the mean
 ## Data pre-processing
 
 To start, we'll set the seed. This sets the randomization for creating our cross validation folds such that our results will be reproduced if ran on my local device again. We set the seed in its own code chunk because sometimes it can interfere with other process if included in a larger code chunk.
+
 ```{r}
 # set seed
 set.seed(123)
 ```
 
 We split our data in training and testing sets. We'll use the training set to train the model during cross validation and the testing set to compare the performance of the different models. Next, we pre-process the data by specifying and prepping a recipe that converts all nominal features to dummy variables and normalizes all numeric features. We also create 10 folds of the training data to use for cross validation.
+
 ```{r}
 # initial split of data into training and testing sets (default 75/25)
 tracks_split <- initial_split(combined_tracks)
@@ -248,7 +250,7 @@ bagged_trees_specificity <- specificity(bagged_trees_predict, truth = name, esti
 
 ## Random forest model
 
-Random forest models are a modification of bagged decision trees that builds a large collection of de-correlated trees to further improve predictive performance. Unlike with bagged decision trees, we now define an additional hyperparameter for the number of unique features that will be considered at each split in the decision tree. This hyperparameter, called mtry, makes it so we don't have to worry about the trees being correlated with one another because we are only looking at a randomized subset of the features at each split in each tree. Having these un-correlated trees allows us to build many trees that are also deep, without overfitting to the training data. Because there are many trees in this model and these trees are also built to be deep based on a randomized set of features, they are referred to as random forests.
+Random forest models are a modification of bagged decision trees that builds a large collection of de-correlated trees to further improve predictive performance. Unlike with bagged decision trees, we now define an additional hyperparameter for the number of unique features that will be considered at each split in the decision tree. This hyperparameter, called mtry, makes it so we don't have to worry about the trees being correlated with one another because we are only looking at a randomized subset of the features at each split in each tree. Having these un-correlated trees allows us to build many trees that are also deep, without overfitting to the training data. Because there are many trees in this model and these trees are also built to be deep based on a randomized set of features, they are referred to as a random forest.
 
 #### Build preliminary model & tune hyperparameters
 
@@ -541,5 +543,4 @@ vip(sgb_fit, method = "model", num_features = 13) +
         axis.text.y = element_text(color = "black", size = 12))
 ```
 
-In the SGB model, which was the best performing model, tempo was the most important feature for predicting whether a song was in my collection or Maxwell's, with an importance close to 0.20. Valence, danceability, energy, and instrumentalness were also important features.
-
+In the SGB model, which was the best performing model, tempo, valence, danceability, energy, and instrumentalness were the most important feature for predicting whether a song was in my collection or Maxwell's.
