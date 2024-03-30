@@ -183,20 +183,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="biodiversity-in-phoenix-arizona" class="level1">
 <h1>Biodiversity in Phoenix, Arizona</h1>
-<section id="author-linus-ghanadan" class="level3">
-<h3 class="anchored" data-anchor-id="author-linus-ghanadan">Author: Linus Ghanadan</h3>
+<section id="author-linus-ghanadan" class="level4">
+<h4 class="anchored" data-anchor-id="author-linus-ghanadan">Author: Linus Ghanadan</h4>
 </section>
-<section id="link-to-github-repository-httpsgithub.comlinusghanadanphoenix_biodiversity" class="level3">
-<h3 class="anchored" data-anchor-id="link-to-github-repository-httpsgithub.comlinusghanadanphoenix_biodiversity">Link to GitHub repository: https://github.com/linusghanadan/phoenix_biodiversity</h3>
+<section id="link-to-github-repository" class="level4">
+<h4 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/phoenix_biodiversity">Link to GitHub repository</a></h4>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="purpose" class="level3">
-<h3 class="anchored" data-anchor-id="purpose">Purpose</h3>
+<section id="purpose" class="level4">
+<h4 class="anchored" data-anchor-id="purpose">Purpose</h4>
 <p>The purpose of this analysis is to better understand and visualize biodiversity in Phoenix and highlight areas where biodiversity is declining. Specifically, the final map will show a map of Phoenix displayed on 100 meter grid-cells colored based on the area’s 2020 Biodiversity Intactness Index (BII), which is a score from 0 to 1. In addition, areas where BII declined from greater than 0.75 in 2017 to less than 0.75 in 2020 will be highlighted in a seperate color.</p>
 </section>
-<section id="highlights-of-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="highlights-of-analysis">Highlights of analysis</h3>
+<section id="highlights-of-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="highlights-of-analysis">Highlights of analysis</h4>
 <ul>
 <li>Add basemap with Contextily</li>
 <li>Fetch items from Microsoft Planetary Computer (MPC) catalog using search criteria</li>
@@ -205,27 +205,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Visualize 2020 biodiversity and changes from 2017</li>
 </ul>
 </section>
-<section id="dataset-descriptions" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-descriptions">Dataset descriptions</h3>
+<section id="dataset-descriptions" class="level4">
+<h4 class="anchored" data-anchor-id="dataset-descriptions">Dataset descriptions</h4>
 <ol type="1">
 <li>The primary dataset used in this analysis estimates terrestrial Biodiversity Intactness as a 100-meter gridded maps for years 2017 to 2020. The data contained in the dataset comes from Impact Observatory and Vizzuality, and they generated the data using a database of spatially referenced observations of biodiversity across 32,000 sites and over 750 studies. The data was accessed from the Microsoft Planetary Computer (MPC) catalog.</li>
 <li>A dataset from the U.S. Census Bureau was used to clip biodiversity raster.</li>
 </ol>
 </section>
-<section id="references-to-datasets" class="level3">
-<h3 class="anchored" data-anchor-id="references-to-datasets">References to datasets</h3>
+<section id="references-to-datasets" class="level4">
+<h4 class="anchored" data-anchor-id="references-to-datasets">References to datasets</h4>
 <ol type="1">
-<li>Impact Observatory &amp; Vizzuality. 2022. “Biodiversity Intactness.” Accessed via Microsoft Planetary Computer (MPC) Catalog. https://planetarycomputer.microsoft.com/dataset/io-biodiversity#overview.</li>
-<li>U.S. Census Bureau. 2022. “2022 TIGER/Line Shapefiles: County Subdivision”. https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2022&amp;layergroup=County+Subdivisions</li>
+<li>Impact Observatory &amp; Vizzuality. 2022. “Biodiversity Intactness.” Accessed via Microsoft Planetary Computer (MPC) Catalog. <a href="https://planetarycomputer.microsoft.com/dataset/io-biodiversity#overview">https://planetarycomputer.microsoft.com/dataset/io-biodiversity#overview</a>.</li>
+<li>U.S. Census Bureau. 2022. “2022 TIGER/Line Shapefiles: County Subdivision”. <a href="https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2022&amp;layergroup=County+Subdivisions">https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2022&amp;layergroup=County+Subdivisions</a></li>
 </ol>
 </section>
 </section>
-<section id="import-packages-and-functions" class="level2">
-<h2 class="anchored" data-anchor-id="import-packages-and-functions">1) Import packages and functions</h2>
+<section id="import-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="import-libraries">1) Import libraries</h2>
 <div class="cell" data-tags="[]" data-execution_count="1">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages and functions</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
@@ -247,8 +247,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="read-in-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-in-data">2) Read in data</h2>
-<section id="biodiversity-data" class="level3">
-<h3 class="anchored" data-anchor-id="biodiversity-data">Biodiversity data</h3>
+<section id="biodiversity-data" class="level4">
+<h4 class="anchored" data-anchor-id="biodiversity-data">Biodiversity data</h4>
 <div class="cell" data-tags="[]" data-execution_count="2">
 <details>
 <summary>Code</summary>
@@ -329,8 +329,8 @@ Updated 2017 raster ('y', 'x') Coordinates:
 </div>
 </div>
 </section>
-<section id="arizona-shapefile" class="level3">
-<h3 class="anchored" data-anchor-id="arizona-shapefile">Arizona shapefile</h3>
+<section id="arizona-shapefile" class="level4">
+<h4 class="anchored" data-anchor-id="arizona-shapefile">Arizona shapefile</h4>
 <div class="cell" data-execution_count="56">
 <details>
 <summary>Code</summary>
@@ -352,10 +352,8 @@ Updated 2017 raster ('y', 'x') Coordinates:
 </div>
 </section>
 </section>
-<section id="data-exploration" class="level2">
-<h2 class="anchored" data-anchor-id="data-exploration">3) Data exploration</h2>
-<section id="map-of-phoenix-subdivision" class="level3">
-<h3 class="anchored" data-anchor-id="map-of-phoenix-subdivision">Map of Phoenix subdivision</h3>
+<section id="create-basic-map-of-phoenix-subdivision" class="level2">
+<h2 class="anchored" data-anchor-id="create-basic-map-of-phoenix-subdivision">3) Create basic map of Phoenix subdivision</h2>
 <div class="cell" data-tags="[]" data-execution_count="8">
 <details>
 <summary>Code</summary>
@@ -376,11 +374,8 @@ Updated 2017 raster ('y', 'x') Coordinates:
 </div>
 </div>
 </section>
-</section>
-<section id="analysis" class="level2">
-<h2 class="anchored" data-anchor-id="analysis">4) Analysis</h2>
-<section id="clip-rasters-and-calculate-percent-area-with-bii-0.75-for-2017-and-2020" class="level3">
-<h3 class="anchored" data-anchor-id="clip-rasters-and-calculate-percent-area-with-bii-0.75-for-2017-and-2020">Clip rasters and calculate percent area with BII &gt; 0.75 for 2017 and 2020</h3>
+<section id="clip-rasters-and-calculate-percent-area-with-bii-0.75-for-2017-and-2020" class="level2">
+<h2 class="anchored" data-anchor-id="clip-rasters-and-calculate-percent-area-with-bii-0.75-for-2017-and-2020">4) Clip rasters and calculate percent area with BII &gt; 0.75 for 2017 and 2020</h2>
 <div class="cell" data-tags="[]" data-execution_count="18">
 <details>
 <summary>Code</summary>
@@ -402,8 +397,8 @@ Percentage of area with BII&gt;0.75 in 2020: 6.49%</code></pre>
 </div>
 </div>
 </section>
-<section id="visualize-2020-bii-and-changes-from-2017" class="level3">
-<h3 class="anchored" data-anchor-id="visualize-2020-bii-and-changes-from-2017">Visualize 2020 BII and changes from 2017</h3>
+<section id="visualize-2020-bii-and-changes-from-2017" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-2020-bii-and-changes-from-2017">5) Visualize 2020 BII and changes from 2017</h2>
 <div class="cell" data-tags="[]" data-execution_count="33">
 <details>
 <summary>Code</summary>
@@ -466,9 +461,9 @@ Percentage of area with BII&gt;0.75 in 2020: 6.49%</code></pre>
 <p><img src="phoenix_biodiversity_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<p>From this map, we can see how the edges of certain areas in Phoenix, which had relatively high BII, decrease from greater than 0.75 to less than 0.75. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix.</p>
 
 
-</section>
 </section>
 </section>
 
