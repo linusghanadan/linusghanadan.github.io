@@ -302,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare distribution of danceability for Linus and Maxwell</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">histbackback</span>(<span class="fu">split</span>(combined_tracks<span class="sc">$</span>instrumentalness, combined_tracks<span class="sc">$</span>name),</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">histbackback</span>(<span class="fu">split</span>(combined_tracks<span class="sc">$</span>danceability, combined_tracks<span class="sc">$</span>name),</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">main =</span> <span class="st">"Spotify liked songs comparison of danceability"</span>, </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">ylab =</span> <span class="st">"danceability"</span>,</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab =</span> <span class="fu">c</span>(<span class="st">"linus"</span>, <span class="st">"maxwell"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
