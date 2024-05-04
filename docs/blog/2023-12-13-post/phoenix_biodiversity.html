@@ -223,8 +223,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="import-libraries">1) Import libraries</h2>
 <div class="cell" data-tags="[]" data-execution_count="1">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
@@ -242,7 +240,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rasterio.plot <span class="im">import</span> show</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> ctx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="read-in-data" class="level2">
@@ -250,8 +247,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="biodiversity-data" class="level4">
 <h4 class="anchored" data-anchor-id="biodiversity-data">Biodiversity data</h4>
 <div class="cell" data-tags="[]" data-execution_count="2">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access catalog</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>catalog <span class="op">=</span> Client.<span class="bu">open</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://planetarycomputer.microsoft.com/api/stac/v1"</span>,</span>
@@ -273,28 +268,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Get items from search as list</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> search.item_collection()</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'There are </span><span class="sc">{</span><span class="bu">len</span>(items)<span class="sc">}</span><span class="ss"> items in the search.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>There are 4 items in the search.</code></pre>
 </div>
 </div>
 <div class="cell" data-tags="[]" data-execution_count="3">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store individual items</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>item_2020 <span class="op">=</span> items[<span class="dv">0</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>item_2017 <span class="op">=</span> items[<span class="dv">3</span>]</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check CRS</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>item_2017.properties[<span class="st">'proj:epsg'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>4326</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="37">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store raster data from items</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>bii_2020 <span class="op">=</span> rioxr.open_rasterio(item_2020.assets[<span class="st">'data'</span>].href)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bii_2017 <span class="op">=</span> rioxr.open_rasterio(item_2017.assets[<span class="st">'data'</span>].href)</span>
@@ -313,7 +302,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Print updated dimensions and coords</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Updated 2017 raster'</span>, bii_2017.dims, bii_2017.coords, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Original 2017 raster ('band', 'y', 'x') Coordinates:
   * band         (band) int64 1
@@ -332,8 +320,6 @@ Updated 2017 raster ('y', 'x') Coordinates:
 <section id="arizona-shapefile" class="level4">
 <h4 class="anchored" data-anchor-id="arizona-shapefile">Arizona shapefile</h4>
 <div class="cell" data-execution_count="56">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in Arizona shapefile</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>arizona <span class="op">=</span> gpd.read_file(<span class="st">"data/tl_2022_04_cousub/tl_2022_04_cousub.shp"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -345,7 +331,6 @@ Updated 2017 raster ('y', 'x') Coordinates:
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for matching CRS (should return True)</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>item_2017.properties[<span class="st">'proj:epsg'</span>] <span class="op">==</span> phoenix.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display" data-execution_count="56">
 <pre><code>True</code></pre>
 </div>
@@ -355,8 +340,6 @@ Updated 2017 raster ('y', 'x') Coordinates:
 <section id="create-basic-map-of-phoenix-subdivision" class="level2">
 <h2 class="anchored" data-anchor-id="create-basic-map-of-phoenix-subdivision">3) Create basic map of Phoenix subdivision</h2>
 <div class="cell" data-tags="[]" data-execution_count="8">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set axis for Phoenix</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> phoenix.plot(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>), alpha<span class="op">=</span><span class="fl">0.5</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -368,7 +351,6 @@ Updated 2017 raster ('y', 'x') Coordinates:
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display map</span></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p><img src="phoenix_biodiversity_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
@@ -377,8 +359,6 @@ Updated 2017 raster ('y', 'x') Coordinates:
 <section id="clip-rasters-and-calculate-percent-area-with-bii-0.75-for-2017-and-2020" class="level2">
 <h2 class="anchored" data-anchor-id="clip-rasters-and-calculate-percent-area-with-bii-0.75-for-2017-and-2020">4) Clip rasters and calculate percent area with BII &gt; 0.75 for 2017 and 2020</h2>
 <div class="cell" data-tags="[]" data-execution_count="18">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clip the rasters to Phoenix geometry</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>bii_2017_clipped <span class="op">=</span> bii_2017.rio.clip(phoenix.geometry, crs<span class="op">=</span><span class="st">'4326'</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>bii_2020_clipped <span class="op">=</span> bii_2020.rio.clip(phoenix.geometry, crs<span class="op">=</span><span class="st">'4326'</span>)</span>
@@ -390,7 +370,6 @@ Updated 2017 raster ('y', 'x') Coordinates:
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Print percents</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Percentage of area with BII&gt;0.75 in 2017: </span><span class="sc">{</span>percent_area_2017<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Percentage of area with BII&gt;0.75 in 2020: </span><span class="sc">{</span>percent_area_2020<span class="sc">:.2f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Percentage of area with BII&gt;0.75 in 2017: 7.13%
 Percentage of area with BII&gt;0.75 in 2020: 6.49%</code></pre>
@@ -400,22 +379,17 @@ Percentage of area with BII&gt;0.75 in 2020: 6.49%</code></pre>
 <section id="visualize-2020-bii-and-changes-from-2017" class="level2">
 <h2 class="anchored" data-anchor-id="visualize-2020-bii-and-changes-from-2017">5) Visualize 2020 BII and changes from 2017</h2>
 <div class="cell" data-tags="[]" data-execution_count="33">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make raster representing the area with BII&gt;0.75 in 2017 that was lost by 2020</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lost_area <span class="op">=</span> (bii_2017_clipped <span class="op">&gt;</span> <span class="fl">0.75</span>) <span class="op">&amp;</span> (bii_2020_clipped <span class="op">&lt;</span> <span class="fl">0.75</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that lost area raster has same spatial reference dimension as original rasters (should return True)</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> lost_area.spatial_ref <span class="op">==</span> bii_2017.spatial_ref <span class="op">==</span> bii_2017.spatial_ref:</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'True'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
 </div>
 <div class="cell" data-tags="[]" data-execution_count="34">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert bools to binary values</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>lost_area_numeric <span class="op">=</span> lost_area.astype(<span class="bu">int</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -456,7 +430,6 @@ Percentage of area with BII&gt;0.75 in 2020: 6.49%</code></pre>
 <span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
 <span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p><img src="phoenix_biodiversity_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
