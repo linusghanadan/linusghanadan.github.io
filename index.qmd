@@ -1,5 +1,6 @@
 ---
-title: "Linus Ghanadan"
+title: "Welcome to my website!"
+subtitle: "You have reached the website of Linus Ghanadan.<br>Click on the icons below for even more Linus."
 about:
     template: solana
     image: linus-website-photo.jpg
@@ -15,6 +16,6 @@ about:
         href: https://www.instagram.com/linusghanadan/
 ---
 
-# Bio
+# About me
 
 I'm currently pursuing a Master's degree in Environmental Data Science from the Bren School of Environmental Science & Management at UC Santa Barbara. I finished my undergraduate studies in 2023, receiving a Bachelor of Science in Environmental Economics from the University of Maryland. While at UMD, I also gained experience working on policies affecting offshore wind energy supply chains at the U.S. Department of Transportation, analyzing transport electrification policies at the World Resources Institute, and researching nature-based carbon sequestration at The Nature Conservancy. Moving forward, my career goal is to implement data-driven solutions that advance sustainability within the public and private sectors.
