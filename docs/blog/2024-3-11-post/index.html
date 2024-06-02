@@ -206,11 +206,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>According to a <a href="https://www.sciencedirect.com/science/article/pii/S0308597X1930346X">2020 article published in the journal Marine Policy</a>, Individual Transferable Quotas (ITQs) involve the allocation of shares or portions of a total allowable catch (TAC) to individual fishers, vessels, communities or others with an interest in the fishery, such as processors. A number of fisheries around the world have introduced ITQs as a way to regulate fisheries in a sustainable manner, preserving important natural resources while also allowing for increased economic productivity.</p>
+<p>According to a <a href="https://www.sciencedirect.com/science/article/pii/S0308597X1930346X">2020 article</a> published in the journal Marine Policy, Individual Transferable Quotas (ITQs) involve the allocation of shares or portions of a total allowable catch (TAC) to individual fishers, vessels, communities or others with an interest in the fishery, such as processors. A number of fisheries around the world have introduced ITQs as a way to regulate fisheries in a sustainable manner, preserving important natural resources while also allowing for increased economic productivity.</p>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>We will use synthetically generated data to simplify things for our purposes (i.e., data is fake so results have no real implications). Our data contains the variables on 11,135 hypothetical fisheries (only cross sectional, no time observations). These fisheries were either regulated by an Individual Transferable Quota (ITQ) for all years between 1990 and 2012 or in none of those years.</p>
+<p>We will use synthetically generated data to simplify things for our purposes (i.e., our data is fake so our results will have no real implications). Our data contains the variables on 11,135 hypothetical fisheries (only cross sectional, no time observations). These fisheries were either regulated by an Individual Transferable Quota (ITQ) for all years between 1990 and 2012 or in none of those years.</p>
 <p><strong>The outcome and treatment variables are:</strong></p>
 <ul>
 <li><p><strong>COLL_SHARE</strong> = share of years a fishery is collapsed between 1990 and 2012 (collapse defined as harvest being more than 10% below maximum recorded harvest).</p></li>
@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load Data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fisheries_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"2024-3-11-post-data"</span>,<span class="st">"final_fisheries_data.csv"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fisheries_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"2024-3-11-post-data"</span>, <span class="st">"final_fisheries_data.csv"</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Prepare Data</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change all column names to lowercase</span></span>
@@ -365,9 +365,10 @@ mean in group 0 mean in group 1
 </div>
 <p>Regarding the commercial value of fisheries in 1980, we also reject the null hypothesis, at an alpha level of &lt;0.001, that the difference in the mean SR index between the control (not regulated by an ITQ) and treatment (regulated by an ITQ) groups is zero. We estimate this mean difference to be about 32.35 million USD (where the mean commercial value is lower in the treatment group), and our 95% confidence interval for the mean difference is from 30.74 to 33.95 million USD.</p>
 </section>
-<section id="implications-for-treatment-ignorability-assumption" class="level4">
-<h4 class="anchored" data-anchor-id="implications-for-treatment-ignorability-assumption">Implications for treatment ignorability assumption</h4>
-<p>I do see a problem with just comparing the outcome variable (share of years between 1990 and 2012 with fishery collapse, meaning harvest was more than 10% below maximum recorded harvest) means between the treated (regulated by an ITQ) and untreated (not regulated by an ITQ) fisheries because of the statistically significant differences in the covariates between these two groups that we would not be controlling for. Our histograms from Part A show differences in the count of fisheries in the treated and untreated groups across the six marine ecosystem types, and these differences were particularly pronounced for ecosystems that were classified as open ocean or deep sea (both appear to be statistically significant). In addition, our two t-tests from Part B indicate, with high statistical significance (p&lt;0.001), mean differences between the two groups for both the biodiversity in 1980 and commercial value in 1980. These covariates are likely to be determinants of whether a fishery collapses, so it would be very misleading to just compare the outcome variable means of the treatment and untreated fisheries, since there are likely to be effects from the differences in covariate variables that will be misrepresented as effects from the treatment variable.</p>
+<section id="findings" class="level4">
+<h4 class="anchored" data-anchor-id="findings">Findings</h4>
+<p>For two of the covariates (SR index and commercial value), there are statistically significant differences between the treated and untreated groups. This indicates that there may be systemic differences between the pre-treatment ecosystem characteristics of fisheries that were regulated by an ITQ and those that were not, and if this is the case, simply controlling for all covariates is an insufficient method to estimate the ATE, since systemic differences means that there are differences between the groups that extend beyond what we can control for.</p>
+<p>Because there seem to be systemic differences between the pre-treatment characteristics of the treated and untreated group, we will use the nearest neighbor matching estimator to estimate the ATT and the Weighted Least Squares (WLS) estimator to estimate the ATE.</p>
 </section>
 </section>
 <section id="estimating-propensity-scores" class="level2">
@@ -392,8 +393,8 @@ mean in group 0 mean in group 1
 </div>
 <p>There is some overlap in the distributions of our histograms, mainly for fisheries that have propensity scores between 0.4 and 0.6. I’m concerned about the lack of overlap for fisheries with high propensity scores, as this may lead to issues when we do nearest-neighbor matching. During nearest-neighbor matching, treated units are assigned to the non-treated unit with the closest propensity score as a match, and we want the resulting set of fisheries to have a great deal of overlap in their propensity scores to ensure a balance in covariates, since they are also likely to have an influence on our outcome variable. However, since there are very few fisheries in the control group with high propensity scores, I’m concerned that even after nearest-neighbor matching occurs, there will still be a lack of overlap in the distributions of our histograms.</p>
 </section>
-<section id="estimating-average-treatment-effect-on-the-treated-att-with-nearest-neighbor-matching" class="level2">
-<h2 class="anchored" data-anchor-id="estimating-average-treatment-effect-on-the-treated-att-with-nearest-neighbor-matching">Estimating Average Treatment Effect on the Treated (ATT) with Nearest Neighbor Matching</h2>
+<section id="estimating-att-with-nearest-neighbor-matching-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-att-with-nearest-neighbor-matching-estimator">Estimating ATT with nearest neighbor matching estimator</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -422,8 +423,8 @@ mean in group 0 mean in group 1
 </div>
 <p>Using the matched data, we estimate the average effect of an ITQ on a fishery that had an ITQ to be a 7.13 percentage-point decrease in the share of years between 1990 and 2012 where the fishery experienced collapse. This estimated effect size only applies to fisheries that were regulated by an ITQ because we only defined counterfactuals for these fisheries. Thus, our average outcome only demonstrates the effect of an ITQ on fishery collapse as it pertains to fisheries that were regulated by an ITQ.</p>
 </section>
-<section id="calculating-average-treatment-effect-ate-with-the-weight-least-squares-wls-estimator" class="level2">
-<h2 class="anchored" data-anchor-id="calculating-average-treatment-effect-ate-with-the-weight-least-squares-wls-estimator">Calculating Average Treatment Effect (ATE) with the Weight Least Squares (WLS) estimator</h2>
+<section id="calculating-ate-with-the-wls-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-ate-with-the-wls-estimator">Calculating ATE with the WLS estimator</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -445,12 +446,12 @@ mean in group 0 mean in group 1
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting the coefficients table</span></span>
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>summary_reg <span class="ot">&lt;-</span> <span class="fu">summary</span>(reg_wls)</span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>summary_reg<span class="sc">$</span>coefficients <span class="sc">%&gt;%</span> </span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"WLS estimates"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Generate table</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"WLS estimator"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Generate table</span></span>
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>WLS estimates</caption>
+<caption>WLS estimator</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
