@@ -1,1 +1,7 @@
 /* css styles */
+:root {
+    --bs-primary: #0E3914; /* Dark Forest Green */
+}
+body {
+    background-color: #C0C0C0; /* Silver */
+}

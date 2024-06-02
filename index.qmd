@@ -4,9 +4,6 @@ about:
     template: solana
     image: linus-website-photo.jpg
     links: 
-      - text: Email
-        icon: envelope
-        href: mailto:linusghanadan@bren.ucsb.edu
       - text: LinkedIn
         href: https://www.linkedin.com/in/linus-ghanadan/
         icon: linkedin

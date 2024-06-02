@@ -9,7 +9,6 @@ author:
 date: 03-12-2024
 categories:
   - [Data Visualization]
-  - [Methane]
   - [R]
 bibliography: viz_blog.bib
 citation:

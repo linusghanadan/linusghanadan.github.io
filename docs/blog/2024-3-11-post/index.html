@@ -8,9 +8,9 @@
 
 <meta name="author" content="Linus Ghanadan">
 <meta name="dcterms.date" content="2024-03-11">
-<meta name="description" content="Disclaimer: The data used in this blog was synthetically generated for an assignment in my Master’s program class on Environmental Policy Evaluation (i.e., data is fake so results have no real implications).">
+<meta name="description" content="Disclaimer: The data used in this blog was synthetically generated (i.e., data is fake so results have no real implications).">
 
-<title>Linus Ghanadan - Using propensity scores, matching, and the Weighted Least Squares (WLS) estimator to analyze the impact of catch shares policy</title>
+<title>Linus Ghanadan - Using propensity score methods to analyze the impact of catch shares policy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -140,14 +140,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Using propensity scores, matching, and the Weighted Least Squares (WLS) estimator to analyze the impact of catch shares policy</h1>
+      <h1 class="title">Using propensity score methods to analyze the impact of catch shares policy</h1>
                   <div>
         <div class="description">
-          Disclaimer: The data used in this blog was synthetically generated for an assignment in my Master’s program class on Environmental Policy Evaluation (i.e., data is fake so results have no real implications).
+          Disclaimer: The data used in this blog was synthetically generated (i.e., data is fake so results have no real implications).
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Policy Analysis</div>
+                <div class="quarto-category">Statistical Modeling</div>
                 <div class="quarto-category">Causal Inference</div>
                 <div class="quarto-category">R</div>
               </div>
@@ -544,17 +544,15 @@ mean in group 0 mean in group 1
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2024,
   author = {Ghanadan, Linus},
-  title = {Using Propensity Scores, Matching, and the {Weighted} {Least}
-    {Squares} {(WLS)} Estimator to Analyze the Impact of Catch Shares
-    Policy},
+  title = {Using Propensity Score Methods to Analyze the Impact of Catch
+    Shares Policy},
   date = {2024-03-11},
   url = {https://linusghanadan.github.io/blog/2024-3-11-post/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ghanadan2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-Ghanadan, Linus. 2024. <span>“Using Propensity Scores, Matching, and the
-Weighted Least Squares (WLS) Estimator to Analyze the Impact of Catch
-Shares Policy.”</span> March 11, 2024. <a href="https://linusghanadan.github.io/blog/2024-3-11-post/">https://linusghanadan.github.io/blog/2024-3-11-post/</a>.
+Ghanadan, Linus. 2024. <span>“Using Propensity Score Methods to Analyze
+the Impact of Catch Shares Policy.”</span> March 11, 2024. <a href="https://linusghanadan.github.io/blog/2024-3-11-post/">https://linusghanadan.github.io/blog/2024-3-11-post/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

@@ -1,6 +1,6 @@
 ---
-title: "Using propensity scores, matching, and the Weighted Least Squares (WLS) estimator to analyze the impact of catch shares policy"
-description: "Disclaimer: The data used in this blog was synthetically generated for an assignment in my Master's program class on Environmental Policy Evaluation (i.e., data is fake so results have no real implications)."
+title: "Using propensity score methods to analyze the impact of catch shares policy"
+description: "Disclaimer: The data used in this blog was synthetically generated (i.e., data is fake so results have no real implications)."
 author: 
   - name: Linus Ghanadan
     url: https://linusghanadan.github.io/
@@ -8,7 +8,7 @@ author:
     affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
 date: 03-11-2024
 categories:
-  - [Policy Analysis]
+  - [Statistical Modeling]
   - [Causal Inference]
   - [R]
 citation:
