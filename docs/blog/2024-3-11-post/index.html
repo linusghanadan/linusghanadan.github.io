@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Linus Ghanadan">
+<meta name="dcterms.date" content="2024-03-11">
+<meta name="description" content="Disclaimer: The data used in this blog was synthetically generated for an assignment in my Master’s program class on Environmental Policy Evaluation (i.e., data is fake so results have no real implications).">
+
+<title>Linus Ghanadan - Using propensity scores, matching, and the Weighted Least Squares (WLS) estimator to analyze the impact of catch shares policy</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Linus Ghanadan</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Using propensity scores, matching, and the Weighted Least Squares (WLS) estimator to analyze the impact of catch shares policy</h1>
+                  <div>
+        <div class="description">
+          Disclaimer: The data used in this blog was synthetically generated for an assignment in my Master’s program class on Environmental Policy Evaluation (i.e., data is fake so results have no real implications).
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Policy Analysis</div>
+                <div class="quarto-category">Causal Inference</div>
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://linusghanadan.github.io/">Linus Ghanadan</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://bren.ucsb.edu/masters-programs/master-environmental-data-science">
+              MEDS
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 11, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="disclaimer-the-data-used-in-this-blog-was-synthetically-generated-for-an-assignment-in-my-masters-program-class-on-environmental-policy-evaluation-i.e.-data-is-fake-so-results-have-no-real-implications." class="level4">
+<h4 class="anchored" data-anchor-id="disclaimer-the-data-used-in-this-blog-was-synthetically-generated-for-an-assignment-in-my-masters-program-class-on-environmental-policy-evaluation-i.e.-data-is-fake-so-results-have-no-real-implications."><strong>Disclaimer: The data used in this blog was synthetically generated for an assignment in my Master’s program class on Environmental Policy Evaluation (i.e., data is fake so results have no real implications).</strong></h4>
+</section>
+<section id="link-to-github-repository" class="level2">
+<h2 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/catch-shares-policy">Link to GitHub repository</a></h2>
+</section>
+<section id="question" class="level2">
+<h2 class="anchored" data-anchor-id="question">Question</h2>
+<p>From 1990 to 2012, what was the average treatment effect on the treated (ATT) and average treatment effect (ATE) of implementing an Individual Transferable Quota (ITQ) on the share of years that a fishery was collapsed? For our purposes, “collapsed” is defined as harvest being more than 10% below maximum recorded harvest.</p>
+</section>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>According to a <a href="https://www.sciencedirect.com/science/article/pii/S0308597X1930346X">2020 article published in the journal Marine Policy</a>, Individual Transferable Quotas (ITQs) involve the allocation of shares or portions of a total allowable catch (TAC) to individual fishers, vessels, communities or others with an interest in the fishery, such as processors. A number of fisheries around the world have introduced ITQs as a way to regulate fisheries in a sustainable manner, preserving important natural resources while also allowing for increased economic productivity.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>We will use synthetically generated data to simplify things for our purposes (i.e., data is fake so results have no real implications). Our data contains the variables on 11,135 hypothetical fisheries (only cross sectional, no time observations). These fisheries were either regulated by an Individual Transferable Quota (ITQ) for all years between 1990 and 2012 or in none of those years.</p>
+<p><strong>The outcome and treatment variables are:</strong></p>
+<ul>
+<li><p><strong>COLL_SHARE</strong> = share of years a fishery is collapsed between 1990 and 2012 (collapse defined as harvest being more than 10% below maximum recorded harvest).</p></li>
+<li><p><strong>ITQ</strong> = dummy variable indicating ‘treatment’ with an ITQ (equal to 1 if the fishery has been regulated by an ITQ and 0 otherwise).</p></li>
+</ul>
+<p><strong>The control variables are:</strong></p>
+<ul>
+<li><p><strong>MET1, MET2, ….MET6</strong> = Dummy variables indicating to which Marine Ecosystem Type (MET) the fishery belongs to (coral reefs, kelp forests, seagrass meadows, open ocean, deep sea, mangrove forests). This type does not change over the relevant time period and does not depend on human influence.</p></li>
+<li><p><strong>IND_SR</strong> = Index of species richness in 1980 with values between 0 and 100 indicating the biodiversity with respect to species in the fishery. Bounds of 0 and 100 are the lowest and highest observed values of species diversity across all fisheries in 1980, respectively.</p></li>
+<li><p><strong>COMM_VAL</strong> = Commercial value of fisheries in 1980 in million US-$</p></li>
+</ul>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plm)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(estimatr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RItools)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MatchIt)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load Data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fisheries_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"2024-3-11-post-data"</span>,<span class="st">"final_fisheries_data.csv"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Prepare Data</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change all column names to lowercase</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fisheries_df) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">colnames</span>(fisheries_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="comparison-of-pre-treatment-ecosystem-characteristics-in-the-treatment-and-control-groups" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-pre-treatment-ecosystem-characteristics-in-the-treatment-and-control-groups">Comparison of pre-treatment ecosystem characteristics in the treatment and control groups</h2>
+<section id="marine-ecosystem-type-met" class="level4">
+<h4 class="anchored" data-anchor-id="marine-ecosystem-type-met">Marine Ecosystem Type (MET)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create MET column</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fisheries_df <span class="ot">&lt;-</span> fisheries_df <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">met =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    met1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    met2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    met3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    met4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    met5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    met6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">6</span>))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert MET to factors</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>fisheries_df<span class="sc">$</span>met <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fisheries_df<span class="sc">$</span>met)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data and negate count for control</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>fisheries_summary <span class="ot">&lt;-</span> fisheries_df <span class="sc">%&gt;%</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(met, itq) <span class="sc">%&gt;%</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(<span class="at">key =</span> itq, <span class="at">value =</span> n) <span class="sc">%&gt;%</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> itq, <span class="at">value =</span> <span class="st">'count'</span>, <span class="sc">-</span>met) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">count =</span> <span class="fu">if_else</span>(itq <span class="sc">==</span> <span class="st">'0'</span>, <span class="sc">-</span>count, count))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create histograms</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fisheries_summary, <span class="fu">aes</span>(<span class="at">x =</span> met, <span class="at">y =</span> count, <span class="at">fill =</span> <span class="fu">as.factor</span>(itq))) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">abs</span>(x), <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2000</span>, <span class="dv">2000</span>)) <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Covariates comparison"</span>, <span class="at">x =</span> <span class="st">"MET"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>, <span class="at">name =</span> <span class="st">"ITQ"</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"control"</span>, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"treatment"</span>)) <span class="sc">+</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Compared to fisheries in the control group (not regulated by an ITQ), fisheries in the treatment group (regulated by an ITQ) were less likely to be coral reefs or mangrove forests and more likely to be kelp forests, seagrass meadows, open ocean, or deep sea (these differences are particularly pronounced for open ocean and deep sea).</p>
+</section>
+<section id="species-richness-index" class="level4">
+<h4 class="anchored" data-anchor-id="species-richness-index">Species Richness Index</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean difference for IND_SR</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mean_diff_ind_sr <span class="ot">&lt;-</span> <span class="fu">mean</span>(fisheries_df<span class="sc">$</span>ind_sr[fisheries_df<span class="sc">$</span>itq <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(fisheries_df<span class="sc">$</span>ind_sr[fisheries_df<span class="sc">$</span>itq <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mean_diff_ind_sr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -8.825477</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean difference t-test for IND_SR</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(ind_sr <span class="sc">~</span> itq, <span class="at">data =</span> fisheries_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  ind_sr by itq
+t = 41.826, df = 10839, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+95 percent confidence interval:
+ 8.411868 9.239086
+sample estimates:
+mean in group 0 mean in group 1 
+       57.38515        48.55968 </code></pre>
+</div>
+</div>
+<p>For species richness (SR) index in 1980, we reject the null hypothesis, at an alpha level of &lt;0.001, that the difference in the mean SR index between the control (not regulated by an ITQ) and treatment (regulated by an ITQ) groups is zero. We estimate this mean difference to be about 8.83 index units (where the mean SR index is lower in the treatment group), and our 95% confidence interval for the mean difference is from 8.41 to 9.24 index units.</p>
+</section>
+<section id="commercial-value" class="level4">
+<h4 class="anchored" data-anchor-id="commercial-value">Commercial value</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean difference for COMM_VAL</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mean_diff_comm_val <span class="ot">&lt;-</span> <span class="fu">mean</span>(fisheries_df<span class="sc">$</span>comm_val[fisheries_df<span class="sc">$</span>itq <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(fisheries_df<span class="sc">$</span>comm_val[fisheries_df<span class="sc">$</span>itq <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mean_diff_comm_val</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -32.34931</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean difference t-test for COMM_VAL</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(comm_val <span class="sc">~</span> itq, <span class="at">data =</span> fisheries_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  comm_val by itq
+t = 39.507, df = 9334.9, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+95 percent confidence interval:
+ 30.74425 33.95437
+sample estimates:
+mean in group 0 mean in group 1 
+      117.22839        84.87908 </code></pre>
+</div>
+</div>
+<p>Regarding the commercial value of fisheries in 1980, we also reject the null hypothesis, at an alpha level of &lt;0.001, that the difference in the mean SR index between the control (not regulated by an ITQ) and treatment (regulated by an ITQ) groups is zero. We estimate this mean difference to be about 32.35 million USD (where the mean commercial value is lower in the treatment group), and our 95% confidence interval for the mean difference is from 30.74 to 33.95 million USD.</p>
+</section>
+<section id="implications-for-treatment-ignorability-assumption" class="level4">
+<h4 class="anchored" data-anchor-id="implications-for-treatment-ignorability-assumption">Implications for treatment ignorability assumption</h4>
+<p>I do see a problem with just comparing the outcome variable (share of years between 1990 and 2012 with fishery collapse, meaning harvest was more than 10% below maximum recorded harvest) means between the treated (regulated by an ITQ) and untreated (not regulated by an ITQ) fisheries because of the statistically significant differences in the covariates between these two groups that we would not be controlling for. Our histograms from Part A show differences in the count of fisheries in the treated and untreated groups across the six marine ecosystem types, and these differences were particularly pronounced for ecosystems that were classified as open ocean or deep sea (both appear to be statistically significant). In addition, our two t-tests from Part B indicate, with high statistical significance (p&lt;0.001), mean differences between the two groups for both the biodiversity in 1980 and commercial value in 1980. These covariates are likely to be determinants of whether a fishery collapses, so it would be very misleading to just compare the outcome variable means of the treatment and untreated fisheries, since there are likely to be effects from the differences in covariate variables that will be misrepresented as effects from the treatment variable.</p>
+</section>
+</section>
+<section id="estimating-propensity-scores" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-propensity-scores">Estimating propensity scores</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimation of propensity scores with the glm function and logit model</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ps_reg <span class="ot">&lt;-</span> <span class="fu">glm</span>(itq <span class="sc">~</span> met1 <span class="sc">+</span> met2 <span class="sc">+</span> met3 <span class="sc">+</span> met4 <span class="sc">+</span> met5 <span class="sc">+</span> ind_sr <span class="sc">+</span> comm_val,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> fisheries_df, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Attach the predicted propensity score to the data frame</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>fisheries_df<span class="sc">$</span>psvalue <span class="ot">&lt;-</span> <span class="fu">predict</span>(ps_reg, <span class="at">type    =</span> <span class="st">"response"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Drawing back to back histograms for propensity scores for treated and non-treated before matching</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">histbackback</span>(<span class="fu">split</span>(fisheries_df<span class="sc">$</span>psvalue, fisheries_df<span class="sc">$</span>itq),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">main =</span> <span class="st">"Propensity score before matching"</span>, <span class="at">xlab =</span> <span class="fu">c</span>(<span class="st">"control"</span>, <span class="st">"treatment"</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">600</span>, <span class="dv">800</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There is some overlap in the distributions of our histograms, mainly for fisheries that have propensity scores between 0.4 and 0.6. I’m concerned about the lack of overlap for fisheries with high propensity scores, as this may lead to issues when we do nearest-neighbor matching. During nearest-neighbor matching, treated units are assigned to the non-treated unit with the closest propensity score as a match, and we want the resulting set of fisheries to have a great deal of overlap in their propensity scores to ensure a balance in covariates, since they are also likely to have an influence on our outcome variable. However, since there are very few fisheries in the control group with high propensity scores, I’m concerned that even after nearest-neighbor matching occurs, there will still be a lack of overlap in the distributions of our histograms.</p>
+</section>
+<section id="estimating-average-treatment-effect-on-the-treated-att-with-nearest-neighbor-matching" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-average-treatment-effect-on-the-treated-att-with-nearest-neighbor-matching">Estimating Average Treatment Effect on the Treated (ATT) with Nearest Neighbor Matching</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Nearest Neighbor Matching</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Match using nearest-neighbor approach (treated units are assigned the non-treated unit with the closest propensity score as match)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>nn_matching <span class="ot">&lt;-</span> <span class="fu">matchit</span>(itq <span class="sc">~</span> met1 <span class="sc">+</span> met2 <span class="sc">+</span> met3 <span class="sc">+</span> met4 <span class="sc">+</span> met5 <span class="sc">+</span> ind_sr <span class="sc">+</span> comm_val,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> fisheries_df, <span class="at">method =</span> <span class="st">"nearest"</span>, <span class="at">ratio =</span> <span class="dv">1</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>match_data <span class="ot">=</span> <span class="fu">match.data</span>(nn_matching)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate ATT</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sum of the differences of outcomes between matches</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>sumdiff_data <span class="ot">&lt;-</span> match_data <span class="sc">%&gt;%</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subclass) <span class="sc">%&gt;%</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> coll_share[itq<span class="sc">==</span><span class="dv">1</span>] <span class="sc">-</span> coll_share[itq<span class="sc">==</span><span class="dv">0</span>])</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>sumdiff <span class="ot">&lt;-</span> <span class="fu">sum</span>(sumdiff_data<span class="sc">$</span>diff)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Divide sum of the difference by the number treated to generate ATT estimate</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>ATT_nn <span class="ot">=</span> sumdiff <span class="sc">/</span> <span class="fu">sum</span>(match_data<span class="sc">$</span>itq)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>ATT_nn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.07132623</code></pre>
+</div>
+</div>
+<p>Using the matched data, we estimate the average effect of an ITQ on a fishery that had an ITQ to be a 7.13 percentage-point decrease in the share of years between 1990 and 2012 where the fishery experienced collapse. This estimated effect size only applies to fisheries that were regulated by an ITQ because we only defined counterfactuals for these fisheries. Thus, our average outcome only demonstrates the effect of an ITQ on fishery collapse as it pertains to fisheries that were regulated by an ITQ.</p>
+</section>
+<section id="calculating-average-treatment-effect-ate-with-the-weight-least-squares-wls-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-average-treatment-effect-ate-with-the-weight-least-squares-wls-estimator">Calculating Average Treatment Effect (ATE) with the Weight Least Squares (WLS) estimator</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## WLS Matching</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculation of the weights (see slide 25 of lecture 5)</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>PS <span class="ot">&lt;-</span> fisheries_df<span class="sc">$</span>psvalue</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> fisheries_df<span class="sc">$</span>itq</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># add weights to data frame</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>fisheries_df<span class="sc">$</span>wgt <span class="ot">=</span> (D<span class="sc">/</span>PS <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>PS))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># run WLS regression</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>reg_wls <span class="ot">&lt;-</span> <span class="fu">lm</span>(coll_share <span class="sc">~</span> itq <span class="sc">+</span> met1 <span class="sc">+</span> met2 <span class="sc">+</span> met3 <span class="sc">+</span> met4 <span class="sc">+</span> met5 <span class="sc">+</span> ind_sr <span class="sc">+</span> comm_val,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> fisheries_df, <span class="at">weights =</span> wgt)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate ATE</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting the coefficients table</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>summary_reg <span class="ot">&lt;-</span> <span class="fu">summary</span>(reg_wls)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>summary_reg<span class="sc">$</span>coefficients <span class="sc">%&gt;%</span> </span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"WLS estimates"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Generate table</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>WLS estimates</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Std. Error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">t value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">0.3748451</td>
+<td style="text-align: right;">0.0030280</td>
+<td style="text-align: right;">123.79136</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">itq</td>
+<td style="text-align: right;">-0.0766783</td>
+<td style="text-align: right;">0.0009902</td>
+<td style="text-align: right;">-77.43563</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">met1</td>
+<td style="text-align: right;">-0.1119518</td>
+<td style="text-align: right;">0.0019244</td>
+<td style="text-align: right;">-58.17396</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">met2</td>
+<td style="text-align: right;">-0.1285996</td>
+<td style="text-align: right;">0.0022096</td>
+<td style="text-align: right;">-58.20071</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">met3</td>
+<td style="text-align: right;">-0.0968933</td>
+<td style="text-align: right;">0.0018096</td>
+<td style="text-align: right;">-53.54421</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">met4</td>
+<td style="text-align: right;">-0.0634837</td>
+<td style="text-align: right;">0.0022391</td>
+<td style="text-align: right;">-28.35257</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">met5</td>
+<td style="text-align: right;">-0.0323470</td>
+<td style="text-align: right;">0.0019230</td>
+<td style="text-align: right;">-16.82119</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ind_sr</td>
+<td style="text-align: right;">-0.0014749</td>
+<td style="text-align: right;">0.0000412</td>
+<td style="text-align: right;">-35.80433</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comm_val</td>
+<td style="text-align: right;">0.0003786</td>
+<td style="text-align: right;">0.0000112</td>
+<td style="text-align: right;">33.94403</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Using the WLS estimator, we estimate the average effect of an ITQ on a fishery to be a 7.67 percentage-point decrease in the share of years between 1990 and 2012 where the fishery experienced collapse, with a standard error of 0.099 percentage-points. The very low p-value means we reject the null hypothesis that the average effect of an ITQ is zero at an alpha level of &lt;0.001. Our estimated effect size, as calculated here, applies to all fisheries because we did not remove any fisheries from our sample, like we did when estimating effect size based on matching.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Our comparison of pre-treatment ecosystem characteristics showed that fisheries regulated with an ITQ between 1990 and 2012 had significant differences in Species Richness Index and commercial value compared to ones not regulated by an ITQ. For this reason, the treatment ignorability seemed like it would be a bad assumption to make, so we estimated propensity scores in order to calculate ATT using Nearest Neighbor Matching and ATE using the WLS estimator.</p>
+<p>Using the matched data, we estimated the ATT to be a 7.13 percentage-point decrease in the share of years between 1990 and 2012 where the fishery experienced collapse. Then, using the WLS estimator, we estimated the ATE to be a 7.67 percentage-point decrease in the share of years between 1990 and 2012 where the fishery experienced collapse, with a standard error of 0.099 percentage-points.</p>
+<p>Overall, our most useful finding here is the very low standard error when estimating ATE with the WLS estimator, indicating that we are 95% confident that the true ATE is between a 7.57 and 7.77 percentage-point decrease in share of years with a fishery collapse. In addition, the very low p-value corresponding to the low standard error means we reject the null hypothesis that the average effect of an ITQ is zero at an alpha level of &lt;0.001.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2024,
+  author = {Ghanadan, Linus},
+  title = {Using Propensity Scores, Matching, and the {Weighted} {Least}
+    {Squares} {(WLS)} Estimator to Analyze the Impact of Catch Shares
+    Policy},
+  date = {2024-03-11},
+  url = {https://linusghanadan.github.io/blog/2024-3-11-post/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ghanadan2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Ghanadan, Linus. 2024. <span>“Using Propensity Scores, Matching, and the
+Weighted Least Squares (WLS) Estimator to Analyze the Impact of Catch
+Shares Policy.”</span> March 11, 2024. <a href="https://linusghanadan.github.io/blog/2024-3-11-post/">https://linusghanadan.github.io/blog/2024-3-11-post/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
