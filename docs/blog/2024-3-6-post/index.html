@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Linus Ghanadan">
+<meta name="dcterms.date" content="2024-03-06">
+<meta name="description" content="For this analysis, I estimate the Average Treatment Effect (ATE) of the 1998 Prospera cash-transfer program on the value of animals owned by a household.">
+
+<title>Linus Ghanadan - Using the First-Difference (FD), Fixed-Effects (FE), and Difference-in-Difference (DiD) estimators to analyze the impact of a cash-transfer program</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Linus Ghanadan</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Using the First-Difference (FD), Fixed-Effects (FE), and Difference-in-Difference (DiD) estimators to analyze the impact of a cash-transfer program</h1>
+                  <div>
+        <div class="description">
+          For this analysis, I estimate the Average Treatment Effect (ATE) of the 1998 Prospera cash-transfer program on the value of animals owned by a household.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Policy Analysis</div>
+                <div class="quarto-category">Causal Inference</div>
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://linusghanadan.github.io/">Linus Ghanadan</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://bren.ucsb.edu/masters-programs/master-environmental-data-science">
+              MEDS
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 6, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="link-to-github-repository" class="level2">
+<h2 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/cash-transfer-policy">Link to GitHub repository</a></h2>
+</section>
+<section id="question" class="level2">
+<h2 class="anchored" data-anchor-id="question">Question</h2>
+<p>What was the average treatment effect (ATE) of the 1998 Progresa cash-transfer program on the value of animals owned by a household?</p>
+</section>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>According to the <a href="https://www.ncbi.nlm.nih.gov/books/NBK258728/">World Health Organization</a>, cash-transfer programs are a form of social assistance assisting beneficiaries who are vulnerable to impoverishment without support. These programs assist beneficiaries through providing re-occurring cash payments, which can either be provided unconditionally or conditional to certain requirements (e.g., periodic health visits). Through boosting household income, the goal of cash-transfer programs is usually to improve the food security of families and provide them the resources to get medical care and prioritize childhood education.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Our data comes from a <a href="https://www.aeaweb.org/articles?id=10.1257/app.4.1.164">2012 research paper published in the American Economic Journal</a>, which looks at the Progresa cash-transfer program, which was implemented in rural Mexico villages in 1998. Eligible households that were randomly selected to be part of the program were provided bi-monthly cash-transfers of up to 550 pesos per month. These cash-transfers were conditional on children attending school, family members obtaining preventive medical care, and attending health-related education talks. In total, over 17,000 households were part of the Progresa program.</p>
+<p><strong>The outcome and treatment variables are:</strong></p>
+<ul>
+<li><p><strong>vani</strong> = value of animals owned by household (in 1997 USD)</p></li>
+<li><p><strong>treatment</strong> = dummy variable indicating whether an individual was part of the cash-transfer program (equal to 1 if the individual was part of the program)</p></li>
+</ul>
+<p><strong>There are 55 control variables, including:</strong></p>
+<ul>
+<li><p><strong>dirtfloor97</strong> = dummy variable indicating whether a household had a dirt floor in 1997</p></li>
+<li><p><strong>electricity97</strong> = dummy variable indicating whether a household had electricity in 1997</p></li>
+<li><p><strong>homeown97</strong> = dummy variable indicating whether a household owned a house in 1997</p></li>
+<li><p><strong>female_hh</strong> = dummy variable indicating whether a household has a female head of household</p></li>
+<li><p><strong>age_hh</strong> = head of household age</p></li>
+<li><p><strong>educ_hh</strong> = head of household years of education</p></li>
+</ul>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plm)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(estimatr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RItools)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MatchIt)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the datasets</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>progresa_pre_1997 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"2024-3-6-post-data"</span>, <span class="st">"progresa_pre_1997.csv"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>progresa_post_1999 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"2024-3-6-post-data"</span>, <span class="st">"progresa_post_1999.csv"</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Append post to pre dataset </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>progresa <span class="ot">&lt;-</span> <span class="fu">rbind</span>(progresa_pre_1997, progresa_post_1999)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove all families who were treated/controls in the program, but did not get measured in the second year</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>progresa <span class="ot">&lt;-</span> progresa <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hhid) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="comparison-of-pre-treatment-characteristics-in-the-treatment-and-control-groups" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-pre-treatment-characteristics-in-the-treatment-and-control-groups">Comparison of pre-treatment characteristics in the treatment and control groups</h2>
+<section id="dirt-floor-in-1997-dummy-variable" class="level4">
+<h4 class="anchored" data-anchor-id="dirt-floor-in-1997-dummy-variable">Dirt floor in 1997 (dummy variable)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset data for treatment and control groups</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>treatment_group <span class="ot">&lt;-</span> progresa[progresa<span class="sc">$</span>treatment <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>control_group <span class="ot">&lt;-</span> progresa[progresa<span class="sc">$</span>treatment <span class="sc">==</span> <span class="dv">0</span>, ]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare proportion of units that had dirt floor in 1997 (binary variable) between treatment and control group</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">sum</span>(treatment_group<span class="sc">$</span>dirtfloor97, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">sum</span>(control_group<span class="sc">$</span>dirtfloor97, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>          n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">length</span>(treatment_group<span class="sc">$</span>dirtfloor97), <span class="fu">length</span>(control_group<span class="sc">$</span>dirtfloor97)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  c(sum(treatment_group$dirtfloor97, na.rm = TRUE), sum(control_group$dirtfloor97, na.rm = TRUE)) out of n &lt;- c(length(treatment_group$dirtfloor97), length(control_group$dirtfloor97))
+X-squared = 99.041, df = 1, p-value &lt; 2.2e-16
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.04486458 0.06704500
+sample estimates:
+   prop 1    prop 2 
+0.6394000 0.5834452 </code></pre>
+</div>
+</div>
+</section>
+<section id="electricity-in-1997-dummy-variable" class="level4">
+<h4 class="anchored" data-anchor-id="electricity-in-1997-dummy-variable">Electricity in 1997 (dummy variable)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare proportion of units that had electricity in 1997 (binary variable) between treatment and control group</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">sum</span>(treatment_group<span class="sc">$</span>electricity97, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">sum</span>(control_group<span class="sc">$</span>electricity97, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>          n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">length</span>(treatment_group<span class="sc">$</span>electricity97), <span class="fu">length</span>(control_group<span class="sc">$</span>electricity97)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  c(sum(treatment_group$electricity97, na.rm = TRUE), sum(control_group$electricity97, na.rm = TRUE)) out of n &lt;- c(length(treatment_group$electricity97), length(control_group$electricity97))
+X-squared = 147.97, df = 1, p-value &lt; 2.2e-16
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.08027241 -0.05800589
+sample estimates:
+   prop 1    prop 2 
+0.5583031 0.6274422 </code></pre>
+</div>
+</div>
+</section>
+<section id="owned-home-in-1997-dummy-variable" class="level4">
+<h4 class="anchored" data-anchor-id="owned-home-in-1997-dummy-variable">Owned home in 1997 (dummy variable)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare proportion of units that owned home in 1997 (binary variable) between treatment and control group</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">sum</span>(treatment_group<span class="sc">$</span>homeown97, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">sum</span>(control_group<span class="sc">$</span>homeown97, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">length</span>(treatment_group<span class="sc">$</span>homeown97), <span class="fu">length</span>(control_group<span class="sc">$</span>homeown97)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  c(sum(treatment_group$homeown97, na.rm = TRUE), sum(control_group$homeown97, na.rm = TRUE)) out of n &lt;- c(length(treatment_group$homeown97), length(control_group$homeown97))
+X-squared = 51.805, df = 1, p-value = 6.128e-13
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.02251224 0.03967849
+sample estimates:
+   prop 1    prop 2 
+0.8460096 0.8149142 </code></pre>
+</div>
+</div>
+</section>
+<section id="female-head-of-house-dummy-variable" class="level4">
+<h4 class="anchored" data-anchor-id="female-head-of-house-dummy-variable">Female head of house (dummy variable)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare proportion of units that had female head of house (binary variable) between treatment and control group</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">sum</span>(treatment_group<span class="sc">$</span>female_hh, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">sum</span>(control_group<span class="sc">$</span>female_hh, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">length</span>(treatment_group<span class="sc">$</span>female_hh), <span class="fu">length</span>(control_group<span class="sc">$</span>female_hh)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  c(sum(treatment_group$female_hh, na.rm = TRUE), sum(control_group$female_hh, na.rm = TRUE)) out of n &lt;- c(length(treatment_group$female_hh), length(control_group$female_hh))
+X-squared = 9.0087, df = 1, p-value = 0.002687
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.016058579 -0.003296729
+sample estimates:
+    prop 1     prop 2 
+0.07980780 0.08948546 </code></pre>
+</div>
+</div>
+</section>
+<section id="head-of-house-age" class="level4">
+<h4 class="anchored" data-anchor-id="head-of-house-age">Head of house age</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean difference t-test for head of house age</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(age_hh <span class="sc">~</span> treatment, <span class="at">data =</span> progresa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  age_hh by treatment
+t = 12.657, df = 24438, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+95 percent confidence interval:
+ 2.008817 2.744967
+sample estimates:
+mean in group 0 mean in group 1 
+       46.70221        44.32532 </code></pre>
+</div>
+</div>
+</section>
+<section id="head-of-house-years-of-education" class="level4">
+<h4 class="anchored" data-anchor-id="head-of-house-years-of-education">Head of house years of education</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean difference t-test for head of house years of education</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(educ_hh <span class="sc">~</span> treatment, <span class="at">data =</span> progresa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  educ_hh by treatment
+t = -1.2186, df = 25414, p-value = 0.223
+alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+95 percent confidence interval:
+ -0.10171053  0.02372436
+sample estimates:
+mean in group 0 mean in group 1 
+       2.658340        2.697333 </code></pre>
+</div>
+</div>
+</section>
+<section id="findings" class="level4">
+<h4 class="anchored" data-anchor-id="findings">Findings</h4>
+<p>For several of the covariates, there are statistically significant differences between the pre-treatment characteristics of the treated and untreated groups. This indicates that there were likely systemic differences between the pre-treatment characteristics of individuals that were part of the cash-transfer program and those that were not, and if this is the case, simply controlling for all covariates is an insufficient method to estimate the ATE, since systemic differences means that there are differences between the groups that extend beyond what we can control for.</p>
+<p>Because there seem to be systemic differences between the pre-treatment characteristics of the treated and untreated group, we will use more advanced techniques to estimate the ATE. Since we are working with panel data, our options for advanced techniques include the FD, FE, or DiD estimators.</p>
+</section>
+</section>
+<section id="estimating-ate-with-the-first-difference-fd-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-ate-with-the-first-difference-fd-estimator">Estimating ATE with the First-Difference (FD) estimator</h2>
+<p>Because a FD model controls for the differences in the explanatory variables between two time periods, the estimator is effective at removing bias from omitted variables that result from differences between time periods. If we think that the potential ommited variables (i.e., a variable that is influencing our outcome variable but is not included as a covariate) that are most important are likely to vary over different time periods, then using the FD estimator is the best approach for estimating ATE. For example, if the head of house having to deal with a family emergency was by far the most influential omitted variable, the FD estimator would likely be the best approach for estimating ATE, since having to deal with a family emergency is something that would likely vary over different time periods.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># i. Sort the panel data in the order in which you want to take differences, i.e. by household and time.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>progresa_sorted <span class="ot">&lt;-</span> progresa <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(hhid, year) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hhid) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ii. Calculate the first difference using the lag function from the dplyr package.</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vani_fd =</span> vani <span class="sc">-</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(vani)) </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># iii. Estimate manual first-difference regression (Estimate the regression using the newly created variables.)</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>fd_manual <span class="ot">&lt;-</span> <span class="fu">lm</span>(vani_fd <span class="sc">~</span> treatment, <span class="at">data =</span> progresa_sorted)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting the coefficients table</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>summary_reg <span class="ot">&lt;-</span> <span class="fu">summary</span>(fd_manual)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>summary_reg<span class="sc">$</span>coefficients <span class="sc">%&gt;%</span> </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"FD estimator"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Generate table</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>FD estimator</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Std. Error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">t value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-1156.752</td>
+<td style="text-align: right;">64.4938</td>
+<td style="text-align: right;">-17.935859</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatment</td>
+<td style="text-align: right;">287.905</td>
+<td style="text-align: right;">85.6020</td>
+<td style="text-align: right;">3.363297</td>
+<td style="text-align: right;">0.0007723</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Our FD regression tells us that program participants experienced a change in the value of their animal holdings that was, on average, 287.90 dollars greater than the change experienced by non-participants from 1997 to 1999. Our standard error is 85.60 dollars, and our low p-value means we reject the null hypothesis that the difference is zero at an alpha level of 0.01.</p>
+</section>
+<section id="estimating-ate-with-the-fixed-effects-fe-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-ate-with-the-fixed-effects-fe-estimator">Estimating ATE with the Fixed-Effects (FE) estimator</h2>
+<p>A FE model directly controls for omitted variables that do no change over time, so the estimator is effective at removing bias that comes from time-invariant characteristics. If we think that the potential ommited variables (i.e., a variable that is influencing our outcome variable but is not included as a covariate) that are most important are likely stay constant over different time periods, then using the FE estimator is the best approach for estimating ATE. For example, if the head of house being an only child was by far the most influential omitted variable, the FE estimator would likely be the best approach for estimating ATE, since being an only child as an adult is unlikely to be something that would change over time periods.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ESTIMATE THE BASIC 'WITHIN' FIXED EFFECTS REGRESSION</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co"> "plm" ONLY PRODUCES CLUSTER-ROBUST STANDARD ERRORS</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>within_reg <span class="ot">&lt;-</span> <span class="fu">plm</span>(vani <span class="sc">~</span> treatment, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>), <span class="at">model =</span> <span class="fu">c</span>(<span class="st">"within"</span>), <span class="at">effect =</span> <span class="fu">c</span>(<span class="st">"twoways"</span>), <span class="at">data =</span> progresa)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting the coefficients table</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>summary_reg <span class="ot">&lt;-</span> <span class="fu">summary</span>(within_reg)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>summary_reg<span class="sc">$</span>coefficients <span class="sc">%&gt;%</span> </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"FE estimator"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Generate table</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>FE estimator</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Std. Error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">t-value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">treatment</td>
+<td style="text-align: right;">-234.0142</td>
+<td style="text-align: right;">56.65699</td>
+<td style="text-align: right;">-4.130368</td>
+<td style="text-align: right;">3.63e-05</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Our FE regression tells us that program participants experienced a change in the value of their animal holdings that was, on average, 234.01 dollars less than the change experienced by non-participants within each State from 1997 to 1999. Our cluster-standard error is 56.66 dollars, and our low p-value means we reject the null hypothesis that the difference is zero at an alpha level of &lt;0.01. The standard error being cluster-robust means that it accounts for the fact that observations in the same State as one another will have results that are not entirely independent of one another.</p>
+</section>
+<section id="estimating-ate-with-the-difference-in-difference-did-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-ate-with-the-difference-in-difference-did-estimator">Estimating ATE with the Difference-in-Difference (DiD) estimator</h2>
+<p>If we think that our omitted variables are likely to be a mix of variables that stay constant and change across time periods (and treatment occurs only at a single point in time), we are best off using the DiD estimator, which calculates ATE as the difference in the mean outcome variable in the treated group before and after the time of treatment minus the difference in the mean outcome variable in the untreated group before and after the time of treatment.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the dummy variables</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>progresa<span class="sc">$</span>treatment_dummy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(progresa<span class="sc">$</span>treatment <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>progresa<span class="sc">$</span>post_treatment_time_dummy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(progresa<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">1999</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>progresa<span class="sc">$</span>interaction_dummy <span class="ot">&lt;-</span> progresa<span class="sc">$</span>treatment_dummy <span class="sc">*</span> progresa<span class="sc">$</span>post_treatment_time_dummy</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># OLS regression</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>ols_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(vani <span class="sc">~</span> treatment_dummy <span class="sc">+</span> post_treatment_time_dummy <span class="sc">+</span> interaction_dummy, <span class="at">data =</span> progresa)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Present Regressions in Table</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>summary_reg <span class="ot">&lt;-</span> <span class="fu">summary</span>(ols_reg)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>summary_reg<span class="sc">$</span>coefficients <span class="sc">%&gt;%</span> </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"DiD estimator"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Generate table</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>DiD estimator</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Std. Error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">t value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">2848.2175</td>
+<td style="text-align: right;">60.61455</td>
+<td style="text-align: right;">46.989010</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatment_dummy</td>
+<td style="text-align: right;">-237.6927</td>
+<td style="text-align: right;">80.45311</td>
+<td style="text-align: right;">-2.954425</td>
+<td style="text-align: right;">0.0031352</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">post_treatment_time_dummy</td>
+<td style="text-align: right;">-1156.7517</td>
+<td style="text-align: right;">85.72191</td>
+<td style="text-align: right;">-13.494235</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">interaction_dummy</td>
+<td style="text-align: right;">287.9050</td>
+<td style="text-align: right;">113.77788</td>
+<td style="text-align: right;">2.530413</td>
+<td style="text-align: right;">0.0113985</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>From our regression, we estimate the average effect of the cash transfer program on value of animal holdings to be about 287.91 USD (where program participants had a higher average value of animal holdings at the end of the program), with a standard error of about 113.78 USD. To interpret this result as the ATE, we have to assume that the control group (units that did not participate in program) provides a valid counterfactual for what would have happened to units in our treatment group (program participants) had they not participated in the program. Furthermore, our p-value of 0.011 tells us that, at an alpha level of 0.05, we reject the null hypothesis that there was no average effect of the cash transfer program on value of animal holdings.</p>
+<p>The coefficient on our treatment dummy variable tells us that we estimate the mean difference in the outcome variable (value of animal holdings) between the treatment group (program participants) and the control group (non-participants) before the program started to have been 237.69 USD (where program participants had a lower average value of animal holdings than non-participants prior to the start of the program), with a standard error of 80.45 USD. Our p-value of &lt;0.01 tells us that, at an alpha level of 0.01, we reject the null hypothesis that there was a mean difference of zero.</p>
+<p>The coefficient on our post treatment time dummy variable tells us that we estimate the mean change in the outcome variable (value of animal holdings) between the beginning and end of the program for the control group (non-participants in program) to be 1,156.75 USD (where non-participants had a lower average value of animal holdings when the program ended than when it started), with a standard error of 85.72 USD. Our p-value of 0.003 tells us that, at an alpha level of 0.01, we reject the null hypothesis that there was a mean change of zero.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Overall, the cash-transfer program appears to have been quite successful at boosting the value of animals owned by a household. In this cash-transfer program, all treatment occurred at the same time and we expect our omitted variables to be a mix of variable that change and stay constant across time periods, so the DiD estimator is likely the best method for estimating ATE in our situation. Using the DiD estimator, we estimated the average effect of the cash transfer program on value of animal holdings to be about 287.91 USD (where program participants had a higher average value of animal holdings at the end of the program), with a standard error of about 113.78 USD. For this to be interpreted as the ATE, we have to assume that the control group (units that did not participate in program) provides a valid counterfactual for what would have happened to units in our treatment group (program participants) had they not participated in the program.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2024,
+  author = {Ghanadan, Linus},
+  title = {Using the {First-Difference} {(FD),} {Fixed-Effects} {(FE),}
+    and {Difference-in-Difference} {(DiD)} Estimators to Analyze the
+    Impact of a Cash-Transfer Program},
+  date = {2024-03-06},
+  url = {https://linusghanadan.github.io/blog/2024-3-6-post/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ghanadan2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Ghanadan, Linus. 2024. <span>“Using the First-Difference (FD),
+Fixed-Effects (FE), and Difference-in-Difference (DiD) Estimators to
+Analyze the Impact of a Cash-Transfer Program.”</span> March 6, 2024. <a href="https://linusghanadan.github.io/blog/2024-3-6-post/">https://linusghanadan.github.io/blog/2024-3-6-post/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
