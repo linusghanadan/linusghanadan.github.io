@@ -36,7 +36,7 @@ According to the [World Health Organization](https://www.ncbi.nlm.nih.gov/books/
 
 ## Data
 
-Our data comes from a [2012 research paper published in the American Economic Journal](https://www.aeaweb.org/articles?id=10.1257/app.4.1.164), which looks at the Progresa cash-transfer program, which was implemented in rural Mexico villages in 1998. Eligible households that were randomly selected to be part of the program were provided bi-monthly cash-transfers of up to 550 pesos per month. These cash-transfers were conditional on children attending school, family members obtaining preventive medical care, and attending health-related education talks. In total, over 17,000 households were part of the Progresa program.
+Our data comes from a [2012 research paper published in the American Economic Journal](https://www.aeaweb.org/articles?id=10.1257/app.4.1.164) looking at the Progresa cash-transfer program, which was implemented in rural Mexican villages in 1998. Eligible households that were randomly selected to be part of the program were provided bi-monthly cash-transfers of up to 550 pesos per month. These cash-transfers were conditional on children attending school, family members obtaining preventive medical care, and attending health-related education talks. In total, over 17,000 households were part of the Progresa program.
 
 **The outcome and treatment variables are:**
 
