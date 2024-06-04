@@ -1,6 +1,6 @@
 ---
-title: "Welcome to my website!"
-subtitle: "You have reached the website of Linus Ghanadan.<br>Click on the icons below for even more Linus."
+title: "My name is Linus Ghanadan. Welcome to my website!"
+subtitle: "Click on the icons below to visit my other web profiles."
 about:
     template: solana
     image: linus-website-photo.jpg
