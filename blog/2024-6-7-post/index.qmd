@@ -19,7 +19,7 @@ format:
         code-fold: false
 ---
 
-## Link to [GitHub repository](https://github.com/linusghanadan/atmospheric-conductance-sobol)
+## [Link to GitHub repository](https://github.com/linusghanadan/atmospheric-conductance-sobol)
 
 ## Setup
 

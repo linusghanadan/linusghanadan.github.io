@@ -41,18 +41,17 @@ We will use synthetically generated data to simplify things for our purposes (i.
 
 **The outcome and treatment variables are:**
 
-- **COLL_SHARE** = share of years a fishery is collapsed between 1990 and 2012 (collapse defined as harvest being more than 10% below maximum recorded harvest).
+-   **COLL_SHARE** = share of years a fishery is collapsed between 1990 and 2012 (collapse defined as harvest being more than 10% below maximum recorded harvest).
 
-- **ITQ** = dummy variable indicating ‘treatment’ with an ITQ (equal to 1 if the fishery has been regulated by an ITQ and 0 otherwise). 
+-   **ITQ** = dummy variable indicating 'treatment' with an ITQ (equal to 1 if the fishery has been regulated by an ITQ and 0 otherwise).
 
 **The control variables are:**
 
-- **MET1, MET2, ….MET6** = Dummy variables indicating to which Marine Ecosystem Type (MET) the fishery belongs to (coral reefs, kelp forests, seagrass meadows, open ocean, deep sea, mangrove forests). This type does not change over the relevant time period and does not depend on human influence.
+-   **MET1, MET2, ....MET6** = Dummy variables indicating to which Marine Ecosystem Type (MET) the fishery belongs to (coral reefs, kelp forests, seagrass meadows, open ocean, deep sea, mangrove forests). This type does not change over the relevant time period and does not depend on human influence.
 
-- **IND_SR** = Index of species richness in 1980 with values between 0 and 100 indicating the biodiversity with respect to species in the fishery. Bounds of 0 and 100 are the lowest and highest observed values of species diversity across all fisheries in 1980, respectively.
+-   **IND_SR** = Index of species richness in 1980 with values between 0 and 100 indicating the biodiversity with respect to species in the fishery. Bounds of 0 and 100 are the lowest and highest observed values of species diversity across all fisheries in 1980, respectively.
 
-- **COMM_VAL** = Commercial value of fisheries in 1980 in million US-$
-
+-   **COMM_VAL** = Commercial value of fisheries in 1980 in million US-\$
 
 ## Setup
 
@@ -129,7 +128,7 @@ mean_diff_ind_sr
 t.test(ind_sr ~ itq, data = fisheries_df)
 ```
 
-For species richness (SR) index in 1980, we reject the null hypothesis, at an alpha level of <0.001, that the difference in the mean SR index between the control (not regulated by an ITQ) and treatment (regulated by an ITQ) groups is zero. We estimate this mean difference to be about 8.83 index units (where the mean SR index is lower in the treatment group), and our 95% confidence interval for the mean difference is from 8.41 to 9.24 index units.
+For species richness (SR) index in 1980, we reject the null hypothesis, at an alpha level of \<0.001, that the difference in the mean SR index between the control (not regulated by an ITQ) and treatment (regulated by an ITQ) groups is zero. We estimate this mean difference to be about 8.83 index units (where the mean SR index is lower in the treatment group), and our 95% confidence interval for the mean difference is from 8.41 to 9.24 index units.
 
 #### Commercial value
 
@@ -144,7 +143,7 @@ mean_diff_comm_val
 t.test(comm_val ~ itq, data = fisheries_df)
 ```
 
-Regarding the commercial value of fisheries in 1980, we also reject the null hypothesis, at an alpha level of <0.001, that the difference in the mean SR index between the control (not regulated by an ITQ) and treatment (regulated by an ITQ) groups is zero. We estimate this mean difference to be about 32.35 million USD (where the mean commercial value is lower in the treatment group), and our 95% confidence interval for the mean difference is from 30.74 to 33.95 million USD.
+Regarding the commercial value of fisheries in 1980, we also reject the null hypothesis, at an alpha level of \<0.001, that the difference in the mean SR index between the control (not regulated by an ITQ) and treatment (regulated by an ITQ) groups is zero. We estimate this mean difference to be about 32.35 million USD (where the mean commercial value is lower in the treatment group), and our 95% confidence interval for the mean difference is from 30.74 to 33.95 million USD.
 
 #### Findings
 
@@ -167,7 +166,7 @@ histbackback(split(fisheries_df$psvalue, fisheries_df$itq),
              main = "Propensity score before matching", xlab = c("control", "treatment"), xlim = c(-600, 800))
 ```
 
-There is some overlap in the distributions of our histograms, mainly for fisheries that have propensity scores between 0.4 and 0.6. I’m concerned about the lack of overlap for fisheries with high propensity scores, as this may lead to issues when we do nearest-neighbor matching. During nearest-neighbor matching, treated units are assigned to the non-treated unit with the closest propensity score as a match, and we want the resulting set of fisheries to have a great deal of overlap in their propensity scores to ensure a balance in covariates, since they are also likely to have an influence on our outcome variable. However, since there are very few fisheries in the control group with high propensity scores, I’m concerned that even after nearest-neighbor matching occurs, there will still be a lack of overlap in the distributions of our histograms.
+There is some overlap in the distributions of our histograms, mainly for fisheries that have propensity scores between 0.4 and 0.6. I'm concerned about the lack of overlap for fisheries with high propensity scores, as this may lead to issues when we do nearest-neighbor matching. During nearest-neighbor matching, treated units are assigned to the non-treated unit with the closest propensity score as a match, and we want the resulting set of fisheries to have a great deal of overlap in their propensity scores to ensure a balance in covariates, since they are also likely to have an influence on our outcome variable. However, since there are very few fisheries in the control group with high propensity scores, I'm concerned that even after nearest-neighbor matching occurs, there will still be a lack of overlap in the distributions of our histograms.
 
 ## Estimating ATT with nearest neighbor matching estimator
 
@@ -219,7 +218,7 @@ summary_reg$coefficients %>%
   kable_classic(full_width = FALSE)
 ```
 
-Using the WLS estimator, we estimate the average effect of an ITQ on a fishery to be a 7.67 percentage-point decrease in the share of years between 1990 and 2012 where the fishery experienced collapse, with a standard error of 0.099 percentage-points. The very low p-value means we reject the null hypothesis that the average effect of an ITQ is zero at an alpha level of <0.001. Our estimated effect size, as calculated here, applies to all fisheries because we did not remove any fisheries from our sample, like we did when estimating effect size based on matching.
+Using the WLS estimator, we estimate the average effect of an ITQ on a fishery to be a 7.67 percentage-point decrease in the share of years between 1990 and 2012 where the fishery experienced collapse, with a standard error of 0.099 percentage-points. The very low p-value means we reject the null hypothesis that the average effect of an ITQ is zero at an alpha level of \<0.001. Our estimated effect size, as calculated here, applies to all fisheries because we did not remove any fisheries from our sample, like we did when estimating effect size based on matching.
 
 ## Conclusion
 
@@ -227,4 +226,4 @@ Our comparison of pre-treatment ecosystem characteristics showed that fisheries 
 
 Using the matched data, we estimated the ATT to be a 7.13 percentage-point decrease in the share of years between 1990 and 2012 where the fishery experienced collapse. Then, using the WLS estimator, we estimated the ATE to be a 7.67 percentage-point decrease in the share of years between 1990 and 2012 where the fishery experienced collapse, with a standard error of 0.099 percentage-points.
 
-Overall, our most useful finding here is the very low standard error when estimating ATE with the WLS estimator, indicating that we are 95% confident that the true ATE is between a 7.57 and 7.77 percentage-point decrease in share of years with a fishery collapse. In addition, the very low p-value corresponding to the low standard error means we reject the null hypothesis that the average effect of an ITQ is zero at an alpha level of <0.001.
+Overall, our most useful finding here is the very low standard error when estimating ATE with the WLS estimator, indicating that we are 95% confident that the true ATE is between a 7.57 and 7.77 percentage-point decrease in share of years with a fishery collapse. In addition, the very low p-value corresponding to the low standard error means we reject the null hypothesis that the average effect of an ITQ is zero at an alpha level of \<0.001.

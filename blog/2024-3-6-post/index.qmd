@@ -40,23 +40,23 @@ Our data comes from a [2012 research paper published in the American Economic Jo
 
 **The outcome and treatment variables are:**
 
-- **vani** = value of animals owned by household (in 1997 USD)
+-   **vani** = value of animals owned by household (in 1997 USD)
 
-- **treatment** = dummy variable indicating whether an individual was part of the cash-transfer program (equal to 1 if the individual was part of the program)
+-   **treatment** = dummy variable indicating whether an individual was part of the cash-transfer program (equal to 1 if the individual was part of the program)
 
 **There are 55 control variables, including:**
 
-- **dirtfloor97** = dummy variable indicating whether a household had a dirt floor in 1997
+-   **dirtfloor97** = dummy variable indicating whether a household had a dirt floor in 1997
 
-- **electricity97** = dummy variable indicating whether a household had electricity in 1997
+-   **electricity97** = dummy variable indicating whether a household had electricity in 1997
 
-- **homeown97** = dummy variable indicating whether a household owned a house in 1997
+-   **homeown97** = dummy variable indicating whether a household owned a house in 1997
 
-- **female_hh** = dummy variable indicating whether a household has a female head of household
+-   **female_hh** = dummy variable indicating whether a household has a female head of household
 
-- **age_hh** = head of household age
+-   **age_hh** = head of household age
 
-- **educ_hh** = head of household years of education
+-   **educ_hh** = head of household years of education
 
 ## Setup
 
@@ -126,12 +126,14 @@ prop.test(x = c(sum(treatment_group$female_hh, na.rm = TRUE), sum(control_group$
 ```
 
 #### Head of house age
+
 ```{r}
 # Mean difference t-test for head of house age
 t.test(age_hh ~ treatment, data = progresa)
 ```
 
 #### Head of house years of education
+
 ```{r}
 # Mean difference t-test for head of house years of education
 t.test(educ_hh ~ treatment, data = progresa)
@@ -184,7 +186,7 @@ summary_reg$coefficients %>%
   kable_classic(full_width = FALSE)
 ```
 
-Our FE regression tells us that program participants experienced a change in the value of their animal holdings that was, on average, 234.01 dollars less than the change experienced by non-participants within each State from 1997 to 1999. Our cluster-standard error is 56.66 dollars, and our low p-value means we reject the null hypothesis that the difference is zero at an alpha level of <0.01. The standard error being cluster-robust means that it accounts for the fact that observations in the same State as one another will have results that are not entirely independent of one another.
+Our FE regression tells us that program participants experienced a change in the value of their animal holdings that was, on average, 234.01 dollars less than the change experienced by non-participants within each State from 1997 to 1999. Our cluster-standard error is 56.66 dollars, and our low p-value means we reject the null hypothesis that the difference is zero at an alpha level of \<0.01. The standard error being cluster-robust means that it accounts for the fact that observations in the same State as one another will have results that are not entirely independent of one another.
 
 ## Estimating ATE with the Difference-in-Difference (DiD) estimator
 
@@ -208,7 +210,7 @@ summary_reg$coefficients %>%
 
 From our regression, we estimate the average effect of the cash transfer program on value of animal holdings to be about 287.91 USD (where program participants had a higher average value of animal holdings at the end of the program), with a standard error of about 113.78 USD. To interpret this result as the ATE, we have to assume that the control group (units that did not participate in program) provides a valid counterfactual for what would have happened to units in our treatment group (program participants) had they not participated in the program. Furthermore, our p-value of 0.011 tells us that, at an alpha level of 0.05, we reject the null hypothesis that there was no average effect of the cash transfer program on value of animal holdings.
 
-The coefficient on our treatment dummy variable tells us that we estimate the mean difference in the outcome variable (value of animal holdings) between the treatment group (program participants) and the control group (non-participants) before the program started to have been 237.69 USD (where program participants had a lower average value of animal holdings than non-participants prior to the start of the program), with a standard error of 80.45 USD. Our p-value of <0.01 tells us that, at an alpha level of 0.01, we reject the null hypothesis that there was a mean difference of zero.
+The coefficient on our treatment dummy variable tells us that we estimate the mean difference in the outcome variable (value of animal holdings) between the treatment group (program participants) and the control group (non-participants) before the program started to have been 237.69 USD (where program participants had a lower average value of animal holdings than non-participants prior to the start of the program), with a standard error of 80.45 USD. Our p-value of \<0.01 tells us that, at an alpha level of 0.01, we reject the null hypothesis that there was a mean difference of zero.
 
 The coefficient on our post treatment time dummy variable tells us that we estimate the mean change in the outcome variable (value of animal holdings) between the beginning and end of the program for the control group (non-participants in program) to be 1,156.75 USD (where non-participants had a lower average value of animal holdings when the program ended than when it started), with a standard error of 85.72 USD. Our p-value of 0.003 tells us that, at an alpha level of 0.01, we reject the null hypothesis that there was a mean change of zero.
 
