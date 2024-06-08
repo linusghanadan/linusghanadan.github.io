@@ -2,7 +2,7 @@
   {
     "objectID": "blog.html",
     "href": "blog.html",
-    "title": "Blog",
+    "title": "Data Science",
     "section": "",
     "text": "Building regression models to predict dissolved inorganic carbon in water samples\n\n\n\n\n\n\n\nMachine Learning\n\n\nPython\n\n\n\n\nFor this blog post, I build and compare four regression models that predict dissolved inorganic carbon (DIC) in water samples. I also analyze feature importances in the best performing model.\n\n\n\n\n\n\nApr 3, 2024\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nClustering analysis of biological contaminating algae based on metal content\n\n\n\n\n\n\n\nMachine Learning\n\n\nR\n\n\n\n\nTo practice clustering analysis, I’ll use data from Roberts et al. 2008 on biological contaminants in Port Jackson Bay (located in Sydney, Australia). The data are measurements of metal content (Cd, Cr, Cu, Mn, and Ni) in two types of co-occurring algae at 10 sample sites around the bay.\n\n\n\n\n\n\nMar 29, 2024\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nBuilding predictive user classification models with data from Spotify Web API\n\n\n\n\n\n\n\nMachine Learning\n\n\nR\n\n\n\n\nIn this blog post, I build predictive models using a single decision tree, bagged decision trees, a random forest, and Stochastic Gradient Boosting (SGB) for predicting whether a given song was in my Spotify collection or that of my friend Maxwell. Then, I compare the performance of these four models.\n\n\n\n\n\n\nMar 29, 2024\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nCreating an infographic on anthropogenic methane emissions in 2021\n\n\n\n\n\n\n\nData Visualization\n\n\nR\n\n\n\n\nThis blog post explains the process of creating an infographic on anthropogenic methane emissions in 2021, with a particular focus on the data visualization considerations and choices made.\n\n\n\n\n\n\nMar 12, 2024\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nUsing propensity score methods to analyze the impact of catch shares policy\n\n\n\n\n\n\n\nStatistical Modeling\n\n\nCausal Inference\n\n\nR\n\n\n\n\nDisclaimer: The data used in this blog was synthetically generated (i.e., data is fake so results have no real implications).\n\n\n\n\n\n\nMar 11, 2024\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nUsing statistical estimators with panel data to analyze the impact of a cash-transfer program\n\n\n\n\n\n\n\nStatistical Modeling\n\n\nCausal Inference\n\n\nR\n\n\n\n\nFor this analysis, I estimate the Average Treatment Effect (ATE) of the 1998 Prospera cash-transfer program on the value of animals owned by a household.\n\n\n\n\n\n\nMar 6, 2024\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\n2010-2019 time series analysis of nutrient concentration in Chesapeake Bay tidal regions\n\n\n\n\n\n\n\nStatistical Modeling\n\n\nR\n\n\n\n\nThis analysis seeks to better understand the seasonality and trends of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions since the 2010 introduction of federal water quality requirements under the Clean Water Act.\n\n\n\n\n\n\nDec 12, 2023\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nVisualizing biodiversity changes from 2017 to 2020 in Phoenix, Arizona\n\n\n\n\n\n\n\nGeospatial Analysis\n\n\nPython\n\n\n\n\nIn this analysis, I retrieve raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer (MPC) catalog. This allows me to calculate areas of interest based on changes in biodiversity and show my results on a map.\n\n\n\n\n\n\nDec 11, 2023\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nLand cover analysis around Mount Whitney\n\n\n\n\n\n\n\nGeospatial Analysis\n\n\nPython\n\n\n\n\nThis analysis uses Python to extract land cover statistics from a USGS raster dataset on land cover classification in the area surrounding Mount Whitney in California.\n\n\n\n\n\n\nDec 11, 2023\n\n\nLinus Ghanadan\n\n\n\n\n\n\nNo matching items"
   },
@@ -572,5 +572,117 @@
     "title": "Building predictive user classification models with data from Spotify Web API",
     "section": "Compare importance of predictor variables",
     "text": "Compare importance of predictor variables\n\n\nCode\n# compare importance of different predictor variables in best performing model\nvip(sgb_fit, method = \"model\", num_features = 13) +\n  ggtitle(\"Importance of features in SGB model\") +\n  labs(caption = \"Note: Importance of time_sig is &lt;0.01\") +\n  ylim(0.00, 0.20) +\n  geom_text(aes(label = sprintf(\"%.2f\", Importance), # label values\n                x = Variable,\n                y = Importance + 0.001),\n            hjust = 0,\n            color = \"black\",\n            size = 3.5) +\n  theme_minimal() +\n  theme(plot.title = element_text(hjust = 0.5),\n        axis.text.y = element_text(color = \"black\", size = 12))\n\n\n\n\n\nIn the SGB model, which was the best performing model, tempo, valence, danceability, energy, and instrumentalness were the most important feature for predicting whether a song was in my collection or Maxwell’s."
+  },
+  {
+    "objectID": "writing.html",
+    "href": "writing.html",
+    "title": "Writing",
+    "section": "",
+    "text": "Economic Analysis of EV Tax Credits from the Inflation Reduction Act\n\n\n\n\n\n\n\nEnergy Transition\n\n\n\n\n6-page paper explaining the likely impacts of new federal policy incentives regarding Light-Duty Elective Vehicles.\n\n\n\n\n\n\nApr 26, 2023\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nThe Ethics of Lawn Mowing\n\n\n\n\n\n\n\nNature\n\n\n\n\n11-page essay examining the social history of lawns, in addition to their ecological consequences, to consider the ethical implications of mowing one’s lawn.\n\n\n\n\n\n\nApr 3, 2023\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nEcology and Human Health in California’s Central Valley: Historical Perceptions of a Complex Relationship\n\n\n\n\n\n\n\nNature\n\n\n\n\n8-page essay based on Historian Linda Nash’s 2006 book Inescapable Ecologies, which traces evolving views of health and disease in California’s Central Valley during the 19th and 20th centuries.\n\n\n\n\n\n\nNov 1, 2022\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nPolicy Memo on U.S. Offshore Wind Development\n\n\n\n\n\n\n\nEnergy Transition\n\n\n\n\n3-page memo and 25-slide presentation on U.S. offshore wind development, covering implications of the Jones Act for the supply chain of necessary installation and maintenance vessels. Two policy options are provided: tax incentives for domestic shipbuilders (requires Congressional action) or making use of existing MARAD programs.\n\n\n\n\n\n\nAug 27, 2022\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nPolicy Memo on Market-Based Climate Change Mitigation\n\n\n\n\n\n\n\nEnergy Transition\n\n\n\n\n7-page memo on market-based climate change mitigation policies. After comparing different approaches from around the world, the memo recommends for the U.S. to adopt a federal cap-and-trade system for the electricity generation sector and a federal tax on GHG emissions from industrial buildings, transportation fuels, fuels used for heating and cooling, and imported goods.\n\n\n\n\n\n\nApr 27, 2022\n\n\nLinus Ghanadan\n\n\n\n\n\n\n  \n\n\n\n\nThe Environmental, Economic, and Social Impacts of California’s Wildfires\n\n\n\n\n\n\n\nNature\n\n\n\n\n10-page paper examining the environmental, economic, and social impacts of California’s wildfires, with a special focus on the record-breaking 2020 wildfires.\n\n\n\n\n\n\nNov 22, 2021\n\n\nLinus Ghanadan\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "writing.html#nature",
+    "href": "writing.html#nature",
+    "title": "Writing",
+    "section": "",
+    "text": "The Ethics of Lawn Mowing: Description of the third post. Date: 2023-06-01"
+  },
+  {
+    "objectID": "writing/post1/post1.html",
+    "href": "writing/post1/post1.html",
+    "title": "The Ethics of Lawn Mowing",
+    "section": "",
+    "text": "View as PDF\n\n\n\nCitationBibTeX citation:@online{ghanadan2023,\n  author = {Ghanadan, Linus},\n  title = {The {Ethics} of {Lawn} {Mowing}},\n  date = {2023-04-29},\n  url = {https://linusghanadan.github.io/blog/lawn-ethics-post/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nGhanadan, Linus. 2023. “The Ethics of Lawn Mowing.” April\n29, 2023. https://linusghanadan.github.io/blog/lawn-ethics-post/."
+  },
+  {
+    "objectID": "writing/lawn-ethics/lawn-ethics.html",
+    "href": "writing/lawn-ethics/lawn-ethics.html",
+    "title": "The Ethics of Lawn Mowing",
+    "section": "",
+    "text": "This paper was written for a writing class that I took at the University of Maryland in Spring 2023."
+  },
+  {
+    "objectID": "writing/carbon-pricing/carbon-pricing.html",
+    "href": "writing/carbon-pricing/carbon-pricing.html",
+    "title": "Policy Memo on Market-Based Climate Change Mitigation",
+    "section": "",
+    "text": "This paper was written for a class on Environmental Policy that I took at the University of Maryland in Spring 2022."
+  },
+  {
+    "objectID": "writing/env-health/env-health.html",
+    "href": "writing/env-health/env-health.html",
+    "title": "Ecology and Human Health in California’s Central Valley: Historical Perceptions of a Complex Relationship",
+    "section": "",
+    "text": "This paper was written for a class on Environmental History that I took at the University of Maryland in Fall 2022."
+  },
+  {
+    "objectID": "writing/wildfire/wildfire.html",
+    "href": "writing/wildfire/wildfire.html",
+    "title": "The Environmental, Economic, and Social Impacts of California’s Wildfires",
+    "section": "",
+    "text": "This paper was written for a class on Environmental Science that I took at the University of Maryland in Fall 2021."
+  },
+  {
+    "objectID": "writing/evs/ev.html",
+    "href": "writing/evs/ev.html",
+    "title": "Economic Analysis of EV Tax Credits from the Inflation Reduction Act",
+    "section": "",
+    "text": "This paper was written for a class on Environmental Economics that I took at the University of Maryland in Spring 2023."
+  },
+  {
+    "objectID": "writing/offshore-wind/offshore-wind.html#view-25-slide-presentation-as-pdf",
+    "href": "writing/offshore-wind/offshore-wind.html#view-25-slide-presentation-as-pdf",
+    "title": "Policy Memo on U.S. Offshore Wind Development",
+    "section": "View 25-slide presentation as PDF",
+    "text": "View 25-slide presentation as PDF\n\n\n\nDionysos1970, CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+    "objectID": "writing/offshore-wind/offshore-wind.html",
+    "href": "writing/offshore-wind/offshore-wind.html",
+    "title": "Policy Memo on U.S. Offshore Wind Development",
+    "section": "",
+    "text": "This 3-page memo and 25-slide presentation were produced as part of an internship with the U.S. Maritime Administration (MARAD), which is an agency of the U.S. Department of Transportation."
+  },
+  {
+    "objectID": "writing/offshore-wind/offshore-wind.html#view-3-page-memo-as-pdf",
+    "href": "writing/offshore-wind/offshore-wind.html#view-3-page-memo-as-pdf",
+    "title": "Policy Memo on U.S. Offshore Wind Development",
+    "section": "View 3-page memo as PDF",
+    "text": "View 3-page memo as PDF"
+  },
+  {
+    "objectID": "writing/carbon-pricing/carbon-pricing.html#view-7-page-memo-as-pdf",
+    "href": "writing/carbon-pricing/carbon-pricing.html#view-7-page-memo-as-pdf",
+    "title": "Policy Memo on Market-Based Climate Change Mitigation",
+    "section": "View 7-page memo as PDF",
+    "text": "View 7-page memo as PDF\n\n\n\nTommaso.sansone91, CC 1.0, via Wikimedia Commons"
+  },
+  {
+    "objectID": "writing/env-health/env-health.html#view-8-page-essay-as-pdf",
+    "href": "writing/env-health/env-health.html#view-8-page-essay-as-pdf",
+    "title": "Ecology and Human Health in California’s Central Valley: Historical Perceptions of a Complex Relationship",
+    "section": "View 8-page essay as PDF",
+    "text": "View 8-page essay as PDF\n\n\n\nCristiano Tomás, CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+    "objectID": "writing/evs/ev.html#view-6-page-paper-as-pdf",
+    "href": "writing/evs/ev.html#view-6-page-paper-as-pdf",
+    "title": "Economic Analysis of EV Tax Credits from the Inflation Reduction Act",
+    "section": "View 6-page paper as PDF",
+    "text": "View 6-page paper as PDF\n\n\n\ndronepicr, CC BY 2.0, via Wikimedia Commons"
+  },
+  {
+    "objectID": "writing/lawn-ethics/lawn-ethics.html#view-11-page-essay-as-pdf",
+    "href": "writing/lawn-ethics/lawn-ethics.html#view-11-page-essay-as-pdf",
+    "title": "The Ethics of Lawn Mowing",
+    "section": "View 11-page essay as PDF",
+    "text": "View 11-page essay as PDF\n\n\n\nMoofpocket, CC BY-SA 3.0, via Wikimedia Commons"
+  },
+  {
+    "objectID": "writing/wildfire/wildfire.html#view-10-page-paper-as-pdf",
+    "href": "writing/wildfire/wildfire.html#view-10-page-paper-as-pdf",
+    "title": "The Environmental, Economic, and Social Impacts of California’s Wildfires",
+    "section": "View 10-page paper as PDF",
+    "text": "View 10-page paper as PDF\n\n\n\nVentura County Fire Department Public Information Officer, Public Domain, via Wikimedia Commons"
   }
 ]

@@ -1,0 +1,23 @@
+---
+title: "The Environmental, Economic, and Social Impacts of California's Wildfires"
+description: "10-page paper examining the environmental, economic, and social impacts of California's wildfires, with a special focus on the record-breaking 2020 wildfires."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+date: 11-22-2021
+categories:
+  - [Nature]
+image: wildfire.jpg
+citation:
+  url: https://linusghanadan.github.io/blog/carbon-pricing-post/
+draft: false
+format:
+    html:
+        code-fold: false
+---
+
+This paper was written for a class on Environmental Science that I took at the University of Maryland in Fall 2021.
+
+## [View 10-page paper as PDF](wildfire.pdf)
+
+![[Ventura County Fire Department Public Information Officer](https://commons.wikimedia.org/wiki/File:Erbes_Fire_at_about_30_acres.jpg), Public Domain, via Wikimedia Commons](wildfire.jpg)

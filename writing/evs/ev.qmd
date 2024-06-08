@@ -1,0 +1,23 @@
+---
+title: "Economic Analysis of EV Tax Credits from the Inflation Reduction Act"
+description: "6-page paper explaining the likely impacts of new federal policy incentives regarding Light-Duty Elective Vehicles."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+date: 04-26-2023
+categories:
+  - [Energy Transition]
+image: ev.jpg
+citation:
+  url: https://linusghanadan.github.io/blog/ev-post/
+draft: false
+format:
+    html:
+        code-fold: false
+---
+
+This paper was written for a class on Environmental Economics that I took at the University of Maryland in Spring 2023.
+
+## [View 6-page paper as PDF](ev.pdf)
+
+![[dronepicr](https://commons.wikimedia.org/wiki/File:Tesla_electric_car_charger_(30032293895).jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en), via Wikimedia Commons](ev.jpg)

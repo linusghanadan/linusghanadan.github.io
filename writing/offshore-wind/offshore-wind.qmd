@@ -1,0 +1,25 @@
+---
+title: "Policy Memo on U.S. Offshore Wind Development"
+description: "3-page memo and 25-slide presentation on U.S. offshore wind development, covering implications of the Jones Act for the supply chain of necessary installation and maintenance vessels. Two policy options are provided: tax incentives for domestic shipbuilders (requires Congressional action) or making use of existing MARAD programs."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+date: 08-27-2022
+categories:
+  - [Energy Transition]
+image: offshore-wind5.jpg
+citation:
+  url: https://linusghanadan.github.io/blog/offshore-wind-post/
+draft: false
+format:
+    html:
+        code-fold: false
+---
+
+This 3-page memo and 25-slide presentation were produced as part of an internship with the [U.S. Maritime Administration (MARAD)](https://www.maritime.dot.gov/), which is an agency of the U.S. Department of Transportation.
+
+## [View 3-page memo as PDF](offshore-wind-memo.pdf)
+
+## [View 25-slide presentation as PDF](offshore-wind-presentation.pdf)
+
+![[Dionysos1970](https://commons.wikimedia.org/wiki/File:Windpark_3449.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en), via Wikimedia Commons](offshore-wind5.jpg)

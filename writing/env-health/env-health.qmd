@@ -1,0 +1,23 @@
+---
+title: "Ecology and Human Health in California’s Central Valley: Historical Perceptions of a Complex Relationship"
+description: "8-page essay based on Historian Linda Nash's 2006 book *Inescapable Ecologies*, which traces evolving views of health and disease in California's Central Valley during the 19th and 20th centuries."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+date: 11-01-2022
+categories:
+  - [Nature]
+image: photo1.jpeg
+citation:
+  url: https://linusghanadan.github.io/blog/central-valley-post/
+draft: false
+format:
+    html:
+        code-fold: false
+---
+
+This paper was written for a class on Environmental History that I took at the University of Maryland in Fall 2022.
+
+## [View 8-page essay as PDF](lawn-ethics.pdf)
+
+![[Cristiano Tomás](https://commons.wikimedia.org/wiki/File:Map_of_the_Central_Valley_region_of_California.png), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en), via Wikimedia Commons](photo1.jpeg)

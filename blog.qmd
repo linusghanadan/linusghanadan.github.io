@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "Data Science"
 listing: 
   contents: blog
   type: default

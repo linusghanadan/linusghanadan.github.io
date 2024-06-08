@@ -1,0 +1,8 @@
+---
+title: "Writing"
+listing: 
+  contents: writing
+  type: default
+  sort: "date desc"
+  categories: true
+---

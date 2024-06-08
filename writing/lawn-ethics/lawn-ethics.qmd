@@ -1,0 +1,23 @@
+---
+title: "The Ethics of Lawn Mowing"
+description: "11-page essay examining the social history of lawns, in addition to their ecological consequences, to consider the ethical implications of mowing one's lawn."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+date: 04-03-2023
+categories:
+  - [Nature]
+image: lawn.jpeg
+citation:
+  url: https://linusghanadan.github.io/blog/lawn-ethics-post/
+draft: false
+format:
+    html:
+        code-fold: false
+---
+
+This paper was written for a writing class that I took at the University of Maryland in Spring 2023.
+
+## [View 11-page essay as PDF](lawn-ethics.pdf)
+
+![[Moofpocket](https://commons.wikimedia.org/wiki/File:Monticello_west_lawn.JPG), [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en), via Wikimedia Commons](lawn.jpeg)

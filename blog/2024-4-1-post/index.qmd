@@ -112,7 +112,3 @@ The dendrogram looks as expected. 51 is clearly an outlier point because startin
 ## Conclusion
 
 Our clustering analysis indicates that there are 3 major clusters of biological contaminating algae. For each cluster of algae, there are differing expected ranges of metal content across the five types of metal looked at (Cd, Cr, Cu, Mn, and Ni).
-
-
-
-

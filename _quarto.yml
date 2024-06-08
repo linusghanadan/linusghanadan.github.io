@@ -9,7 +9,9 @@ website:
       - href: index.qmd
         text: Home
       - href: blog.qmd
-        text: Blog
+        text: Data Science
+      - href: writing.qmd
+        text: Writing
         
 format:
   html:

@@ -12,5 +12,16 @@
       "/blog/2023-12-13-post/phoenix_biodiversity.html",
       "/blog/2023-12-11-post/mt-whitney-land-cover.html"
     ]
+  },
+  {
+    "listing": "/writing.html",
+    "items": [
+      "/writing/evs/ev.html",
+      "/writing/lawn-ethics/lawn-ethics.html",
+      "/writing/env-health/env-health.html",
+      "/writing/offshore-wind/offshore-wind.html",
+      "/writing/carbon-pricing/carbon-pricing.html",
+      "/writing/wildfire/wildfire.html"
+    ]
   }
 ]

@@ -1,0 +1,23 @@
+---
+title: "Policy Memo on Market-Based Climate Change Mitigation"
+description: "7-page memo on market-based climate change mitigation policies. After comparing different approaches from around the world, the memo recommends for the U.S. to adopt a federal cap-and-trade system for the electricity generation sector and a federal tax on GHG emissions from industrial buildings, transportation fuels, fuels used for heating and cooling, and imported goods."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+date: 04-27-2022
+categories:
+  - [Energy Transition]
+image: photo2.jpeg
+citation:
+  url: https://linusghanadan.github.io/blog/carbon-pricing-post/
+draft: false
+format:
+    html:
+        code-fold: false
+---
+
+This paper was written for a class on Environmental Policy that I took at the University of Maryland in Spring 2022.
+
+## [View 7-page memo as PDF](carbon-pricing.pdf)
+
+![[Tommaso.sansone91](https://commons.wikimedia.org/wiki/File:Carbon_tax_icon_-_carbon_pricing.png), [CC 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en), via Wikimedia Commons](photo2.jpeg)
