@@ -19,6 +19,8 @@ format:
         code-fold: false
 ---
 
+## Link to [GitHub repository](https://github.com/linusghanadan/atmospheric-conductance-sobol)
+
 ## Setup
 
 ```{r setup, include=FALSE}
@@ -156,4 +158,4 @@ print(sens_Catm_Sobol)
 
 ## Conclusion
 
-In this setting (compared to the setting looked at in class), windspeed was higher and less variable, while vegetation was shorter. Comparing the two sensitivity analyses, we can see that these differences in conditions was associated with a decrease in model variance, as the model variance determined here (~8.4 million) was less than half the variance we found in class (~19.7 million). In addition, for the model we look at here, the total sensitivity index for k_d is significantly lower, while that for k_o, windspeed, and height are significantly higher. Because the total sensitivity index for windspeed is significantly higher, this tells us that atmospheric conductance is more sensitive to windspeed in areas where windspeed is high and less variable and vegetation is shorter. However, the lower model variance tells us that overall, atmospheric conductance has less variation in these conditions.
+In this setting (compared to the setting looked at in class), windspeed was higher and less variable, while vegetation was shorter. Comparing the two sensitivity analyses, we can see that these differences in conditions was associated with a decrease in model variance, as the model variance determined here (\~8.4 million) was less than half the variance we found in class (\~19.7 million). In addition, for the model we look at here, the total sensitivity index for k_d is significantly lower, while that for k_o, windspeed, and height are significantly higher. Because the total sensitivity index for windspeed is significantly higher, this tells us that atmospheric conductance is more sensitive to windspeed in areas where windspeed is high and less variable and vegetation is shorter. However, the lower model variance tells us that overall, atmospheric conductance has less variation in these conditions.

@@ -7,6 +7,7 @@ author:
 date: 04-03-2023
 categories:
   - [Nature]
+  - [Essay]
 image: lawn.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/lawn-ethics-post/

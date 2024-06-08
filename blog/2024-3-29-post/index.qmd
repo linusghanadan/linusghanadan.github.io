@@ -1,6 +1,6 @@
 ---
-title: "Building predictive user classification models with data from Spotify Web API"
-description: "In this blog post, I build predictive models using a single decision tree, bagged decision trees, a random forest, and Stochastic Gradient Boosting (SGB) for predicting whether a given song was in my Spotify collection or that of my friend Maxwell. Then, I compare the performance of these four models."
+title: "Building user classification models with data from Spotify Web API"
+description: "In this blog post, I build and compare four classification models that predict whether a given song was in my Spotify collection or that of my friend Maxwell. I also analyze feature importances in the best performing model."
 author: 
   - name: Linus Ghanadan
     url: https://linusghanadan.github.io/
