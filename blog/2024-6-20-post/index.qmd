@@ -12,6 +12,7 @@ categories:
   - [Data Visualization]
   - [R]
 image: preview-image.png
+banner-image: preview-image.png
 citation:
   url: https://linusghanadan.github.io/blog/2024-6-20-post/
 draft: false
@@ -20,9 +21,7 @@ format:
         code-fold: false
 ---
 
-### Creating a Reproducible Emissions Model for a Sock Manufacturer
-
-With corporate sustainability growing ever more important, recent U.S., EU, and California legislation now mandates that public organizations disclose their greenhouse gas emissions and climate-related risks. Beyond these political pressures, social expectations are also driving organizations to adopt more sustainable practices and ensure transparency around their emissions. For Darn Tough Vermont, a brand committed to sustainability, these evolving standards present both a challenge and an opportunity.
+![](images/topbar-image.png)
 
 ### About Darn Tough Vermont
 
@@ -96,7 +95,7 @@ With the Carbon Emission Calculation Dashboard, Darn Tough is now equipped to ca
 
 ### My experience
 
-This project was a unique opportunity to work with a real-world client and apply data science skills to a sustainability challenge, and down the line, I look forward to seeing how Darn Tough made use of this tool to identify solutions for reducing emissions. Ultimately, working alongside my team members, Carly, Annie, and Flora has been the most rewarding experience, and I am grateful for their hard work and dedication throughout this project. Whether it was troubleshooting code, brain-storming ideas, cheering each other on, or learning to provide useful feedback, building this application with them has highlighted the importance of hard work, being kind, and having fun along the way!
+This project was a unique opportunity to work with a real-world client and apply data science skills to a sustainability challenge, and I look forward to seeing how Darn Tough makes use of our project to reduce their emissions. Ultimately, working alongside my team members, Carly, Annie, and Flora has been the most rewarding experience, and I am grateful for their hard work and dedication throughout this project. Whether it was troubleshooting code, brain-storming ideas, cheering each other on, or learning to provide useful feedback, building this application with them has highlighted the importance of hard work, being kind, and having fun along the way!
 
 ### Acknowledgments
 
