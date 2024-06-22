@@ -8,6 +8,8 @@ author:
     affiliation-url: https://ucsb-meds.github.io
 date: "June 20, 2024"
 categories:
+  - [Analytical Workflows]
+  - [Data Visualization]
   - [R]
 image: preview-image.png
 citation:
