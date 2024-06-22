@@ -9,7 +9,7 @@ author:
 date: 03-11-2024
 categories:
   - [Statistical Modeling]
-  - [Causal Inference]
+  - [Econometric Analysis]
   - [R]
 citation:
   url: https://linusghanadan.github.io/blog/2024-3-11-post/

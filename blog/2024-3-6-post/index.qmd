@@ -9,7 +9,7 @@ author:
 date: 03-06-2024
 categories:
   - [Statistical Modeling]
-  - [Causal Inference]
+  - [Econometric Analysis]
   - [R]
 image: did_estimator.jpeg
 citation:
