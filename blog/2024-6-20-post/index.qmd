@@ -80,15 +80,15 @@ To make these improvements user-friendly, we developed an emissions calculator a
 
 The new Emissions Calculator Dashboard makes it easier for Darn Tough to calculate their emissions. Users can upload data, select specific scopes, calculate emissions, and generate downloadable outputs and interactive visualizations all in one centralized interface.
 
-![Screenshot of the dashboard with fake data](images/dashboard-image.png)
+![Screenshot of interface for calculating emissions (with fake data)](images/dashboard-image.png)
 
-![Interactive sunburst plot](images/visualization-image.png)
+![Screenshot of interactive sunburst plot (with fake data)](images/visualization-image.png)
 
 ### Scenario Analysis Tool
 
 Beyond calculating emissions, our scenario analysis tool helps Darn Tough identify practical ways to reduce their carbon footprint. Users can input hypothetical changes, such as switching to recycled wool, and compare the impact on emissions against a baseline year. This feature provides actionable insights for making informed, effective decisions on emission reductions.
 
-![Screenshot of the scenario analysis tool with fake data](images/scenario-analysis.png)
+![Screenshot of the scenario analysis tool (with fake data)](images/scenario-analysis.png)
 
 ### Moving Forward
 
