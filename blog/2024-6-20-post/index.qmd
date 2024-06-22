@@ -22,11 +22,11 @@ format:
 
 ### Creating a Reproducible Emissions Model for a Sock Manufacturer
 
-With corporate sustainability growing ever more important, recent US, EU, and California legislation now mandates that public organizations disclose their greenhouse gas emissions and climate-related risks. Beyond these political pressures, social expectations are also driving organizations to adopt more sustainable practices and ensure transparency around their emissions. For Darn Tough, a brand committed to sustainability, these evolving standards present both a challenge and an opportunity.
+With corporate sustainability growing ever more important, recent U.S., EU, and California legislation now mandates that public organizations disclose their greenhouse gas emissions and climate-related risks. Beyond these political pressures, social expectations are also driving organizations to adopt more sustainable practices and ensure transparency around their emissions. For Darn Tough Vermont, a brand committed to sustainability, these evolving standards present both a challenge and an opportunity.
 
-### About Darn Tough
+### About Darn Tough Vermont
 
-Our team's client, [Darn Tough](https://darntough.com/), is a Vermont-based outdoor sock company that is serious about prioritizing sustainability and creating long-lasting products. Known for their lifetime warranty, Darn Tough offers customers a free new pair of socks for shipping back a worn-out pair, which gets recycled into blankets for the U.S. military. While this lifetime warranty is the company's landmark sustainability initiative, they are increasingly concerned about their carbon footprint, as Darn Tough strives to align its operations with the 2030 target set by its largest retailer, REI. Specifically, this target is to achieve a 55% reduction in total GHG emissions from a 2019 baseline level by 2030. Reaching the 2030 target will require Darn Tough to develop effective ways to model their emissions, so they can best understand the critical points in their supply chain that are responsible for the most emissions, in addition to points where emissions can be most easily reduced.
+Our team's client, [Darn ](https://darntough.com/)[Tough Vermont](https://darntough.com/), is a Vermont-based outdoor sock company that is serious about prioritizing sustainability and creating long-lasting products. Known for their lifetime warranty, Darn Tough offers customers a free new pair of socks for shipping back a worn-out pair, which gets recycled into blankets for the U.S. military. While this lifetime warranty is the company's landmark sustainability initiative, they are increasingly concerned about their carbon footprint, as Darn Tough strives to align its operations with the 2030 target set by its largest retailer, REI. Specifically, this target is to achieve a 55% reduction in total GHG emissions from a 2019 baseline level by 2030. Reaching the 2030 target will require Darn Tough to develop effective ways to model their emissions, so they can best understand the critical points in their supply chain that are responsible for the most emissions, in addition to points where emissions can be most easily reduced.
 
 ### Understanding Greenhouse Gas Emissions
 
@@ -100,4 +100,4 @@ This project was a unique opportunity to work with a real-world client and apply
 
 ### Acknowledgments
 
-We extend our deepest gratitude to Kristen Graf from Darn Tough, Dr. Enze Jin, Dr. Carmen Galaz Garcia, the MEDS Capstone Committee, and our entire MEDS cohort for their invaluable support and feedback throughout this project.
+We extend our deepest gratitude to Kristen Graf from Darn Tough Vermont, Dr. Enze Jin, Dr. Carmen Galaz Garcia, the MEDS Capstone Committee, and our entire MEDS cohort for their invaluable support and feedback throughout this project.
