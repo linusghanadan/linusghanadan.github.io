@@ -3,8 +3,8 @@ title: "Streamlining Carbon Accounting for Darn Tough Vermont"
 description: "As our Master's program capstone project, our team of four helped Darn Tough, a Vermont-based outdoor sock company, streamline their carbon accounting process."
 author: 
   - name: Linus Ghanadan, Flora Hamilton, Carly Caswell, Annie Adams
-    url: https://floraham.github.io/
-    affiliation: Bren School of Environmental Science and Management
+    url: https://linusghanadan.github.io/
+    affiliation: MEDS
     affiliation-url: https://ucsb-meds.github.io
 date: "June 20, 2024"
 categories:
