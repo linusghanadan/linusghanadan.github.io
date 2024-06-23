@@ -9,7 +9,7 @@ categories:
   - [Statistical Modeling]
   - [Geospatial Analysis]
   - [R]
-image: brazil.png
+image: maps.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/6-1-2023-post/
 draft: false
@@ -20,4 +20,4 @@ format:
 
 ## [View final report as PDF](final-report.pdf)
 
-![Figure 8 from final report. Map on left shows biomes where agroforestry studies were conducted in Brazil, and map on right displays where allometric equations were originally developed.](brazil.png)
+![Figures 5-8 from final report. Maps on left show biomes where agroforestry studies were conducted, and maps on right display where allometric equations were originally developed.](maps.jpeg)
