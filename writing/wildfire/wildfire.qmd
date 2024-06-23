@@ -6,7 +6,6 @@ author:
     url: https://linusghanadan.github.io/
 date: 11-22-2021
 categories:
-  - [Nature]
   - [Academic Writing]
 image: wildfire.jpg
 citation:

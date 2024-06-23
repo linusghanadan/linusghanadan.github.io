@@ -9,7 +9,7 @@ author:
 date: "June 20, 2024"
 categories:
   - [Analytical Workflows]
-  - [Building Interactive Dashboards]
+  - [Interactive Dashboards]
   - [Data Visualization]
   - [Microsoft Excel]
   - [R]

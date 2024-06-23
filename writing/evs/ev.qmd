@@ -6,7 +6,6 @@ author:
     url: https://linusghanadan.github.io/
 date: 04-26-2023
 categories:
-  - [Energy Transition]
   - [Academic Writing]
 image: ev.jpg
 citation:

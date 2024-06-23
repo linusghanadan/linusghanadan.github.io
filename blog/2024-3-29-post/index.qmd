@@ -9,6 +9,8 @@ author:
 date: 03-29-2024
 categories:
   - [Machine Learning]
+  - [Random Forest Modeling]
+  - [Gradient Boosting]
   - [R]
 citation:
   url: https://linusghanadan.github.io/blog/2024-3-29-post/

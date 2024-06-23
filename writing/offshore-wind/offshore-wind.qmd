@@ -6,7 +6,6 @@ author:
     url: https://linusghanadan.github.io/
 date: 08-27-2022
 categories:
-  - [Energy Transition]
   - [Memo Writing]
 image: offshore-wind5.jpg
 citation:

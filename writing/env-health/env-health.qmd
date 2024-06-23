@@ -6,7 +6,6 @@ author:
     url: https://linusghanadan.github.io/
 date: 11-01-2022
 categories:
-  - [Nature]
   - [Academic Writing]
 image: photo1.jpeg
 citation:

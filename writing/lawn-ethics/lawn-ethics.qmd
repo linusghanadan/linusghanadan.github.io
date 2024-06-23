@@ -6,7 +6,6 @@ author:
     url: https://linusghanadan.github.io/
 date: 04-03-2023
 categories:
-  - [Nature]
   - [General Audience]
 image: lawn.jpeg
 citation:
