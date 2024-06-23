@@ -9,6 +9,7 @@ author:
 date: "June 20, 2024"
 categories:
   - [Analytical Workflows]
+  - [Carbon Accounting]
   - [Interactive Dashboards]
   - [Data Visualization]
   - [Microsoft Excel]
