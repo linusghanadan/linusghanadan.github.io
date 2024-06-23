@@ -7,7 +7,7 @@ author:
 date: 08-27-2022
 categories:
   - [Energy Transition]
-  - [Policy Memo]
+  - [Memo Writing]
 image: offshore-wind5.jpg
 citation:
   url: https://linusghanadan.github.io/blog/offshore-wind-post/

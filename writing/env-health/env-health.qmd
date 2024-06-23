@@ -7,7 +7,7 @@ author:
 date: 11-01-2022
 categories:
   - [Nature]
-  - [Essay]
+  - [Academic Writing]
 image: photo1.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/central-valley-post/
@@ -19,6 +19,6 @@ format:
 
 This paper was written for a class on Environmental History that I took at the University of Maryland in Fall 2022.
 
-## [View 8-page essay as PDF](lawn-ethics.pdf)
+## [View 8-page essay as PDF](env-health.pdf)
 
 ![[Cristiano Tomás](https://commons.wikimedia.org/wiki/File:Map_of_the_Central_Valley_region_of_California.png), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en), via Wikimedia Commons](photo1.jpeg)

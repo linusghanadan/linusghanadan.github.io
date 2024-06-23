@@ -7,7 +7,7 @@ author:
 date: 04-27-2022
 categories:
   - [Energy Transition]
-  - [Policy Memo]
+  - [Memo Writing]
 image: photo2.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/carbon-pricing-post/

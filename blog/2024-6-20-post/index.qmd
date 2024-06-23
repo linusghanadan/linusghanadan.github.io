@@ -9,7 +9,9 @@ author:
 date: "June 20, 2024"
 categories:
   - [Analytical Workflows]
+  - [Building Interactive Dashboards]
   - [Data Visualization]
+  - [Microsoft Excel]
   - [R]
 image: preview-image.png
 banner-image: preview-image.png
