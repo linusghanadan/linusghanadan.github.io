@@ -9,6 +9,7 @@ author:
 date: 06-07-2024
 categories:
   - [Environmental Modeling]
+  - [Sensitivity Analysis]
   - [R]
 image: download_sobol.jpeg
 citation:

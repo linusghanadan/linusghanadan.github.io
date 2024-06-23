@@ -1,6 +1,6 @@
 ---
 title: "Policy Memo on U.S. Offshore Wind Development"
-description: "3-page memo and 25-slide presentation on U.S. offshore wind development. Produced as part of an internship with the U.S. Maritime Administration (MARAD), which is an agency of the U.S. Department of Transportation."
+description: "This 3-page memo and presentation slide-deck on offshore wind development were produced for an internship with MARAD, which is an agency of the USDOT focusing on domestic maritime transportation."
 author: 
   - name: Linus Ghanadan
     url: https://linusghanadan.github.io/
@@ -17,10 +17,10 @@ format:
         code-fold: false
 ---
 
-This 3-page memo and 25-slide presentation were produced as part of an internship with the [U.S. Maritime Administration (MARAD)](https://www.maritime.dot.gov/), which is an agency of the U.S. Department of Transportation.
+This 3-page memo and presentation slide-deck on offshore wind development were produced for an internship with the [U.S. Maritime Administration (MARAD)](https://www.maritime.dot.gov/), which is an agency of the U.S. Department of Transportation focusing on domestic maritime transportation.
 
 ## [View 3-page memo as PDF](offshore-wind-memo.pdf)
 
-## [View 25-slide presentation as PDF](offshore-wind-presentation.pdf)
+## [View slide-deck as PDF (used for 30-minute presentation)](offshore-wind-presentation.pdf)
 
 ![[Dionysos1970](https://commons.wikimedia.org/wiki/File:Windpark_3449.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en), via Wikimedia Commons](offshore-wind5.jpg)
