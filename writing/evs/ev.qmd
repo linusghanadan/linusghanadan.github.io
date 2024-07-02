@@ -7,7 +7,6 @@ author:
 date: 04-26-2023
 categories:
   - [Academic Writing]
-image: ev.jpg
 citation:
   url: https://linusghanadan.github.io/blog/ev-post/
 draft: false
@@ -20,4 +19,4 @@ This paper was written for a class on Environmental Economics that I took at the
 
 ## [View 6-page paper as PDF](ev.pdf)
 
-![[dronepicr](https://commons.wikimedia.org/wiki/File:Tesla_electric_car_charger_(30032293895).jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en), via Wikimedia Commons](ev.jpg)
+![[dronepicr](https://commons.wikimedia.org/wiki/File:Tesla_electric_car_charger_(30032293895).jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en), via Wikimedia Commons](ev.jpeg)

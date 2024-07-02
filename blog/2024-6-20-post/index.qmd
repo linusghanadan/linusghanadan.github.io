@@ -1,5 +1,5 @@
 ---
-title: "Streamlining Carbon Accounting for Darn Tough Vermont"
+title: "Creating an Analytical Workflow for a Sock Manufacturer’s Carbon Accounting and Sustainability Analysis"
 description: "As our Master's program capstone project, our team of four helped Darn Tough, a Vermont-based outdoor sock company, streamline their carbon accounting process."
 author: 
   - name: Linus Ghanadan, Flora Hamilton, Carly Caswell, Annie Adams
@@ -14,7 +14,7 @@ categories:
   - [Data Visualization]
   - [Microsoft Excel]
   - [R]
-image: preview-image.jpeg
+image: images/scenario-analysis.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/2024-6-20-post/
 draft: false
@@ -22,8 +22,6 @@ format:
     html:
         code-fold: false
 ---
-
-![](images/topbar-image.jpeg)
 
 ### About Darn Tough Vermont
 
@@ -41,8 +39,6 @@ Calculating an organization's carbon footprint is a multifaceted endeavor, requi
 
 For Darn Tough, this involves accounting for emissions at every stage of their sock production, from manufacturing fibers, shipping products, to recycling worn-out socks through their warranty program.
 
-![](images/emission-calculations-image.jpeg)
-
 ### The Challenge
 
 Darn Tough, renowned for producing durable socks for the outdoor apparel industry, utilizes a blend of merino wool and synthetic materials. Their partnership with REI (Recreational Equipment, Inc.), which has set an ambitious target to reduce emissions by 55% from 2019 levels by 2030, underscores the urgency to refine their greenhouse gas emissions calculations. However, Darn Tough's current method, which primarily uses Excel, is reliant on manual, non-reproducible calculations in Excel and poses challenges for the team, underscoring the need for a more streamlined and accurate solution.
@@ -54,8 +50,6 @@ To meet these challenges head-on, we defined three major objectives:
 1.  **Utilize Accurate Methodology:** Address discrepancies and errors in the existing emissions calculations by updating and standardizing the methodology.
 2.  **Streamline the Calculation Process:** Develop a reproducible, efficient method to replace the complex and unwieldy Excel-based process.
 3.  **Conduct Scenario Analysis:** Create tools that allow for scenario planning and data-driven decision-making to reduce emissions effectively.
-
-![](images/solution-image.jpeg)
 
 ### Delivering Solutions
 
@@ -72,8 +66,6 @@ Darn Tough's original method used a complex Excel sheet to model their emissions
 By automating the emissions calculations using the R programming language, we created a reproducible and accurate approach.
 
 Our streamlined solution involved creating a simplified Excel input template with tidy, formula-free tables and automating calculations with R. This new model takes inventory data as inputs and produces precise emissions totals, eliminating the potential for manual errors and significantly simplifying the process.
-
-![](images/updates-image.jpeg)
 
 #### Emissions Calculator Application
 
