@@ -1,23 +1,16 @@
 ---
 title: "My name is Linus Ghanadan. Welcome to my website!"
-subtitle: "Click on the icons below to visit my other web profiles."
 about:
     template: solana
     image: linus-website-photo.jpg
-    links: 
-      - text: LinkedIn
-        href: https://www.linkedin.com/in/linus-ghanadan/
-        icon: linkedin
-      - text: GitHub
-        icon: github
-        href: https://github.com/linusghanadan/
-      - text: Instagram
-        icon: instagram
-        href: https://www.instagram.com/linusghanadan/
 ---
+
+For my portfolio projects, click on the **"Data Science"** or **"Writing"** tabs (see navigation bar at the top of website)
 
 # About me
 
-I graduated in June 2024 with a M.S. in Environmental Data Science from the Bren School of Environmental Science & Management at UC Santa Barbara. As a Master's capstone project, I worked with the outdoor apparel company Darn Tough Vermont to model and visualize their data on greenhouse gas emissions. In May 2023, I received a B.S. in Environmental Economics from the University of Maryland, and as a student there, I also gained research and internship experience at the U.S. Department of Transportation, World Resources Institute, and The Nature Conservancy.
+I graduated in June 2024 with a M.S. in Environmental Data Science from the Bren School of Environmental Science & Management at UC Santa Barbara. As a Master’s capstone project, I worked with the outdoor apparel company Darn Tough Vermont to model and visualize their data on greenhouse gas emissions.
 
-To see examples of my past work, click on the **"Data Science"** or **"Writing"** tabs located in the **green navigation bar at the top of the screen.**
+In May 2023, I received a B.S. in Environmental Economics from the University of Maryland. As an undergraduate student, I also gained research and internship experience at the U.S. Department of Transportation, World Resources Institute, and The Nature Conservancy.
+
+Moving forward, my career goal is to implement data-driven solutions that advance sustainability within the public and private sectors. The best way to stay up-to-date on my endeavors is to follow me on [LinkedIn](https://www.linkedin.com/in/linus-ghanadan/), [GitHub](https://github.com/linusghanadan/), and [Instagram](https://www.instagram.com/linusghanadan/).
