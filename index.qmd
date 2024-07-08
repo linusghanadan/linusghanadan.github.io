@@ -18,4 +18,6 @@ about:
 
 # About me
 
-I'm currently pursuing a Master's degree in Environmental Data Science from the Bren School of Environmental Science & Management at UC Santa Barbara. I finished my undergraduate studies in 2023, receiving a Bachelor of Science in Environmental Economics from the University of Maryland. While at UMD, I also gained experience working on policies affecting offshore wind energy supply chains at the U.S. Department of Transportation, analyzing transport electrification policies at the World Resources Institute, and researching nature-based carbon sequestration at The Nature Conservancy. Moving forward, my career goal is to implement data-driven solutions that advance sustainability within the public and private sectors.
+I graduated in June 2024 with a M.S. in Environmental Data Science from the Bren School of Environmental Science & Management at UC Santa Barbara. As a Master's capstone project, I worked with the outdoor apparel company Darn Tough Vermont to model and visualize their data on greenhouse gas emissions. In May 2023, I received a B.S. in Environmental Economics from the University of Maryland, and as a student there, I also gained research and internship experience at the U.S. Department of Transportation, World Resources Institute, and The Nature Conservancy.
+
+To see examples of my past work, click on the **"Data Science"** or **"Writing"** tabs located in the **green navigation bar at the top of the screen.**
