@@ -9,7 +9,6 @@ author:
 date: "January 10, 2024"
 categories:
   - [Geospatial Analysis]
-  - [Data Visualization]
   - [R]
 citation:
   url: https://linusghanadan.github.io/blog/2024-1-10-post/
