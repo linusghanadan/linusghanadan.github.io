@@ -8,7 +8,6 @@ author:
     affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
 date: 06-07-2024
 categories:
-  - [Environmental Modeling]
   - [Sensitivity Analysis]
   - [R]
 image: download_sobol.jpeg

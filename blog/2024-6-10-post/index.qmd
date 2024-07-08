@@ -8,7 +8,6 @@ author:
     affiliation-url: https://ucsb-meds.github.io
 date: "June 10, 2024"
 categories:
-  - [Environmental Modeling]
   - [Dynamic Simulation]
   - [Sensitivity Analysis]
   - [R]
@@ -184,5 +183,4 @@ print(sens_result)
 
 ## Conclusion
 
-This sensitivity analysis suggests that the carrying capacity (K) and the pre-canopy closure growth rate (r) are the most influential parameters in determining the maximum forest size estimates. Variations in either of these parameters could lead to significant differences in the maximum size that a forest can reach. Because of this, it is crucial to have accurate estimates of all parameters, but especially K and r, so that predictions of the maximum forest size are accurate. 
-
+This sensitivity analysis suggests that the carrying capacity (K) and the pre-canopy closure growth rate (r) are the most influential parameters in determining the maximum forest size estimates. Variations in either of these parameters could lead to significant differences in the maximum size that a forest can reach. Because of this, it is crucial to have accurate estimates of all parameters, but especially K and r, so that predictions of the maximum forest size are accurate.
