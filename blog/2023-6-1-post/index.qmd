@@ -6,7 +6,6 @@ author:
     url: https://linusghanadan.github.io/
 date: 06-01-2023
 categories:
-  - [Statistical Modeling]
   - [Geospatial Analysis]
   - [R]
 image: maps.jpeg

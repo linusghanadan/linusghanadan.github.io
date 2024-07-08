@@ -6,13 +6,13 @@ author:
     url: https://linusghanadan.github.io/
     affiliation: MEDS
     affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
-date: 03-11-2024
+date: 12-09-2023
 categories:
   - [Statistical Modeling]
   - [Econometric Analysis]
   - [R]
 citation:
-  url: https://linusghanadan.github.io/blog/2024-3-11-post/
+  url: https://linusghanadan.github.io/blog/2023-12-09-post/
 draft: false
 format:
     html:
