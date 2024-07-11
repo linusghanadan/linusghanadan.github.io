@@ -1,5 +1,5 @@
 ---
-title: "Visualizing PM 2.5 concentrations in Maryland alongside race demographic data"
+title: "Spatial Analysis of PM 2.5 and Race Demographics in Maryland"
 description: "Using data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen), I create basic visualizations looking at the relationship between PM 2.5 concentrations and demographics."
 author: 
   - name: Linus Ghanadan
@@ -28,7 +28,7 @@ Understanding PM 2.5 concentration is important because this air pollutant has m
 
 Moreover, the EPA website provides information on major sources of PM 2.5 in the environment. Most PM 2.5 is not emitted directly from a source but instead is formed in the atmosphere following reactions between other pollutants like sulfur dioxide and nitrogen oxides, which are commonly emitted by automobiles, power plants, and industrial processes. Sources of PM 2.5 that are directly emitted into the air generally come from sources such as construction sites, unpaved roads, smokestacks, and fires.
 
-I chose to investigate the spatial link between PM 2.5 and race demographics in my home State of Maryland because I think it has the potential to highlight an example of the environmental disparities faced by people of color. I’ve heard that Prince George’s County, home to my alma mater the University of Maryland, has a great deal of air pollution as a result of being directly downwind of Washington DC. I also know from living in the DC area for over 10 years that this county has many more people of color compared to neighboring Montgomery County, which lies northwest (and thus upwind) of DC. I’m very curious to see whether if there is an environmental justice issue here to highlight and how pronounced this issue might be.
+I chose to investigate the spatial link between PM 2.5 and race demographics in my home State of Maryland because I think it has the potential to highlight an example of the environmental disparities faced by people of color. I've heard that Prince George's County, home to my alma mater the University of Maryland, has a great deal of air pollution as a result of being directly downwind of Washington DC. I also know from living in the DC area for over 10 years that this county has many more people of color compared to neighboring Montgomery County, which lies northwest (and thus upwind) of DC. I'm very curious to see whether if there is an environmental justice issue here to highlight and how pronounced this issue might be.
 
 ## Setup
 

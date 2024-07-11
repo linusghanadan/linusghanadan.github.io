@@ -1,5 +1,5 @@
 ---
-title: "Using propensity score methods to analyze the impact of catch shares policy"
+title: "Using Propensity Score Methods to analyze the impact of Catch Shares"
 description: "Disclaimer: The data used in this blog was synthetically generated (i.e., data is fake so results have no real implications)."
 author: 
   - name: Linus Ghanadan

@@ -1,5 +1,5 @@
 ---
-title: "Global sensitivity analysis for an atmospheric conductance model"
+title: "Global Sensitivity Analysis for an Atmospheric Conductance Model"
 description: "In this analysis, I look at an atmospheric conductance model based on vegetation height and windspeed, and I apply a variance-based sensitivity analysis by calculating Sobol indices."
 author: 
   - name: Linus Ghanadan

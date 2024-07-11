@@ -5,12 +5,66 @@ about:
     image: linus-website-photo.jpg
 ---
 
-For my portfolio projects, click on the **"Data Science"** or **"Writing"** tabs (see navigation bar at the top of website)
+The best way to stay up-to-date on my professional endeavors is to follow me on [LinkedIn](https://www.linkedin.com/in/linus-ghanadan/).
 
-# About me
+# Data Science Portfolio
 
-I graduated in June 2024 with a M.S. in Environmental Data Science from the Bren School of Environmental Science & Management at UC Santa Barbara. As a Master’s capstone project, I worked with the outdoor apparel company Darn Tough Vermont to model and visualize their data on greenhouse gas emissions.
+-   **Statistical Modeling**
 
-In May 2023, I received a B.S. in Environmental Economics from the University of Maryland. As an undergraduate student, I also gained research and internship experience at the U.S. Department of Transportation, World Resources Institute, and The Nature Conservancy.
+    -   [Time Series Analysis of Nutrient Concentration in Chesapeake Bay](https://linusghanadan.github.io/blog/2023-12-12-post/)
 
-Moving forward, my career goal is to implement data-driven solutions that advance sustainability within the public and private sectors. The best way to stay up-to-date on my endeavors is to follow me on [LinkedIn](https://www.linkedin.com/in/linus-ghanadan/), [GitHub](https://github.com/linusghanadan/), and [Instagram](https://www.instagram.com/linusghanadan/).
+    -   [Using Panel Data Methods to analyze the impact of a Cash-Transfer Program](https://linusghanadan.github.io/blog/2024-3-6-post/)
+
+    -   [Using Propensity Score Methods to analyze the impact of Catch Shares](https://linusghanadan.github.io/blog/2024-3-11-post/)
+
+-   **Geospatial Analysis**
+
+    -   [Spatial Analysis of PM 2.5 and Race Demographics in Maryland](https://linusghanadan.github.io/blog/2024-1-10-post/)
+
+    -   [Spatial Analysis of Biodiversity Changes in Phoenix, AZ](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
+
+    -   [Land Cover Analysis around Mount Whitney](https://linusghanadan.github.io/blog/2023-12-11-post/mt-whitney-land-cover.html)
+
+-   **Data Visualization**
+
+    -   [Infographic on Anthropogenic Methane Emissions in 2021](https://linusghanadan.github.io/blog/2024-3-12-post/)
+
+-   **Interactive Dashboards**
+
+    -   [Creating an Analytical Workflow for a Sock Manufacturer\'s Carbon Accounting and Sustainability Analysis](https://linusghanadan.github.io/blog/2024-6-20-post/)
+
+-   **Dynamic Simulation**
+
+    -   [Dynamic Simulation of Forest Growth](https://linusghanadan.github.io/blog/2024-6-10-post/)
+
+-   **Sensitivity Analysis**
+
+    -   [Global Sensitivity Analysis for an Atmospheric Conductance Model](https://linusghanadan.github.io/blog/2024-6-7-post/)
+
+-   **Gradient Descent** & **Random Forest**
+
+    -   [Building Regression Models to predict Dissolved Inorganic Carbon (DIC)](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
+
+    -   [Building Classification Models with data from Spotify Web API](https://linusghanadan.github.io/blog/2024-3-29-post/)
+
+-   **Cluster Analysis**
+
+    -   [Cluster Analysis of Bio-Contaminating Algae based on Metal Content](https://linusghanadan.github.io/blog/2024-4-1-post/)
+
+# Writing Portfolio
+
+-   **Professional Audience**
+
+    -   [Policy Memo on U.S. Offshore Wind Development](https://linusghanadan.github.io/writing/offshore-wind/offshore-wind.html) (written for internship with U.S. Department of Transportation)
+
+    -   [Policy Memo on Market-Based Climate Change Mitigation](https://linusghanadan.github.io/writing/carbon-pricing/carbon-pricing.html)
+
+-   **Academic Audience**
+
+    -   [Economic Analysis of EV Tax Credits from the Inflation Reduction Act](https://linusghanadan.github.io/writing/evs/ev.html)
+
+    -   [Ecology and Human Health in California\'s Central Valley: Historical Perceptions of a Complex Relationship](Ecology and Human Health in California’s Central Valley: Historical Perceptions of a Complex Relationship)
+
+-   **General Audience**
+
+    -   [The Ethics of Lawn Mowing](https://linusghanadan.github.io/writing/lawn-ethics/lawn-ethics.html)
