@@ -27,11 +27,11 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
 
 -   **Data Visualization**
 
-    -   [Infographic on Anthropogenic Methane Emissions in 2021](https://linusghanadan.github.io/blog/2024-3-12-post/)
+    -   [Infographic on Anthropogenic Methane Emissions](https://linusghanadan.github.io/blog/2024-3-12-post/)
 
 -   **Interactive Dashboards**
 
-    -   [Creating an Analytical Workflow for a Sock Manufacturer\'s Carbon Accounting and Sustainability Analysis](https://linusghanadan.github.io/blog/2024-6-20-post/)
+    -   [Creating an Analytical Workflow for a Sock Manufacturer's Carbon Accounting and Sustainability Analysis](https://linusghanadan.github.io/blog/2024-6-20-post/)
 
 -   **Dynamic Simulation**
 
@@ -40,16 +40,21 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
 -   **Sensitivity Analysis**
 
     -   [Global Sensitivity Analysis for an Atmospheric Conductance Model](https://linusghanadan.github.io/blog/2024-6-7-post/)
+    
+-   **Clustering**
 
--   **Gradient Descent** & **Random Forest**
+    -   [Cluster Analysis of Bio-Contaminating Algae](https://linusghanadan.github.io/blog/2024-4-1-post/)
 
-    -   [Building Regression Models to predict Dissolved Inorganic Carbon (DIC)](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
+-   **Ensemble Learning** (**Random Forest** & **Stochastic Gradient Boosted Trees**)
 
-    -   [Building Classification Models with data from Spotify Web API](https://linusghanadan.github.io/blog/2024-3-29-post/)
+    -   [Regression Models to predict Dissolved Inorganic Carbon using Ocean Chemistry features](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
 
--   **Cluster Analysis**
+    -   [Classification Models using data from Spotify Web API](https://linusghanadan.github.io/blog/2024-3-29-post/)
 
-    -   [Cluster Analysis of Bio-Contaminating Algae based on Metal Content](https://linusghanadan.github.io/blog/2024-4-1-post/)
+-   **Deep Learning** (**Recurrent Neural Network** & **Multilayer Perceptron**)
+
+    -   [Regression Models to predict Phosphorus Concentration based on Time and Location](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
+
 
 # Writing Portfolio
 
@@ -63,7 +68,7 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
 
     -   [Economic Analysis of EV Tax Credits from the Inflation Reduction Act](https://linusghanadan.github.io/writing/evs/ev.html)
 
-    -   [Ecology and Human Health in California\'s Central Valley: Historical Perceptions of a Complex Relationship](Ecology and Human Health in California’s Central Valley: Historical Perceptions of a Complex Relationship)
+    -   [Ecology and Human Health in California's Central Valley: Historical Perceptions of a Complex Relationship](Ecology%20and%20Human%20Health%20in%20California’s%20Central%20Valley:%20Historical%20Perceptions%20of%20a%20Complex%20Relationship)
 
 -   **General Audience**
 

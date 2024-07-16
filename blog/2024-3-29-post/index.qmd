@@ -1,5 +1,5 @@
 ---
-title: "Building Classification Models with data from Spotify Web API"
+title: "Classification Models using data from Spotify Web API"
 description: "In this blog post, I build and compare four classification models that predict whether a given song was in my Spotify collection or that of my friend Maxwell. I also analyze feature importances in the best performing model."
 author: 
   - name: Linus Ghanadan
@@ -9,8 +9,7 @@ author:
 date: 03-29-2024
 categories:
   - [Machine Learning]
-  - [Random Forest]
-  - [Gradient Descent]
+  - [Ensemble Learning]
   - [R]
 citation:
   url: https://linusghanadan.github.io/blog/2024-3-29-post/

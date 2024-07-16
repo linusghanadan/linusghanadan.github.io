@@ -1,12 +1,12 @@
 ---
-title: "Cluster Analysis of Bio-Contaminating Algae based on Metal Content"
-description: "To practice clustering analysis, I’ll use data from Roberts et al. 2008 on biological contaminants in Port Jackson Bay (located in Sydney, Australia). The data are measurements of metal content (Cd, Cr, Cu, Mn, and Ni) in two types of co-occurring algae at 10 sample sites around the bay."
+title: "Cluster Analysis of Bio-Contaminating Algae"
+description: "For clustering, I use data from Roberts et al. 2008 on biological contaminants in Port Jackson Bay."
 author: 
   - name: Linus Ghanadan
     url: https://linusghanadan.github.io/
     affiliation: MEDS
     affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
-date: 03-29-2024
+date: 04-01-2024
 categories:
   - [Machine Learning]
   - [Cluster Analysis]

@@ -1,5 +1,5 @@
 ---
-title: "Infographic on Anthropogenic Methane Emissions in 2021"
+title: "Infographic on Anthropogenic Methane Emissions"
 description: "This blog post explains the process of creating an infographic on anthropogenic methane emissions in 2021, with a particular focus on the data visualization considerations and choices made."
 author: 
   - name: Linus Ghanadan
