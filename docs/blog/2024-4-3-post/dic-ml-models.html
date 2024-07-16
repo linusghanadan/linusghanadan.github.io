@@ -8,9 +8,9 @@
 
 <meta name="author" content="Linus Ghanadan">
 <meta name="dcterms.date" content="2024-04-03">
-<meta name="description" content="For this blog post, I build and compare four regression models that predict dissolved inorganic carbon (DIC) in water samples. I also analyze feature importances in the best performing model.">
+<meta name="description" content="For this blog post, I build and compare four regression models that predict DIC in water samples. I also analyze feature importances in the best performing model.">
 
-<title>Linus Ghanadan - Building Regression Models to predict Dissolved Inorganic Carbon (DIC)</title>
+<title>Linus Ghanadan - Regression Models using Ensemble Learning to predict Dissolved Inorganic Carbon based on Ocean Chemistry features</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,16 +141,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Building Regression Models to predict Dissolved Inorganic Carbon (DIC)</h1>
+      <h1 class="title">Regression Models using Ensemble Learning to predict Dissolved Inorganic Carbon based on Ocean Chemistry features</h1>
                   <div>
         <div class="description">
-          For this blog post, I build and compare four regression models that predict dissolved inorganic carbon (DIC) in water samples. I also analyze feature importances in the best performing model.
+          For this blog post, I build and compare four regression models that predict DIC in water samples. I also analyze feature importances in the best performing model.
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">Machine Learning</div>
-                <div class="quarto-category">Random Forest</div>
-                <div class="quarto-category">Gradient Descent</div>
+                <div class="quarto-category">Ensemble Learning</div>
                 <div class="quarto-category">Python</div>
               </div>
                   </div>
@@ -192,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>In this blog post, I’ll build three different models that predict <strong>dissolved inorganic carbon (DIC)</strong> content in water samples. The features being used to make these predictions will be other ocean chemistry measurements that were also measured during water sampling. Our data set comes from the <strong>California Cooperative Oceanic Fisheries Investigations (CalCOFI)</strong>, an oceanographic and marine ecosystem research program located in California (<a href="https://calcofi.org/data/oceanographic-data/bottle-database/">link to data set source</a>). All water samples were taken off the California coast.</p>
+<p>In this blog post, I’ll build three different models that predict <strong>Dissolved Inorganic Carbon (DIC)</strong> content in water samples. The features being used to make these predictions will be other ocean chemistry measurements that were also measured during water sampling. Our data set comes from the <strong>California Cooperative Oceanic Fisheries Investigations (CalCOFI)</strong>, an oceanographic and marine ecosystem research program located in California (<a href="https://calcofi.org/data/oceanographic-data/bottle-database/">link to data set source</a>). All water samples were taken off the California coast.</p>
 <p>The first of the three models, which I’m including just for the sake of comparison, uses only a single decision tree. The other two models will be a random forest model and a stochastic gradient boosted (SGB) trees model.</p>
 </section>
 <section id="setup" class="level2">
@@ -484,15 +483,17 @@ Best parameters: {'gradientboostingregressor__learning_rate': 0.1, 'gradientboos
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2024,
   author = {Ghanadan, Linus},
-  title = {Building {Regression} {Models} to Predict {Dissolved}
-    {Inorganic} {Carbon} {(DIC)}},
+  title = {Regression {Models} Using {Ensemble} {Learning} to Predict
+    {Dissolved} {Inorganic} {Carbon} Based on {Ocean} {Chemistry}
+    Features},
   date = {2024-04-03},
   url = {https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ghanadan2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-Ghanadan, Linus. 2024. <span>“Building Regression Models to Predict
-Dissolved Inorganic Carbon (DIC).”</span> April 3, 2024. <a href="https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html">https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html</a>.
+Ghanadan, Linus. 2024. <span>“Regression Models Using Ensemble Learning
+to Predict Dissolved Inorganic Carbon Based on Ocean Chemistry
+Features.”</span> April 3, 2024. <a href="https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html">https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
