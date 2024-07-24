@@ -34,6 +34,16 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
     -   [Spatial Analysis of Biodiversity Changes in the City of Phoenix, Arizona (Python)](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
     
     -   [Spatial Analysis of PM 2.5 and Race Demographics in the State of Maryland (R)](https://linusghanadan.github.io/blog/2024-1-10-post/)
+    
+-   **Ensemble Learning**
+
+    -   [Regression Models to predict Dissolved Inorganic Carbon using Ocean Chemistry features (Python)](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
+
+    -   [Classification Models using data from Spotify Web API (R)](https://linusghanadan.github.io/blog/2024-3-29-post/)
+
+-   **Deep Learning**
+
+    -   [Regression Models to predict Phosphorus Concentration based on Time and Location (Python)](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
 
 -   **Dynamic Simulation**
 
@@ -46,17 +56,6 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
 -   **Clustering**
 
     -   [Cluster Analysis of Bio-Contaminating Algae (R)](https://linusghanadan.github.io/blog/2024-4-1-post/)
-
--   **Ensemble Learning** (**Random Forest** & **Stochastic Gradient Boosted Trees**)
-
-    -   [Regression Models to predict Dissolved Inorganic Carbon using Ocean Chemistry features (Python)](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
-
-    -   [Classification Models using data from Spotify Web API (R)](https://linusghanadan.github.io/blog/2024-3-29-post/)
-
--   **Deep Learning** (**Recurrent Neural Network** & **Multilayer Perceptron**)
-
-    -   [Regression Models to predict Phosphorus Concentration based on Time and Location (Python)](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
-
 
 # Writing Portfolio
 
