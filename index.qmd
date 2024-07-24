@@ -19,6 +19,10 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
     
 -   **Data Visualization**
 
+    -   [Highlighted Data Visualizations using Python](https://linusghanadan.github.io/blog/2024-7-23-post/)
+    
+    -   [Highlighted Data Visualization using R](https://linusghanadan.github.io/blog/2024-7-24-post/)
+
     -   [Infographic on Anthropogenic Methane Emissions](https://linusghanadan.github.io/blog/2024-3-12-post/)
     
 -   **Interactive Applications**

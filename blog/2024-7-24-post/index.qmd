@@ -1,0 +1,64 @@
+---
+title: "Highlighted Data Visualizations created using R"
+description: "A collection of data visualizations that I have created using the R programming language."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+    affiliation: MEDS
+    affiliation-url: https://ucsb-meds.github.io
+date: "July 24, 2024"
+categories:
+  - [Data Visualization]
+  - [R]
+image: nitrogen.jpeg
+citation:
+  url: https://linusghanadan.github.io/blog/2024-7-24-post/
+draft: false
+format:
+    html:
+        code-fold: false
+---
+
+## Time series visual for [Statistics Final Project](https://linusghanadan.github.io/blog/2023-12-12-post/)
+
+**Context for plot**: As a final project for my Statistics class, I conducted a 2010-2019 time series analysis of nitrogen concentration in Chesapeake Bay tidal regions using 43,809 nitrogen samples from 143 different monitoring stations. Using a STL decomposition model, a statistical technique that separates data into seasonal trend, non-seasonal trend, and random components, my analysis looks at what has  contributed to the variation in nitrogen levels over this span of time. Since 2010 marked the beginning of federal water quality requirements under the Clean Water Act, the goal of my analysis was mainly to identify any overarching non-seasonal trend in nitrogen levels.
+
+**Caption**: Each year, nitrogen concentrations increase sharply around December. They then peak around February to March, before decreasing substantially and reaching their minimum around July. When adjusted for seasonal and random components, there appears to be a positive trend over the course of 2018 and a negative trend over the course of 2019.
+
+![](nitrogen.jpeg)
+
+## Interactive sunburst plot for [Master's Capstone Project](https://linusghanadan.github.io/blog/2024-6-20-post/)
+
+**Context for plot**: As part of the interactive application that my capstone group made for the clothing manufacturer Darn Tough Vermont, we included this interactive sunburst plot for visualizing their greenhouse gas emissions for a given year in terms of scope, category, and input variable. Through clicking on a specific segment of the plot, the application user can access more granular data making up the selected segment. In addition, hovering allows the user to access the exact values for tons of emissions and percentage of total emissions.
+
+![](visualization-image.jpeg)
+
+## Treemap for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
+
+**Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
+
+**Caption**: The energy sector made up **55%** of global anthropocentric methane emissions in 2021, about half of which came from China, Russia, the U.S., Iran, and India. Meanwhile, agriculture and waste contributed **29%** and **14%** of global emissions, with the remaining **2%** coming from other sources.
+
+![](plot-1.jpeg)
+
+## Scatterplot for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
+
+**Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
+
+**Caption**: In terms of methane emissions per person, the EU and China were fairly similar to other countries, while the U.S., Canada, Australia, and Russia were significantly higher than most. The average American emitted **~150 tons**, more than three-times the **~50 tons** emitted by the average person living in the EU. The average Canadian emitted **~200 tons**, roughly equivalent to the total carbon footprint of a 48-hour private jet ride. Among the highlighted countries, Australia and Canada had the highest emissions per person, at **~300 tons**.
+
+![](plot-2.jpeg)
+
+## Bar plot for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
+
+**Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
+
+**Caption**: As a percent of country-level methane emissions, Russia's energy sector (**85%**) and Brazil's agricultural sector (**65%**) stand out as particularly high. Meanwhile, energy-related emissions in the EU (**29%**) and Brazil (**16%**) make up a relatively low share of their total emissions, compared to about 60-70% in China, the U.S., Canada, and Australia.
+
+![](plot-3.jpeg)
+
+## Chloropleth map for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-10-post/)
+
+**Context for plot**: For a project in my Geospatial Analysis class, I used data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen) to create this chloropleth maps analyzing the relationship between PM 2.5 concentrations and race demographics in Prince George's County, located northwest of Washington D.C. in Maryland.
+
+![](pg-map.png)
