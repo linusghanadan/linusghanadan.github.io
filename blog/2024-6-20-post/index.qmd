@@ -10,6 +10,7 @@ date: "June 20, 2024"
 categories:
   - [Analytical Workflows]
   - [Interactive Applications]
+  - [Data Visualization]
   - [Microsoft Excel]
   - [R]
 image: images/scenario-analysis.jpeg

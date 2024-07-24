@@ -1,5 +1,5 @@
 ---
-title: "Highlighted Data Visualizations created using R"
+title: "Visualization Portfolio (R)"
 description: "A collection of data visualizations that I have created using the R programming language."
 author: 
   - name: Linus Ghanadan
@@ -10,7 +10,7 @@ date: "July 24, 2024"
 categories:
   - [Data Visualization]
   - [R]
-image: screenshot-2.jpeg
+image: nitrogen.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/2024-7-24-post/
 draft: false

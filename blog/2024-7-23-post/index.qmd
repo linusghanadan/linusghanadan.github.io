@@ -1,5 +1,5 @@
 ---
-title: "Highlighted Data Visualizations created using Python"
+title: "Visualization Portfolio (Python)"
 description: "A collection of data visualizations that I have created using the Python programming language."
 author: 
   - name: Linus Ghanadan

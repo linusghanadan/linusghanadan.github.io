@@ -9,6 +9,12 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
 
 # Data Science Portfolio
 
+-   **Data Visualization**
+
+    -   [Visualization Portfolio (R)](https://linusghanadan.github.io/blog/2024-7-24-post/)
+    
+    -   [Visualization Portfolio (Python)](https://linusghanadan.github.io/blog/2024-7-23-post/)
+
 -   **Statistical Modeling**
 
     -   [Time Series Analysis of Nutrient Concentration in Chesapeake Bay](https://linusghanadan.github.io/blog/2023-12-12-post/)
@@ -16,14 +22,6 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
     -   [Using Panel Data Methods to analyze the impact of a Cash-Transfer Program](https://linusghanadan.github.io/blog/2024-3-6-post/)
 
     -   [Using Propensity Score Methods to analyze the impact of Catch Shares](https://linusghanadan.github.io/blog/2024-3-11-post/)
-    
--   **Data Visualization**
-
-    -   [Highlighted Data Visualizations using Python](https://linusghanadan.github.io/blog/2024-7-23-post/)
-    
-    -   [Highlighted Data Visualization using R](https://linusghanadan.github.io/blog/2024-7-24-post/)
-
-    -   [Infographic on Anthropogenic Methane Emissions](https://linusghanadan.github.io/blog/2024-3-12-post/)
     
 -   **Interactive Applications**
 
