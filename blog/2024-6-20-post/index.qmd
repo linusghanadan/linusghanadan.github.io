@@ -1,6 +1,6 @@
 ---
-title: "Creating an Analytical Workflow for a Sock Manufacturer’s Carbon Accounting and Sustainability Analysis"
-description: "As our Master's program capstone project, our team of four helped Darn Tough, a Vermont-based outdoor sock company, streamline their carbon accounting process."
+title: "Creating and Implementing an Analytical Workflow for a Clothing Manufacturer’s Carbon Accounting and Sustainability Analysis"
+description: "As our Master's program capstone project, our team of four helped Darn Tough, a Vermont-based outdoor clothing company, streamline their carbon accounting process."
 author: 
   - name: Linus Ghanadan, Flora Hamilton, Carly Caswell, Annie Adams
     url: https://linusghanadan.github.io/
@@ -9,7 +9,7 @@ author:
 date: "June 20, 2024"
 categories:
   - [Analytical Workflows]
-  - [Interactive Dashboards]
+  - [Interactive Applications]
   - [Microsoft Excel]
   - [R]
 image: images/scenario-analysis.jpeg
@@ -69,7 +69,7 @@ Our streamlined solution involved creating a simplified Excel input template wit
 
 To make these improvements user-friendly, we developed an emissions calculator application using Shiny. This app allows users to upload their data, select scopes, and calculate emissions effortlessly. It also provides downloadable outputs and interactive visualizations, making it easier to understand and manage carbon emissions.
 
-The new Emissions Calculator Dashboard makes it easier for Darn Tough to calculate their emissions. Users can upload data, select specific scopes, calculate emissions, and generate downloadable outputs and interactive visualizations all in one centralized interface.
+The new Emissions Calculator Application makes it easier for Darn Tough to calculate their emissions. Users can upload data, select specific scopes, calculate emissions, and generate downloadable outputs and interactive visualizations all in one centralized interface.
 
 ![Screenshot of interface for calculating emissions (with fake data)](images/dashboard-image.jpeg)
 
@@ -83,7 +83,7 @@ Beyond calculating emissions, our scenario analysis tool helps Darn Tough identi
 
 ### Moving Forward
 
-With the Carbon Emission Calculation Dashboard, Darn Tough is now equipped to calculate, visualize, and reduce their carbon emissions more efficiently. This streamlined process not only saves time but also allows the company to focus on broader sustainability initiatives. As Darn Tough continues to innovate and improve, we are confident that their best sock is yet to come, and that they have the tools necessary to meet their 2030 target.
+With the Carbon Emission Calculation Application, Darn Tough is now equipped to calculate, visualize, and reduce their carbon emissions more efficiently. This streamlined process not only saves time but also allows the company to focus on broader sustainability initiatives. As Darn Tough continues to innovate and improve, we are confident that their best sock is yet to come, and that they have the tools necessary to meet their 2030 target.
 
 ### My experience
 
