@@ -1146,5 +1146,47 @@
     "title": "Highlighted Data Visualizations created using Python",
     "section": "Heatmap for Geospatial Analysis Project (created using Python)",
     "text": "Heatmap for Geospatial Analysis Project (created using Python)\nContext for plot: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.\nCaption: The edges of certain areas in Phoenix, which had relatively high BII, decrease from &gt;0.75 to &lt;0.75. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix."
+  },
+  {
+    "objectID": "blog/2024-7-24-post/index.html#map-for-data-visualization-communication-final-project",
+    "href": "blog/2024-7-24-post/index.html#map-for-data-visualization-communication-final-project",
+    "title": "Highlighted Data Visualizations created using R",
+    "section": "Map for Data Visualization & Communication Final Project",
+    "text": "Map for Data Visualization & Communication Final Project\nContext for plot: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.\nCaption: Six countries and the European Union accounted for nearly half (47%) of anthropogenic methane emissions in 2021, while only containing 33% of global population."
+  },
+  {
+    "objectID": "blog/2024-7-23-post/index.html#time-series-visual-for-deep-learning-project",
+    "href": "blog/2024-7-23-post/index.html#time-series-visual-for-deep-learning-project",
+    "title": "Highlighted Data Visualizations created using Python",
+    "section": "",
+    "text": "Context for plot: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay. Created as plot shown here shows monthly concentration over time, indicating distinct seasonal trends in the data.\nCaption: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons."
+  },
+  {
+    "objectID": "blog/2024-7-23-post/index.html#scatterplots-for-deep-learning-project",
+    "href": "blog/2024-7-23-post/index.html#scatterplots-for-deep-learning-project",
+    "title": "Highlighted Data Visualizations created using Python",
+    "section": "Scatterplots for Deep Learning Project",
+    "text": "Scatterplots for Deep Learning Project\nContext for plot: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 nitrogen samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.\nCaption: From adding an additional 16-neuron dense layer with a ReLU activation function to our LSTM network architecture, we saw a 3.8% decrease in MAE and a 1.6% decrease in RMSE, suggesting that there are potential advantages from using a hybrid RNN-MLP model in this context. From these scatterplots of actual values and predicted values, it appears the reductions in MAE and RMSE can be attributed to enhanced outlier detection among actual concentration values &gt;0.15 mg/L."
+  },
+  {
+    "objectID": "blog/2024-7-23-post/index.html#bar-plot-for-ensemble-learning-project",
+    "href": "blog/2024-7-23-post/index.html#bar-plot-for-ensemble-learning-project",
+    "title": "Highlighted Data Visualizations created using Python",
+    "section": "Bar plot for Ensemble Learning Project",
+    "text": "Bar plot for Ensemble Learning Project\nContext for plot: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.\nCaption: The most important feature for predicting DIC in the random forest model was Sulfur trioxide (SiO3) concentration, with a feature importance over 0.7. This was significantly higher than the second most important feature, Phosphate (PO3) concentration, which had a feature importance of close to 0.2. The third and fourth most important features, reported Oxygen concentration and Nitrate (NO3) concentration, only had a features importance of about 0.03."
+  },
+  {
+    "objectID": "blog/2024-7-23-post/index.html#correlation-heatmap-for-ensemble-learning-project",
+    "href": "blog/2024-7-23-post/index.html#correlation-heatmap-for-ensemble-learning-project",
+    "title": "Highlighted Data Visualizations created using Python",
+    "section": "Correlation Heatmap for Ensemble Learning Project",
+    "text": "Correlation Heatmap for Ensemble Learning Project\nContext for plot: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.\nCaption: Based on this correlation heatmap, the variables ‘Temperature_degC’ (correlation with ‘R_TEMP’ is 1) and ‘R_Nuts’ (correlation with ‘NH3uM’ is 1) were removed from the feature matrix due to high correlation with the target variable."
+  },
+  {
+    "objectID": "blog/2024-7-23-post/index.html#heatmap-for-geospatial-analysis-project",
+    "href": "blog/2024-7-23-post/index.html#heatmap-for-geospatial-analysis-project",
+    "title": "Highlighted Data Visualizations created using Python",
+    "section": "Heatmap for Geospatial Analysis Project",
+    "text": "Heatmap for Geospatial Analysis Project\nContext for plot: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.\nCaption: The edges of certain areas in Phoenix, which had relatively high BII, decrease from &gt;0.75 to &lt;0.75. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix."
   }
 ]

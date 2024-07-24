@@ -10,7 +10,7 @@ date: "July 24, 2024"
 categories:
   - [Data Visualization]
   - [R]
-image: nitrogen.jpeg
+image: screenshot-2.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/2024-7-24-post/
 draft: false
@@ -56,6 +56,14 @@ format:
 **Caption**: As a percent of country-level methane emissions, Russia's energy sector (**85%**) and Brazil's agricultural sector (**65%**) stand out as particularly high. Meanwhile, energy-related emissions in the EU (**29%**) and Brazil (**16%**) make up a relatively low share of their total emissions, compared to about 60-70% in China, the U.S., Canada, and Australia.
 
 ![](plot-3.jpeg)
+
+## Map for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
+
+**Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
+
+**Caption**: Six countries and the European Union accounted for nearly half (**47%**) of anthropogenic methane emissions in 2021, while only containing **33%** of global population.
+
+![](world.jpeg)
 
 ## Chloropleth map for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-10-post/)
 

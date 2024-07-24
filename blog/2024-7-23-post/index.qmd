@@ -10,7 +10,7 @@ date: "July 23, 2024"
 categories:
   - [Data Visualization]
   - [Python]
-image: time-series.png
+image: heatmap.png
 citation:
   url: https://linusghanadan.github.io/blog/2024-7-23-post/
 draft: false
@@ -19,7 +19,7 @@ format:
         code-fold: false
 ---
 
-## Time series visual for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html) (created using Python)
+## Time series visual for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
 
 **Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay. Created as  plot shown here shows monthly concentration over time, indicating distinct seasonal trends in the data.
 
@@ -27,7 +27,7 @@ format:
 
 ![](time-series.png)
 
-## Scatterplots for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html) (created using Python)
+## Scatterplots for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
 
 **Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 nitrogen samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
 
@@ -35,15 +35,15 @@ format:
 
 ![](deep-learning.jpeg)
 
-## Bar plot for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2023-12-11-post/mt-whitney-land-cover.html) (created using Python)
+## Bar plot for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
 
-**Context for plot**: In this project from my Geospatial Analysis class, I extracted land cover statistics for the area surrounding Mount Whitney in California. My data came from a U.S. Geological Survey (USGS) raster dataset on land cover classification.
+**Context for plot**: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
 
-**Caption**: Of any one class, Mediterranean California Alpine Bedrock and Scree takes up the most land, constituting just over **15%** of the analysis area. California Central Valley and Southern Coastal Grassland, Sierra Nevada Subalpine Lodgepole Pine Forest and Woodland, and Mediterranean California Mesic Mixed Conifer Forest and Woodland each make up about **8-10%** of the area.
+**Caption**: The most important feature for predicting DIC in the random forest model was Sulfur trioxide (SiO3) concentration, with a feature importance over **0.7**. This was significantly higher than the second most important feature, Phosphate (PO3) concentration, which had a feature importance of close to **0.2**. The third and fourth most important features, reported Oxygen concentration and Nitrate (NO3) concentration, only had a features importance of about **0.03**.
 
-![](cover-class.png)
+![](screenshot-4.png)
 
-## Correlation Heatmap for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html) (created using Python)
+## Correlation Heatmap for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
 
 **Context for plot**: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
 
@@ -51,7 +51,7 @@ format:
 
 ![](heatmap.png)
 
-## Heatmap for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html) (created using Python)
+## Heatmap for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
 
 **Context for plot**: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.
 
