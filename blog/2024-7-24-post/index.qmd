@@ -33,6 +33,14 @@ format:
 
 ![](visualization-image.jpeg)
 
+## Chloropleth maps for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-20-post/)
+
+**Context for plots**: For a project in my Geospatial Analysis class, I used data from the NASA's VIIRS instrument to conduct a spatial analysis of the 2021 Houston Power Crisis. Specifically, I looked at census tracts in the Houston metropolitan area where residential blackouts occurred and how this relates to median income of census tracts.
+
+![](blackouts.jpeg)
+
+![](income.jpeg)
+
 ## Treemap for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
 
 **Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
@@ -56,15 +64,3 @@ format:
 **Caption**: As a percent of country-level methane emissions, Russia's energy sector (**85%**) and Brazil's agricultural sector (**65%**) stand out as particularly high. Meanwhile, energy-related emissions in the EU (**29%**) and Brazil (**16%**) make up a relatively low share of their total emissions, compared to about 60-70% in China, the U.S., Canada, and Australia.
 
 ![](plot-3.jpeg)
-
-## Map for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-20-post/)
-
-**Context for plot**: For a project in my Geospatial Analysis class, I used data from the NASA’s VIIRS instrument to conduct a spatial analysis of the 2021 Houston Power Crisis. Specifically, I looked at census tracts in the Houston metropolitan area where residential blackouts occurred and how this relates to median income of census tracts.
-
-![](blackouts.jpeg)
-
-## Chloropleth map for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-20-post/)
-
-**Context for plot**: For a project in my Geospatial Analysis class, I used data from the NASA’s VIIRS instrument to conduct a spatial analysis of the 2021 Houston Power Crisis. Specifically, I looked at census tracts in the Houston metropolitan area where residential blackouts occurred and how this relates to median income of census tracts.
-
-![](income.jpeg)

@@ -1110,7 +1110,7 @@
     "href": "blog/2024-7-23-post/index.html",
     "title": "Visualization Portfolio (Python)",
     "section": "",
-    "text": "Context for plot: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.\nCaption: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons."
+    "text": "Context for plot: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.\nCaption: The edges of certain areas in Phoenix, which had relatively high BII, decrease from &gt;0.75 to &lt;0.75. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix."
   },
   {
     "objectID": "blog/2024-7-23-post/index.html#time-series-visual-for-deep-learning-project-created-using-python",
@@ -1158,8 +1158,8 @@
     "objectID": "blog/2024-7-23-post/index.html#time-series-visual-for-deep-learning-project",
     "href": "blog/2024-7-23-post/index.html#time-series-visual-for-deep-learning-project",
     "title": "Visualization Portfolio (Python)",
-    "section": "",
-    "text": "Context for plot: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.\nCaption: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons."
+    "section": "Time series visual for Deep Learning Project",
+    "text": "Time series visual for Deep Learning Project\nContext for plot: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.\nCaption: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons."
   },
   {
     "objectID": "blog/2024-7-23-post/index.html#scatterplots-for-deep-learning-project",
@@ -1186,8 +1186,8 @@
     "objectID": "blog/2024-7-23-post/index.html#heatmap-for-geospatial-analysis-project",
     "href": "blog/2024-7-23-post/index.html#heatmap-for-geospatial-analysis-project",
     "title": "Visualization Portfolio (Python)",
-    "section": "Heatmap for Geospatial Analysis Project",
-    "text": "Heatmap for Geospatial Analysis Project\nContext for plot: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.\nCaption: The edges of certain areas in Phoenix, which had relatively high BII, decrease from &gt;0.75 to &lt;0.75. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix."
+    "section": "",
+    "text": "Context for plot: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.\nCaption: The edges of certain areas in Phoenix, which had relatively high BII, decrease from &gt;0.75 to &lt;0.75. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix."
   },
   {
     "objectID": "blog/2024-1-20-post/index.html#purpose",
@@ -1237,5 +1237,12 @@
     "title": "Visualization Portfolio (R)",
     "section": "Map for Geospatial Analysis Project",
     "text": "Map for Geospatial Analysis Project\nContext for plot: For a project in my Geospatial Analysis class, I used data from the NASA’s VIIRS instrument to conduct a spatial analysis of the 2021 Houston Power Crisis. Specifically, I looked at census tracts in the Houston metropolitan area where residential blackouts occurred and how this relates to median income of census tracts."
+  },
+  {
+    "objectID": "blog/2024-7-24-post/index.html#chloropleth-maps-for-geospatial-analysis-project",
+    "href": "blog/2024-7-24-post/index.html#chloropleth-maps-for-geospatial-analysis-project",
+    "title": "Visualization Portfolio (R)",
+    "section": "Chloropleth maps for Geospatial Analysis Project",
+    "text": "Chloropleth maps for Geospatial Analysis Project\nContext for plots: For a project in my Geospatial Analysis class, I used data from the NASA’s VIIRS instrument to conduct a spatial analysis of the 2021 Houston Power Crisis. Specifically, I looked at census tracts in the Houston metropolitan area where residential blackouts occurred and how this relates to median income of census tracts."
   }
 ]

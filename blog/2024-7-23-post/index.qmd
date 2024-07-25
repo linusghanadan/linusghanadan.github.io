@@ -19,6 +19,14 @@ format:
         code-fold: false
 ---
 
+## Heatmap for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
+
+**Context for plot**: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.
+
+**Caption**: The edges of certain areas in Phoenix, which had relatively high BII, decrease from **\>0.75** to **\<0.75**. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix.
+
+![](phoenix_biodiversity.jpeg)
+
 ## Time series visual for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
 
 **Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
@@ -50,11 +58,3 @@ format:
 **Caption**: The most important feature for predicting DIC in the random forest model was Sulfur trioxide (SiO3) concentration, with a feature importance over **0.7**. This was significantly higher than the second most important feature, Phosphate (PO3) concentration, which had a feature importance of close to **0.2**. The third and fourth most important features, reported Oxygen concentration and Nitrate (NO3) concentration, only had a features importance of about **0.03**.
 
 ![](screenshot-4.jpeg)
-
-## Heatmap for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
-
-**Context for plot**: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.
-
-**Caption**: The edges of certain areas in Phoenix, which had relatively high BII, decrease from **\>0.75** to **\<0.75**. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix.
-
-![](phoenix_biodiversity.jpeg)
