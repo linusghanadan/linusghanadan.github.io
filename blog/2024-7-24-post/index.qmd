@@ -37,7 +37,7 @@ format:
 
 **Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
 
-**Caption**: The energy sector made up **55%** of global anthropocentric methane emissions in 2021, about half of which came from China, Russia, the U.S., Iran, and India. Meanwhile, agriculture and waste contributed **29%** and **14%** of global emissions, with the remaining **2%** coming from other sources.
+**Caption**: The energy sector made up **55%** of global anthropogenic methane emissions in 2021, about half of which came from China, Russia, the U.S., Iran, and India. Meanwhile, agriculture and waste contributed **29%** and **14%** of global emissions, with the remaining **2%** coming from other sources.
 
 ![](plot-1.jpeg)
 
