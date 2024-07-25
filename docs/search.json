@@ -1110,7 +1110,7 @@
     "href": "blog/2024-7-23-post/index.html",
     "title": "Visualization Portfolio (Python)",
     "section": "",
-    "text": "Context for plot: For a project in my Geospatial Analysis class, I retrieved grid-cell data on Phoenix’s Biodiversity Intactness Index (BII), which is a score rating an area of land’s biodiversity from 0 to 1. The purpose of this analysis was to better understand and visualize biodiversity in Phoenix, as well as highlight areas where biodiversity declined from being highly biodiverse (BII&gt;0.75) in 2017 to being only moderately biodiverse (BII&lt;0.75) in 2020.\nCaption: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas experienced a decrease in BII from 2017 to 2020, with BII being &gt;0.75 in 2017 and &lt;0.75 in 2020 (shown in red)."
+    "text": "Context for plot: For a project in my Geospatial Analysis class, I retrieved grid-cell data on Phoenix’s Biodiversity Intactness Index (BII), which is a score rating an area of land’s biodiversity from 0 to 1. The purpose of this analysis was to better understand 2020 biodiversity in Phoenix, as well as how biodiversity had changed since 2017.\nCaption: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas declined from being highly biodiverse (BII&gt;0.75) in 2017 to being only moderately biodiverse (0.75&gt;BII&gt;0.5) in 2020 (shown in red)."
   },
   {
     "objectID": "blog/2024-7-23-post/index.html#time-series-visual-for-deep-learning-project-created-using-python",
@@ -1187,7 +1187,7 @@
     "href": "blog/2024-7-23-post/index.html#heatmap-for-geospatial-analysis-project",
     "title": "Visualization Portfolio (Python)",
     "section": "",
-    "text": "Context for plot: For a project in my Geospatial Analysis class, I retrieved grid-cell data on Phoenix’s Biodiversity Intactness Index (BII), which is a score rating an area of land’s biodiversity from 0 to 1. The purpose of this analysis was to better understand and visualize biodiversity in Phoenix, as well as highlight areas where biodiversity declined from being highly biodiverse (BII&gt;0.75) in 2017 to being only moderately biodiverse (BII&lt;0.75) in 2020.\nCaption: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas experienced a decrease in BII from 2017 to 2020, with BII being &gt;0.75 in 2017 and &lt;0.75 in 2020 (shown in red)."
+    "text": "Context for plot: For a project in my Geospatial Analysis class, I retrieved grid-cell data on Phoenix’s Biodiversity Intactness Index (BII), which is a score rating an area of land’s biodiversity from 0 to 1. The purpose of this analysis was to better understand 2020 biodiversity in Phoenix, as well as how biodiversity had changed since 2017.\nCaption: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas declined from being highly biodiverse (BII&gt;0.75) in 2017 to being only moderately biodiverse (0.75&gt;BII&gt;0.5) in 2020 (shown in red)."
   },
   {
     "objectID": "blog/2024-1-20-post/index.html#purpose",
