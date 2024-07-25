@@ -21,7 +21,7 @@ format:
 
 ## Time series visual for [Statistics Final Project](https://linusghanadan.github.io/blog/2023-12-12-post/)
 
-**Context for plot**: As a final project for my Statistics class, I conducted a 2010-2019 time series analysis of nitrogen concentration in Chesapeake Bay tidal regions using 43,809 nitrogen samples from 143 different monitoring stations. Using a STL decomposition model, a statistical technique that separates data into seasonal trend, non-seasonal trend, and random components, my analysis looks at what has  contributed to the variation in nitrogen levels over this span of time. Since 2010 marked the beginning of federal water quality requirements under the Clean Water Act, the goal of my analysis was mainly to identify any overarching non-seasonal trend in nitrogen levels.
+**Context for plot**: As a final project for my Statistics class, I conducted a 2010-2019 time series analysis of nitrogen concentration in Chesapeake Bay tidal regions using 43,809 nitrogen samples from 143 different monitoring stations. Using a STL decomposition model, a statistical technique that separates data into seasonal trend, non-seasonal trend, and random components, my analysis looks at what has contributed to the variation in nitrogen levels over this span of time. Since 2010 marked the beginning of federal water quality requirements under the Clean Water Act, the goal of my analysis was mainly to identify any overarching non-seasonal trend in nitrogen levels.
 
 **Caption**: Each year, nitrogen concentrations increase sharply around December. They then peak around February to March, before decreasing substantially and reaching their minimum around July. When adjusted for seasonal and random components, there appears to be a positive trend over the course of 2018 and a negative trend over the course of 2019.
 
@@ -45,7 +45,7 @@ format:
 
 **Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
 
-**Caption**: In terms of methane emissions per person, the EU and China were fairly similar to other countries, while the U.S., Canada, Australia, and Russia were significantly higher than most. The average American emitted **~150 tons**, more than three-times the **~50 tons** emitted by the average person living in the EU. The average Canadian emitted **~200 tons**, roughly equivalent to the total carbon footprint of a 48-hour private jet ride. Among the highlighted countries, Australia and Canada had the highest emissions per person, at **~300 tons**.
+**Caption**: In terms of methane emissions per person, the EU and China were fairly similar to other countries, while the U.S., Canada, Australia, and Russia were significantly higher than most. The average American emitted **\~150 tons**, more than three-times the **\~50 tons** emitted by the average person living in the EU. The average Canadian emitted **\~200 tons**, roughly equivalent to the total carbon footprint of a 48-hour private jet ride. Among the highlighted countries, Australia and Canada had the highest emissions per person, at **\~300 tons**.
 
 ![](plot-2.jpeg)
 
@@ -57,16 +57,14 @@ format:
 
 ![](plot-3.jpeg)
 
-## Map for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
+## Map for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-20-post/)
 
-**Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
+**Context for plot**: For a project in my Geospatial Analysis class, I used data from the NASA’s VIIRS instrument to conduct a spatial analysis of the 2021 Houston Power Crisis. Specifically, I looked at census tracts in the Houston metropolitan area where residential blackouts occurred and how this relates to median income of census tracts.
 
-**Caption**: Six countries and the European Union accounted for nearly half (**47%**) of anthropogenic methane emissions in 2021, while only containing **33%** of global population.
+![](blackouts.jpeg)
 
-![](world.jpeg)
+## Chloropleth map for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-20-post/)
 
-## Chloropleth map for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-10-post/)
+**Context for plot**: For a project in my Geospatial Analysis class, I used data from the NASA’s VIIRS instrument to conduct a spatial analysis of the 2021 Houston Power Crisis. Specifically, I looked at census tracts in the Houston metropolitan area where residential blackouts occurred and how this relates to median income of census tracts.
 
-**Context for plot**: For a project in my Geospatial Analysis class, I used data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen) to create this chloropleth maps analyzing the relationship between PM 2.5 concentrations and race demographics among counties in the State of Maryland.
-
-![](cell.png)
+![](income.jpeg)

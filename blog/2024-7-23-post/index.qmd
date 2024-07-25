@@ -10,7 +10,7 @@ date: "July 23, 2024"
 categories:
   - [Data Visualization]
   - [Python]
-image: heatmap.png
+image: heatmap.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/2024-7-23-post/
 draft: false
@@ -25,24 +25,23 @@ format:
 
 **Caption**: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons.
 
-![](time-series.png)
+![](time-series.jpeg)
 
 ## Scatterplots for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
 
 **Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 nitrogen samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
 
-**Caption**: From adding an additional 16-neuron dense layer with a ReLU activation function to our LSTM network architecture, we saw a **3.8%** decrease in MAE and a **1.6%** decrease in RMSE, suggesting that there are potential advantages from using a hybrid RNN-MLP model in this context. From these scatterplots of actual values and predicted values, it appears the reductions in MAE and RMSE can be attributed to **enhanced outlier detection** among actual concentration values >0.15 mg/L.
+**Caption**: From adding an additional 16-neuron dense layer with a ReLU activation function to our LSTM network architecture, we saw a **3.8%** decrease in MAE and a **1.6%** decrease in RMSE, suggesting that there are potential advantages from using a hybrid RNN-MLP model in this context. From these scatterplots of actual values and predicted values, it appears the reductions in MAE and RMSE can be attributed to **enhanced outlier detection** among actual concentration values \>0.15 mg/L.
 
 ![](deep-learning.jpeg)
-
 
 ## Correlation Heatmap for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
 
 **Context for plot**: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
 
-**Caption**: Based on this correlation heatmap, the variables ‘Temperature_degC’ (correlation with ‘R_TEMP’ is 1) and ‘R_Nuts’ (correlation with ‘NH3uM’ is 1) were removed from the feature matrix due to high correlation with the target variable.
+**Caption**: Based on this correlation heatmap, the variables 'Temperature_degC' (correlation with 'R_TEMP' is 1) and 'R_Nuts' (correlation with 'NH3uM' is 1) were removed from the feature matrix due to high correlation with the target variable.
 
-![](heatmap.png)
+![](heatmap.jpeg)
 
 ## Bar plot for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
 
@@ -50,12 +49,12 @@ format:
 
 **Caption**: The most important feature for predicting DIC in the random forest model was Sulfur trioxide (SiO3) concentration, with a feature importance over **0.7**. This was significantly higher than the second most important feature, Phosphate (PO3) concentration, which had a feature importance of close to **0.2**. The third and fourth most important features, reported Oxygen concentration and Nitrate (NO3) concentration, only had a features importance of about **0.03**.
 
-![](screenshot-4.png)
+![](screenshot-4.jpeg)
 
 ## Heatmap for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
 
 **Context for plot**: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.
 
-**Caption**: The edges of certain areas in Phoenix, which had relatively high BII, decrease from **>0.75** to **<0.75**. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix.
+**Caption**: The edges of certain areas in Phoenix, which had relatively high BII, decrease from **\>0.75** to **\<0.75**. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix.
 
 ![](phoenix_biodiversity.jpeg)

@@ -29,17 +29,19 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
     
 -   **Geospatial Analysis**
 
-    -   [Land Cover Analysis around Mount Whitney (Python)](https://linusghanadan.github.io/blog/2023-12-11-post/mt-whitney-land-cover.html)
+    -   [Spatial Analysis of 2021 Houston Power Crisis (R)](https://linusghanadan.github.io/blog/2024-1-20-post/)
+    
+    -   [Spatial Analysis of PM 2.5 and Race Demographics in the State of Maryland (R)](https://linusghanadan.github.io/blog/2024-1-10-post/)
 
     -   [Spatial Analysis of Biodiversity Changes in the City of Phoenix, Arizona (Python)](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
     
-    -   [Spatial Analysis of PM 2.5 and Race Demographics in the State of Maryland (R)](https://linusghanadan.github.io/blog/2024-1-10-post/)
+    -   [Land Cover Analysis around Mount Whitney (Python)](https://linusghanadan.github.io/blog/2023-12-11-post/mt-whitney-land-cover.html)
     
 -   **Ensemble Learning**
 
-    -   [Regression Models to predict Dissolved Inorganic Carbon using Ocean Chemistry features (Python)](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
-
     -   [Classification Models using data from Spotify Web API (R)](https://linusghanadan.github.io/blog/2024-3-29-post/)
+
+    -   [Regression Models to predict Dissolved Inorganic Carbon using Ocean Chemistry features (Python)](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
 
 -   **Deep Learning**
 
