@@ -67,6 +67,6 @@ format:
 
 ## Chloropleth map for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-10-post/)
 
-**Context for plot**: For a project in my Geospatial Analysis class, I used data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen) to create this chloropleth maps analyzing the relationship between PM 2.5 concentrations and race demographics in Prince George's County, located northwest of Washington D.C. in Maryland.
+**Context for plot**: For a project in my Geospatial Analysis class, I used data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen) to create this chloropleth maps analyzing the relationship between PM 2.5 concentrations and race demographics among counties in the State of Maryland.
 
-![](pg-map.png)
+![](cell.png)

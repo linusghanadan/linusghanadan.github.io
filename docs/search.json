@@ -1103,7 +1103,7 @@
     "href": "blog/2024-7-24-post/index.html#chloropleth-map-for-geospatial-analysis-project",
     "title": "Visualization Portfolio (R)",
     "section": "Chloropleth map for Geospatial Analysis Project",
-    "text": "Chloropleth map for Geospatial Analysis Project\nContext for plot: For a project in my Geospatial Analysis class, I used data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen) to create this chloropleth maps analyzing the relationship between PM 2.5 concentrations and race demographics in Prince George’s County, located northwest of Washington D.C. in Maryland."
+    "text": "Chloropleth map for Geospatial Analysis Project\nContext for plot: For a project in my Geospatial Analysis class, I used data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen) to create this chloropleth maps analyzing the relationship between PM 2.5 concentrations and race demographics among counties in the State of Maryland."
   },
   {
     "objectID": "blog/2024-7-23-post/index.html",
