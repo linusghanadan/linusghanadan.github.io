@@ -21,9 +21,9 @@ format:
 
 ## Heatmap for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
 
-**Context for plot**: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.
+**Context for plot**: For a project in my Geospatial Analysis class, I retrieved grid-cell data on Phoenix's Biodiversity Intactness Index (BII), which is a score rating an area of land's biodiversity from 0 to 1. The purpose of this analysis was to better understand and visualize biodiversity in Phoenix, as well as highlight areas where biodiversity declined from being highly biodiverse (BII>0.75) in 2017 to being only moderately biodiverse (BII<0.75) in 2020.
 
-**Caption**: The edges of certain areas in Phoenix, which had relatively high BII, decrease from **\>0.75** to **\<0.75**. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix.
+**Caption**: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas experienced a decrease in BII from 2017 to 2020, with BII being >0.75 in 2017 and <0.75 in 2020 (shown in red).
 
 ![](phoenix_biodiversity.jpeg)
 
@@ -31,7 +31,7 @@ format:
 
 **Context for plot**: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
 
-**Caption**: Based on this correlation heatmap, the variables 'Temperature_degC' (correlation with 'R_TEMP' is 1) and 'R_Nuts' (correlation with 'NH3uM' is 1) were removed from the feature matrix due to high correlation with the target variable.
+**Caption**: Based on this correlation heatmap, the variables **Temperature_degC** and **R_Nuts** were removed from the feature matrix due to high correlation with the target variable.
 
 ![](heatmap.jpeg)
 

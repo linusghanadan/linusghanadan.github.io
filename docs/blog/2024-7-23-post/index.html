@@ -162,14 +162,14 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="heatmap-for-geospatial-analysis-project" class="level2">
 <h2 class="anchored" data-anchor-id="heatmap-for-geospatial-analysis-project">Heatmap for <a href="https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html">Geospatial Analysis Project</a></h2>
-<p><strong>Context for plot</strong>: For a project in my Geospatial Analysis class, I retrieved raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer catalog. This allowed me to calculate areas of interest based on changes in biodiversity and show my results on a heatmap.</p>
-<p><strong>Caption</strong>: The edges of certain areas in Phoenix, which had relatively high BII, decrease from <strong>&gt;0.75</strong> to <strong>&lt;0.75</strong>. In particular, this can be seen in the North East area of Phoenix, in addition to one spot in South Central Phoenix.</p>
+<p><strong>Context for plot</strong>: For a project in my Geospatial Analysis class, I retrieved grid-cell data on Phoenix’s Biodiversity Intactness Index (BII), which is a score rating an area of land’s biodiversity from 0 to 1. The purpose of this analysis was to better understand and visualize biodiversity in Phoenix, as well as highlight areas where biodiversity declined from being highly biodiverse (BII&gt;0.75) in 2017 to being only moderately biodiverse (BII&lt;0.75) in 2020.</p>
+<p><strong>Caption</strong>: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas experienced a decrease in BII from 2017 to 2020, with BII being &gt;0.75 in 2017 and &lt;0.75 in 2020 (shown in red).</p>
 <p><img src="phoenix_biodiversity.jpeg" class="img-fluid"></p>
 </section>
 <section id="correlation-heatmap-for-ensemble-learning-project" class="level2">
 <h2 class="anchored" data-anchor-id="correlation-heatmap-for-ensemble-learning-project">Correlation Heatmap for <a href="https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html">Ensemble Learning Project</a></h2>
 <p><strong>Context for plot</strong>: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.</p>
-<p><strong>Caption</strong>: Based on this correlation heatmap, the variables ‘Temperature_degC’ (correlation with ‘R_TEMP’ is 1) and ‘R_Nuts’ (correlation with ‘NH3uM’ is 1) were removed from the feature matrix due to high correlation with the target variable.</p>
+<p><strong>Caption</strong>: Based on this correlation heatmap, the variables <strong>Temperature_degC</strong> and <strong>R_Nuts</strong> were removed from the feature matrix due to high correlation with the target variable.</p>
 <p><img src="heatmap.jpeg" class="img-fluid"></p>
 </section>
 <section id="bar-plot-for-ensemble-learning-project" class="level2">

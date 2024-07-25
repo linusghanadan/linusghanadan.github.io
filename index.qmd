@@ -12,7 +12,7 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
 -   **Data Visualization**
 
     -   [Visualization Portfolio (R)](https://linusghanadan.github.io/blog/2024-7-24-post/)
-    
+
     -   [Visualization Portfolio (Python)](https://linusghanadan.github.io/blog/2024-7-23-post/)
 
 -   **Statistical Modeling**
@@ -21,22 +21,22 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
 
     -   [Using Panel Data Methods to analyze the impact of a Cash-Transfer Program (R)](https://linusghanadan.github.io/blog/2024-3-6-post/)
 
-    -   [Using Propensity Score Methods to analyze the impact of Catch Shares (R)](https://linusghanadan.github.io/blog/2024-3-11-post/)
-    
+    -   [Using Propensity Score Methods to analyze the impact of Catch Share Policies (R)](https://linusghanadan.github.io/blog/2024-3-11-post/)
+
 -   **Interactive Applications**
 
     -   [Creating and Implementing an Analytical Workflow for a Clothing Manufacturer's Carbon Accounting and Sustainability Analysis (R)](https://linusghanadan.github.io/blog/2024-6-20-post/)
-    
+
 -   **Geospatial Analysis**
 
     -   [Spatial Analysis of 2021 Houston Power Crisis (R)](https://linusghanadan.github.io/blog/2024-1-20-post/)
-    
-    -   [Spatial Analysis of PM 2.5 and Race Demographics in the State of Maryland (R)](https://linusghanadan.github.io/blog/2024-1-10-post/)
 
-    -   [Spatial Analysis of Biodiversity Changes in the City of Phoenix, Arizona (Python)](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
-    
+    -   [Spatial Analysis of PM 2.5 in Maryland (R)](https://linusghanadan.github.io/blog/2024-1-10-post/)
+
+    -   [Spatial Analysis of Biodiversity in Phoenix (Python)](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
+
     -   [Land Cover Analysis around Mount Whitney (Python)](https://linusghanadan.github.io/blog/2023-12-11-post/mt-whitney-land-cover.html)
-    
+
 -   **Ensemble Learning**
 
     -   [Classification Models using data from Spotify Web API (R)](https://linusghanadan.github.io/blog/2024-3-29-post/)
@@ -50,11 +50,11 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
 -   **Dynamic Simulation**
 
     -   [Dynamic Simulation of Forest Growth (R)](https://linusghanadan.github.io/blog/2024-6-10-post/)
-    
+
 -   **Sensitivity Analysis**
 
     -   [Global Sensitivity Analysis for an Atmospheric Conductance Model (R)](https://linusghanadan.github.io/blog/2024-6-7-post/)
-    
+
 -   **Clustering**
 
     -   [Cluster Analysis of Bio-Contaminating Algae (R)](https://linusghanadan.github.io/blog/2024-4-1-post/)
