@@ -27,22 +27,6 @@ format:
 
 ![](phoenix_biodiversity.jpeg)
 
-## Time series visual for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
-
-**Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
-
-**Caption**: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons.
-
-![](time-series.jpeg)
-
-## Scatterplots for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
-
-**Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 nitrogen samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
-
-**Caption**: From adding an additional 16-neuron dense layer with a ReLU activation function to our LSTM network architecture, we saw a **3.8%** decrease in MAE and a **1.6%** decrease in RMSE, suggesting that there are potential advantages from using a hybrid RNN-MLP model in this context. From these scatterplots of actual values and predicted values, it appears the reductions in MAE and RMSE can be attributed to **enhanced outlier detection** among actual concentration values \>0.15 mg/L.
-
-![](deep-learning.jpeg)
-
 ## Correlation Heatmap for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
 
 **Context for plot**: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
@@ -58,3 +42,19 @@ format:
 **Caption**: The most important feature for predicting DIC in the random forest model was Sulfur trioxide (SiO3) concentration, with a feature importance over **0.7**. This was significantly higher than the second most important feature, Phosphate (PO3) concentration, which had a feature importance of close to **0.2**. The third and fourth most important features, reported Oxygen concentration and Nitrate (NO3) concentration, only had a features importance of about **0.03**.
 
 ![](screenshot-4.jpeg)
+
+## Time series visual for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
+
+**Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
+
+**Caption**: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons.
+
+![](time-series.jpeg)
+
+## Scatterplots for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
+
+**Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 nitrogen samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
+
+**Caption**: From adding an additional 16-neuron dense layer with a ReLU activation function to our LSTM network architecture, we saw a **3.8%** decrease in MAE and a **1.6%** decrease in RMSE, suggesting that there are potential advantages from using a hybrid RNN-MLP model in this context. From these scatterplots of actual values and predicted values, it appears the reductions in MAE and RMSE can be attributed to **enhanced outlier detection** among actual concentration values >0.15 mg/L.
+
+![](deep-learning.jpeg)
