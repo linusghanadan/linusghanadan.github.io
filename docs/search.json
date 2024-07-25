@@ -1110,7 +1110,7 @@
     "href": "blog/2024-7-23-post/index.html",
     "title": "Visualization Portfolio (Python)",
     "section": "",
-    "text": "Context for plot: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay. Created as plot shown here shows monthly concentration over time, indicating distinct seasonal trends in the data.\nCaption: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons."
+    "text": "Context for plot: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.\nCaption: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons."
   },
   {
     "objectID": "blog/2024-7-23-post/index.html#time-series-visual-for-deep-learning-project-created-using-python",
@@ -1159,7 +1159,7 @@
     "href": "blog/2024-7-23-post/index.html#time-series-visual-for-deep-learning-project",
     "title": "Visualization Portfolio (Python)",
     "section": "",
-    "text": "Context for plot: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay. Created as plot shown here shows monthly concentration over time, indicating distinct seasonal trends in the data.\nCaption: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons."
+    "text": "Context for plot: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.\nCaption: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons."
   },
   {
     "objectID": "blog/2024-7-23-post/index.html#scatterplots-for-deep-learning-project",
