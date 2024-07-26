@@ -44,19 +44,21 @@ Darn Tough, renowned for producing durable socks for the outdoor apparel industr
 
 ### Our Approach
 
-To meet these challenges head-on, we defined three major objectives:
+To meet these challenges head-on, we defined **three major objectives**:
 
 1.  **Utilize Accurate Methodology:** Address discrepancies and errors in the existing emissions calculations by updating and standardizing the methodology.
-2.  **Streamline the Calculation Process:** Develop a reproducible, efficient method to replace the complex and unwieldy Excel-based process.
+2.  **Streamline Calculation Process:** Develop a reproducible, efficient method to replace the complex and unwieldy Excel-based process.
 3.  **Conduct Scenario Analysis:** Create tools that allow for scenario planning and data-driven decision-making to reduce emissions effectively.
 
-### Delivering Solutions
+![](images/solution-image.jpeg)
 
-#### Updated Methodology
+### Delivering Three Solutions
+
+#### 1) Updated Methodology
 
 Our first task was to refine Darn Tough's calculation methodology. We conducted extensive research and improved calculations, ensuring alignment with industry standards and the Greenhouse Gas (GHG) Protocol, including using the latest emission factors. Along the way, we ensured all updates were thoroughly documented. This update not only improved accuracy but also provided a robust foundation for future calculations.
 
-#### Simplified Workflow for Data Entry
+#### 2) Updated Data Entry Process & Emissions Calculator Application
 
 Next, we tackled the complexity of Darn Tough's existing workflow.
 
@@ -66,17 +68,17 @@ By automating the emissions calculations using the R programming language, we cr
 
 Our streamlined solution involved creating a simplified Excel input template with tidy, formula-free tables and automating calculations with R. This new model takes inventory data as inputs and produces precise emissions totals, eliminating the potential for manual errors and significantly simplifying the process.
 
-#### Emissions Calculator Application
-
-To make these improvements user-friendly, we developed an emissions calculator application using Shiny. This app allows users to upload their data, select scopes, and calculate emissions effortlessly. It also provides downloadable outputs and interactive visualizations, making it easier to understand and manage carbon emissions.
+To make these improvements user-friendly, we then developed an emissions calculator application using Shiny. This app allows users to upload their data, select scopes, and calculate emissions effortlessly. It also provides downloadable outputs and interactive visualizations, making it easier to understand and manage carbon emissions.
 
 The new Emissions Calculator Application makes it easier for Darn Tough to calculate their emissions. Users can upload data, select specific scopes, calculate emissions, and generate downloadable outputs and interactive visualizations all in one centralized interface.
+
+![](images/updates-image.jpeg)
 
 ![Screenshot of interface for calculating emissions (with fake data)](images/dashboard-image.jpeg)
 
 ![Screenshot of interactive sunburst plot (with fake data)](images/visualization-image.jpeg)
 
-#### Scenario Analysis Tool
+#### 3) Scenario Analysis Tool (part of the Emissions Calculator Application)
 
 Beyond calculating emissions, our scenario analysis tool helps Darn Tough identify practical ways to reduce their carbon footprint. Users can input hypothetical changes, such as switching to recycled wool, and compare the impact on emissions against a baseline year. This feature provides actionable insights for making informed, effective decisions on emission reductions.
 
