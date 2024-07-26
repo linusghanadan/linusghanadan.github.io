@@ -19,13 +19,15 @@ If you want to learn more about me, check out my [LinkedIn](https://www.linkedin
 
     -   [Time Series Analysis of Nutrient Concentration in Chesapeake Bay (R)](https://linusghanadan.github.io/blog/2023-12-12-post/)
 
-    -   [Using Panel Data Methods to analyze the impact of a Cash-Transfer Program (R)](https://linusghanadan.github.io/blog/2024-3-6-post/)
-
-    -   [Using Propensity Score Methods to analyze the impact of Catch Share Policies (R)](https://linusghanadan.github.io/blog/2024-3-11-post/)
-
 -   **Streamlining Workflows** (with **Microsoft Excel** template and a custom-made **interactive web-based application**)
 
     -   [Creating and Implementing an Analytical Workflow for a Clothing Manufacturer's Carbon Accounting and Sustainability Analysis (R)](https://linusghanadan.github.io/blog/2024-6-20-post/)
+    
+-   **Causal Inference**
+
+    -   [Using Panel Data Methods to analyze the impact of a Cash-Transfer Program (R)](https://linusghanadan.github.io/blog/2024-3-6-post/)
+
+    -   [Using Propensity Score Methods to analyze the impact of Catch Share Policies (R)](https://linusghanadan.github.io/blog/2024-3-11-post/)
 
 -   **Geospatial Analysis**
 
