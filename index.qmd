@@ -23,7 +23,7 @@ The best way to stay up-to-date on my professional endeavors is to follow me on 
 
     -   [Using Propensity Score Methods to analyze the impact of Catch Share Policies (R)](https://linusghanadan.github.io/blog/2024-3-11-post/)
 
--   **Interactive Applications**
+-   **Streamlining Workflows** (with **Microsoft Excel** template and a custom-made **interactive web-based application**):
 
     -   [Creating and Implementing an Analytical Workflow for a Clothing Manufacturer's Carbon Accounting and Sustainability Analysis (R)](https://linusghanadan.github.io/blog/2024-6-20-post/)
 
