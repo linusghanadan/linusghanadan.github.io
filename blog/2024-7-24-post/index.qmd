@@ -31,7 +31,7 @@ format:
 
 **Context for plot**: As part of the interactive application that my capstone group made for the clothing manufacturer Darn Tough Vermont, we included this interactive sunburst plot for visualizing their greenhouse gas emissions for a given year in terms of scope, category, and input variable. Through clicking on a specific segment of the plot, the application user can access more granular data making up the selected segment. In addition, hovering allows the user to access the exact values for tons of emissions and percentage of total emissions.
 
-![](visualization-image.jpeg)
+![Screenshot of interactive sunburst plot (with fake data)](visualization-image.jpeg)
 
 ## Chloropleth maps for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-20-post/)
 
