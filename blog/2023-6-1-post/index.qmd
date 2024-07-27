@@ -1,5 +1,5 @@
 ---
-title: "Spatial analysis of allometric equations used for estimating carbon sequestration from agroforestry systems"
+title: "Spatial Analysis of Allometric Equations used for estimating Carbon Sequestration from Agroforestry Systems"
 description: "As an undergraduate capstone project, I worked with six other students and The Nature Conservancy to analyze the spatial distribution of scientific studies that used allometric equations for estimating carbon sequestration from agroforestry systems."
 author: 
   - name: Linus Ghanadan, Virginia Borda, Sophie Jabés, Eric Marquez, Michael Deffinbaugh, Troy Wynne, Chelsea Patterson
