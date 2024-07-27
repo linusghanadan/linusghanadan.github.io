@@ -14,14 +14,14 @@ If you want to learn more about me, check out my [LinkedIn](https://www.linkedin
     -   [Visualization Portfolio (R)](https://linusghanadan.github.io/blog/2024-7-24-post/)
 
     -   [Visualization Portfolio (Python)](https://linusghanadan.github.io/blog/2024-7-23-post/)
+    
+-   **Analytical Workflow Design** & **Interactive Web-Based Application** (Master's Capstone Project)
+
+    -   [Creating and Implementing an Analytical Workflow for a Clothing Manufacturer's Carbon Accounting and Sustainability Analysis (R)](https://linusghanadan.github.io/blog/2024-6-20-post/)
 
 -   **Statistical Modeling**
 
     -   [Time Series Analysis of Nutrient Concentration in Chesapeake Bay (R)](https://linusghanadan.github.io/blog/2023-12-12-post/)
-
--   **Streamlining Workflows** (with **Microsoft Excel** template and a custom-made **interactive web-based application**)
-
-    -   [Creating and Implementing an Analytical Workflow for a Clothing Manufacturer's Carbon Accounting and Sustainability Analysis (R)](https://linusghanadan.github.io/blog/2024-6-20-post/)
     
 -   **Causal Inference**
 
