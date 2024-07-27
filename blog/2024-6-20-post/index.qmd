@@ -1,5 +1,5 @@
 ---
-title: "Creating and Implementing an Analytical Workflow for a Clothing Manufacturer’s Carbon Accounting and Sustainability Analysis"
+title: "Creating and Implementing an Analytical Workflow for an Outdoor Apparel Company's Carbon Accounting and Sustainability Analysis"
 description: "As our Master's program capstone project, our team of four helped Darn Tough, a Vermont-based outdoor clothing company, streamline their process for carbon accounting and sustainability analysis."
 author: 
   - name: Linus Ghanadan, Flora Hamilton, Carly Caswell, Annie Adams
@@ -92,7 +92,7 @@ Beyond calculating emissions, our **Scenario Analysis Tool** helps Darn Tough id
 
 ![](images/dashboard2.jpeg)
 
-**Caption**: Screenshot showing the basic interface of the **Scope 3 Category 1 (S3C1) Scenario Analysis Tool**, which allows the user to evaluate emissions under scenarios with different fiber types and quantities (Note: Fake Data).
+**Caption**: Screenshot showing the basic interface of the **Scope 3 Category 1 Scenario Analysis Tool**, which allows the user to evaluate emissions under scenarios with different fiber types and quantities (Note: Fake Data).
 
 ![](images/dashboard3.jpeg)
 
@@ -100,11 +100,11 @@ Beyond calculating emissions, our **Scenario Analysis Tool** helps Darn Tough id
 
 ## Moving Forward
 
-With the Carbon Emission Calculation Application, Darn Tough is now equipped to calculate, visualize, and reduce their carbon emissions more efficiently. This streamlined process not only saves time but also allows the company to focus on broader sustainability initiatives. As Darn Tough continues to innovate and improve, we are confident that their best sock is yet to come, and that they have the tools necessary to meet their 2030 target.
+With the Emissions Calculator Application, Darn Tough is now equipped to calculate, visualize, and reduce their carbon emissions more efficiently. This streamlined process not only saves time but also allows the company to focus on broader sustainability initiatives. As Darn Tough continues to innovate and improve, we are confident that their best sock is yet to come, and that they have the tools necessary to meet their 2030 target.
 
-## My Experience
+## Acknowledgments
 
-This project was a unique opportunity to work with a real-world client and apply data science skills to a sustainability challenge, and I look forward to seeing how Darn Tough makes use of our project to reduce their emissions. Ultimately, working alongside my team members, Carly, Annie, and Flora has been the most rewarding experience, and I am grateful for their hard work and dedication throughout this project. Whether it was troubleshooting code, brain-storming ideas, cheering each other on, or learning to provide useful feedback, building this application with them has highlighted the importance of hard work, being kind, and having fun along the way!
+We extend our deepest gratitude to Kristen Graf from Darn Tough Vermont, Dr. Enze Jin, Dr. Carmen Galaz Garcia, the MEDS Capstone Committee, and our entire MEDS cohort for their invaluable support and feedback throughout this project.
 
 ![](images/team1.jpeg)
 
@@ -112,8 +112,4 @@ This project was a unique opportunity to work with a real-world client and apply
 
 ![](images/team2.jpeg)
 
-**Caption**: Darn Tough Team rocking their socks at Montesito Peak.
-
-## Acknowledgments
-
-We extend our deepest gratitude to Kristen Graf from Darn Tough Vermont, Dr. Enze Jin, Dr. Carmen Galaz Garcia, the MEDS Capstone Committee, and our entire MEDS cohort for their invaluable support and feedback throughout this project.
+**Caption**: Darn Tough Team rocking their socks at Montecito Peak.
