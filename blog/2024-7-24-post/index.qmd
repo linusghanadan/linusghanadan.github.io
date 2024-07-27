@@ -49,7 +49,7 @@ format:
 
 ![](income.jpeg)
 
-**Caption**: There does not appear to be a significant relationship between median income and whether a census tract was impacted by residential blackouts. However, upon closer examination, it can be seen that **9 of the 10 census tracts with a median income above $240,000 were unimpacted by blackouts**, demonstrating that very wealthy census tracts avoided residential blackouts at a disproportionately high rate compared to other census tracts. It is possible that people in these high income census tracts owned backup generators that they used, or it could be that these census tracts have special access to more reliable forms of electricity from local utilities.
+**Caption**: There does not appear to be a significant relationship between median income and whether a census tract was impacted by residential blackouts. However, upon closer examination, it can be seen that **9 of the 10 census tracts with a median income above $240,000 were unimpacted by residential blackouts**, demonstrating that very wealthy census tracts avoided residential blackouts at a disproportionately high rate compared to other census tracts. It is possible that people in these high income census tracts owned backup generators that they used, or it could be that these census tracts have special access to more reliable forms of electricity from local utilities.
 
 ## Treemap for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
 
