@@ -21,17 +21,23 @@ format:
 
 ## Time series visual for [Statistics Final Project](https://linusghanadan.github.io/blog/2023-12-12-post/)
 
-**Context for plot**: As a final project for my Statistics class, I conducted a 2010-2019 time series analysis of nitrogen concentration in Chesapeake Bay tidal regions using 43,809 nitrogen samples from 143 different monitoring stations. Using a STL decomposition model, a statistical technique that separates data into seasonal trend, non-seasonal trend, and random components, my analysis looks at what has contributed to the variation in nitrogen levels over this span of time. Since 2010 marked the beginning of federal water quality requirements under the Clean Water Act, the goal of my analysis was mainly to identify any overarching non-seasonal trend in nitrogen levels.
-
-**Caption**: Each year, nitrogen concentrations increase sharply around December. They then peak around February to March, before decreasing substantially and reaching their minimum around July. When adjusted for seasonal and random components, there appears to be a positive trend over the course of 2018 and a negative trend over the course of 2019.
+**Context for plots**: As a final project for my Statistics class, I conducted a 2010-2019 time series analysis of nutrient concentration in Chesapeake Bay tidal regions using 43,809 nitrogen samples and 43,590 phosphorus samples from 143 different monitoring stations. Specifically, I constructed **STL decomposition models**, which is a statistical model that separates data into seasonal trend, non-seasonal trend, and random components. Since 2010 marked the beginning of federal water quality requirements under the Clean Water Act, the goal of my analysis was mainly to **identify any overarching non-seasonal trend** in nitrogen and phosphorus levels, but I was also interested in **understanding the extent to which seasonal trends and randomness contributed to the variation** in monthly average concentrations.
 
 ![](nitrogen.jpeg)
 
+**Caption**: The **non-seasonal trend component** indicates that there was a negligible downward trend (**95% CI: -0.28% to -0.05%**) over the span of the ten years. In addition, there is a distinct **seasonal trend component** to nitrogen concentrations in the Chesapeake Bay tidal regions (**explains 55%* of total variation**). Each year, concentrations increased sharply around December. They then peaked around February to March, before decreasing substantially and reaching their minimum around July. Lastly, looking at the random component, this analysis tells us that the **spike at the beginning of 2014 was likely due to an isolated event** and not indicative of a trend in nitrogen concentrations, as our model classified this spike as attributable to randomness.
+
+![](phos.jpeg)
+
+**Caption**: The **non-seasonal trend component** indicates a slightly more pronounced downward trend (**95% CI: -0.52% to -0.38%**) in comparison to nitrogen. Compared to nitrogen, there was also a more distinct **seasonal trend component** for phosphorus concentrations (**explains 76% of total variation**). Unlike nitrogen, phosphorus concentrations shot up in the middle of the year around May, had a relatively flat peak lasting from June to August, and then shot back down at the end of the Summer.
+
 ## Interactive sunburst plot for [Master's Capstone Project](https://linusghanadan.github.io/blog/2024-6-20-post/)
 
-**Context for plot**: As part of the interactive application that my capstone group made for the clothing manufacturer Darn Tough Vermont, we included this interactive sunburst plot for visualizing their greenhouse gas emissions for a given year in terms of scope, category, and input variable. Through clicking on a specific segment of the plot, the application user can access more granular data making up the selected segment. In addition, hovering allows the user to access the exact values for tons of emissions and percentage of total emissions.
+**Context for plot**: For my Master’s capstone project, I spent six months working with the apparel manufacturer Darn Tough Vermont and three of my classmates to develop a Microsoft Excel template and interactive application allowing the company to streamline their workflow for carbon accounting and sustainability analysis. Specifically, the application allows to calculate yearly greenhouse gas emissions, visualize historical data, and conduct scenario analysis based on adjustable input variables (e.g., the total procurement weight of wool fiber for a hypothetical year).
 
-![Screenshot of interactive sunburst plot (with fake data)](visualization-image.jpeg)
+![](visualization-image.jpeg)
+
+**Caption**: The Interactive Sunburst Plot allows users to analyze emissions in terms of Scope, Category (for Scope 3), and input variables (e.g., Wool Fiber). Through clicking on a segment of the plot, users can more easily see the granular data. In addition, the user can hover over a segment to access exact values for emissions and percent of total emissions (Note: Fake Data).
 
 ## Chloropleth maps for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-20-post/)
 
@@ -39,28 +45,32 @@ format:
 
 ![](blackouts.jpeg)
 
+**Caption**: Only a couple of the census tracts on the border of the Houston metropolitan area were impacted by residential blackouts. Otherwise, there are no obvious spatial patterns in where blackouts occurred.
+
 ![](income.jpeg)
+
+**Caption**: There does not appear to be a significant relationship between median income and whether a census tract was impacted by residential blackouts. However, upon closer examination, it can be seen that **9 of the 10 census tracts with a median income above $240,000 were unimpacted by blackouts**, demonstrating that very wealthy census tracts avoided residential blackouts at a disproportionately high rate compared to other census tracts. It is possible that people in these high income census tracts owned backup generators that they used, or it could be that these census tracts have special access to more reliable forms of electricity from local utilities.
 
 ## Treemap for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
 
 **Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
 
-**Caption**: The energy sector made up **55%** of global anthropogenic methane emissions in 2021, about half of which came from China, Russia, the U.S., Iran, and India. Meanwhile, agriculture and waste contributed **29%** and **14%** of global emissions, with the remaining **2%** coming from other sources.
-
 ![](plot-1.jpeg)
+
+**Caption**: The energy sector made up **55%** of global anthropogenic methane emissions in 2021, about half of which came from China, Russia, the U.S., Iran, and India. Meanwhile, agriculture and waste contributed **29%** and **14%** of global emissions, with the remaining **2%** coming from other sources.
 
 ## Scatterplot for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
 
 **Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
 
-**Caption**: In terms of methane emissions per person, the EU and China were fairly similar to other countries, while the U.S., Canada, Australia, and Russia were significantly higher than most. The average American emitted **\~150 tons**, more than three-times the **\~50 tons** emitted by the average person living in the EU. The average Canadian emitted **\~200 tons**, roughly equivalent to the total carbon footprint of a 48-hour private jet ride. Among the highlighted countries, Australia and Canada had the highest emissions per person, at **\~300 tons**.
-
 ![](plot-2.jpeg)
+
+**Caption**: In terms of methane emissions per person, the EU and China were fairly similar to other countries, while the U.S., Canada, Australia, and Russia were significantly higher than most. The average American emitted **\~150 tons**, more than three-times the **\~50 tons** emitted by the average person living in the EU. The average Canadian emitted **\~200 tons**, roughly equivalent to the total carbon footprint of a 48-hour private jet ride. Among the highlighted countries, Australia and Canada had the highest emissions per person, at **\~300 tons**.
 
 ## Bar plot for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
 
 **Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
 
-**Caption**: As a percent of country-level methane emissions, Russia's energy sector (**85%**) and Brazil's agricultural sector (**65%**) stand out as particularly high. Meanwhile, energy-related emissions in the EU (**29%**) and Brazil (**16%**) make up a relatively low share of their total emissions, compared to about 60-70% in China, the U.S., Canada, and Australia.
-
 ![](plot-3.jpeg)
+
+**Caption**: As a percent of country-level methane emissions, Russia's energy sector (**85%**) and Brazil's agricultural sector (**65%**) stand out as particularly high. Meanwhile, energy-related emissions in the EU (**29%**) and Brazil (**16%**) make up a relatively low share of their total emissions, compared to about 60-70% in China, the U.S., Canada, and Australia.

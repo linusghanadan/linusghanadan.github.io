@@ -8,7 +8,7 @@
 
 <meta name="author" content="Linus Ghanadan, Flora Hamilton, Carly Caswell, Annie Adams">
 <meta name="dcterms.date" content="2024-06-20">
-<meta name="description" content="As our Master’s program capstone project, our team of four helped Darn Tough, a Vermont-based outdoor clothing company, streamline their carbon accounting process.">
+<meta name="description" content="As our Master’s program capstone project, our team of four helped Darn Tough, a Vermont-based outdoor clothing company, streamline their process for carbon accounting and sustainability analysis.">
 
 <title>Linus Ghanadan - Creating and Implementing an Analytical Workflow for a Clothing Manufacturer’s Carbon Accounting and Sustainability Analysis</title>
 <style>
@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">Creating and Implementing an Analytical Workflow for a Clothing Manufacturer’s Carbon Accounting and Sustainability Analysis</h1>
                   <div>
         <div class="description">
-          As our Master’s program capstone project, our team of four helped Darn Tough, a Vermont-based outdoor clothing company, streamline their carbon accounting process.
+          As our Master’s program capstone project, our team of four helped Darn Tough, a Vermont-based outdoor clothing company, streamline their process for carbon accounting and sustainability analysis.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -163,83 +163,79 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="about-darn-tough-vermont" class="level3">
-<h3 class="anchored" data-anchor-id="about-darn-tough-vermont">About Darn Tough Vermont</h3>
-<p>Our team’s client, <a href="https://darntough.com/">Darn Tough Vermont</a>, is a Vermont-based outdoor sock company that is serious about prioritizing sustainability and creating long-lasting products. Known for their lifetime warranty, Darn Tough offers customers a free new pair of socks for shipping back a worn-out pair, which gets recycled into blankets for the U.S. military. While this lifetime warranty is the company’s landmark sustainability initiative, they are increasingly concerned about their carbon footprint, as Darn Tough strives to align its operations with the 2030 target set by its largest retailer, REI. Specifically, this target is to achieve a 55% reduction in total GHG emissions from a 2019 baseline level by 2030. Reaching the 2030 target will require Darn Tough to develop effective ways to model their emissions, so they can best understand the critical points in their supply chain that are responsible for the most emissions, in addition to points where emissions can be most easily reduced.</p>
+<section id="about-darn-tough-vermont" class="level2">
+<h2 class="anchored" data-anchor-id="about-darn-tough-vermont">About Darn Tough Vermont</h2>
+<p>Our team’s client, <a href="https://darntough.com/">Darn Tough Vermont</a>, is a Vermont-based outdoor sock company that is serious about prioritizing sustainability and creating long-lasting products. Known for their lifetime warranty, Darn Tough offers customers a free new pair of socks for shipping back a worn-out pair, which gets recycled into blankets for the U.S. military. While this lifetime warranty is the company’s landmark sustainability initiative, they are increasingly concerned about their carbon footprint, as Darn Tough strives to align its operations with the 2030 target set by its largest retailer, REI (Recreational Equipment, Inc.). Specifically, this target is to <strong>achieve a 55% reduction in total GHG emissions by 2030</strong> (compared to 2019 baseline level). Reaching the 2030 target will require Darn Tough to develop effective ways to model their emissions, so they can best understand the critical points in their supply chain that are responsible for the most emissions, in addition to points where emissions can be most easily reduced.</p>
 </section>
-<section id="understanding-greenhouse-gas-emissions" class="level3">
-<h3 class="anchored" data-anchor-id="understanding-greenhouse-gas-emissions">Understanding Greenhouse Gas Emissions</h3>
+<section id="understanding-ghg-emissions" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-ghg-emissions">Understanding GHG Emissions</h2>
 <p>Calculating an organization’s carbon footprint is a multifaceted endeavor, requiring a meticulous evaluation of every step in the product lifecycle, from raw material sourcing to manufacturing, distribution, and even post-consumer handling. Darn Tough follows the <a href="https://ghgprotocol.org/">Greenhouse Gas (GHG) Protocol</a>, which categorizes emissions into three distinct scopes:</p>
 <ul>
-<li><p>Scope 1 (Burn): Direct emissions from sources owned or controlled by the company</p></li>
-<li><p>Scope 2 (Buy): Indirect emissions from purchased energy</p></li>
-<li><p>Scope 3 (Beyond): All other indirect emissions, including upstream and downstream activities</p></li>
+<li><p><strong>Scope 1</strong> (Burn): Direct emissions from sources owned or controlled by the company</p></li>
+<li><p><strong>Scope 2</strong> (Buy): Indirect emissions from purchased energy</p></li>
+<li><p><strong>Scope 3</strong> (Beyond): All other indirect emissions, including upstream and downstream activities</p></li>
 </ul>
 <p>For Darn Tough, this involves accounting for emissions at every stage of their sock production, from manufacturing fibers, shipping products, to recycling worn-out socks through their warranty program.</p>
+<p><img src="images/accounting.jpeg" class="img-fluid"></p>
+<p><strong>Caption</strong>: Presentation slide describing the framework for modeling Darn Tough’s emissions using the GHG Protocol.</p>
 </section>
-<section id="the-challenge" class="level3">
-<h3 class="anchored" data-anchor-id="the-challenge">The Challenge</h3>
-<p>Darn Tough, renowned for producing durable socks for the outdoor apparel industry, utilizes a blend of merino wool and synthetic materials. Their partnership with REI (Recreational Equipment, Inc.), which has set an ambitious target to reduce emissions by 55% from 2019 levels by 2030, underscores the urgency to refine their greenhouse gas emissions calculations. However, Darn Tough’s current method, which primarily uses Excel, is reliant on manual, non-reproducible calculations in Excel and poses challenges for the team, underscoring the need for a more streamlined and accurate solution.</p>
+<section id="the-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="the-challenge">The Challenge</h2>
+<p>Darn Tough, renowned for producing durable socks for the outdoor apparel industry, utilizes a blend of merino wool and synthetic materials. Their partnership with REI, which has set an ambitious target to reduce emissions by 55% from 2019 levels by 2030, underscores the urgency to refine their greenhouse gas emissions calculations. However, Darn Tough’s current method, which primarily uses Excel, is reliant on <strong>manual, non-reproducible calculations in Excel</strong> and poses challenges for the team, underscoring the need for a more streamlined and accurate solution.</p>
 </section>
-<section id="our-approach" class="level3">
-<h3 class="anchored" data-anchor-id="our-approach">Our Approach</h3>
+<section id="our-approach" class="level2">
+<h2 class="anchored" data-anchor-id="our-approach">Our Approach</h2>
 <p>To meet these challenges head-on, we defined <strong>three major objectives</strong>:</p>
 <ol type="1">
 <li><strong>Utilize Accurate Methodology:</strong> Address discrepancies and errors in the existing emissions calculations by updating and standardizing the methodology.</li>
 <li><strong>Streamline Calculation Process:</strong> Develop a reproducible, efficient method to replace the complex and unwieldy Excel-based process.</li>
 <li><strong>Conduct Scenario Analysis:</strong> Create tools that allow for scenario planning and data-driven decision-making to reduce emissions effectively.</li>
 </ol>
-<p><img src="images/solution-image.jpeg" class="img-fluid"></p>
+<p><img src="images/workflow.jpeg" class="img-fluid"></p>
+<p><strong>Caption</strong>: New analytical workflow for Darn Tough’s carbon accounting and sustainability analysis.</p>
 </section>
-<section id="delivering-three-solutions" class="level3">
-<h3 class="anchored" data-anchor-id="delivering-three-solutions">Delivering Three Solutions</h3>
-<section id="updated-methodology" class="level4">
-<h4 class="anchored" data-anchor-id="updated-methodology">1) Updated Methodology</h4>
+<section id="delivering-three-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="delivering-three-solutions">Delivering Three Solutions</h2>
+<section id="updated-methodology" class="level3">
+<h3 class="anchored" data-anchor-id="updated-methodology">1) Updated Methodology</h3>
 <p>Our first task was to refine Darn Tough’s calculation methodology. We conducted extensive research and improved calculations, ensuring alignment with industry standards and the Greenhouse Gas (GHG) Protocol, including using the latest emission factors. Along the way, we ensured all updates were thoroughly documented. This update not only improved accuracy but also provided a robust foundation for future calculations.</p>
 </section>
-<section id="updated-data-entry-process-emissions-calculator-application" class="level4">
-<h4 class="anchored" data-anchor-id="updated-data-entry-process-emissions-calculator-application">2) Updated Data Entry Process &amp; Emissions Calculator Application</h4>
-<p>Next, we tackled the complexity of Darn Tough’s existing workflow.</p>
-<p>Darn Tough’s original method used a complex Excel sheet to model their emissions. This approach was time consuming, resource intensive, and difficult to replicate yearly.</p>
-<p>By automating the emissions calculations using the R programming language, we created a reproducible and accurate approach.</p>
-<p>Our streamlined solution involved creating a simplified Excel input template with tidy, formula-free tables and automating calculations with R. This new model takes inventory data as inputs and produces precise emissions totals, eliminating the potential for manual errors and significantly simplifying the process.</p>
-<p>To make these improvements user-friendly, we then developed an emissions calculator application using Shiny. This app allows users to upload their data, select scopes, and calculate emissions effortlessly. It also provides downloadable outputs and interactive visualizations, making it easier to understand and manage carbon emissions.</p>
+<section id="excel-input-template-emissions-calculator-application" class="level3">
+<h3 class="anchored" data-anchor-id="excel-input-template-emissions-calculator-application">2) Excel Input Template &amp; Emissions Calculator Application</h3>
+<p>Next, we tackled the complexity of Darn Tough’s existing workflow. Darn Tough’s original method used a complex Excel sheet to model their emissions. This approach was time consuming, resource intensive, and difficult to replicate yearly. By automating the emissions calculations using the R programming language, we created a reproducible approach.</p>
+<p>Our streamlined solution involved creating a simplified <strong>Excel Input Template</strong> with tidy, formula-free tables and automating calculations with R. This new model takes inventory data as inputs and produces precise emissions totals, eliminating the potential for manual errors and significantly simplifying the process.</p>
+<p>To make these improvements user-friendly, we then developed the <strong>Emissions Calculator Application</strong> using Shiny. This app allows users to upload their data, select scopes, and calculate emissions effortlessly. It also provides downloadable outputs and interactive visualizations, making it easier to understand and manage carbon emissions.</p>
 <p>The new Emissions Calculator Application makes it easier for Darn Tough to calculate their emissions. Users can upload data, select specific scopes, calculate emissions, and generate downloadable outputs and interactive visualizations all in one centralized interface.</p>
-<p><img src="images/updates-image.jpeg" class="img-fluid"></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/dashboard-image.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Screenshot of interface for calculating emissions (with fake data)</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/visualization-image.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Screenshot of interactive sunburst plot (with fake data)</figcaption>
-</figure>
-</div>
+<p><img src="images/excel.jpeg" class="img-fluid"></p>
+<p><strong>Caption</strong>: Presentation slide comparing how Excel was used in the old workflow to how it is being used in the newly developed workflow. In the new workflow, Excel is only used for data entry.</p>
+<p><img src="images/dashboard1.jpeg" class="img-fluid"></p>
+<p><strong>Caption</strong>: Screenshot of the basic interface for computing emissions in the Emissions Calculatior Application. Specifically, this image shows Scope 2 emissions based on data in the uploaded Excel template (Note: Fake Data).</p>
+<p><img src="images/visualization-image.jpeg" class="img-fluid"></p>
+<p><strong>Caption</strong>: The <strong>Interactive Sunburst Plot</strong> allows users to analyze emissions in terms of Scope, Category (for Scope 3), and input variables (e.g., Wool Fiber). Through clicking on a segment of the plot, users can more easily see the granular data. In addition, the user can hover over a segment to access exact values for emissions and percent of total emissions (Note: Fake Data).</p>
 </section>
-<section id="scenario-analysis-tool-part-of-the-emissions-calculator-application" class="level4">
-<h4 class="anchored" data-anchor-id="scenario-analysis-tool-part-of-the-emissions-calculator-application">3) Scenario Analysis Tool (part of the Emissions Calculator Application)</h4>
-<p>Beyond calculating emissions, our scenario analysis tool helps Darn Tough identify practical ways to reduce their carbon footprint. Users can input hypothetical changes, such as switching to recycled wool, and compare the impact on emissions against a baseline year. This feature provides actionable insights for making informed, effective decisions on emission reductions.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/scenario-analysis.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Screenshot of the scenario analysis tool (with fake data)</figcaption>
-</figure>
-</div>
+<section id="scenario-analysis-tool-part-of-the-emissions-calculator-application" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-analysis-tool-part-of-the-emissions-calculator-application">3) Scenario Analysis Tool (part of the Emissions Calculator Application)</h3>
+<p>Beyond calculating emissions, our <strong>Scenario Analysis Tool</strong> helps Darn Tough identify practical ways to reduce their carbon footprint. Users can input hypothetical changes, such as switching to recycled wool, and compare the impact on emissions against a baseline year. This feature provides actionable insights for making informed, effective decisions on emission reductions.</p>
+<p><img src="images/dashboard2.jpeg" class="img-fluid"></p>
+<p><strong>Caption</strong>: Screenshot showing the basic interface of the <strong>Scope 3 Category 1 (S3C1) Scenario Analysis Tool</strong>, which allows the user to evaluate emissions under scenarios with different fiber types and quantities (Note: Fake Data).</p>
+<p><img src="images/dashboard3.jpeg" class="img-fluid"></p>
+<p><strong>Caption</strong>: As part of the tool, users can look at visualizations comparing baseline emissions to emissions under a new scenario. For example, this image looks at the impact of substituting some normal wool fiber for recycled wool (Note: Fake Data).</p>
 </section>
 </section>
-<section id="moving-forward" class="level3">
-<h3 class="anchored" data-anchor-id="moving-forward">Moving Forward</h3>
+<section id="moving-forward" class="level2">
+<h2 class="anchored" data-anchor-id="moving-forward">Moving Forward</h2>
 <p>With the Carbon Emission Calculation Application, Darn Tough is now equipped to calculate, visualize, and reduce their carbon emissions more efficiently. This streamlined process not only saves time but also allows the company to focus on broader sustainability initiatives. As Darn Tough continues to innovate and improve, we are confident that their best sock is yet to come, and that they have the tools necessary to meet their 2030 target.</p>
 </section>
-<section id="my-experience" class="level3">
-<h3 class="anchored" data-anchor-id="my-experience">My experience</h3>
+<section id="my-experience" class="level2">
+<h2 class="anchored" data-anchor-id="my-experience">My Experience</h2>
 <p>This project was a unique opportunity to work with a real-world client and apply data science skills to a sustainability challenge, and I look forward to seeing how Darn Tough makes use of our project to reduce their emissions. Ultimately, working alongside my team members, Carly, Annie, and Flora has been the most rewarding experience, and I am grateful for their hard work and dedication throughout this project. Whether it was troubleshooting code, brain-storming ideas, cheering each other on, or learning to provide useful feedback, building this application with them has highlighted the importance of hard work, being kind, and having fun along the way!</p>
+<p><img src="images/team1.jpeg" class="img-fluid"></p>
+<p><strong>Caption</strong>: Darn Tough Team celebrating after faculty review presentations.</p>
+<p><img src="images/team2.jpeg" class="img-fluid"></p>
+<p><strong>Caption</strong>: Darn Tough Team rocking their socks at Montesito Peak.</p>
 </section>
-<section id="acknowledgments" class="level3">
-<h3 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h3>
+<section id="acknowledgments" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
 <p>We extend our deepest gratitude to Kristen Graf from Darn Tough Vermont, Dr.&nbsp;Enze Jin, Dr.&nbsp;Carmen Galaz Garcia, the MEDS Capstone Committee, and our entire MEDS cohort for their invaluable support and feedback throughout this project.</p>
 
 
