@@ -27,33 +27,25 @@ format:
 
 **Caption**: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas declined from being **highly biodiverse** (BII>0.75) in 2017 to being only **moderately biodiverse** (0.75>BII>0.5) in 2020 (shown in red).
 
-## Correlation Heatmap for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
+## Visuals for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
 
-**Context for plot**: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
+**Context for plots**: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
 
 ![](heatmap.jpeg)
 
 **Caption**: Based on this correlation heatmap, the variables **Temperature_degC** and **R_Nuts** were removed from the feature matrix due to high correlation with the target variable.
 
-## Bar plot for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
-
-**Context for plot**: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
-
 ![](screenshot-4.jpeg)
 
 **Caption**: The most important feature for predicting DIC in the random forest model was Sulfur trioxide (SiO3) concentration, with a feature importance over **0.7**. This was significantly higher than the second most important feature, Phosphate (PO3) concentration, which had a feature importance of close to **0.2**. The third and fourth most important features, reported Oxygen concentration and Nitrate (NO3) concentration, only had a features importance of about **0.03**.
 
-## Time series visual for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
+## Visuals for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
 
-**Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,590 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
+**Context for plots**: In this personal project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
 
 ![](time-series.jpeg)
 
 **Caption**: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons.
-
-## Scatterplots for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
-
-**Context for plot**: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 nitrogen samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
 
 ![](deep-learning.jpeg)
 

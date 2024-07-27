@@ -166,27 +166,19 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="phoenix_biodiversity.jpeg" class="img-fluid"></p>
 <p><strong>Caption</strong>: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas declined from being <strong>highly biodiverse</strong> (BII&gt;0.75) in 2017 to being only <strong>moderately biodiverse</strong> (0.75&gt;BII&gt;0.5) in 2020 (shown in red).</p>
 </section>
-<section id="correlation-heatmap-for-ensemble-learning-project" class="level2">
-<h2 class="anchored" data-anchor-id="correlation-heatmap-for-ensemble-learning-project">Correlation Heatmap for <a href="https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html">Ensemble Learning Project</a></h2>
-<p><strong>Context for plot</strong>: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.</p>
+<section id="visuals-for-ensemble-learning-project" class="level2">
+<h2 class="anchored" data-anchor-id="visuals-for-ensemble-learning-project">Visuals for <a href="https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html">Ensemble Learning Project</a></h2>
+<p><strong>Context for plots</strong>: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.</p>
 <p><img src="heatmap.jpeg" class="img-fluid"></p>
 <p><strong>Caption</strong>: Based on this correlation heatmap, the variables <strong>Temperature_degC</strong> and <strong>R_Nuts</strong> were removed from the feature matrix due to high correlation with the target variable.</p>
-</section>
-<section id="bar-plot-for-ensemble-learning-project" class="level2">
-<h2 class="anchored" data-anchor-id="bar-plot-for-ensemble-learning-project">Bar plot for <a href="https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html">Ensemble Learning Project</a></h2>
-<p><strong>Context for plot</strong>: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.</p>
 <p><img src="screenshot-4.jpeg" class="img-fluid"></p>
 <p><strong>Caption</strong>: The most important feature for predicting DIC in the random forest model was Sulfur trioxide (SiO3) concentration, with a feature importance over <strong>0.7</strong>. This was significantly higher than the second most important feature, Phosphate (PO3) concentration, which had a feature importance of close to <strong>0.2</strong>. The third and fourth most important features, reported Oxygen concentration and Nitrate (NO3) concentration, only had a features importance of about <strong>0.03</strong>.</p>
 </section>
-<section id="time-series-visual-for-deep-learning-project" class="level2">
-<h2 class="anchored" data-anchor-id="time-series-visual-for-deep-learning-project">Time series visual for <a href="https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html">Deep Learning Project</a></h2>
-<p><strong>Context for plot</strong>: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,590 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.</p>
+<section id="visuals-for-deep-learning-project" class="level2">
+<h2 class="anchored" data-anchor-id="visuals-for-deep-learning-project">Visuals for <a href="https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html">Deep Learning Project</a></h2>
+<p><strong>Context for plots</strong>: In this personal project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.</p>
 <p><img src="time-series.jpeg" class="img-fluid"></p>
 <p><strong>Caption</strong>: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons.</p>
-</section>
-<section id="scatterplots-for-deep-learning-project" class="level2">
-<h2 class="anchored" data-anchor-id="scatterplots-for-deep-learning-project">Scatterplots for <a href="https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html">Deep Learning Project</a></h2>
-<p><strong>Context for plot</strong>: In this deep learning project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 nitrogen samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.</p>
 <p><img src="deep-learning.jpeg" class="img-fluid"></p>
 <p><strong>Caption</strong>: From adding an additional 16-neuron dense layer with a ReLU activation function to our LSTM network architecture, we saw a <strong>3.8%</strong> decrease in MAE and a <strong>1.6%</strong> decrease in RMSE, suggesting that there are potential advantages from using a hybrid RNN-MLP model in this context. From these scatterplots of actual values and predicted values, it appears the reductions in MAE and RMSE can be attributed to <strong>enhanced outlier detection</strong> among actual concentration values &gt;0.15 mg/L.</p>
 

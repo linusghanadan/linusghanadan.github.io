@@ -51,25 +51,17 @@ format:
 
 **Caption**: There does not appear to be a significant relationship between median income and whether a census tract was impacted by residential blackouts. However, upon closer examination, it can be seen that **9 of the 10 census tracts with a median income above $240,000 were unimpacted by residential blackouts**, demonstrating that very wealthy census tracts avoided residential blackouts at a disproportionately high rate compared to other census tracts. It is possible that people in these high income census tracts owned backup generators that they used, or it could be that these census tracts have special access to more reliable forms of electricity from local utilities.
 
-## Treemap for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
+## Visuals for [Data Visualization & Communication Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
 
-**Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
+**Context for plots**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
 
 ![](plot-1.jpeg)
 
 **Caption**: The energy sector made up **55%** of global anthropogenic methane emissions in 2021, about half of which came from China, Russia, the U.S., Iran, and India. Meanwhile, agriculture and waste contributed **29%** and **14%** of global emissions, with the remaining **2%** coming from other sources.
 
-## Scatterplot for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
-
-**Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
-
 ![](plot-2.jpeg)
 
 **Caption**: In terms of methane emissions per person, the EU and China were fairly similar to other countries, while the U.S., Canada, Australia, and Russia were significantly higher than most. The average American emitted **\~150 tons**, more than three-times the **\~50 tons** emitted by the average person living in the EU. The average Canadian emitted **\~200 tons**, roughly equivalent to the total carbon footprint of a 48-hour private jet ride. Among the highlighted countries, Australia and Canada had the highest emissions per person, at **\~300 tons**.
-
-## Bar plot for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
-
-**Context for plot**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
 
 ![](plot-3.jpeg)
 
