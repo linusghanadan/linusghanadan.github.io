@@ -19,9 +19,9 @@ format:
         code-fold: false
 ---
 
-## Time series visuals for [Statistics Final Project](https://linusghanadan.github.io/blog/2023-12-12-post/)
+## Time Series Visuals for [Statistics Final Project](https://linusghanadan.github.io/blog/2023-12-12-post/)
 
-**Context for plots**: As a final project for my Statistics class, I conducted a 2010-2019 time series analysis of nutrient concentration in the Chesapeake Bay. I used 43,809 nitrogen samples and 43,590 phosphorus samples from 143 different monitoring stations positioned throughout the Bay's tidal regions. Specifically, I constructed two **STL decomposition models** (one for nitrogen and one for phosphorus), which is a statistical model that separates data into seasonal trend, non-seasonal trend, and random components. Since 2010 marked the beginning of federal water quality requirements under the Clean Water Act, the goal of my analysis was mainly to identify any overarching **non-seasonal trends** in nitrogen and phosphorus levels over the ten years, but I was also interested in understanding the extent to which **seasonal trends** and **randomness** contributed to the variation in monthly average concentrations.
+**Context for plots**: As a final project for my Statistics class, I conducted a 2010-2019 time series analysis of **nutrient concentrations** in the Chesapeake Bay. I used 43,809 nitrogen samples and 43,590 phosphorus samples from 143 different monitoring stations positioned throughout the Bay's tidal regions. Specifically, I constructed two **STL decomposition models** (one for nitrogen and one for phosphorus), which is a statistical model that separates data into seasonal trend, non-seasonal trend, and random components. Since 2010 marked the beginning of federal water quality requirements under the Clean Water Act, the goal of my analysis was mainly to identify any overarching **non-seasonal trends** in nitrogen and phosphorus levels over the ten years, but I was also interested in understanding the extent to which **seasonal trends** and **randomness** contributed to the variation in monthly average concentrations.
 
 ![](nitrogen.jpeg)
 
@@ -31,17 +31,19 @@ format:
 
 **Caption**: The **non-seasonal trend component** (red) indicates a slightly more pronounced downward trend (95% CI: **-0.52%** to **-0.38%**) in comparison to nitrogen. Compared to nitrogen, there was also a more distinct **seasonal trend component** (green) for phosphorus concentrations (explains **76%** of total variation). Unlike nitrogen, phosphorus concentrations shot up in the middle of the year around May, had a relatively flat peak lasting from June to August, and then shot back down at the end of the Summer.
 
-## Interactive sunburst plot for [Master's Capstone Project](https://linusghanadan.github.io/blog/2024-6-20-post/)
+## Interactive Sunburst Plot for [Master's Capstone Project](https://linusghanadan.github.io/blog/2024-6-20-post/)
 
-**Context for plot**: For my Master’s capstone project, I spent six months working with the apparel manufacturer Darn Tough Vermont and three of my classmates to develop a Microsoft Excel template and interactive application allowing the company to streamline their workflow for carbon accounting and sustainability analysis. Specifically, the application allows to calculate yearly greenhouse gas emissions, visualize historical data, and conduct scenario analysis based on adjustable input variables (e.g., the total procurement weight of wool fiber for a hypothetical year).
+#### Note: **Plot is not interactive on this webpage** (the image below is a screenshot from an application developed for Darn Tough Vermont)
+
+**Context for plot**: For my Master’s capstone project, I spent six months working with three classmates and the outdoor apparel manufacturer **Darn Tough Vermont** to develop a Microsoft Excel template and an interactive application. Together, these two products streamline Darn Tough's workflow for carbon accounting and sustainability analysis. Specifically, the application allows for a user to upload their Excel template (containing input values) to calculate yearly greenhouse gas emissions, visualize historical data, and conduct scenario analysis based on adjustable input variables (e.g., compare scenarios for differing levels of wool procurement).
 
 ![](visualization-image.jpeg)
 
-**Caption**: The Interactive Sunburst Plot allows users to analyze emissions in terms of Scope, Category (for Scope 3), and input variables (e.g., Wool Fiber). Through clicking on a segment of the plot, users can more easily see the granular data. In addition, the user can hover over a segment to access exact values for emissions and percent of total emissions (Note: Fake Data).
+**Caption**: The interactive sunburst plot allows users to analyze emissions in terms of Scope, Category (for Scope 3), and input variables (e.g., Wool Fiber). Through clicking on a segment of the plot, users can more easily see the granular data. In addition, the user can hover over a segment to access exact values for emissions and percent of total emissions (Note: Fake Data).
 
-## Chloropleth maps for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-20-post/)
+## Chloropleth Maps for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2024-1-20-post/)
 
-**Context for plots**: For a project in my Geospatial Analysis class, I used data from the NASA's VIIRS instrument to conduct a spatial analysis of the 2021 Houston Power Crisis. Specifically, I looked at census tracts in the Houston metropolitan area where residential blackouts occurred and how this relates to median income of census tracts.
+**Context for plots**: For a project in my Geospatial Analysis class, I used data from the NASA's VIIRS instrument to conduct a spatial analysis of the **2021 Houston Power Crisis**. Specifically, I looked at census tracts in the Houston metropolitan area where residential blackouts occurred and how this relates to median income of census tracts.
 
 ![](blackouts.jpeg)
 
@@ -51,9 +53,9 @@ format:
 
 **Caption**: There does not appear to be a significant relationship between median income and whether a census tract was impacted by residential blackouts. However, upon closer examination, it can be seen that **9 of the 10 census tracts with a median income above $240,000 were unimpacted by residential blackouts**, demonstrating that very wealthy census tracts avoided residential blackouts at a disproportionately high rate compared to other census tracts. It is possible that people in these high income census tracts owned backup generators that they used, or it could be that these census tracts have special access to more reliable forms of electricity from local utilities.
 
-## Visuals for [Data Visualization & Communication Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
+## Visuals for [Data Visualization & Communication Final Project](https://linusghanadan.github.io/blog/2024-3-12-post/)
 
-**Context for plots**: For a final project in my Data Visualization & Communication class, I created this plot as part of an infographic on anthropogenic methane emissions in 2021. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
+**Context for plots**: For a final project in my Data Visualization & Communication class, I created these plots as part of an **infographic on anthropogenic methane emissions in 2021**. My data came from the International Energy Agency, which provided granularity regarding the country and sector (energy, agriculture, waste, and other) of emissions.
 
 ![](plot-1.jpeg)
 

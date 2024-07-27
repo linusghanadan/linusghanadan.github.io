@@ -21,15 +21,15 @@ format:
 
 ## Heatmap for [Geospatial Analysis Project](https://linusghanadan.github.io/blog/2023-12-13-post/phoenix_biodiversity.html)
 
-**Context for plot**: For a project in my Geospatial Analysis class, I retrieved grid-cell data on Phoenix's Biodiversity Intactness Index (BII), which is a score rating an area of land's biodiversity from 0 to 1. The purpose of this analysis was to better understand 2020 biodiversity in Phoenix, as well as how biodiversity had changed since 2017.
+**Context for plot**: For a project in my Geospatial Analysis class, I retrieved grid-cell data on **Biodiversity Intactness Index (BII)**, a score rating an area of land's biodiversity from 0 to 1, in the city of Phoenix, Arizona. The purpose of this analysis was to better understand 2020 biodiversity in Phoenix, as well as how biodiversity had changed since 2017.
 
 ![](phoenix_biodiversity.jpeg)
 
-**Caption**: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas declined from being **highly biodiverse** (BII>0.75) in 2017 to being only **moderately biodiverse** (0.75>BII>0.5) in 2020 (shown in red).
+**Caption**: The North East area of Phoenix and South Central Phoenix had the highest BII in 2020. In addition, some locations at the outer edges of these areas declined from being **highly biodiverse** (BII>0.75) in 2017 to being only **moderately biodiverse** (0.75>BII>0.5) in 2020 (these areas are shown in red).
 
 ## Visuals for [Ensemble Learning Project](https://linusghanadan.github.io/blog/2024-4-3-post/dic-ml-models.html)
 
-**Context for plots**: In this ensemble learning project, I built three different models that predict Dissolved Inorganic Carbon (DIC) content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
+**Context for plots**: In this ensemble learning project, I built three different models that predict **Dissolved Inorganic Carbon (DIC)** content in water samples off the coast of California. The features being used to make these predictions were other ocean chemistry measurements that were also measured during water sampling.
 
 ![](heatmap.jpeg)
 
@@ -41,12 +41,12 @@ format:
 
 ## Visuals for [Deep Learning Project](https://linusghanadan.github.io/blog/2024-7-16-post/ml_chesapeakebay.html)
 
-**Context for plots**: In this personal project, I built and compared two deep learning models that predict phosphorus concentration in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
+**Context for plots**: In this personal project, I built and compared two deep learning models that predict **phosphorus concentration** in Chesapeake Bay tidal regions based on the time and location of sample. Specifically, my data includes 43,809 samples taken over 10 years (2010-2019) from 143 different monitoring stations across the tidal regions of the Chesapeake Bay.
 
 ![](time-series.jpeg)
 
-**Caption**: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates distinct seasonal trends, with average concentration significantly higher during months in the summer and early fall seasons.
+**Caption**: Data exploration plot tracing monthly phosphorus concentration over time. This time series visual indicates **distinct seasonal trends**, with average concentration significantly higher during months in the summer and early fall seasons.
 
 ![](deep-learning.jpeg)
 
-**Caption**: From adding an additional 16-neuron dense layer with a ReLU activation function to our LSTM network architecture, we saw a **3.8%** decrease in MAE and a **1.6%** decrease in RMSE, suggesting that there are potential advantages from using a hybrid RNN-MLP model in this context. From these scatterplots of actual values and predicted values, it appears the reductions in MAE and RMSE can be attributed to **enhanced outlier detection** among actual concentration values >0.15 mg/L.
+**Caption**: From adding an additional 16-neuron dense layer with a ReLU activation function to our LSTM network architecture, we saw a **3.8%** decrease in MAE and a **1.6%** decrease in RMSE, suggesting that there are potential advantages from using a hybrid RNN-MLP model in this context. Based on these scatterplots of actual values and predicted values, it appears the reductions in MAE and RMSE can be attributed to **enhanced outlier detection** among actual concentration values >0.15 mg/L.
