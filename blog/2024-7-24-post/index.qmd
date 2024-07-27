@@ -19,7 +19,7 @@ format:
         code-fold: false
 ---
 
-## Time series visual for [Statistics Final Project](https://linusghanadan.github.io/blog/2023-12-12-post/)
+## Time series visuals for [Statistics Final Project](https://linusghanadan.github.io/blog/2023-12-12-post/)
 
 **Context for plots**: As a final project for my Statistics class, I conducted a 2010-2019 time series analysis of nutrient concentration in the Chesapeake Bay. I used 43,809 nitrogen samples and 43,590 phosphorus samples from 143 different monitoring stations positioned throughout the Bay's tidal regions. Specifically, I constructed two **STL decomposition models** (one for nitrogen and one for phosphorus), which is a statistical model that separates data into seasonal trend, non-seasonal trend, and random components. Since 2010 marked the beginning of federal water quality requirements under the Clean Water Act, the goal of my analysis was mainly to identify any overarching **non-seasonal trends** in nitrogen and phosphorus levels over the ten years, but I was also interested in understanding the extent to which **seasonal trends** and **randomness** contributed to the variation in monthly average concentrations.
 
