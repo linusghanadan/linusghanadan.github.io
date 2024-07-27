@@ -5,7 +5,7 @@ about:
     image: linus-website-photo.jpg
 ---
 
-If you want to learn more about me, check out my [LinkedIn](https://www.linkedin.com/in/linus-ghanadan/) and [GitHub](https://github.com/linusghanadan) profiles as well.
+If you want to learn more about me, check out my profiles on [LinkedIn](https://www.linkedin.com/in/linus-ghanadan/) and [GitHub](https://github.com/linusghanadan).
 
 # Data Science Portfolio
 
