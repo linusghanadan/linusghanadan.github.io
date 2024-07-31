@@ -65,15 +65,15 @@ If you want to learn more about me, check out my profiles on [LinkedIn](https://
 
 -   **Professional Audience**
 
-    -   [Policy Memo on U.S. Offshore Wind Development](https://linusghanadan.github.io/writing/offshore-wind/offshore-wind.html) (written for internship with U.S. Department of Transportation)
+    -   [Policy Memo on U.S. Offshore Wind Development](https://linusghanadan.github.io/writing/offshore-wind/offshore-wind.html) (3-page memo written for federal internship)
 
-    -   [Comparison of Approaches to Carbon Pricing](https://linusghanadan.github.io/writing/carbon-pricing/carbon-pricing.html)
+    -   [Comparison of Approaches to Carbon Pricing](https://linusghanadan.github.io/writing/carbon-pricing/carbon-pricing.html) (7-page memo written for Energy & Environmental Policy class)
+    
+    -   [Economic Analysis of EV Tax Credits from the Inflation Reduction Act](https://linusghanadan.github.io/writing/evs/ev.html) (6-page memo written for Energy & Environmental Economics class)
 
 -   **Academic Audience**
 
-    -   [Economic Analysis of EV Tax Credits from the Inflation Reduction Act](https://linusghanadan.github.io/writing/evs/ev.html)
-
-    -   [Ecology and Human Health in California's Central Valley: Historical Perceptions of a Complex Relationship](Ecology%20and%20Human%20Health%20in%20California’s%20Central%20Valley:%20Historical%20Perceptions%20of%20a%20Complex%20Relationship)
+    -   [Ecology and Human Health in California's Central Valley: Historical Perceptions of a Complex Relationship](https://linusghanadan.github.io/writing/env-health/env-health.html)
 
 -   **General Audience**
 

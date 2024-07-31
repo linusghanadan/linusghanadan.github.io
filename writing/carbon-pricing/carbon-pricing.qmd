@@ -16,7 +16,7 @@ format:
         code-fold: false
 ---
 
-This paper was written for a class on Environmental Policy that I took at the University of Maryland in Spring 2022.
+This paper was written for a class on Energy & Environmental Policy that I took at the University of Maryland in Spring 2022.
 
 ## [View 7-page memo as PDF](carbon-pricing.pdf)
 
