@@ -1,5 +1,5 @@
 ---
-title: "Policy Memo on Market-Based Climate Change Mitigation"
+title: "Comparison of Approaches to Carbon Pricing"
 description: "7-page memo on market-based climate change mitigation policies. After comparing different approaches from around the world, the memo recommends for the U.S. to adopt a federal cap-and-trade system for the electricity generation sector and a federal tax on GHG emissions from industrial buildings, transportation fuels, fuels used for heating and cooling, and imported goods."
 author: 
   - name: Linus Ghanadan

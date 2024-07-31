@@ -67,7 +67,7 @@ If you want to learn more about me, check out my profiles on [LinkedIn](https://
 
     -   [Policy Memo on U.S. Offshore Wind Development](https://linusghanadan.github.io/writing/offshore-wind/offshore-wind.html) (written for internship with U.S. Department of Transportation)
 
-    -   [Policy Memo on Market-Based Climate Change Mitigation](https://linusghanadan.github.io/writing/carbon-pricing/carbon-pricing.html)
+    -   [Comparison of Approaches to Carbon Pricing](https://linusghanadan.github.io/writing/carbon-pricing/carbon-pricing.html)
 
 -   **Academic Audience**
 
