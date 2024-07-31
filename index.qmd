@@ -15,7 +15,7 @@ If you want to learn more about me, check out my profiles on [LinkedIn](https://
 
     -   [Visualization Portfolio (Python)](https://linusghanadan.github.io/blog/2024-7-23-post/)
     
--   **Analytical Workflow Design** & **Interactive Web-Based Application** (Master's Capstone Project)
+-   **Workflow Design** & **Interactive Web-Based Application** (Master's Capstone Project)
 
     -   [Creating and Implementing an Analytical Workflow for an Outdoor Apparel Company's Carbon Accounting and Sustainability Analysis (R)](https://linusghanadan.github.io/blog/2024-6-20-post/)
 
