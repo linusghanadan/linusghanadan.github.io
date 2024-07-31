@@ -7,7 +7,7 @@ author:
 date: 04-27-2022
 categories:
   - [Memo Writing]
-image: photo2.jpeg
+image: graph.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/carbon-pricing-post/
 draft: false
@@ -20,4 +20,4 @@ This paper was written for a class on Environmental Policy that I took at the Un
 
 ## [View 7-page memo as PDF](carbon-pricing.pdf)
 
-![[Tommaso.sansone91](https://commons.wikimedia.org/wiki/File:Carbon_tax_icon_-_carbon_pricing.png), [CC 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en), via Wikimedia Commons](photo2.jpeg)
+![[Our World In Data](https://ourworldindata.org/grapher/cumulative-co-emissions), [CC BY-SA 4.0](https://creativecommons.org/licenses/by/4.0/)](graph.jpeg)
