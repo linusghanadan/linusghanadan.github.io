@@ -22,15 +22,11 @@ format:
         code-fold: false
 ---
 
-## Context
-
-This Master's capstone project was completed with the client Darn Tough Vermont and three classmates for my Master's program at UC Santa Barbara.
+## [Link to GitHub Page](https://github.com/carbonSOCKprint)
 
 ## Project Summary
 
-Worked with the Head of Sustainability at outdoor apparel company Darn Tough Vermont and three classmates to streamline the company’s spreadsheet method for calculating and analyzing data on yearly Scope 1, 2, and 3 GHG emissions. Built interactive web-application dashboard that allows the company to visualize emissions and conduct scenario analysis based on adjustable input variables (e.g., can evaluate emissions under scenarios with differing fiber procurements).
-
-## [Link to GitHub Page](https://github.com/carbonSOCKprint)
+Worked with the Head of Sustainability at outdoor apparel company Darn Tough Vermont and three classmates to streamline the company's spreadsheet method for calculating and analyzing data on yearly Scope 1, 2, and 3 GHG emissions. Built interactive web-application dashboard that allows the company to visualize emissions and conduct scenario analysis based on adjustable input variables (e.g., can evaluate emissions under scenarios with differing fiber procurements).
 
 ## About Darn Tough Vermont
 
