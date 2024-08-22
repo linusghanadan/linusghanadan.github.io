@@ -195,8 +195,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="context" class="level2">
+<h2 class="anchored" data-anchor-id="context">Context</h2>
+<p>This project was completed for my Modeling Environmental Systems class, taken as part of my Master’s program at UC Santa Barbara. Provided with data and questions, I carried out this analysis using appropriate modeling techniques.</p>
+</section>
+<section id="project-summary" class="level2">
+<h2 class="anchored" data-anchor-id="project-summary">Project Summary</h2>
+<p>Generated stochastic parameter sets for forest size model inputs (exponential growth rate before canopy closure, linear growth rate after canopy closure, carrying capacity, and canopy closure threshold) and used an ordinary differential equations solver to run 300-year continuous dynamic simulations of forests. Conducted global sensitivity analysis (ran 2,000 simulations and computed Sobol indices of input parameters) to look at impact of varying parameter values on maximum forest size.</p>
+</section>
 <section id="link-to-github-repository" class="level2">
-<h2 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/dynamic-simulation-forest-growth">Link to GitHub repository</a></h2>
+<h2 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/dynamic-simulation-forest-growth">Link to GitHub Repository</a></h2>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
@@ -364,21 +372,21 @@ sobolSalt(model = NULL, X1 = X1, X2 = X2, nboot = 300)
 
 Model runs: 12000 
 
-Model variance: 234.4532 
+Model variance: 237.737 
 
 First order indices:
             original          bias std. error  min. c.i. max. c.i.
-r         0.36180127  0.0015445391 0.02134630 0.31802135 0.4019469
-g         0.23615320 -0.0011851623 0.02127270 0.19491506 0.2842753
-K         0.38940943 -0.0011348029 0.01823780 0.35614436 0.4272097
-threshold 0.09782205 -0.0009857512 0.02243329 0.05620812 0.1446858
+r         0.33932069 -0.0004058488 0.02071218 0.29609617 0.3766200
+g         0.23768511 -0.0018132072 0.02129657 0.19740665 0.2814583
+K         0.38857803 -0.0016445038 0.02116133 0.34872668 0.4332762
+threshold 0.08033234 -0.0009978570 0.02193401 0.03925047 0.1239420
 
 Total indices:
-            original          bias  std. error  min. c.i.  max. c.i.
-r         0.36128825  0.0010058693 0.015249110 0.33017481 0.38788324
-g         0.20640003 -0.0011296340 0.009769430 0.18661640 0.22703737
-K         0.36609756  0.0010162963 0.014553616 0.33582941 0.39109873
-threshold 0.06677082 -0.0001070047 0.003061441 0.06027741 0.07264629</code></pre>
+           original         bias  std. error  min. c.i.  max. c.i.
+r         0.3440581 0.0019152040 0.014939263 0.31159909 0.37196317
+g         0.2147291 0.0007112569 0.009619229 0.19315222 0.23263304
+K         0.3777235 0.0010138348 0.014965150 0.34665565 0.40510906
+threshold 0.0659701 0.0003449452 0.003355676 0.05871958 0.07182974</code></pre>
 </div>
 </div>
 </section>
