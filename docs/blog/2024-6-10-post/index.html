@@ -195,16 +195,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="link-to-github-repository" class="level2">
+<h2 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/dynamic-simulation-forest-growth">Link to GitHub Repository</a></h2>
+</section>
 <section id="context" class="level2">
 <h2 class="anchored" data-anchor-id="context">Context</h2>
 <p>This project was completed for my Modeling Environmental Systems class, taken as part of my Master’s program at UC Santa Barbara. Provided with data and questions, I carried out this analysis using appropriate modeling techniques.</p>
+</section>
+<section id="question" class="level2">
+<h2 class="anchored" data-anchor-id="question">Question</h2>
+<p>Based on essential parameters, how is forest size likely to change over 300 years, and which of the parameters are likely to be the most influential?</p>
 </section>
 <section id="project-summary" class="level2">
 <h2 class="anchored" data-anchor-id="project-summary">Project Summary</h2>
 <p>Generated stochastic parameter sets for forest size model inputs (exponential growth rate before canopy closure, linear growth rate after canopy closure, carrying capacity, and canopy closure threshold) and used an ordinary differential equations solver to run 300-year continuous dynamic simulations of forests. Conducted global sensitivity analysis (ran 2,000 simulations and computed Sobol indices of input parameters) to look at impact of varying parameter values on maximum forest size.</p>
 </section>
-<section id="link-to-github-repository" class="level2">
-<h2 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/dynamic-simulation-forest-growth">Link to GitHub Repository</a></h2>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Data was synthetically generated for this project based on typical ranges for the essential parameters.</p>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
@@ -372,21 +380,21 @@ sobolSalt(model = NULL, X1 = X1, X2 = X2, nboot = 300)
 
 Model runs: 12000 
 
-Model variance: 237.737 
+Model variance: 252.2042 
 
 First order indices:
-            original          bias std. error  min. c.i. max. c.i.
-r         0.33932069 -0.0004058488 0.02071218 0.29609617 0.3766200
-g         0.23768511 -0.0018132072 0.02129657 0.19740665 0.2814583
-K         0.38857803 -0.0016445038 0.02116133 0.34872668 0.4332762
-threshold 0.08033234 -0.0009978570 0.02193401 0.03925047 0.1239420
+            original          bias std. error min. c.i. max. c.i.
+r         0.39571046 -0.0002746905 0.02060599 0.3577022 0.4402525
+g         0.22495867 -0.0004818521 0.02056884 0.1851049 0.2671306
+K         0.35035033  0.0016724858 0.02134235 0.3097060 0.3919492
+threshold 0.07765435  0.0006529218 0.01934635 0.0409994 0.1155947
 
 Total indices:
-           original         bias  std. error  min. c.i.  max. c.i.
-r         0.3440581 0.0019152040 0.014939263 0.31159909 0.37196317
-g         0.2147291 0.0007112569 0.009619229 0.19315222 0.23263304
-K         0.3777235 0.0010138348 0.014965150 0.34665565 0.40510906
-threshold 0.0659701 0.0003449452 0.003355676 0.05871958 0.07182974</code></pre>
+            original          bias  std. error  min. c.i.  max. c.i.
+r         0.40089954 -0.0008001244 0.014722735 0.37442823 0.43175337
+g         0.23416898  0.0003114037 0.010707429 0.21334963 0.25548364
+K         0.35776005  0.0016638360 0.015336145 0.32677488 0.38549061
+threshold 0.07044764  0.0005814836 0.003466147 0.06274054 0.07710709</code></pre>
 </div>
 </div>
 </section>
