@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2024-04-03">
 <meta name="description" content="For this blog post, I build and compare four regression models that predict DIC in water samples. I also analyze feature importances in the best performing model.">
 
-<title>Linus Ghanadan - Regression Models to predict Dissolved Inorganic Carbon using Ocean Chemistry features</title>
+<title>Linus Ghanadan - Regression Models to predict Dissolved Inorganic Carbon in California Coastal Ecosystems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Regression Models to predict Dissolved Inorganic Carbon using Ocean Chemistry features</h1>
+      <h1 class="title">Regression Models to predict Dissolved Inorganic Carbon in California Coastal Ecosystems</h1>
                   <div>
         <div class="description">
           For this blog post, I build and compare four regression models that predict DIC in water samples. I also analyze feature importances in the best performing model.
@@ -186,13 +186,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="link-to-github-repository" class="level4">
-<h4 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/dic-ml-models">Link to GitHub repository</a></h4>
+<section id="link-to-github-repository" class="level2">
+<h2 class="anchored" data-anchor-id="link-to-github-repository"><a href="https://github.com/linusghanadan/dic-ml-models">Link to GitHub repository</a></h2>
 </section>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>In this blog post, I’ll build three different models that predict <strong>Dissolved Inorganic Carbon (DIC)</strong> content in water samples. The features being used to make these predictions will be other ocean chemistry measurements that were also measured during water sampling. Our data set comes from the <strong>California Cooperative Oceanic Fisheries Investigations (CalCOFI)</strong>, an oceanographic and marine ecosystem research program located in California (<a href="https://calcofi.org/data/oceanographic-data/bottle-database/">link to data set source</a>). All water samples were taken off the California coast.</p>
-<p>The first of the three models, which I’m including just for the sake of comparison, uses only a single decision tree. The other two models will be a random forest model and a stochastic gradient boosted (SGB) trees model.</p>
+<section id="context" class="level2">
+<h2 class="anchored" data-anchor-id="context">Context</h2>
+<p>This project was completed for my Machine Learning class, taken as part of my Master’s program at UC Santa Barbara. Provided with data and questions, I carried out this analysis using appropriate machine learning techniques.</p>
+</section>
+<section id="question" class="level2">
+<h2 class="anchored" data-anchor-id="question">Question</h2>
+<p>How can machine learning models, specifically random forest and stochastic gradient boosted tree models, be used to predict Dissovled Inorganic Carbon (DIC) in California coastal ecosystems based on ocean chemistry features?</p>
+</section>
+<section id="analysis-summary" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-summary">Analysis Summary</h2>
+<p>Used data from a marine ecosystem research program to build three models (single decision tree, random forest, and stochastic gradient boosted trees) that predict dissolved inorganic carbon (DIC) based on other ocean chemistry features (e.g., sulfur trioxide concentration) that were also measured during water sampling. Developed visualizations comparing root mean squared error (RMSE) among the three models and analyzing feature importances in the best performing model.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Our data set comes from the <strong>California Cooperative Oceanic Fisheries Investigations (CalCOFI)</strong>, an oceanographic and marine ecosystem research program located in California (<a href="https://calcofi.org/data/oceanographic-data/bottle-database/">link to data set source</a>). All water samples were taken off the California coast.</p>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
@@ -484,15 +495,15 @@ Best parameters: {'gradientboostingregressor__learning_rate': 0.1, 'gradientboos
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2024,
   author = {Ghanadan, Linus},
   title = {Regression {Models} to Predict {Dissolved} {Inorganic}
-    {Carbon} Using {Ocean} {Chemistry} Features},
+    {Carbon} in {California} {Coastal} {Ecosystems}},
   date = {2024-04-03},
   url = {https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ghanadan2024" class="csl-entry quarto-appendix-citeas" role="listitem">
 Ghanadan, Linus. 2024. <span>“Regression Models to Predict Dissolved
-Inorganic Carbon Using Ocean Chemistry Features.”</span> April 3, 2024.
-<a href="https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html">https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html</a>.
+Inorganic Carbon in California Coastal Ecosystems.”</span> April 3,
+2024. <a href="https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html">https://linusghanadan.github.io/blog/2023-4-3-post/dic_ml.html</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
