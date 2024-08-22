@@ -22,9 +22,19 @@ format:
         code-fold: false
 ---
 
+## Context
+
+This Master's capstone project was completed with the client Darn Tough Vermont and three classmates for my Master's program at UC Santa Barbara.
+
+## Project Summary
+
+Worked with the Head of Sustainability at outdoor apparel company Darn Tough Vermont and three classmates to streamline the company’s spreadsheet method for calculating and analyzing data on yearly Scope 1, 2, and 3 GHG emissions. Built interactive web-application dashboard that allows the company to visualize emissions and conduct scenario analysis based on adjustable input variables (e.g., can evaluate emissions under scenarios with differing fiber procurements).
+
+## [Link to GitHub Page](https://github.com/carbonSOCKprint)
+
 ## About Darn Tough Vermont
 
-Our team's client, [Darn Tough Vermont](https://darntough.com/), is a Vermont-based outdoor sock company that is serious about prioritizing sustainability and creating long-lasting products. Known for their lifetime warranty, Darn Tough offers customers a free new pair of socks for shipping back a worn-out pair, which gets recycled into blankets for the U.S. military. While this lifetime warranty is the company's landmark sustainability initiative, they are increasingly concerned about their carbon footprint, as Darn Tough strives to align its operations with the 2030 target set by its largest retailer, REI  (Recreational Equipment, Inc.). Specifically, this target is to **achieve a 55% reduction in total GHG emissions by 2030** (compared to 2019 baseline level). Reaching the 2030 target will require Darn Tough to develop effective ways to model their emissions, so they can best understand the critical points in their supply chain that are responsible for the most emissions, in addition to points where emissions can be most easily reduced.
+Our team's client, [Darn Tough Vermont](https://darntough.com/), is a Vermont-based outdoor sock company that is serious about prioritizing sustainability and creating long-lasting products. Known for their lifetime warranty, Darn Tough offers customers a free new pair of socks for shipping back a worn-out pair, which gets recycled into blankets for the U.S. military. While this lifetime warranty is the company's landmark sustainability initiative, they are increasingly concerned about their carbon footprint, as Darn Tough strives to align its operations with the 2030 target set by its largest retailer, REI (Recreational Equipment, Inc.). Specifically, this target is to **achieve a 55% reduction in total GHG emissions by 2030** (compared to 2019 baseline level). Reaching the 2030 target will require Darn Tough to develop effective ways to model their emissions, so they can best understand the critical points in their supply chain that are responsible for the most emissions, in addition to points where emissions can be most easily reduced.
 
 ## Understanding GHG Emissions
 
@@ -97,6 +107,10 @@ Beyond calculating emissions, our **Scenario Analysis Tool** helps Darn Tough id
 ![](images/dashboard3.jpeg)
 
 **Caption**: As part of the tool, users can look at visualizations comparing baseline emissions to emissions under a new scenario. For example, this image looks at the impact of substituting some normal wool fiber for recycled wool (Note: Fake Data).
+
+![](images/download.jpeg)
+
+**Caption**: Sustainability analysis, looking at the relative impact of replacing regular wool with recycled wool, based on the emissions factors associated with fiber procurement.
 
 ## Moving Forward
 

@@ -1,5 +1,5 @@
 ---
-title: "Cluster Analysis of Bio-Contaminating Algae"
+title: "Cluster Analysis of Bio-Contaminating Algae in the Port Jackson Bay"
 description: "For clustering, I use data from Roberts et al. 2008 on biological contaminants in Port Jackson Bay."
 author: 
   - name: Linus Ghanadan
@@ -20,7 +20,15 @@ format:
         code-fold: false
 ---
 
-## [Link to GitHub repository](https://github.com/linusghanadan/ml-clustering-lab/tree/main)
+## Context
+
+This project was completed for my Machine Learning class, taken as part of my Master's program at UC Santa Barbara. Provided with data and questions, I carried out this analysis using appropriate machine learning techniques.
+
+## Project Summary
+
+Implemented K-means clustering algorithm with data on metal contents (Cd, Cr, Cu, Mn, and Ni) in two species of co-occurring algae at 10 sample sites around Port Jackson Bay to plot the Total Within Sum of Square (TWSS) for different numbers of clusters and determine the optimal number of clusters that indicate distinct types of bio-contaminating algae. In addition, calculated Euclidean distance matrix to build hierarchical clustering model and inspect the resulting dendrogram for outlier points.
+
+## [Link to GitHub Repository](https://github.com/linusghanadan/ml-clustering-lab/tree/main)
 
 ## Background
 

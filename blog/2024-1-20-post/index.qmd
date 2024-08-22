@@ -24,7 +24,15 @@ format:
 knitr::opts_chunk$set(include = TRUE, message = FALSE, warning = FALSE)
 ```
 
-## [Link to GitHub repository](https://github.com/linusghanadan/houston_power_crisis/tree/main)
+## Context
+
+This project was completed for my Geospatial Analysis & Remote Sensing class, taken as part of my Master's program at UC Santa Barbara. Provided with data and questions, I carried out this analysis using appropriate geospatial modeling techniques.
+
+## Project Summary
+
+Used data from NASA's VIIRS instrument to conduct a spatial analysis of the 2021 Houston Power Crisis. Determined and visualized census tracts in the Houston metropolitan area where residential blackouts occurred and analyzed how this related to median income of census tracts.
+
+## [Link to GitHub Repository](https://github.com/linusghanadan/houston_power_crisis/tree/main)
 
 ## Purpose
 
@@ -49,6 +57,7 @@ library(ggspatial)
 ## Data
 
 #### Blackout TIF files
+
 Data on blackouts comes from NASA's Visible Infrared Imaging Radiometer Suite (VIIRS) instrument and were accessed from NASA's website ([NASA, n.d.](https://ladsweb.modaps.eosdis.nasa.gov/)). We will look at 2021-02-07 and 2021-02-16, as two days provide us with contrasting images to visualize the extent of the power outage in Texas. Houston lies on the border of two tiles (h08v06 and h08v05) that are measured by the VIIRS instrument, so we will download two tiles per date.
 
 ```{r}
@@ -121,7 +130,7 @@ crs(homes)
 
 #### Income data GeoDataBase
 
-We cannot readily get socioeconomic information for every home, so instead we obtained data from the census tracts in 2019 from the U.S. Census Bureau's American Community Survey ([U.S. Census Bureau, 2020](https://www.census.gov/programs-surveys/acs)). The folder is an ArcGIS, a multi-file proprietary format that's roughly analogous to a GeoPackage file. Using `st_layers()`, we can explore the contents of the GeoDataBase. We can combine the geometry with the attributes to get a feature layer that `sf` can use. 
+We cannot readily get socioeconomic information for every home, so instead we obtained data from the census tracts in 2019 from the U.S. Census Bureau's American Community Survey ([U.S. Census Bureau, 2020](https://www.census.gov/programs-surveys/acs)). The folder is an ArcGIS, a multi-file proprietary format that's roughly analogous to a GeoPackage file. Using `st_layers()`, we can explore the contents of the GeoDataBase. We can combine the geometry with the attributes to get a feature layer that `sf` can use.
 
 ```{r}
 # Read in geodatabase layers, select relevant columns, and reproject CRS
@@ -141,7 +150,7 @@ crs(acs_geom)
 
 #### 1) Create a blackout mask
 
-First, I'll create a blackout mask by finding the change in night lights intensity that was presumably caused by the storm, reclassifying the difference raster (assuming that any location that experienced a drop of more than 200 nW cm^-2^sr^-1 experienced a blackout), and assigning `NA` to all locations that experienced a drop of less than 200 nW cm^-2^sr^-1)
+First, I'll create a blackout mask by finding the change in night lights intensity that was presumably caused by the storm, reclassifying the difference raster (assuming that any location that experienced a drop of more than 200 nW cm^-2^sr\^-1 experienced a blackout), and assigning `NA` to all locations that experienced a drop of less than 200 nW cm^-2^sr\^-1)
 
 ```{r}
 # Create difference raster for change in night lights caused by storm
@@ -183,7 +192,7 @@ unique(blackout_mask$VNP46A1.A2021047.h08v05.001.2021048091106.tif)
 
 #### 2) Crop blackout mask to region of interest (Houston metropolitan area)
 
-Next, I'll crop the blackout mask to the region of interest, which in this case is the metropolitan area in and around Houston, Texas. I'll start by defining the Houston metropolitan area in terms of geographic coordinates, turning these coordinates into a polygon using `st_polygon`,  converting the polygon into a simple feature collection using `st_sfc()`, and assigning a CRS. Then, I'll crop (i.e., spatially subset) the blackout mask to our region of interest and re-project the cropped blackout dataset to EPSG:3083 (Texas Centric Albers Equal Area)
+Next, I'll crop the blackout mask to the region of interest, which in this case is the metropolitan area in and around Houston, Texas. I'll start by defining the Houston metropolitan area in terms of geographic coordinates, turning these coordinates into a polygon using `st_polygon`, converting the polygon into a simple feature collection using `st_sfc()`, and assigning a CRS. Then, I'll crop (i.e., spatially subset) the blackout mask to our region of interest and re-project the cropped blackout dataset to EPSG:3083 (Texas Centric Albers Equal Area)
 
 ```{r}
 # Prepare to crop vectorized map to only include observations in Houston
@@ -375,4 +384,4 @@ ggplot(income, aes(x = B19013e1, fill = has_blackouts_char)) +
 
 ## Conclusion
 
-For most Houston census tracts, our side-by-side histograms indicate that there was not a difference based on median income, as the distribution shape and center appear to be about the same for census tracts that were and were not impacted by home blackouts. However, our histograms do show that census tracts with median income of $250,000, which was the highest median income on our distribution, avoided impacts from home blackouts at a disproportionately high rate compared to other census tracts. Furthermore, a limitation of our study is that it does not tell us about why this was the case. For example, it is possible that people in these high income census tracts owned backup generators that they used, or it could be that these census tracts have special access to more reliable forms of electricity from local utilities. Some combination of both of these explanations is also possible.
+For most Houston census tracts, our side-by-side histograms indicate that there was not a difference based on median income, as the distribution shape and center appear to be about the same for census tracts that were and were not impacted by home blackouts. However, our histograms do show that census tracts with median income of \$250,000, which was the highest median income on our distribution, avoided impacts from home blackouts at a disproportionately high rate compared to other census tracts. Furthermore, a limitation of our study is that it does not tell us about why this was the case. For example, it is possible that people in these high income census tracts owned backup generators that they used, or it could be that these census tracts have special access to more reliable forms of electricity from local utilities. Some combination of both of these explanations is also possible.

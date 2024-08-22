@@ -1,5 +1,5 @@
 ---
-title: "Using Panel Data Methods to analyze the impact of a Cash-Transfer Program"
+title: "Impact Analysis of a 1998 Cash-Transfer Program in Rural Mexico"
 description: "For this analysis, I estimate the Average Treatment Effect (ATE) of the 1998 Prospera cash-transfer program on the value of animals owned by a household."
 author:
   - name: Linus Ghanadan
@@ -24,7 +24,15 @@ format:
 knitr::opts_chunk$set(include = TRUE, message = FALSE, warning = FALSE)
 ```
 
-## [Link to GitHub repository](https://github.com/linusghanadan/cash-transfer-policy)
+## Context
+
+This project was completed for my Policy Evaluation class, taken as part of my Master's program at UC Santa Barbara. Provided with data and questions, I carried out this analysis using appropriate causal inference modeling techniques.
+
+## Project Summary
+
+Compared pre-treatment characteristics in the treatment and control groups of the 1998 Prospera cash-transfer program. Estimated the Average Treatment Effect (ATE) of the program on a household’s value of owned animals with the First-Difference, Fixed-Effects, and Difference-in-Difference estimators.
+
+## [Link to GitHub Repository](https://github.com/linusghanadan/cash-transfer-policy)
 
 ## Question
 
