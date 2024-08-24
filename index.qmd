@@ -2,10 +2,10 @@
 title: "My name is Linus Ghanadan. Welcome to my website!"
 about:
     template: solana
-    image: linus-website-photo.jpg
+    image: linus.jpeg
 ---
 
-If you want to learn more about me, check out my profiles on [LinkedIn](https://www.linkedin.com/in/linus-ghanadan/) and [GitHub](https://github.com/linusghanadan).
+If you want to learn more about me, check out my profiles on [LinkedIn](https://www.linkedin.com/in/linus-ghanadan/) and [GitHub](https://github.com/linusghanadan) as well.
 
 # Data Science Portfolio
 
