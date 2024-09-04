@@ -1,0 +1,22 @@
+---
+title: "Understanding the Impact of California Disposable Carryout Bag Policies"
+description: "20-minute group presentation on research design and econometric results from Rebecca L.C. Taylor’s 2019 paper in the Journal of Environmental Economics and Management."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+date: 04-27-2022
+categories:
+  - [Slide-Deck Presentation]
+citation:
+  url: https://linusghanadan.github.io/blog/bag-leakage-post/
+draft: false
+format:
+    html:
+        code-fold: false
+---
+
+![[Tony Webster](https://commons.wikimedia.org/wiki/File:Are_you_reusable_bag_ready_-_Target_Portland_plastic_bag_ban_ordinance_(16803680204).jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en), via Wikimedia Commons](bag.jpeg)
+
+For this Econometrics class 20-minute presentation, my group explained the research question, research design, data, regression equation, and econometric results from [Rebecca L.C. Taylor's 2019 paper](https://www.sciencedirect.com/science/article/abs/pii/S0095069618305291) in the *Journal of Environmental Economics and Management* on the impact of California disposable carryout bag (DCB) policies, which investigates this impact in terms of changes in the weight of consumed plastic bags accounting for bag leakage (i.e., some of the decrease in DCBs is offset by increase in purchases of small, medium, and tall kitchen trash bags). In addition, we also assessed the internal validity, construct validity, and external validity of the study.
+
+## [View slide-deck as PDF (used for 20-minute group presentation)](econometrics-presentation.pdf)
