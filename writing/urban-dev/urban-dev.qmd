@@ -1,0 +1,22 @@
+---
+title: "Sustainable Urban Development in São Paulo"
+description: "8-page essay on sustainable development goals in São Paulo, Brazil, looking at factors such the city's Ecological Footprint and Gini Coefficient."
+author: 
+  - name: Linus Ghanadan
+    url: https://linusghanadan.github.io/
+date: 05-27-2023
+categories:
+  - [Academic Writing]
+citation:
+  url: https://linusghanadan.github.io/blog/bag-leakage-post/
+draft: false
+format:
+    html:
+        code-fold: false
+---
+
+![Gini coefficient comparison of São Paulo and countries around the world](table.jpeg)
+
+For this paper (completed for Culture & Natural Resource Management class at the University of Maryland), I analyzed the sustainability challenges and opportunities for São Paulo, Brazil, within the framework of environmental, economic, and social conditions. I evaluated the city's Ecological Footprint, identified key local environmental issues like soil degradation and air pollution, and assessed the impact of income inequality on sustainable development. I also explored potential policy solutions from the São Paulo Climate Action Plan, which focuses on renewable energy, green infrastructure, and social equity.
+
+## [View 8-page essay as PDF](urban-dev-essay.pdf)
