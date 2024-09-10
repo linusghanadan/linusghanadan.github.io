@@ -209,15 +209,15 @@ div.csl-indent {
 </section>
 <section id="context" class="level2">
 <h2 class="anchored" data-anchor-id="context">Context</h2>
-<p>This project was completed as a final project for my Statistics class, taken as part of my Master’s program at UC Santa Barbara. I worked independently to find data, pose a statistical question, and carry out analysis using appropriate modeling techniques. Originally, this analysis was conducted in R (see original <a href="https://github.com/linusghanadan/chesapeake-bay-nutrient-pollution">repository</a> and <a href="https://linusghanadan.github.io/blog/2023-12-12-post/">blog post</a>), but I decided to reproduce this analysis to practice my Python skills working with large datasets and building statistical models with the statsmodels library.</p>
+<p>This project was completed as a final project for my Statistics class, taken as part of my Master’s program at UC Santa Barbara. I worked independently to find data, pose a statistical question, and carry out analysis using appropriate modeling techniques. Originally, this analysis was conducted in R (see original <a href="https://github.com/linusghanadan/chesapeake-bay-nutrient-pollution">repository</a> and <a href="https://linusghanadan.github.io/blog/2023-12-12-post/">blog post</a>), but I decided to reproduce this analysis to practice my Python skills working with large datasets and building statistical models with the statsmodels library (note: the reason for slight differences between this analysis and the analysis conducted in R are because of how the trend period is automatically set for STL decomposition models within the previously utilized R package).</p>
 </section>
 <section id="question" class="level2">
 <h2 class="anchored" data-anchor-id="question">Question</h2>
-<p>Since the 2010 introduction of federal water quality requirements, what seasonal and non-seasonal trends are present for nitrogen and phosphorus concentrations in Chesapeake Bay tidal regions?</p>
+<p>Since the 2010 introduction of federal water quality requirements, what seasonal and non-seasonal trends are present for <strong>nitrogen and phosphorus concentrations</strong> in Chesapeake Bay tidal regions?</p>
 </section>
 <section id="analysis-summary" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-summary">Analysis summary</h2>
-<p>Proposed statistical question on how nutrient concentrations have changed since Clean Water Act protection measures (implemented in 2010) and found appropriate data for answering the question (used over 43,000 samples from the Bay’s tidal regions). Constructed two Seasonal-Trend using LOESS (STL) decomposition models to conduct time series analysis of nitrogen and phosphorus concentrations (selected length of seasons based on autocorrelation). For each pollutant, visualized model parameters comparatively. In addition, ran regressions to determine the proportion of variation attributable to seasonality and the 95% confidence interval for change in trend component over the 10-year period.</p>
+<p>Proposed statistical question on how nutrient concentrations have changed since Clean Water Act protection measures (implemented in 2010) and found appropriate data for answering the question (used over 43,000 samples from the Bay’s tidal regions). Constructed two <strong>Seasonal-Trend using LOESS (STL) decomposition models</strong> to conduct time series analysis of nitrogen and phosphorus concentrations (selected length of seasons based on autocorrelation). For each pollutant, visualized model parameters comparatively. In addition, ran regressions to determine the proportion of variation attributable to seasonality and the 95% confidence interval for 10-year trend component.</p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -231,7 +231,7 @@ div.csl-indent {
 <p>Yearly water quality data on the Chesapeake Bay’s tidal and non-tidal regions going back to 1984 is publicly available on the Chesapeake Bay Program (CBP) DataHub <span class="citation" data-cites="chesapeake_bay_program_datahub_traditional_nodate">(<a href="#ref-chesapeake_bay_program_datahub_traditional_nodate" role="doc-biblioref">Chesapeake Bay Program DataHub, n.d.</a>)</span>. Data is organized into either Tier 1, 2, or 3 depending on how it was collected. While Tier 1 and 2 data can be collected by any interested group, Tier 3 data is collected by monitoring stations overseen by experienced professionals. Only Tier 3 data can be used for governmental regulatory assessments.</p>
 <p>For my analysis, I will be using 2010 to 2019 Tier 3 data collected at 143 different monitoring stations positioned throughout the Chesapeake Bay tidal regions, which includes the mainstem Bay and tributary components. Across the 10 years that we are looking at, we’ll have more than 43,800 nitrogen observations and more than 43,500 phosphorus observations.</p>
 <p>Below, we import the Python libraries used in this analysis. Then, we read in the yearly water quality data using their CBP DataHub URL. We also process the data by creating separate data.frames for total nitrogen and phosphorus measurements.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:15:56.160608Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:15:56.160172Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:16:00.256557Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:16:00.255397Z&quot;}" data-papermill="{&quot;duration&quot;:4.107177,&quot;end_time&quot;:&quot;2024-09-10T03:16:00.259267&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:15:56.152090&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="1">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:29:33.765968Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:29:33.764781Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:29:38.008629Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:29:38.007599Z&quot;}" data-papermill="{&quot;duration&quot;:4.254267,&quot;end_time&quot;:&quot;2024-09-10T06:29:38.011160&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:29:33.756893&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -243,13 +243,14 @@ div.csl-indent {
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.seasonal <span class="im">import</span> STL</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.regression.linear_model <span class="im">import</span> OLS</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Other libraries</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.iolib.summary <span class="im">import</span> Summary</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Other libraries</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:16:00.274702Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:16:00.274109Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:32:56.150389Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:32:56.149303Z&quot;}" data-papermill="{&quot;duration&quot;:1015.887068,&quot;end_time&quot;:&quot;2024-09-10T03:32:56.153128&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:16:00.266060&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="2">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:29:38.026719Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:29:38.025423Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:23.738950Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:23.737659Z&quot;}" data-papermill="{&quot;duration&quot;:1005.724447,&quot;end_time&quot;:&quot;2024-09-10T06:46:23.742189&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:29:38.017742&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of data URLs</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>excel_urls <span class="op">=</span> [</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'https://datahub-content.chesapeakebay.net/traditional_annual_tidal_02jun21/2019_CEDR_tidal_data_01jun21.xlsx'</span>,</span>
@@ -279,7 +280,7 @@ div.csl-indent {
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all data frames into a single data frame</span></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>wq_data_combined <span class="op">=</span> pd.concat(dfs, ignore_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:32:56.169357Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:32:56.168281Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:32:56.948761Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:32:56.947202Z&quot;}" data-papermill="{&quot;duration&quot;:0.79108,&quot;end_time&quot;:&quot;2024-09-10T03:32:56.951333&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:32:56.160253&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="3">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:23.758204Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:23.757581Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:24.517331Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:24.515885Z&quot;}" data-papermill="{&quot;duration&quot;:0.770485,&quot;end_time&quot;:&quot;2024-09-10T06:46:24.519932&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:23.749447&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data for relevant column variables, filter for TN (total nitrogen), and remove Parameter column</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nitr_data <span class="op">=</span> wq_data_combined[[<span class="st">"SampleDate"</span>, <span class="st">"Parameter"</span>, <span class="st">"MeasureValue"</span>, <span class="st">"Latitude"</span>, <span class="st">"Longitude"</span>]]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>nitr_data <span class="op">=</span> nitr_data[nitr_data[<span class="st">"Parameter"</span>] <span class="op">==</span> <span class="st">"TN"</span>]</span>
@@ -325,7 +326,7 @@ memory usage: 1.7 MB</code></pre>
 <section id="exploratory-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-analysis">Exploratory analysis</h2>
 <p>We’ll start by briefly looking at average concentration by location using a heatmap (courtesy of the seaborn library).</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:32:56.980103Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:32:56.979685Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:32:57.588761Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:32:57.587431Z&quot;}" data-papermill="{&quot;duration&quot;:0.620337,&quot;end_time&quot;:&quot;2024-09-10T03:32:57.591859&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:32:56.971522&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="4">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:24.548448Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:24.548042Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:25.165298Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:25.164210Z&quot;}" data-papermill="{&quot;duration&quot;:0.627844,&quot;end_time&quot;:&quot;2024-09-10T06:46:25.167938&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:24.540094&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nitrogen</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin latitude and longitude into groups</span></span>
@@ -368,7 +369,7 @@ memory usage: 1.7 MB</code></pre>
 <p><img src="chesapeake-bay-python_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:32:57.610494Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:32:57.610030Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:32:58.159872Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:32:58.158521Z&quot;}" data-papermill="{&quot;duration&quot;:0.562574,&quot;end_time&quot;:&quot;2024-09-10T03:32:58.162840&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:32:57.600266&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="5">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:25.186451Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:25.185660Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:25.681211Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:25.679666Z&quot;}" data-papermill="{&quot;duration&quot;:0.507514,&quot;end_time&quot;:&quot;2024-09-10T06:46:25.683742&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:25.176228&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phosphorus</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin latitude and longitude into groups</span></span>
@@ -413,7 +414,7 @@ memory usage: 1.7 MB</code></pre>
 </div>
 <p>Interestingly, nitrogen and phosphorus concentration are both generally higher in the southeast regions of the Chesapeake Bay.</p>
 <p>Moving forward, we’ll start with our time series analysis by calculating moving averages for each year-month. We’ll plot these moving averages just to get a general idea of what types of trends we might be looking at.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:32:58.202802Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:32:58.201951Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:32:58.629562Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:32:58.628319Z&quot;}" data-papermill="{&quot;duration&quot;:0.44091,&quot;end_time&quot;:&quot;2024-09-10T03:32:58.631992&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:32:58.191082&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="6">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:25.724341Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:25.723898Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:26.158151Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:26.156913Z&quot;}" data-papermill="{&quot;duration&quot;:0.448135,&quot;end_time&quot;:&quot;2024-09-10T06:46:26.160876&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:25.712741&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nitrogen</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove columns from the nitrogen data that are no longer needed</span></span>
@@ -458,7 +459,7 @@ memory usage: 1.7 MB</code></pre>
 </div>
 </div>
 <p>From this plot, there does appear to be seasonality for nitrogen concentrations, but there is no clear trend component. In addition, there is a notable spike in early 2014.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:32:58.677316Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:32:58.676853Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:32:59.171833Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:32:59.170372Z&quot;}" data-papermill="{&quot;duration&quot;:0.510094,&quot;end_time&quot;:&quot;2024-09-10T03:32:59.174791&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:32:58.664697&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="7">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:26.206348Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:26.205921Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:26.708891Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:26.707450Z&quot;}" data-papermill="{&quot;duration&quot;:0.517819,&quot;end_time&quot;:&quot;2024-09-10T06:46:26.711432&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:26.193613&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phosphorus</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove columns from the nitrogen data that are no longer needed</span></span>
@@ -520,7 +521,7 @@ memory usage: 1.7 MB</code></pre>
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <section id="autocorrelation-function-1" class="level4">
 <h4 class="anchored" data-anchor-id="autocorrelation-function-1">Autocorrelation function</h4>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:32:59.258523Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:32:59.257992Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:32:59.559014Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:32:59.557853Z&quot;}" data-papermill="{&quot;duration&quot;:0.317932,&quot;end_time&quot;:&quot;2024-09-10T03:32:59.561679&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:32:59.243747&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="8">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:26.788326Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:26.787877Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:27.081535Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:27.080425Z&quot;}" data-papermill="{&quot;duration&quot;:0.309922,&quot;end_time&quot;:&quot;2024-09-10T06:46:27.084028&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:26.774106&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nitrogen</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot autocorrelation function for nitrogen with lags going back three years</span></span>
@@ -533,7 +534,7 @@ memory usage: 1.7 MB</code></pre>
 <p><img src="chesapeake-bay-python_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:32:59.618267Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:32:59.617842Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:32:59.903443Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:32:59.902184Z&quot;}" data-papermill="{&quot;duration&quot;:0.303102,&quot;end_time&quot;:&quot;2024-09-10T03:32:59.905839&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:32:59.602737&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="9">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:27.113708Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:27.112608Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:27.359773Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:27.358585Z&quot;}" data-papermill="{&quot;duration&quot;:0.264377,&quot;end_time&quot;:&quot;2024-09-10T06:46:27.362163&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:27.097786&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phosphorus</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot autocorrelation function for phosphorus with lags going back three years</span></span>
@@ -550,7 +551,7 @@ memory usage: 1.7 MB</code></pre>
 </section>
 <section id="stl-decomposition-1" class="level4">
 <h4 class="anchored" data-anchor-id="stl-decomposition-1">STL decomposition</h4>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:32:59.965376Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:32:59.964526Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:33:01.964416Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:33:01.963196Z&quot;}" data-papermill="{&quot;duration&quot;:2.018641,&quot;end_time&quot;:&quot;2024-09-10T03:33:01.967330&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:32:59.948689&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="10">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:27.422016Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:27.420947Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:29.466281Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:29.464968Z&quot;}" data-papermill="{&quot;duration&quot;:2.063675,&quot;end_time&quot;:&quot;2024-09-10T06:46:29.468726&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:27.405051&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nitrogen</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform STL decomposition</span></span>
@@ -567,7 +568,7 @@ memory usage: 1.7 MB</code></pre>
 </div>
 </div>
 <p>In this plot of the three STL components for nitrogen, it is still difficult to see a long-term trend, despite the line being fairly smooth. There does seem to be a slight downward trend until 2018. However, starting in 2018, there is a clear increase for the rest of the time series.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:33:02.032329Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:33:02.031855Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:33:03.833180Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:33:03.831933Z&quot;}" data-papermill="{&quot;duration&quot;:1.821124,&quot;end_time&quot;:&quot;2024-09-10T03:33:03.836164&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:33:02.015040&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="11">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:29.533211Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:29.531788Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:31.403507Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:31.402295Z&quot;}" data-papermill="{&quot;duration&quot;:1.891462,&quot;end_time&quot;:&quot;2024-09-10T06:46:31.406283&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:29.514821&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phosphorus</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform STL decomposition</span></span>
@@ -583,8 +584,8 @@ memory usage: 1.7 MB</code></pre>
 <p><img src="chesapeake-bay-python_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>The STL plot for phosphorus does make it seem like there is a long-term downward trend, but it is difficult to tell how significant it is compared to the other components.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:33:03.906046Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:33:03.905566Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:33:04.499556Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:33:04.498197Z&quot;}" data-papermill="{&quot;duration&quot;:0.61762,&quot;end_time&quot;:&quot;2024-09-10T03:33:04.504374&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:33:03.886754&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="12">
+<p>The STL plot for phosphorus does make it seem like there is a long-term downward trend, but it is difficult to tell how significant it is compared to the other components.The STL plot for phosphorus does make it seem like there is a long-term downward trend, but it is difficult to tell how significant it is because of the long grey bar, which indicates it is least influential of the three components in our STL model.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:31.475410Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:31.475000Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:32.074270Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:32.072998Z&quot;}" data-papermill="{&quot;duration&quot;:0.622005,&quot;end_time&quot;:&quot;2024-09-10T06:46:32.078999&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:31.456994&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nitrogen</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the components</span></span>
@@ -633,8 +634,8 @@ memory usage: 1.7 MB</code></pre>
 <p><img src="chesapeake-bay-python_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>I decided to make this visualization to get a better idea of exactly how these components map on to each other. This plot seems to confirm the idea of negligible trend for nitrogen. Since the x-axis is labeled for each year here, it is also easier to see the seasonal trend. Each year, nitrogen concentrations increase sharply around December. They then peak around February to March, before decreasing substantially and reaching their minimum around July.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:33:04.591938Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:33:04.591504Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:33:05.091640Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:33:05.090458Z&quot;}" data-papermill="{&quot;duration&quot;:0.527073,&quot;end_time&quot;:&quot;2024-09-10T03:33:05.096361&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:33:04.569288&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="13">
+<p>I decided to make this visualization to get a better idea of exactly how these components map on to each other. This plot seems to confirm the idea of negligible trend component for nitrogen. Since the x-axis is labeled for each year here, it is also easier to see the seasonality. Each year, nitrogen concentrations increase sharply around December. They then peak around February to March, before decreasing substantially and reaching their minimum around July.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:32.167702Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:32.167259Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:32.763530Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:32.762238Z&quot;}" data-papermill="{&quot;duration&quot;:0.623258,&quot;end_time&quot;:&quot;2024-09-10T06:46:32.767707&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:32.144449&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phosphorus</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the components</span></span>
@@ -687,7 +688,7 @@ memory usage: 1.7 MB</code></pre>
 </section>
 <section id="linear-regressions-based-on-stl-model-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="linear-regressions-based-on-stl-model-parameters">Linear regressions based on STL model parameters</h4>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:33:05.201373Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:33:05.200903Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:33:05.220872Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:33:05.219413Z&quot;}" data-papermill="{&quot;duration&quot;:0.049233,&quot;end_time&quot;:&quot;2024-09-10T03:33:05.223422&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:33:05.174189&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="14">
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:32.875019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:32.874520Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:32.895491Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:32.894101Z&quot;}" data-papermill="{&quot;duration&quot;:0.051015,&quot;end_time&quot;:&quot;2024-09-10T06:46:32.898392&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:32.847377&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nitrogen</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of season component on monthly average</span></span>
@@ -702,8 +703,8 @@ memory usage: 1.7 MB</code></pre>
 <pre><code>R-squared: 0.725</code></pre>
 </div>
 </div>
-<p>The adjusted R-squared of 0.73 indicates that seasonal trends can explain about 73% of the variation in nitrogen monthly mean.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:33:05.325857Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:33:05.325441Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:33:05.336143Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:33:05.334833Z&quot;}" data-papermill="{&quot;duration&quot;:0.039605,&quot;end_time&quot;:&quot;2024-09-10T03:33:05.338428&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:33:05.298823&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="15">
+<p>The adjusted R-squared of <strong>0.73</strong> indicates that seasonality explains about 73% of the variation in nitrogen monthly mean.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:33.003677Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:33.002608Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:33.013092Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:33.011885Z&quot;}" data-papermill="{&quot;duration&quot;:0.039532,&quot;end_time&quot;:&quot;2024-09-10T06:46:33.015437&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:32.975905&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phosphorus</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regression of season component on monthly average</span></span>
@@ -718,11 +719,8 @@ memory usage: 1.7 MB</code></pre>
 <pre><code>R-squared: 0.867</code></pre>
 </div>
 </div>
-<p>For phosphorus, the adjusted R-squared of this regression is 0.87, confirming our idea that seasonality is more pronounced with phosphorus.</p>
-</section>
-<section id="linear-regressions-based-on-stl-model-parameters-1" class="level4">
-<h4 class="anchored" data-anchor-id="linear-regressions-based-on-stl-model-parameters-1">Linear regressions based on STL model parameters</h4>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:33:05.442424Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:33:05.441860Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:33:05.459940Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:33:05.458610Z&quot;}" data-papermill="{&quot;duration&quot;:0.047806,&quot;end_time&quot;:&quot;2024-09-10T03:33:05.462430&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:33:05.414624&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="16">
+<p>For phosphorus, the adjusted R-squared of this regression is <strong>0.87</strong>, confirming our idea that seasonality is more pronounced with phosphorus.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:33.118458Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:33.118020Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:33.148337Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:33.147119Z&quot;}" data-papermill="{&quot;duration&quot;:0.059581,&quot;end_time&quot;:&quot;2024-09-10T06:46:33.150847&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:33.091266&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nitrogen</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate months since start</span></span>
@@ -734,44 +732,72 @@ memory usage: 1.7 MB</code></pre>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> nitr_trend</span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>nitr_season_reg <span class="op">=</span> OLS(y, X).fit()</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the coefficient (slope)</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>monthly_trend_estimate <span class="op">=</span> nitr_season_reg.params[<span class="st">'months_since_start'</span>]</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the regression summary</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nitr_season_reg.summary())</span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the standard error of the coefficient</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> nitr_season_reg.bse[<span class="st">'months_since_start'</span>]</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the coefficient (slope)</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>monthly_trend_estimate <span class="op">=</span> nitr_season_reg.params[<span class="st">'months_since_start'</span>]</span>
 <span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the t-statistic for 95% confidence interval</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Degrees of freedom: n - k - 1, where n is number of observations and k is number of predictors</span></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> nitr_season_reg.df_resid</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>t_value <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, df)  <span class="co"># 0.975 for two-tailed 95% CI</span></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate estimate for 10-year aggregated trend component</span></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>fullseries_trend_estimate <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> monthly_trend_estimate</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the standard error of the coefficient</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> nitr_season_reg.bse[<span class="st">'months_since_start'</span>]</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the t-statistic for 95% confidence interval</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Degrees of freedom: n - k - 1, where n is number of observations and k is number of predictors</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> nitr_season_reg.df_resid</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>t_value <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, df)  <span class="co"># 0.975 for two-tailed 95% CI</span></span>
 <span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval for 10 year change (120 * monthly trend component)</span></span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> (monthly_trend_estimate <span class="op">-</span> t_value <span class="op">*</span> se)</span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> (monthly_trend_estimate <span class="op">+</span> t_value <span class="op">*</span> se)</span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated 10-year trend component (mg/L):</span><span class="ch">\n</span><span class="sc">{</span>fullseries_trend_estimate<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% Confidence Interval for 10-year trend component (mg/L):</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>ci_lower<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>ci_upper<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate estimate for 10-year aggregated trend component (as percent of January 2010)</span></span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>fullseries_trend_estimate_aspercent <span class="op">=</span> fullseries_trend_estimate <span class="op">/</span> nitr_trend.values[<span class="dv">0</span>]</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate estimate for 10-year aggregated trend component</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>fullseries_trend_estimate <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> monthly_trend_estimate</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval for 10 year change (120 * monthly trend component)</span></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> (monthly_trend_estimate <span class="op">-</span> t_value <span class="op">*</span> se)</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> (monthly_trend_estimate <span class="op">+</span> t_value <span class="op">*</span> se)</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated 10-year trend component (mg/L):</span><span class="ch">\n</span><span class="sc">{</span>fullseries_trend_estimate<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% Confidence Interval for 10-year trend component (mg/L):</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>ci_lower<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>ci_upper<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
 <span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval for 10 year change (120 * monthly trend component) as percent of January 2010</span></span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> ci_lower <span class="op">/</span> nitr_trend.values[<span class="dv">0</span>]</span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> ci_upper <span class="op">/</span> nitr_trend.values[<span class="dv">0</span>]</span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated 10-year trend component (as percent of January 2010):</span><span class="ch">\n</span><span class="sc">{</span>fullseries_trend_estimate_aspercent<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% Confidence Interval for 10-year trend component (as percent of January 2010):</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>ci_lower<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>ci_upper<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove from environment</span></span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> nitr_monthly_avg</span>
-<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> nitr_trend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate estimate for 10-year aggregated trend component (as percent of January 2010)</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>fullseries_trend_estimate_aspercent <span class="op">=</span> fullseries_trend_estimate <span class="op">/</span> nitr_trend.values[<span class="dv">0</span>]</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval for 10 year change (120 * monthly trend component) as percent of January 2010</span></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> ci_lower <span class="op">/</span> nitr_trend.values[<span class="dv">0</span>]</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> ci_upper <span class="op">/</span> nitr_trend.values[<span class="dv">0</span>]</span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated 10-year trend component (as percent of January 2010):</span><span class="ch">\n</span><span class="sc">{</span>fullseries_trend_estimate_aspercent<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% Confidence Interval for 10-year trend component (as percent of January 2010):</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>ci_lower<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>ci_upper<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove from environment</span></span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> nitr_monthly_avg</span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> nitr_trend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Estimated 10-year trend component (mg/L):
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  trend   R-squared:                       0.046
+Model:                            OLS   Adj. R-squared:                  0.038
+Method:                 Least Squares   F-statistic:                     5.698
+Date:                Tue, 10 Sep 2024   Prob (F-statistic):             0.0186
+Time:                        06:46:33   Log-Likelihood:                 193.25
+No. Observations:                 120   AIC:                            -382.5
+Df Residuals:                     118   BIC:                            -376.9
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          t      P&gt;|t|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+const                  0.9187      0.009    103.858      0.000       0.901       0.936
+months_since_start    -0.0003      0.000     -2.387      0.019      -0.001   -5.23e-05
+==============================================================================
+Omnibus:                        3.998   Durbin-Watson:                   0.008
+Prob(Omnibus):                  0.135   Jarque-Bera (JB):                3.239
+Skew:                          -0.289   Prob(JB):                        0.198
+Kurtosis:                       2.441   Cond. No.                         137.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+Estimated 10-year trend component (mg/L):
 -0.037
 95% Confidence Interval for 10-year trend component (mg/L):
 (-0.067, -0.006)
@@ -781,8 +807,8 @@ Estimated 10-year trend component (as percent of January 2010):
 (-0.071, -0.007)</code></pre>
 </div>
 </div>
-<p>In this linear regression, we look at the influence of year-month on our trend component for nitrogen. The regression output tells us that we can say at an alpha equals 0.05 significance level that the 10-year trend component was negative. Furthermore, the first interval tells us that there is a 95% chance that the interval from -0.067 mg/L to -0.006 mg/L contains the true 10-year trend component. The second interval shows that this represents a -0.071% to -0.007% change as compared to the trend component in January 2010.</p>
-<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T03:33:05.566290Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T03:33:05.565824Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T03:33:05.582995Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T03:33:05.581721Z&quot;}" data-papermill="{&quot;duration&quot;:0.047302,&quot;end_time&quot;:&quot;2024-09-10T03:33:05.585686&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T03:33:05.538384&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="17">
+<p>In this linear regression, we look at the influence of year-month on our trend component for nitrogen. The regression output tells us that we can say at an alpha equals 0.05 significance level that the 10-year trend component was negative. Furthermore, the first interval tells us that there is a 95% chance that the interval from <strong>-0.067 mg/L</strong> to <strong>-0.006 mg/L</strong> contains the true 10-year trend component. The second interval shows that this represents a <strong>-0.071%</strong> to <strong>-0.007%</strong> change as compared to the trend component in January 2010.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-09-10T06:46:33.255960Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-09-10T06:46:33.254986Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-09-10T06:46:33.280659Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-09-10T06:46:33.279418Z&quot;}" data-papermill="{&quot;duration&quot;:0.055357,&quot;end_time&quot;:&quot;2024-09-10T06:46:33.283221&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-09-10T06:46:33.227864&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phosphorus</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate months since start</span></span>
@@ -794,40 +820,68 @@ Estimated 10-year trend component (as percent of January 2010):
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> phos_trend</span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>phos_season_reg <span class="op">=</span> OLS(y, X).fit()</span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the coefficient (slope)</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>monthly_trend_estimate <span class="op">=</span> phos_season_reg.params[<span class="st">'months_since_start'</span>]</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the regression summary</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(phos_season_reg.summary())</span>
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the standard error of the coefficient</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> phos_season_reg.bse[<span class="st">'months_since_start'</span>]</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the coefficient (slope)</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>monthly_trend_estimate <span class="op">=</span> phos_season_reg.params[<span class="st">'months_since_start'</span>]</span>
 <span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the t-statistic for 95% confidence interval</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Degrees of freedom: n - k - 1, where n is number of observations and k is number of predictors</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> phos_season_reg.df_resid</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>t_value <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, df)  <span class="co"># 0.975 for two-tailed 95% CI</span></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate estimate for 10-year aggregated trend component</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>fullseries_trend_estimate <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> monthly_trend_estimate</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the standard error of the coefficient</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> phos_season_reg.bse[<span class="st">'months_since_start'</span>]</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the t-statistic for 95% confidence interval</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Degrees of freedom: n - k - 1, where n is number of observations and k is number of predictors</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> phos_season_reg.df_resid</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>t_value <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, df)  <span class="co"># 0.975 for two-tailed 95% CI</span></span>
 <span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval for 10 year change (120 * monthly trend component)</span></span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> (monthly_trend_estimate <span class="op">-</span> t_value <span class="op">*</span> se)</span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> (monthly_trend_estimate <span class="op">+</span> t_value <span class="op">*</span> se)</span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated 10-year trend component (mg/L):</span><span class="ch">\n</span><span class="sc">{</span>fullseries_trend_estimate<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% Confidence Interval for 10-year trend component (mg/L):</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>ci_lower<span class="sc">:.5f}</span><span class="ss">, </span><span class="sc">{</span>ci_upper<span class="sc">:.5f}</span><span class="ss">)"</span>)</span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate estimate for 10-year aggregated trend component (as percent of January 2010)</span></span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>fullseries_trend_estimate_aspercent <span class="op">=</span> fullseries_trend_estimate <span class="op">/</span> phos_trend.values[<span class="dv">0</span>]</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate estimate for 10-year aggregated trend component</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>fullseries_trend_estimate <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> monthly_trend_estimate</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval for 10 year change (120 * monthly trend component)</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> (monthly_trend_estimate <span class="op">-</span> t_value <span class="op">*</span> se)</span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> <span class="dv">120</span> <span class="op">*</span> (monthly_trend_estimate <span class="op">+</span> t_value <span class="op">*</span> se)</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated 10-year trend component (mg/L):</span><span class="ch">\n</span><span class="sc">{</span>fullseries_trend_estimate<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% Confidence Interval for 10-year trend component (mg/L):</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>ci_lower<span class="sc">:.5f}</span><span class="ss">, </span><span class="sc">{</span>ci_upper<span class="sc">:.5f}</span><span class="ss">)"</span>)</span>
 <span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval for 10 year change (120 * monthly trend component) as percent of January 2010</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> ci_lower <span class="op">/</span> phos_trend.values[<span class="dv">0</span>]</span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> ci_upper <span class="op">/</span> phos_trend.values[<span class="dv">0</span>]</span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
-<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated 10-year trend component (as percent of January 2010):</span><span class="ch">\n</span><span class="sc">{</span>fullseries_trend_estimate_aspercent<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% Confidence Interval for 10-year trend component (as percent of January 2010):</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>ci_lower<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>ci_upper<span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate estimate for 10-year aggregated trend component (as percent of January 2010)</span></span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>fullseries_trend_estimate_aspercent <span class="op">=</span> fullseries_trend_estimate <span class="op">/</span> phos_trend.values[<span class="dv">0</span>]</span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval for 10 year change (120 * monthly trend component) as percent of January 2010</span></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="op">=</span> ci_lower <span class="op">/</span> phos_trend.values[<span class="dv">0</span>]</span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="op">=</span> ci_upper <span class="op">/</span> phos_trend.values[<span class="dv">0</span>]</span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated 10-year trend component (as percent of January 2010):</span><span class="ch">\n</span><span class="sc">{</span>fullseries_trend_estimate_aspercent<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% Confidence Interval for 10-year trend component (as percent of January 2010):</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>ci_lower<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>ci_upper<span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Estimated 10-year trend component (mg/L):
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  trend   R-squared:                       0.796
+Model:                            OLS   Adj. R-squared:                  0.795
+Method:                 Least Squares   F-statistic:                     461.4
+Date:                Tue, 10 Sep 2024   Prob (F-statistic):           1.38e-42
+Time:                        06:46:33   Log-Likelihood:                 639.74
+No. Observations:                 120   AIC:                            -1275.
+Df Residuals:                     118   BIC:                            -1270.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          t      P&gt;|t|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+const                  0.0609      0.000    284.396      0.000       0.060       0.061
+months_since_start -6.683e-05   3.11e-06    -21.480      0.000    -7.3e-05   -6.07e-05
+==============================================================================
+Omnibus:                       33.059   Durbin-Watson:                   0.016
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):                6.540
+Skew:                           0.051   Prob(JB):                       0.0380
+Kurtosis:                       1.861   Cond. No.                         137.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+Estimated 10-year trend component (mg/L):
 -0.00802
 95% Confidence Interval for 10-year trend component (mg/L):
 (-0.00876, -0.00728)
@@ -837,13 +891,13 @@ Estimated 10-year trend component (as percent of January 2010):
 (-0.138, -0.115)</code></pre>
 </div>
 </div>
-<p>For phosphorus, the linear regression output tells us that we are confident at the alpha equals 0.05 level that the 10-year trend component was negative. Specifically, we find that there is a 95% chance that the interval between -0.0087 mg/L and -0.0073 mg/L contains the true 10-year trend component. This represents a -0.14% to -0.12% change as compared to the trend component in January 2010.</p>
+<p>For phosphorus, the linear regression output tells us that we are confident at the alpha equals 0.05 level that the 10-year trend component was negative. Specifically, we find that there is a 95% chance that the interval between <strong>-0.0087 mg/L</strong> and <strong>-0.0073 mg/L</strong> contains the true 10-year trend component. This represents a <strong>-0.14%</strong> to <strong>-0.12%</strong> change as compared to the trend component in January 2010.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>My time series analysis suggests that seasonality plays a substantial role in contributing to variation in the monthly mean concentration of nitrogen and phosphorus in tidal regions of the Chesapeake Bay. For nitrogen, seasonal trends explained 73% of the variation in monthly means, and the relationship was even stronger for phosphorus, with seasonal trends explaining 87% of the variation. While the seasonal component for nitrogen was highest during Winter, the seasonal component for phosphorus was highest during Summer.</p>
-<p>This analysis was also interested in any non-seasonal trend that has occurred since the introduction of TMDL requirements in 2010. For both nitrogen and phosphorus, we find evidence at an alpha level of 0.05 that the 10-year trend component was negative. However, our confidence intervals suggest that, for both nutrient pollutants, these changes in trend represent a less than 0.2% decrease over the 10-year time series.</p>
+<p>My time series analysis suggests that seasonality plays a substantial role in contributing to variation in the monthly mean concentration of nitrogen and phosphorus in tidal regions of the Chesapeake Bay. For nitrogen, seasonal trends explained <strong>73%</strong> of the variation in monthly means, and the relationship was even stronger for phosphorus, with seasonal trends explaining <strong>87%</strong> of the variation. While the seasonal component for nitrogen was highest during Winter, the seasonal component for phosphorus was highest during Summer.</p>
+<p>This analysis was also interested in any non-seasonal trend that has occurred since the introduction of TMDL requirements in 2010. For both nitrogen and phosphorus, we find evidence at an alpha level of 0.05 that the 10-year trend component was negative. However, our confidence intervals suggest that, for both nutrient pollutants, these changes in trend represent a <strong>less than 0.2% decrease</strong> over the 10-year time series.</p>
 <p>The main limitation of this analysis was that no form of spatial interpolation was employed to estimate concentrations across the tidal region based on the location of measurements. It would be interesting to compare such an analysis to what we did here, as any significant differences would imply that sampled areas are not spread throughout the region in a representative manner. Further analysis might also investigate what happened at the beginning of 2014 that could have led to the high spike in nitrogen levels at that time, in addition to factors that might have fueled the increase seen over the course of 2018.</p>
 
 
