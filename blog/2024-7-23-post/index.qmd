@@ -10,7 +10,6 @@ date: "July 23, 2024"
 categories:
   - [Data Visualization]
   - [Python]
-image: heatmap.jpeg
 citation:
   url: https://linusghanadan.github.io/blog/2024-7-23-post/
 draft: false
