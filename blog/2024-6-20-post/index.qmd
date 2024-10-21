@@ -1,5 +1,5 @@
 ---
-title: "Improving a Workflow for Carbon Accounting and Sustainability Analysis"
+title: "Improving GHG Data Analysis Workflow for an Outdoor Apparel Company"
 description: "This blog post provides an overview of my master's capstone project, including screenshots from deliverables that are shareable under my group's non-disclosure agreement."
 author: 
   - name: Linus Ghanadan, Flora Hamilton, Carly Caswell, Annie Adams
@@ -23,11 +23,12 @@ format:
 ---
 
 ## [Link to UC Santa Barbara Student Research Directory Project Page](https://bren.ucsb.edu/projects/creating-reproducible-model-annual-emissions-outputs-sock-manufacturers-supply-chain)
+
 ## [Link to GitHub Page](https://github.com/carbonSOCKprint)
 
 ## Summary of Project and My Contribution
 
-For my master’s capstone project, I worked with fellow classmates Flora, Carly, and Annie to help the Global Director for Environmental and Social Responsibility at the outdoor apparel company Darn Tough Vermont. Specifically, my group helped streamline the company’s GHG emissions data analysis workflow, develop an interactive dashboard for data analysis, analyze the company’s emissions data from 2019 and 2020, and recommend strategies for emissions reduction. My primary role in the project was taking the lead with scenario analysis components of the interactive dashboard, and this involved coming up with ideas for how to go about analyzing emissions scenarios, presenting my ideas to the client, and using the client’s feedback to write code for the interactive dashboard. From this project, I learned to develop solutions strategically in a team setting, specifically regarding how to analyze data in the most useful way for informing decisions.
+For my master's capstone project, I worked with fellow classmates Flora, Carly, and Annie to help the Global Director for Environmental and Social Responsibility at the outdoor apparel company Darn Tough Vermont. Specifically, my group helped streamline the company's GHG emissions data analysis workflow, develop an interactive dashboard for data analysis, analyze the company's emissions data from 2019 and 2020, and recommend strategies for emissions reduction. My primary role in the project was taking the lead with scenario analysis components of the interactive dashboard, and this involved coming up with ideas for how to go about analyzing emissions scenarios, presenting my ideas to the client, and using the client's feedback to write code for the interactive dashboard. From this project, I learned to develop solutions strategically in a team setting, specifically regarding how to analyze data in the most useful way for informing decisions.
 
 ## About Darn Tough Vermont
 
