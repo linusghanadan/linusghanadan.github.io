@@ -12,7 +12,7 @@ about:
         href: https://github.com/linusghanadan
 ---
 
-In June 2024, I graduated with a Master's in Environmental Data Science from the Bren School of Environmental Science & Management at UC Santa Barbara. I also hold a B.S. in Environmental Economics from the University of Maryland, which I received in May 2023. Moving forward, I am very interested in using data analytics to inform the energy transition.
+I recently received a Bachelor's degree in 2023 (B.S. in Environmental Economics from the University of Maryland) and a Master's degree in 2024 (M.S. in Environmental Data Science from the Bren School at UC Santa Barbara). Moving forward, I am very interested in using analytics to help with Earth's carbon and biodiversity crises.
 
 #### **Highlighted Projects**:
 
