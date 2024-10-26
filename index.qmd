@@ -16,7 +16,7 @@ I recently received a Bachelor's degree in 2023 (B.S. in Environmental Economics
 
 #### **Highlighted Projects**:
 
--   [**Time Series Analysis of Nutrient Concentration in Chesapeake Bay**](https://github.com/linusghanadan/chesapeake-bay-nutrient-pollution-python): My favorite data science project from graduate school. For this final project in my master’s statistics course, I worked independently to find data, propose a question, and carry out analysis using statistical modeling techniques and Python.
+-   [**Time Series Analysis of Nutrient Concentration in Chesapeake Bay**](https://github.com/linusghanadan/chesapeake-bay-nutrient-pollution-python): My favorite data science project from graduate school. For this final project in my master’s statistics course, I worked independently to find data, pose a question, and carry out analysis using statistical modeling and Python.
 
 -   [**Improving GHG Data Analysis Workflow for an Outdoor Apparel Company**](https://linusghanadan.github.io/blog/2024-6-20-post/): Provides an overview of my master's capstone project, including screenshots from our customized interactive dashboard. I completed this project alongside Kristen Graf (Director of Environmental and Social Responsibility at Darn Tough Vermont) and fellow students Carly Caswell, Annie Adams, and Flora Hamilton.
 
