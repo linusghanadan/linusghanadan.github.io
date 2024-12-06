@@ -12,7 +12,7 @@ about:
         href: https://github.com/linusghanadan
 ---
 
-I recently received a Bachelor's degree in 2023 (B.S. in Environmental Economics from the University of Maryland) and a Master's degree in 2024 (M.S. in Environmental Data Science from the Bren School at UC Santa Barbara). Moving forward, I am very interested in using analytics to help with Earth's carbon and biodiversity crises.
+I recently received a Bachelor's degree in 2023 (B.S. in Environmental Economics from the University of Maryland) and a Master's degree in 2024 (M.S. in Environmental Data Science from the Bren School at UC Santa Barbara). Moving forward, I am very interested in very interested in using data science to find innovative solutions that deliver a healthy planet.
 
 #### **Highlighted Projects**:
 
