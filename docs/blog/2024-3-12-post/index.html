@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2024-03-12">
 <meta name="description" content="This blog post explains the process of creating an infographic on anthropogenic methane emissions in 2021, with a particular focus on the data visualization considerations and choices made.">
 
-<title>Linus Ghanadan - Infographic on Anthropogenic Methane Emissions</title>
+<title>Infographic on Anthropogenic Methane Emissions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -36,7 +36,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -61,6 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -101,7 +102,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -110,6 +117,7 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -120,39 +128,34 @@ div.csl-indent {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Linus Ghanadan</span>
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html" rel="" target="">
- <span class="menu-text">Data Science</span></a>
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Data Science</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../writing.html" rel="" target="">
- <span class="menu-text">Writing</span></a>
+    <a class="nav-link" href="../../writing.html"> 
+<span class="menu-text">Essays</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -180,14 +183,14 @@ div.csl-indent {
       <div class="quarto-title-meta-contents">
       <p class="author"><a href="https://linusghanadan.github.io/">Linus Ghanadan</a> </p>
     </div>
-      <div class="quarto-title-meta-contents">
+    <div class="quarto-title-meta-contents">
           <p class="affiliation">
               <a href="https://bren.ucsb.edu/masters-programs/master-environmental-data-science">
               MEDS
               </a>
             </p>
         </div>
-      </div>
+    </div>
 
   <div class="quarto-title-meta">
 
@@ -206,9 +209,29 @@ div.csl-indent {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#completed-infographic-where-we-are-heading" id="toc-completed-infographic-where-we-are-heading" class="nav-link active" data-scroll-target="#completed-infographic-where-we-are-heading">Completed infographic (where we are heading!)</a></li>
+  <li><a href="#link-to-github-repository" id="toc-link-to-github-repository" class="nav-link" data-scroll-target="#link-to-github-repository">Link to GitHub repository</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#setup-data-import" id="toc-setup-data-import" class="nav-link" data-scroll-target="#setup-data-import">Setup &amp; data import</a></li>
+  <li><a href="#general-data-wrangling" id="toc-general-data-wrangling" class="nav-link" data-scroll-target="#general-data-wrangling">General data wrangling</a></li>
+  <li><a href="#plot-1-vizualization" id="toc-plot-1-vizualization" class="nav-link" data-scroll-target="#plot-1-vizualization">Plot 1 vizualization</a></li>
+  <li><a href="#plot-2-visualization" id="toc-plot-2-visualization" class="nav-link" data-scroll-target="#plot-2-visualization">Plot 2 visualization</a></li>
+  <li><a href="#plot-3-visualization" id="toc-plot-3-visualization" class="nav-link" data-scroll-target="#plot-3-visualization">Plot 3 visualization</a></li>
+  <li><a href="#map-visualization" id="toc-map-visualization" class="nav-link" data-scroll-target="#map-visualization">Map visualization</a></li>
+  <li><a href="#making-infographic" id="toc-making-infographic" class="nav-link" data-scroll-target="#making-infographic">Making infographic</a></li>
+  <li><a href="#my-visualization-approach" id="toc-my-visualization-approach" class="nav-link" data-scroll-target="#my-visualization-approach">My visualization approach</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -218,7 +241,7 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="infographic.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Infographic on anthropogenic methane emissions in 2021</figcaption>
+<figcaption>Infographic on anthropogenic methane emissions in 2021</figcaption>
 </figure>
 </div>
 </section>
@@ -239,7 +262,7 @@ div.csl-indent {
 <section id="setup-data-import" class="level2">
 <h2 class="anchored" data-anchor-id="setup-data-import">Setup &amp; data import</h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                                setup                                     ----</span></span>
@@ -264,7 +287,7 @@ div.csl-indent {
 </details>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                                import data                               ----</span></span>
@@ -288,7 +311,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="general-data-wrangling">General data wrangling</h2>
 <p>To start, I have some general data wrangling steps that allowed me to explore the data and calculate some of the statistics that I ended up including in my infographic. In the code chunk below, I’m storing the world-level rows in the IEA data set as their own data frame, and reconfiguring the data frame to find the percent of total global emissions coming from each of the four sectors, which I ended up including in the legend of my first plot.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store observations regarding entire world as its own df</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>world_df <span class="ot">&lt;-</span> methane_df <span class="sc">%&gt;%</span></span>
@@ -307,21 +330,21 @@ div.csl-indent {
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2902036</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>world_df<span class="sc">$</span>energy <span class="sc">/</span> world_df<span class="sc">$</span>total_emissions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.545233</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>world_df<span class="sc">$</span>waste <span class="sc">/</span> world_df<span class="sc">$</span>total_emissions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1446558</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>world_df<span class="sc">$</span>other <span class="sc">/</span> world_df<span class="sc">$</span>total_emissions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -331,7 +354,7 @@ div.csl-indent {
 </div>
 <p>I also perform some general data wrangling on my methane data frame, which will be important moving forward. After removing the world-level rows that I subsetted in the previous code chunk, I’m doing a ‘group_by’ command followed by a ‘summarize’ command to combine observations that are of the same type. Before doing this, there were multiple observations for energy emissions, breaking down into further levels of granularity based on other columns that are not selected here. I’m also combining all countries that are part of the European Union by changing their country names to the same string and then again using the ‘group_by’ and ‘summarize’ commands to combine rows. Lastley, I decided to make a wide form of this same data frame, which will be helpful when we get to plot 2 of my infographic.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>methane_df <span class="ot">&lt;-</span> methane_df <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(<span class="fu">is.na</span>(country))) <span class="sc">%&gt;%</span> <span class="co"># remove observations regarding entire world</span></span>
@@ -374,7 +397,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="plot-1-vizualization">Plot 1 vizualization</h2>
 <p>For my first plot, I’ll start by making a treemap of how the four different categories (energy, agriculture, waste, and other) of methane emissions and the country that they are in contribute to total global emissions. To do this, I start by taking my methane data frame and making a version of it specifically for my treemap plot with altered names of countries (I didn’t like the way that they looked when they were included) and the types of emissions (adding the percents in that I calculated from my general data wrangling). I then re-level the factors so they appear in descending order, define a custom color palette that I built using the website Coolers, and finally I’m ready to make my actual plot.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                          plot 1 visualization                            ----</span></span>
@@ -432,7 +455,11 @@ div.csl-indent {
 <span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>)) <span class="co"># change the panel background color to match</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -440,7 +467,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="plot-2-visualization">Plot 2 visualization</h2>
 <p>For plot 2, I start by creating a new version of the wide-version of my methane data frame for the scatterplot that I will make. I start by changing the names of certain countries to match to the World Bank data set that I’m joining with. After I perform my join, I change the names back.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                          joining data frames                             ----</span></span>
@@ -492,7 +519,7 @@ div.csl-indent {
 <p>Now that the join is complete and my country names are back to normal, I create a new column in my data frame for emissions per capita, which divides total emissions by population. I also multiply this new column by 1,000,000 to convert units from million tons to tons, which produces values that are easier to understand when talking about emissions per person.</p>
 <p>Next, I create a new data frame only containing six countries (China, U.S., Russia, Brazil, Canada, and Australia) and the European Union, as I want to focus on the emissions from these places in my infographic. I take the sum of their emissions and populations and compare that to global emissions and populations, and the resulting percent values will also be included on my infographic as text.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add 'emissions_pc' column and convert column units</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>scatter_df <span class="ot">&lt;-</span> scatter_df <span class="sc">%&gt;%</span> </span>
@@ -516,7 +543,7 @@ div.csl-indent {
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3287581</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(main_countries<span class="sc">$</span>total_emissions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sum</span>(world_df<span class="sc">$</span>total_emissions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -526,7 +553,7 @@ div.csl-indent {
 </div>
 <p>At this point, I just need to get a few more data frames in order to make my scatterplot. I create four new data frames: one for all the countries that I’m not focusing on in my infographic, one for notable countries that I want to include (but not highlight) in my infographic for the sake of comparison, one for just Australia (so I can adjust its label on the plot), and one for the remaining countries of focus. Importantly, I also make a new column that I will use to set the alpha value, which moduates transparency in ggplot, of each point in my scatter plot. I want my countries of focus to not be transparent at all, and the rest of my points to be reasonably transparent. After this, its time to make the scatterplot.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                          plot 2 visualization                            ----</span></span>
@@ -590,7 +617,11 @@ div.csl-indent {
 <span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"cornflowerblue"</span>, <span class="at">family =</span> <span class="st">"barlow"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="co"># adjust text features</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -598,7 +629,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="plot-3-visualization">Plot 3 visualization</h2>
 <p>For my third plot, I don’t have too much extra wrangling to do. I have to make a new version of my data frame for my main countries. I can’t use the one from before because it is in wide format, and for my dodged column plot, I need it in long format. After making my new version just by filtering my original methane data frame, I re-order my country and type factors so that they are in descending order, redefine my custom color palette, and then make my dodged column plot.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                          plot 3 visualization                            ----</span></span>
@@ -651,7 +682,11 @@ div.csl-indent {
 <span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#FEF6EC"</span>, <span class="at">color =</span> <span class="cn">NA</span>)) <span class="co"># change panel background color</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -659,7 +694,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="map-visualization">Map visualization</h2>
 <p>I also want to add a world map that highlights the countries that I’m highlighting in the second and third visualizations (China, the U.S., Russia, the EU, Canada, and Australia), which requires two additional packages ({rnaturalearth} for basemap and {sf} for importing geometric objects).</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                       setup &amp; data wrangling                             ----</span></span>
@@ -729,7 +764,7 @@ div.csl-indent {
 </details>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                              create map                                  ----</span></span>
@@ -749,7 +784,11 @@ div.csl-indent {
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">11</span>, <span class="at">color =</span> <span class="st">"#020122"</span>, <span class="at">family =</span> <span class="st">"merri sans"</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)),)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -759,7 +798,7 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="infographic.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Infographic on anthropogenic methane emissions in 2021</figcaption>
+<figcaption>Infographic on anthropogenic methane emissions in 2021</figcaption>
 </figure>
 </div>
 </section>
@@ -804,25 +843,25 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="plot-1.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Treemap (rectangle divided up into smaller rectangles) where each smaller rectangle represents anthropogenic methane emissions in 2021 from a specific country and sector (rectangles are colored by sector). Energy makes up 55% of global emissions, about half of which comes from the China, Russia, the U.S., Iran, and India. Agriculture makes up 29% of global emissions, waste makes up 14%, and 2% are from other sources.</figcaption>
+<figcaption>Treemap (rectangle divided up into smaller rectangles) where each smaller rectangle represents anthropogenic methane emissions in 2021 from a specific country and sector (rectangles are colored by sector). Energy makes up 55% of global emissions, about half of which comes from the China, Russia, the U.S., Iran, and India. Agriculture makes up 29% of global emissions, waste makes up 14%, and 2% are from other sources.</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="world.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Map of the world where six countries (Canada, the U.S., Brazil, Russia, China, and Australia) and the 27 countries of the European Union are highlighted.</figcaption>
+<figcaption>Map of the world where six countries (Canada, the U.S., Brazil, Russia, China, and Australia) and the 27 countries of the European Union are highlighted.</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="plot-2.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Scatterplot of many countries showing 2021 population on the x-axis and 2021 per-capita methane emissions (in tons of CO2eq) on the y-axis. Canada, the U.S., Brazil, Russia, China, and Australia are labeled and emphasized. Australia and Russia are in the top left of the plot, with per-capita emissions around 300 tons CO2eq. Australia’s population is about 25 million people, while Russia’s is about 200 million. Canada is around 200 tons CO2 eq, right below a dashed line indicating the carbon footprint of a typical private jet flying for 48 hours. Canada’s population is around 35 million people. The U.S. is at around 150 tons CO2eq and has a population of about 300 million people. Brazil is at around 100 tons CO2eq and has a population of about 250 million people. China is at around 55 tons CO2eq and has a population of about 1,400 million (1.4 billion) people. Latley, the EU is at around 45 tons CO2eq and has a population of about 450 million people.</figcaption>
+<figcaption>Scatterplot of many countries showing 2021 population on the x-axis and 2021 per-capita methane emissions (in tons of CO2eq) on the y-axis. Canada, the U.S., Brazil, Russia, China, and Australia are labeled and emphasized. Australia and Russia are in the top left of the plot, with per-capita emissions around 300 tons CO2eq. Australia’s population is about 25 million people, while Russia’s is about 200 million. Canada is around 200 tons CO2 eq, right below a dashed line indicating the carbon footprint of a typical private jet flying for 48 hours. Canada’s population is around 35 million people. The U.S. is at around 150 tons CO2eq and has a population of about 300 million people. Brazil is at around 100 tons CO2eq and has a population of about 250 million people. China is at around 55 tons CO2eq and has a population of about 1,400 million (1.4 billion) people. Latley, the EU is at around 45 tons CO2eq and has a population of about 450 million people.</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="plot-3.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Bar graph with 7 vertical columns, where the height represents the total methane emissions in 2021 (measured in million tons of CO2eq). From left to right (aligns with highest to lowest total emissions), the 7 vertical columns are China, the U.S. Russia, Brazil, the EU, Canada, and Australia. China is at about 80,000 million tons CO2eq, the U.S. and Russia are both close to 45,000 tons CO2eq, Brazil and the EU are both around 20,000 tons CO2eq, and Canada and Australia are both less than 10,000 tons CO2eq. The 7 columns are each seperated into four colored components, one for each type of emissions source (energy, agriculture, waste, and other). Russia’s energy sector (85%) and Brazil’s agricultural sector (65%) stand out as particularly high. Emissions from energy in the EU (29%) and Brazil (16%) make up a relatively low share of their total emissions, compared to about 60 to 70% in China, the U.S., Canada, and Australia.</figcaption>
+<figcaption>Bar graph with 7 vertical columns, where the height represents the total methane emissions in 2021 (measured in million tons of CO2eq). From left to right (aligns with highest to lowest total emissions), the 7 vertical columns are China, the U.S. Russia, Brazil, the EU, Canada, and Australia. China is at about 80,000 million tons CO2eq, the U.S. and Russia are both close to 45,000 tons CO2eq, Brazil and the EU are both around 20,000 tons CO2eq, and Canada and Australia are both less than 10,000 tons CO2eq. The 7 columns are each seperated into four colored components, one for each type of emissions source (energy, agriculture, waste, and other). Russia’s energy sector (85%) and Brazil’s agricultural sector (65%) stand out as particularly high. Emissions from energy in the EU (29%) and Brazil (16%) make up a relatively low share of their total emissions, compared to about 60 to 70% in China, the U.S., Canada, and Australia.</figcaption>
 </figure>
 </div>
 </section>
@@ -835,7 +874,7 @@ div.csl-indent {
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-international_energy_agency_iea_methane_2022" class="csl-entry" role="listitem">
 International Energy Agency (IEA). 2022a. <span>“Methane <span>Tracker</span> <span>Database</span>.”</span> <a href="https://www.iea.org/data-and-statistics/data-product/methane-tracker-database">https://www.iea.org/data-and-statistics/data-product/methane-tracker-database</a>.
 </div>
@@ -848,7 +887,7 @@ International Energy Agency (IEA). 2022a. <span>“Methane <span>Tracker</span> 
 <div id="ref-the_world_bank_population_nodate" class="csl-entry" role="listitem">
 The World Bank. n.d. <span>“Population, Total.”</span> <a href="https://data.worldbank.org/indicator/SP.POP.TOTL">https://data.worldbank.org/indicator/SP.POP.TOTL</a>.
 </div>
-</div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2024,
+</div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ghanadan2024,
   author = {Ghanadan, Linus},
   title = {Infographic on {Anthropogenic} {Methane} {Emissions}},
   date = {2024-03-12},
@@ -894,18 +933,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -937,11 +965,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -951,8 +1018,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -964,7 +1040,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1008,6 +1207,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1033,6 +1233,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1093,6 +1319,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
