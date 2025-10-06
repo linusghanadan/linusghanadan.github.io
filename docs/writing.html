@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Linus Ghanadan - Writing</title>
+<title>Essays</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -91,8 +98,35 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -101,35 +135,30 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Linus Ghanadan</span>
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html" rel="" target="">
- <span class="menu-text">Data Science Projects</span></a>
+    <a class="nav-link" href="./blog.html"> 
+<span class="menu-text">Data Science</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./writing.html" rel="" target="" aria-current="page">
- <span class="menu-text">Other Projects</span></a>
+    <a class="nav-link active" href="./writing.html" aria-current="page"> 
+<span class="menu-text">Essays</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -138,13 +167,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Academic Writing">Academic Writing <span class="quarto-category-count">(2)</span></div><div class="category" data-category="General Audience">General Audience <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Memo Writing">Memo Writing <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Slide-Deck Presentation">Slide-Deck Presentation <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Writing</h1>
+<h1 class="title">Essays</h1>
 </div>
 
 
@@ -157,7 +187,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 
 
@@ -165,32 +197,30 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Academic Writing" data-listing-date-sort="1685160000000" data-listing-file-modified-sort="1725502335981" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="quarto-post image-right" data-index="0" data-categories="Academic Writing" data-listing-date-sort="1685160000000" data-listing-file-modified-sort="1759777541129" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="96">
 <div class="thumbnail">
-<p><a href="./writing/urban-dev/urban-dev.html"> <p class="card-img-top"><img src="writing/urban-dev/table.jpeg"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./writing/urban-dev/urban-dev.html" class="no-external"></a></p><a href="./writing/urban-dev/urban-dev.html" class="no-external">
+<p class="card-img-top"><img src="writing/urban-dev/table.jpeg"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./writing/urban-dev/urban-dev.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./writing/urban-dev/urban-dev.html">
 <h3 class="no-anchor listing-title">
-Sustainable Urban Development in São Paulo
+<a href="./writing/urban-dev/urban-dev.html" class="no-external">Sustainable Urban Development in São Paulo</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./writing/urban-dev/urban-dev.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic Writing'); return false;">
 Academic Writing
 </div>
 </div>
-<a href="./writing/urban-dev/urban-dev.html">
 <div class="listing-description">
-<p>8-page essay on sustainable development goals in São Paulo, Brazil, looking at factors such the city’s Ecological Footprint and Gini Coefficient.</p>
+<a href="./writing/urban-dev/urban-dev.html" class="no-external">8-page essay on sustainable development goals in São Paulo, Brazil, looking at factors such the city’s Ecological Footprint and Gini Coefficient.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./writing/urban-dev/urban-dev.html">
+<a href="./writing/urban-dev/urban-dev.html" class="no-external">
 <div class="listing-date">
 May 27, 2023
 </div>
@@ -200,32 +230,30 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Memo Writing" data-listing-date-sort="1682481600000" data-listing-file-modified-sort="1722457946423" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="quarto-post image-right" data-index="1" data-categories="Memo Writing" data-listing-date-sort="1682481600000" data-listing-file-modified-sort="1759777541123" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
 <div class="thumbnail">
-<p><a href="./writing/evs/ev.html"> <p class="card-img-top"><img src="writing/evs/ev.jpeg"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./writing/evs/ev.html" class="no-external"></a></p><a href="./writing/evs/ev.html" class="no-external">
+<p class="card-img-top"><img src="writing/evs/ev.jpeg"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./writing/evs/ev.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./writing/evs/ev.html">
 <h3 class="no-anchor listing-title">
-Economic Analysis of EV Tax Credits from the Inflation Reduction Act
+<a href="./writing/evs/ev.html" class="no-external">Economic Analysis of EV Tax Credits from the Inflation Reduction Act</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./writing/evs/ev.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Memo Writing'); return false;">
 Memo Writing
 </div>
 </div>
-<a href="./writing/evs/ev.html">
 <div class="listing-description">
-<p>6-page memo explaining the likely impacts of new federal policy incentives regarding Light-Duty Elective Vehicles.</p>
+<a href="./writing/evs/ev.html" class="no-external">6-page memo explaining the likely impacts of new federal policy incentives regarding Light-Duty Elective Vehicles.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./writing/evs/ev.html">
+<a href="./writing/evs/ev.html" class="no-external">
 <div class="listing-date">
 Apr 26, 2023
 </div>
@@ -235,32 +263,30 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="General Audience" data-listing-date-sort="1680494400000" data-listing-file-modified-sort="1719169024621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="quarto-post image-right" data-index="2" data-categories="General Audience" data-listing-date-sort="1680494400000" data-listing-file-modified-sort="1759777541125" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="25">
 <div class="thumbnail">
-<p><a href="./writing/lawn-ethics/lawn-ethics.html"> <img src="./writing/lawn-ethics/lawn.jpeg" class="thumbnail-image"> </a></p>
+<p><a href="./writing/lawn-ethics/lawn-ethics.html" class="no-external"></a></p><a href="./writing/lawn-ethics/lawn-ethics.html" class="no-external">
+<p><img loading="lazy" src="./writing/lawn-ethics/lawn.jpeg" class="thumbnail-image"></p>
+</a><p><a href="./writing/lawn-ethics/lawn-ethics.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./writing/lawn-ethics/lawn-ethics.html">
 <h3 class="no-anchor listing-title">
-The Ethics of Lawn Mowing
+<a href="./writing/lawn-ethics/lawn-ethics.html" class="no-external">The Ethics of Lawn Mowing</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./writing/lawn-ethics/lawn-ethics.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('General Audience'); return false;">
 General Audience
 </div>
 </div>
-<a href="./writing/lawn-ethics/lawn-ethics.html">
 <div class="listing-description">
-<p>11-page essay examining the social history of lawns, in addition to their ecological consequences, to consider the ethical implications of mowing one’s lawn.</p>
+<a href="./writing/lawn-ethics/lawn-ethics.html" class="no-external">11-page essay examining the social history of lawns, in addition to their ecological consequences, to consider the ethical implications of mowing one’s lawn.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./writing/lawn-ethics/lawn-ethics.html">
+<a href="./writing/lawn-ethics/lawn-ethics.html" class="no-external">
 <div class="listing-date">
 Apr 3, 2023
 </div>
@@ -270,32 +296,30 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Academic Writing" data-listing-date-sort="1667275200000" data-listing-file-modified-sort="1719168969475" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="quarto-post image-right" data-index="3" data-categories="Academic Writing" data-listing-date-sort="1667275200000" data-listing-file-modified-sort="1759777541122" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="28">
 <div class="thumbnail">
-<p><a href="./writing/env-health/env-health.html"> <img src="./writing/env-health/photo1.jpeg" class="thumbnail-image"> </a></p>
+<p><a href="./writing/env-health/env-health.html" class="no-external"></a></p><a href="./writing/env-health/env-health.html" class="no-external">
+<p><img loading="lazy" src="./writing/env-health/photo1.jpeg" class="thumbnail-image"></p>
+</a><p><a href="./writing/env-health/env-health.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./writing/env-health/env-health.html">
 <h3 class="no-anchor listing-title">
-Ecology and Human Health in California’s Central Valley: Historical Perceptions of a Complex Relationship
+<a href="./writing/env-health/env-health.html" class="no-external">Ecology and Human Health in California’s Central Valley: Historical Perceptions of a Complex Relationship</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./writing/env-health/env-health.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic Writing'); return false;">
 Academic Writing
 </div>
 </div>
-<a href="./writing/env-health/env-health.html">
 <div class="listing-description">
-<p>8-page essay based on Historian Linda Nash’s 2006 book <em>Inescapable Ecologies</em>, which traces evolving views of health and disease in California’s Central Valley during the 19th and 20th centuries.</p>
+<a href="./writing/env-health/env-health.html" class="no-external">8-page essay based on Historian Linda Nash’s 2006 book <em>Inescapable Ecologies</em>, which traces evolving views of health and disease in California’s Central Valley during the 19th and 20th centuries.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./writing/env-health/env-health.html">
+<a href="./writing/env-health/env-health.html" class="no-external">
 <div class="listing-date">
 Nov 1, 2022
 </div>
@@ -305,32 +329,30 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Memo Writing" data-listing-date-sort="1661572800000" data-listing-file-modified-sort="1729550035794" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="quarto-post image-right" data-index="4" data-categories="Memo Writing" data-listing-date-sort="1661572800000" data-listing-file-modified-sort="1759777541128" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="15">
 <div class="thumbnail">
-<p><a href="./writing/offshore-wind/offshore-wind.html"> <p class="card-img-top"><img src="writing/offshore-wind/offshore-wind5.jpeg"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./writing/offshore-wind/offshore-wind.html" class="no-external"></a></p><a href="./writing/offshore-wind/offshore-wind.html" class="no-external">
+<p class="card-img-top"><img src="writing/offshore-wind/offshore-wind5.jpeg"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./writing/offshore-wind/offshore-wind.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./writing/offshore-wind/offshore-wind.html">
 <h3 class="no-anchor listing-title">
-Policy Memo on U.S. Offshore Wind Development
+<a href="./writing/offshore-wind/offshore-wind.html" class="no-external">Policy Memo on U.S. Offshore Wind Development</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./writing/offshore-wind/offshore-wind.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Memo Writing'); return false;">
 Memo Writing
 </div>
 </div>
-<a href="./writing/offshore-wind/offshore-wind.html">
 <div class="listing-description">
-<p>3-page memo (and accompanying slide-deck) from my internship at the U.S. Department of Transportation</p>
+<a href="./writing/offshore-wind/offshore-wind.html" class="no-external">3-page memo (and accompanying slide-deck) from my internship at the U.S. Department of Transportation</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./writing/offshore-wind/offshore-wind.html">
+<a href="./writing/offshore-wind/offshore-wind.html" class="no-external">
 <div class="listing-date">
 Aug 27, 2022
 </div>
@@ -340,32 +362,30 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Memo Writing" data-listing-date-sort="1651032000000" data-listing-file-modified-sort="1722457965062" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="quarto-post image-right" data-index="5" data-categories="Memo Writing" data-listing-date-sort="1651032000000" data-listing-file-modified-sort="1759777541121" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
 <div class="thumbnail">
-<p><a href="./writing/carbon-pricing/carbon-pricing.html"> <img src="./writing/carbon-pricing/graph.jpeg" class="thumbnail-image"> </a></p>
+<p><a href="./writing/carbon-pricing/carbon-pricing.html" class="no-external"></a></p><a href="./writing/carbon-pricing/carbon-pricing.html" class="no-external">
+<p><img loading="lazy" src="./writing/carbon-pricing/graph.jpeg" class="thumbnail-image"></p>
+</a><p><a href="./writing/carbon-pricing/carbon-pricing.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./writing/carbon-pricing/carbon-pricing.html">
 <h3 class="no-anchor listing-title">
-Comparison of Approaches to Carbon Pricing
+<a href="./writing/carbon-pricing/carbon-pricing.html" class="no-external">Comparison of Approaches to Carbon Pricing</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./writing/carbon-pricing/carbon-pricing.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Memo Writing'); return false;">
 Memo Writing
 </div>
 </div>
-<a href="./writing/carbon-pricing/carbon-pricing.html">
 <div class="listing-description">
-<p>7-page memo on market-based climate change mitigation policies. After comparing different approaches from around the world, the memo recommends for the U.S. to adopt a federal cap-and-trade system for the electricity generation sector and a federal tax on GHG emissions from industrial buildings, transportation fuels, fuels used for heating and cooling, and imported goods.</p>
+<a href="./writing/carbon-pricing/carbon-pricing.html" class="no-external">7-page memo on market-based climate change mitigation policies. After comparing different approaches from around the world, the memo recommends for the U.S. to adopt a federal cap-and-trade system for the electricity generation sector and a federal tax on GHG emissions from industrial buildings, transportation fuels, fuels used for heating and cooling, and imported goods.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./writing/carbon-pricing/carbon-pricing.html">
+<a href="./writing/carbon-pricing/carbon-pricing.html" class="no-external">
 <div class="listing-date">
 Apr 27, 2022
 </div>
@@ -375,32 +395,30 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="Slide-Deck Presentation" data-listing-date-sort="1651032000000" data-listing-file-modified-sort="1725472457878" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="quarto-post image-right" data-index="6" data-categories="Slide-Deck Presentation" data-listing-date-sort="1651032000000" data-listing-file-modified-sort="1759777541119" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="107">
 <div class="thumbnail">
-<p><a href="./writing/bag-leakage/bag-leakage.html"> <p class="card-img-top"><img src="writing/bag-leakage/bag.jpeg"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./writing/bag-leakage/bag-leakage.html" class="no-external"></a></p><a href="./writing/bag-leakage/bag-leakage.html" class="no-external">
+<p class="card-img-top"><img src="writing/bag-leakage/bag.jpeg"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./writing/bag-leakage/bag-leakage.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./writing/bag-leakage/bag-leakage.html">
 <h3 class="no-anchor listing-title">
-Understanding the Impact of California Disposable Carryout Bag Policies
+<a href="./writing/bag-leakage/bag-leakage.html" class="no-external">Understanding the Impact of California Disposable Carryout Bag Policies</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./writing/bag-leakage/bag-leakage.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Slide-Deck Presentation'); return false;">
 Slide-Deck Presentation
 </div>
 </div>
-<a href="./writing/bag-leakage/bag-leakage.html">
 <div class="listing-description">
-<p>20-minute group presentation on research design and econometric results from Rebecca L.C. Taylor’s 2019 paper in the Journal of Environmental Economics and Management.</p>
+<a href="./writing/bag-leakage/bag-leakage.html" class="no-external">20-minute group presentation on research design and econometric results from Rebecca L.C. Taylor’s 2019 paper in the Journal of Environmental Economics and Management.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./writing/bag-leakage/bag-leakage.html">
+<a href="./writing/bag-leakage/bag-leakage.html" class="no-external">
 <div class="listing-date">
 Apr 27, 2022
 </div>
@@ -450,18 +468,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -493,11 +500,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -507,8 +553,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -520,7 +575,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -564,6 +742,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -589,6 +768,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -649,6 +854,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

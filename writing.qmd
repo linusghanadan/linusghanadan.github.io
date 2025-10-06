@@ -1,5 +1,5 @@
 ---
-title: "Writing"
+title: "Essays"
 listing: 
   contents: writing
   type: default

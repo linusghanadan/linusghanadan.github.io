@@ -1,23 +1,24 @@
 project:
   type: website
   output-dir: docs
+  resources: pdfjs
 
 website:
-  title: "Linus Ghanadan"
+  title: ""
   navbar:
     left:
       - href: index.qmd
         text: Home
       - href: blog.qmd
-        text: Data Science Projects
+        text: Data Science
       - href: writing.qmd
-        text: Other Projects
+        text: Essays
         
 format:
   html:
-    theme: minty
+    theme: lux
     css: styles.css
-    toc: false
+    toc: true
 
 editor: visual
 
