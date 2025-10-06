@@ -22,13 +22,13 @@ format:
         code-fold: false
 ---
 
-## [Link to UC Santa Barbara Student Research Directory Project Page](https://bren.ucsb.edu/projects/creating-reproducible-model-annual-emissions-outputs-sock-manufacturers-supply-chain)
+## [Project Page (UCSB)](https://bren.ucsb.edu/projects/creating-reproducible-model-annual-emissions-outputs-sock-manufacturers-supply-chain)
 
-## [Link to GitHub Page](https://github.com/carbonSOCKprint)
+## [Project Page (GitHub)](https://github.com/carbonSOCKprint)
 
 ## Summary of Project and My Contribution
 
-For my master's capstone project, I worked with fellow classmates Flora, Carly, and Annie to help the Global Director for Environmental and Social Responsibility at the outdoor apparel company Darn Tough Vermont. Specifically, my group helped streamline the company's GHG emissions data analysis workflow, develop an interactive dashboard for data analysis, analyze the company's emissions data from 2019 and 2020, and recommend strategies for emissions reduction. My primary role in the project was taking the lead with scenario analysis components of the interactive dashboard, and this involved coming up with ideas for how to go about analyzing emissions scenarios, presenting my ideas to the client, and using the client's feedback to write code for the interactive dashboard. From this project, I learned to develop solutions strategically in a team setting, specifically regarding how to analyze data in the most useful way for informing decisions.
+For my master's capstone project, I worked with fellow classmates Flora, Carly, and Annie to help the Global Director for Environmental and Social Responsibility at the outdoor apparel company Darn Tough Vermont. Specifically, my group helped streamline the company's GHG emissions data analysis workflow, develop an interactive web application for data analysis, analyze the company's emissions data from 2019 and 2020, and recommend strategies for emissions reduction. My primary role in the project was taking the lead with scenario analysis components of the interactive web application, and this involved coming up with ideas for how to go about analyzing emissions scenarios, presenting my ideas to the client, and using the client's feedback to write code. From this project, I learned to develop solutions strategically in a team setting, specifically regarding how to analyze data in the most useful way for informing decisions.
 
 ## About Darn Tough Vermont
 
@@ -72,15 +72,15 @@ To meet these challenges head-on, we defined **three major objectives**:
 
 Our first task was to refine Darn Tough's calculation methodology. We conducted extensive research and improved calculations, ensuring alignment with industry standards and the Greenhouse Gas (GHG) Protocol, including using the latest emission factors. Along the way, we ensured all updates were thoroughly documented. This update not only improved accuracy but also provided a robust foundation for future calculations.
 
-### 2) Excel Input Template & Emissions Calculator Application
+### 2) Data Entry Template & Darn Tough Emissions Web Application
 
 Next, we tackled the complexity of Darn Tough's existing workflow. Darn Tough's original method used a complex Excel sheet to model their emissions. This approach was time consuming, resource intensive, and difficult to replicate yearly. By automating the emissions calculations using the R programming language, we created a reproducible approach.
 
-Our streamlined solution involved creating a simplified **Excel Input Template** with tidy, formula-free tables and automating calculations with R. This new model takes inventory data as inputs and produces precise emissions totals, eliminating the potential for manual errors and significantly simplifying the process.
+Our streamlined solution involved creating a simplified **Data Entry Template** with tidy, formula-free tables and automating calculations with R. This new model takes inventory data as inputs and produces precise emissions totals, eliminating the potential for manual errors and significantly simplifying the process.
 
-To make these improvements user-friendly, we then developed the **Emissions Calculator Application** using Shiny. This app allows users to upload their data, select scopes, and calculate emissions effortlessly. It also provides downloadable outputs and interactive visualizations, making it easier to understand and manage carbon emissions.
+To make these improvements user-friendly, we then developed the **Darn Tough Emissions Web Application** using Shiny. This app allows users to upload their data, select scopes, and calculate emissions effortlessly. It also provides downloadable outputs and interactive visualizations, making it easier to understand and manage carbon emissions.
 
-The new Emissions Calculator Application makes it easier for Darn Tough to calculate their emissions. Users can upload data, select specific scopes, calculate emissions, and generate downloadable outputs and interactive visualizations all in one centralized interface.
+The new Darn Tough Emissions Web Application makes it easier for Darn Tough to calculate their emissions. Users can upload data, select specific scopes, calculate emissions, and generate downloadable outputs and interactive visualizations all in one centralized interface.
 
 ![](images/excel.jpeg)
 
@@ -88,31 +88,27 @@ The new Emissions Calculator Application makes it easier for Darn Tough to calcu
 
 ![](images/dashboard1.jpeg)
 
-**Caption**: Screenshot of the basic interface for computing emissions in the Emissions Calculatior Application. Specifically, this image shows Scope 2 emissions based on data in the uploaded Excel template (Note: Fake Data).
+**Caption**: Screenshot of the basic interface for computing emissions in the Darn Tough Emissions Web Application (Note: Image shows fake data to comply with non-disclosure agreement).
 
 ![](images/visualization-image.jpeg)
 
-**Caption**: The **Interactive Sunburst Plot** allows users to analyze emissions in terms of Scope, Category (for Scope 3), and input variables (e.g., Wool Fiber). Through clicking on a segment of the plot, users can more easily see the granular data. In addition, the user can hover over a segment to access exact values for emissions and percent of total emissions (Note: Fake Data).
+**Caption**: This **interactive sunburst plot** allows users to analyze emissions in terms of Scope, Category (for Scope 3), and input variables (e.g., Wool Fiber). Through clicking on a segment of the plot, users can more easily see the granular data. In addition, the user can hover over a segment to access exact values for emissions and percent of total emissions (Note: Image shows fake data to comply with non-disclosure agreement).
 
-### 3) Scenario Analysis Tool (part of the Emissions Calculator Application)
+### 3) Scenario Analysis Tool (part of the Darn Tough Emissions Web Application)
 
-Beyond calculating emissions, our **Scenario Analysis Tool** helps Darn Tough identify practical ways to reduce their carbon footprint. Users can input hypothetical changes, such as switching to recycled wool, and compare the impact on emissions against a baseline year. This feature provides actionable insights for making informed, effective decisions on emission reductions.
+Beyond calculating emissions, our **Scenario Tool** helps Darn Tough identify practical ways to reduce their carbon footprint. Users can input hypothetical changes, such as switching to recycled wool, and compare the impact on emissions against a baseline year. This feature provides actionable insights for making informed, effective decisions on emission reductions.
 
 ![](images/dashboard2.jpeg)
 
-**Caption**: Screenshot showing the basic interface of the **Scope 3 Category 1 Scenario Analysis Tool**, which allows the user to evaluate emissions under scenarios with different fiber types and quantities (Note: Fake Data).
+**Caption**: Screenshot showing the basic interface of the **Scope 3 Category 1 Scenario Tool**, which allows the user to evaluate emissions under scenarios with different fiber types and quantities (Note: Image shows fake data to comply with non-disclosure agreement).
 
 ![](images/dashboard3.jpeg)
 
-**Caption**: As part of the tool, users can look at visualizations comparing baseline emissions to emissions under a new scenario. For example, this image looks at the impact of substituting some normal wool fiber for recycled wool (Note: Fake Data).
-
-![](images/download.jpeg)
-
-**Caption**: Sustainability analysis, looking at the relative impact of replacing regular wool with recycled wool, based on the emissions factors associated with fiber procurement.
+**Caption**: As part of the tool, users can look at visualizations comparing baseline emissions to emissions under a new scenario. For example, this image looks at the impact of substituting some normal wool fiber for recycled wool (Note: Image shows fake data to comply with non-disclosure agreement).
 
 ## Moving Forward
 
-With the Emissions Calculator Application, Darn Tough is now equipped to calculate, visualize, and reduce their carbon emissions more efficiently. This streamlined process not only saves time but also allows the company to focus on broader sustainability initiatives. As Darn Tough continues to innovate and improve, we are confident that their best sock is yet to come, and that they have the tools necessary to meet their 2030 target.
+With the Darn Tough Emissions Web Application, Darn Tough is now equipped to calculate, visualize, and reduce their carbon emissions more efficiently. This streamlined process not only saves time but also allows the company to focus on broader sustainability initiatives. As Darn Tough continues to innovate and improve, we are confident that their best sock is yet to come, and that they have the tools necessary to meet their 2030 target.
 
 ## Acknowledgments
 
