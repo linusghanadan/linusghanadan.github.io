@@ -7,3 +7,5 @@
 
 /.quarto/
 data/
+
+**/*.quarto_ipynb

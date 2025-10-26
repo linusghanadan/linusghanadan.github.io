@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -32,15 +32,17 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-26827f95213357c060b998e0666f8ebe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -112,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -131,12 +133,16 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -167,7 +173,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(19)</span></div><div class="category" data-category="Analytical Workflows">Analytical Workflows <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Cluster Analysis">Cluster Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Data Visualization">Data Visualization <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Deep Learning">Deep Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Dynamic Simulation">Dynamic Simulation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Econometric Analysis">Econometric Analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Ensemble Learning">Ensemble Learning <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Geospatial Analysis">Geospatial Analysis <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Interactive Applications">Interactive Applications <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Machine Learning">Machine Learning <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Microsoft Excel">Microsoft Excel <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(6)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(13)</span></div><div class="category" data-category="Sensitivity Analysis">Sensitivity Analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Statistical Modeling">Statistical Modeling <span class="quarto-category-count">(4)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(19)</span></div><div class="category" data-category="QW5hbHl0aWNhbCUyMFdvcmtmbG93cw==">Analytical Workflows <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2x1c3RlciUyMEFuYWx5c2lz">Cluster Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMFZpc3VhbGl6YXRpb24=">Data Visualization <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RGVlcCUyMExlYXJuaW5n">Deep Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RHluYW1pYyUyMFNpbXVsYXRpb24=">Dynamic Simulation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWNvbm9tZXRyaWMlMjBBbmFseXNpcw==">Econometric Analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RW5zZW1ibGUlMjBMZWFybmluZw==">Ensemble Learning <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R2Vvc3BhdGlhbCUyMEFuYWx5c2lz">Geospatial Analysis <span class="quarto-category-count">(5)</span></div><div class="category" data-category="SW50ZXJhY3RpdmUlMjBBcHBsaWNhdGlvbnM=">Interactive Applications <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(4)</span></div><div class="category" data-category="TWljcm9zb2Z0JTIwRXhjZWw=">Microsoft Excel <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(13)</span></div><div class="category" data-category="U2Vuc2l0aXZpdHklMjBBbmFseXNpcw==">Sensitivity Analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U3RhdGlzdGljYWwlMjBNb2RlbGluZw==">Statistical Modeling <span class="quarto-category-count">(4)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -196,30 +202,26 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Data Visualization,R" data-listing-date-sort="1721793600000" data-listing-file-modified-sort="1759777541000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="886">
-<div class="thumbnail">
-<p><a href="./blog/2024-7-24-post/index.html" class="no-external"></a></p><a href="./blog/2024-7-24-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-7-24-post/nitrogen.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-7-24-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="0" data-categories="RGF0YSUyMFZpc3VhbGl6YXRpb24lMkNS" data-listing-date-sort="1721775600000" data-listing-file-modified-sort="1759777541000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="886">
+<div class="thumbnail"><a href="./blog/2024-7-24-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-7-24-post/nitrogen.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-7-24-post/index.html" class="no-external">Visualization Portfolio (R)</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-7-24-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Data Visualization'); return false;">
-Data Visualization
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">Data Visualization</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-7-24-post/index.html" class="no-external">A collection of data visualizations that I have created using the R programming language.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-7-24-post/index.html" class="no-external">
+<p>A collection of data visualizations that I have created using the R programming language.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-7-24-post/index.html" class="no-external">
@@ -232,30 +234,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Data Visualization,Python" data-listing-date-sort="1721707200000" data-listing-file-modified-sort="1759777540999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="602">
-<div class="thumbnail">
-<p><a href="./blog/2024-7-23-post/index.html" class="no-external"></a></p><a href="./blog/2024-7-23-post/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="1" data-categories="RGF0YSUyMFZpc3VhbGl6YXRpb24lMkNQeXRob24=" data-listing-date-sort="1721689200000" data-listing-file-modified-sort="1759777540999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="602">
+<div class="thumbnail"><a href="./blog/2024-7-23-post/index.html" class="no-external">
+
 <p class="card-img-top"><img src="blog/2024-7-23-post/detailed_stl.jpeg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./blog/2024-7-23-post/index.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-7-23-post/index.html" class="no-external">Visualization Portfolio (Python)</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-7-23-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Data Visualization'); return false;">
-Data Visualization
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">Data Visualization</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-7-23-post/index.html" class="no-external">A collection of data visualizations that I have created using the Python programming language.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-7-23-post/index.html" class="no-external">
+<p>A collection of data visualizations that I have created using the Python programming language.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-7-23-post/index.html" class="no-external">
@@ -268,33 +266,28 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Machine Learning,Deep Learning,Python" data-listing-date-sort="1721102400000" data-listing-file-modified-sort="1759777540997" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="514">
-<div class="thumbnail">
-<p><a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external"></a></p><a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-7-16-post/deep-learning.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="2" data-categories="TWFjaGluZSUyMExlYXJuaW5nJTJDRGVlcCUyMExlYXJuaW5nJTJDUHl0aG9u" data-listing-date-sort="1721084400000" data-listing-file-modified-sort="1759777540997" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="514">
+<div class="thumbnail"><a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-7-16-post/deep-learning.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external">Regression Models to predict Phosphorus Concentration based on Time and Location</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGVlcCUyMExlYXJuaW5n'); return false;">Deep Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Deep Learning'); return false;">
-Deep Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external">In this blog post, I build two models to explore potential advantages of adding an additional hidden layer to a traditional Recurrent Neural Network (RNN) architecture.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external">
+<p>In this blog post, I build two models to explore potential advantages of adding an additional hidden layer to a traditional Recurrent Neural Network (RNN) architecture.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external">
@@ -307,39 +300,32 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Analytical Workflows,Interactive Applications,Data Visualization,Microsoft Excel,R" data-listing-date-sort="1718856000000" data-listing-file-modified-sort="1759783666889" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1247">
-<div class="thumbnail">
-<p><a href="./blog/2024-6-20-post/index.html" class="no-external"></a></p><a href="./blog/2024-6-20-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-6-20-post/images/dashboard1.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-6-20-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="3" data-categories="QW5hbHl0aWNhbCUyMFdvcmtmbG93cyUyQ0ludGVyYWN0aXZlJTIwQXBwbGljYXRpb25zJTJDRGF0YSUyMFZpc3VhbGl6YXRpb24lMkNNaWNyb3NvZnQlMjBFeGNlbCUyQ1I=" data-listing-date-sort="1718838000000" data-listing-file-modified-sort="1759783666889" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1247">
+<div class="thumbnail"><a href="./blog/2024-6-20-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-6-20-post/images/dashboard1.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-6-20-post/index.html" class="no-external">Improving GHG Data Analysis Workflow for an Outdoor Apparel Company</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-6-20-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Analytical Workflows'); return false;">
-Analytical Workflows
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHl0aWNhbCUyMFdvcmtmbG93cw=='); return false;">Analytical Workflows</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJhY3RpdmUlMjBBcHBsaWNhdGlvbnM='); return false;">Interactive Applications</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">Data Visualization</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWljcm9zb2Z0JTIwRXhjZWw='); return false;">Microsoft Excel</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Interactive Applications'); return false;">
-Interactive Applications
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Data Visualization'); return false;">
-Data Visualization
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Microsoft Excel'); return false;">
-Microsoft Excel
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-6-20-post/index.html" class="no-external">This blog post provides an overview of my master’s capstone project, including screenshots from deliverables that are shareable under my group’s non-disclosure agreement.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-6-20-post/index.html" class="no-external">
+<p>This blog post provides an overview of my master’s capstone project, including screenshots from deliverables that are shareable under my group’s non-disclosure agreement.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-6-20-post/index.html" class="no-external">
@@ -352,33 +338,28 @@ Linus Ghanadan, Flora Hamilton, Carly Caswell, Annie Adams
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Dynamic Simulation,Sensitivity Analysis,R" data-listing-date-sort="1717992000000" data-listing-file-modified-sort="1759777540986" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="990">
-<div class="thumbnail">
-<p><a href="./blog/2024-6-10-post/index.html" class="no-external"></a></p><a href="./blog/2024-6-10-post/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="4" data-categories="RHluYW1pYyUyMFNpbXVsYXRpb24lMkNTZW5zaXRpdml0eSUyMEFuYWx5c2lzJTJDUg==" data-listing-date-sort="1717974000000" data-listing-file-modified-sort="1759777540986" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="990">
+<div class="thumbnail"><a href="./blog/2024-6-10-post/index.html" class="no-external">
+
 <p class="card-img-top"><img src="blog/2024-6-10-post/index_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./blog/2024-6-10-post/index.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-6-10-post/index.html" class="no-external">Dynamic Simulation of Forest Growth</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-6-10-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Dynamic Simulation'); return false;">
-Dynamic Simulation
+
+<div class="listing-category" onclick="window.quartoListingCategory('RHluYW1pYyUyMFNpbXVsYXRpb24='); return false;">Dynamic Simulation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2Vuc2l0aXZpdHklMjBBbmFseXNpcw=='); return false;">Sensitivity Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Sensitivity Analysis'); return false;">
-Sensitivity Analysis
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-6-10-post/index.html" class="no-external">Using a model of forest growth, I run a 300-year continuous dynamic simulation for the forest and then conduct a global sensitivity analysis looking at variation in maximum forest size.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-6-10-post/index.html" class="no-external">
+<p>Using a model of forest growth, I run a 300-year continuous dynamic simulation for the forest and then conduct a global sensitivity analysis looking at variation in maximum forest size.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-6-10-post/index.html" class="no-external">
@@ -391,30 +372,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Sensitivity Analysis,R" data-listing-date-sort="1717732800000" data-listing-file-modified-sort="1759777540996" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="594">
-<div class="thumbnail">
-<p><a href="./blog/2024-6-7-post/index.html" class="no-external"></a></p><a href="./blog/2024-6-7-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-6-7-post/download_sobol.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-6-7-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="5" data-categories="U2Vuc2l0aXZpdHklMjBBbmFseXNpcyUyQ1I=" data-listing-date-sort="1717714800000" data-listing-file-modified-sort="1759777540996" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="594">
+<div class="thumbnail"><a href="./blog/2024-6-7-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-6-7-post/download_sobol.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-6-7-post/index.html" class="no-external">Global Sensitivity Analysis for an Atmospheric Conductance Model</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-6-7-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Sensitivity Analysis'); return false;">
-Sensitivity Analysis
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2Vuc2l0aXZpdHklMjBBbmFseXNpcw=='); return false;">Sensitivity Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-6-7-post/index.html" class="no-external">In this analysis, I look at an atmospheric conductance model based on vegetation height and windspeed, and I apply a variance-based sensitivity analysis by calculating Sobol indices.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-6-7-post/index.html" class="no-external">
+<p>In this analysis, I look at an atmospheric conductance model based on vegetation height and windspeed, and I apply a variance-based sensitivity analysis by calculating Sobol indices.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-6-7-post/index.html" class="no-external">
@@ -427,33 +404,28 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="Statistical Modeling,Econometric Analysis,R" data-listing-date-sort="1712721600000" data-listing-file-modified-sort="1759777540985" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1942">
-<div class="thumbnail">
-<p><a href="./blog/2024-3-6-post/index.html" class="no-external"></a></p><a href="./blog/2024-3-6-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-3-6-post/did_estimator.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-3-6-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="6" data-categories="U3RhdGlzdGljYWwlMjBNb2RlbGluZyUyQ0Vjb25vbWV0cmljJTIwQW5hbHlzaXMlMkNS" data-listing-date-sort="1712703600000" data-listing-file-modified-sort="1759777540985" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1942">
+<div class="thumbnail"><a href="./blog/2024-3-6-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-3-6-post/did_estimator.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-3-6-post/index.html" class="no-external">Impact Analysis of a 1998 Cash-Transfer Program in Rural Mexico</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-3-6-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Statistical Modeling'); return false;">
-Statistical Modeling
+
+<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljYWwlMjBNb2RlbGluZw=='); return false;">Statistical Modeling</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RWNvbm9tZXRyaWMlMjBBbmFseXNpcw=='); return false;">Econometric Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Econometric Analysis'); return false;">
-Econometric Analysis
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-3-6-post/index.html" class="no-external">For this analysis, I estimate the Average Treatment Effect (ATE) of the 1998 Prospera cash-transfer program on the value of animals owned by a household.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-3-6-post/index.html" class="no-external">
+<p>For this analysis, I estimate the Average Treatment Effect (ATE) of the 1998 Prospera cash-transfer program on the value of animals owned by a household.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-3-6-post/index.html" class="no-external">
@@ -466,33 +438,28 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Statistical Modeling,Econometric Analysis,R" data-listing-date-sort="1712635200000" data-listing-file-modified-sort="1759777540979" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1831">
-<div class="thumbnail">
-<p><a href="./blog/2024-3-11-post/index.html" class="no-external"></a></p><a href="./blog/2024-3-11-post/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="7" data-categories="U3RhdGlzdGljYWwlMjBNb2RlbGluZyUyQ0Vjb25vbWV0cmljJTIwQW5hbHlzaXMlMkNS" data-listing-date-sort="1712617200000" data-listing-file-modified-sort="1759777540979" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1831">
+<div class="thumbnail"><a href="./blog/2024-3-11-post/index.html" class="no-external">
+
 <p class="card-img-top"><img src="blog/2024-3-11-post/index_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./blog/2024-3-11-post/index.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-3-11-post/index.html" class="no-external">Using Propensity Score Methods to analyze the impact of Catch Shares</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-3-11-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Statistical Modeling'); return false;">
-Statistical Modeling
+
+<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljYWwlMjBNb2RlbGluZw=='); return false;">Statistical Modeling</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RWNvbm9tZXRyaWMlMjBBbmFseXNpcw=='); return false;">Econometric Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Econometric Analysis'); return false;">
-Econometric Analysis
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-3-11-post/index.html" class="no-external">Disclaimer: The data used in this blog was synthetically generated (i.e., data is fake so results have no real implications).</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-3-11-post/index.html" class="no-external">
+<p>Disclaimer: The data used in this blog was synthetically generated (i.e., data is fake so results have no real implications).</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-3-11-post/index.html" class="no-external">
@@ -505,33 +472,28 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Machine Learning,Ensemble Learning,Python" data-listing-date-sort="1712116800000" data-listing-file-modified-sort="1759777540986" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="765">
-<div class="thumbnail">
-<p><a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external"></a></p><a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-4-3-post/screenshot-4.png" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="8" data-categories="TWFjaGluZSUyMExlYXJuaW5nJTJDRW5zZW1ibGUlMjBMZWFybmluZyUyQ1B5dGhvbg==" data-listing-date-sort="1712098800000" data-listing-file-modified-sort="1759777540986" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="765">
+<div class="thumbnail"><a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-4-3-post/screenshot-4.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external">Regression Models to predict Dissolved Inorganic Carbon in California Coastal Ecosystems</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RW5zZW1ibGUlMjBMZWFybmluZw=='); return false;">Ensemble Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Ensemble Learning'); return false;">
-Ensemble Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external">For this blog post, I build and compare four regression models that predict DIC in water samples. I also analyze feature importances in the best performing model.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external">
+<p>For this blog post, I build and compare four regression models that predict DIC in water samples. I also analyze feature importances in the best performing model.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external">
@@ -544,33 +506,28 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="Machine Learning,Cluster Analysis,R" data-listing-date-sort="1711944000000" data-listing-file-modified-sort="1759777540985" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="665">
-<div class="thumbnail">
-<p><a href="./blog/2024-4-1-post/index.html" class="no-external"></a></p><a href="./blog/2024-4-1-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-4-1-post/download.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-4-1-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="9" data-categories="TWFjaGluZSUyMExlYXJuaW5nJTJDQ2x1c3RlciUyMEFuYWx5c2lzJTJDUg==" data-listing-date-sort="1711926000000" data-listing-file-modified-sort="1759777540985" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="665">
+<div class="thumbnail"><a href="./blog/2024-4-1-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-4-1-post/download.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-4-1-post/index.html" class="no-external">Cluster Analysis of Bio-Contaminating Algae in the Port Jackson Bay</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-4-1-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2x1c3RlciUyMEFuYWx5c2lz'); return false;">Cluster Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Cluster Analysis'); return false;">
-Cluster Analysis
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-4-1-post/index.html" class="no-external">For clustering, I use data from Roberts et al.&nbsp;2008 on biological contaminants in Port Jackson Bay.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-4-1-post/index.html" class="no-external">
+<p>For clustering, I use data from Roberts et al.&nbsp;2008 on biological contaminants in Port Jackson Bay.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-4-1-post/index.html" class="no-external">
@@ -583,33 +540,28 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="Machine Learning,Ensemble Learning,R" data-listing-date-sort="1711684800000" data-listing-file-modified-sort="1759777540984" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4777">
-<div class="thumbnail">
-<p><a href="./blog/2024-3-29-post/index.html" class="no-external"></a></p><a href="./blog/2024-3-29-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-3-29-post/plot.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-3-29-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="10" data-categories="TWFjaGluZSUyMExlYXJuaW5nJTJDRW5zZW1ibGUlMjBMZWFybmluZyUyQ1I=" data-listing-date-sort="1711670400000" data-listing-file-modified-sort="1759777540984" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4777">
+<div class="thumbnail"><a href="./blog/2024-3-29-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-3-29-post/plot.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-3-29-post/index.html" class="no-external">Classification Models using data from Spotify Web API</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-3-29-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RW5zZW1ibGUlMjBMZWFybmluZw=='); return false;">Ensemble Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Ensemble Learning'); return false;">
-Ensemble Learning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-3-29-post/index.html" class="no-external">In this blog post, I build and compare four classification models that predict whether a given song was in my Spotify collection or that of my friend Maxwell. I also analyze feature importances in the best performing model.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-3-29-post/index.html" class="no-external">
+<p>In this blog post, I build and compare four classification models that predict whether a given song was in my Spotify collection or that of my friend Maxwell. I also analyze feature importances in the best performing model.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-3-29-post/index.html" class="no-external">
@@ -622,30 +574,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="Data Visualization,R" data-listing-date-sort="1710216000000" data-listing-file-modified-sort="1759777540979" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="41" data-listing-word-count-sort="8002">
-<div class="thumbnail">
-<p><a href="./blog/2024-3-12-post/index.html" class="no-external"></a></p><a href="./blog/2024-3-12-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-3-12-post/infographic.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-3-12-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="11" data-categories="RGF0YSUyMFZpc3VhbGl6YXRpb24lMkNS" data-listing-date-sort="1710201600000" data-listing-file-modified-sort="1759777540979" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="41" data-listing-word-count-sort="8002">
+<div class="thumbnail"><a href="./blog/2024-3-12-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-3-12-post/infographic.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-3-12-post/index.html" class="no-external">Infographic on Anthropogenic Methane Emissions</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-3-12-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Data Visualization'); return false;">
-Data Visualization
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">Data Visualization</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-3-12-post/index.html" class="no-external">This blog post explains the process of creating an infographic on anthropogenic methane emissions in 2021, with a particular focus on the data visualization considerations and choices made.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-3-12-post/index.html" class="no-external">
+<p>This blog post explains the process of creating an infographic on anthropogenic methane emissions in 2021, with a particular focus on the data visualization considerations and choices made.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-3-12-post/index.html" class="no-external">
@@ -658,30 +606,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="Statistical Modeling,Python" data-listing-date-sort="1705726800000" data-listing-file-modified-sort="1759777541006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1925">
-<div class="thumbnail">
-<p><a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external"></a></p><a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external">
+<div class="quarto-post image-right" data-index="12" data-categories="U3RhdGlzdGljYWwlMjBNb2RlbGluZyUyQ1B5dGhvbg==" data-listing-date-sort="1705708800000" data-listing-file-modified-sort="1761521884668" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1760">
+<div class="thumbnail"><a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external">
+
 <p class="card-img-top"><img src="blog/2024-8-20-post/chesapeake-bay-python_files/figure-html/cell-5-output-2.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external">Time Series Analysis of Nutrient Concentration in Chesapeake Bay</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Statistical Modeling'); return false;">
-Statistical Modeling
+
+<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljYWwlMjBNb2RlbGluZw=='); return false;">Statistical Modeling</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external">My favorite data science project from graduate school!</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external">
+<p>My favorite data science project from graduate school!</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external">
@@ -694,30 +638,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="Geospatial Analysis,R" data-listing-date-sort="1705726800000" data-listing-file-modified-sort="1759777540979" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2180">
-<div class="thumbnail">
-<p><a href="./blog/2024-1-20-post/index.html" class="no-external"></a></p><a href="./blog/2024-1-20-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2024-1-20-post/income.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2024-1-20-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="13" data-categories="R2Vvc3BhdGlhbCUyMEFuYWx5c2lzJTJDUg==" data-listing-date-sort="1705708800000" data-listing-file-modified-sort="1759777540979" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2180">
+<div class="thumbnail"><a href="./blog/2024-1-20-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2024-1-20-post/income.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-1-20-post/index.html" class="no-external">Spatial Analysis of 2021 Houston Power Crisis</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-1-20-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Geospatial Analysis'); return false;">
-Geospatial Analysis
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-1-20-post/index.html" class="no-external">Using data from the NASA’s VIIRS instrument, I look at where residential blackouts occurred. Then, I visualize this data at the census tract level and analyze the relationship to median income.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-1-20-post/index.html" class="no-external">
+<p>Using data from the NASA’s VIIRS instrument, I look at where residential blackouts occurred. Then, I visualize this data at the census tract level and analyze the relationship to median income.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-1-20-post/index.html" class="no-external">
@@ -730,30 +670,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="Geospatial Analysis,R" data-listing-date-sort="1704862800000" data-listing-file-modified-sort="1759777540978" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="775">
-<div class="thumbnail">
-<p><a href="./blog/2024-1-10-post/index.html" class="no-external"></a></p><a href="./blog/2024-1-10-post/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="14" data-categories="R2Vvc3BhdGlhbCUyMEFuYWx5c2lzJTJDUg==" data-listing-date-sort="1704844800000" data-listing-file-modified-sort="1759777540978" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="775">
+<div class="thumbnail"><a href="./blog/2024-1-10-post/index.html" class="no-external">
+
 <p class="card-img-top"><img src="blog/2024-1-10-post/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./blog/2024-1-10-post/index.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-1-10-post/index.html" class="no-external">Spatial Analysis of PM 2.5 and Race Demographics in Maryland</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2024-1-10-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Geospatial Analysis'); return false;">
-Geospatial Analysis
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2024-1-10-post/index.html" class="no-external">Using data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen), I create basic visualizations looking at the relationship between PM 2.5 concentrations and demographics.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2024-1-10-post/index.html" class="no-external">
+<p>Using data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen), I create basic visualizations looking at the relationship between PM 2.5 concentrations and demographics.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2024-1-10-post/index.html" class="no-external">
@@ -766,30 +702,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="Statistical Modeling,R" data-listing-date-sort="1702357200000" data-listing-file-modified-sort="1759777540970" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3496">
-<div class="thumbnail">
-<p><a href="./blog/2023-12-12-post/index.html" class="no-external"></a></p><a href="./blog/2023-12-12-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2023-12-12-post/screenshot-4.png" class="thumbnail-image"></p>
-</a><p><a href="./blog/2023-12-12-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="15" data-categories="U3RhdGlzdGljYWwlMjBNb2RlbGluZyUyQ1I=" data-listing-date-sort="1702339200000" data-listing-file-modified-sort="1759777540970" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3496">
+<div class="thumbnail"><a href="./blog/2023-12-12-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2023-12-12-post/screenshot-4.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2023-12-12-post/index.html" class="no-external">Time Series Analysis of Nutrient Concentration in Chesapeake Bay</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2023-12-12-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Statistical Modeling'); return false;">
-Statistical Modeling
+
+<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljYWwlMjBNb2RlbGluZw=='); return false;">Statistical Modeling</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2023-12-12-post/index.html" class="no-external">This analysis seeks to better understand the seasonality and trends of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions since the 2010 introduction of federal water quality requirements under the Clean Water Act.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2023-12-12-post/index.html" class="no-external">
+<p>This analysis seeks to better understand the seasonality and trends of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions since the 2010 introduction of federal water quality requirements under the Clean Water Act.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2023-12-12-post/index.html" class="no-external">
@@ -802,30 +734,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="16" data-categories="Geospatial Analysis,Python" data-listing-date-sort="1702270800000" data-listing-file-modified-sort="1759777540972" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="332">
-<div class="thumbnail">
-<p><a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external"></a></p><a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external">
-<p><img loading="lazy" src="./blog/2023-12-13-post/phoenix_biodiversity.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="16" data-categories="R2Vvc3BhdGlhbCUyMEFuYWx5c2lzJTJDUHl0aG9u" data-listing-date-sort="1702252800000" data-listing-file-modified-sort="1759777540972" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="332">
+<div class="thumbnail"><a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external">
+
+<img loading="lazy" src="./blog/2023-12-13-post/phoenix_biodiversity.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external">Spatial Analysis of Biodiversity Changes in Phoenix, AZ</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Geospatial Analysis'); return false;">
-Geospatial Analysis
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external">In this analysis, I retrieve raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer (MPC) catalog. This allows me to calculate areas of interest based on changes in biodiversity and show my results on a map.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external">
+<p>In this analysis, I retrieve raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer (MPC) catalog. This allows me to calculate areas of interest based on changes in biodiversity and show my results on a map.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external">
@@ -838,30 +766,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="17" data-categories="Geospatial Analysis,Python" data-listing-date-sort="1702270800000" data-listing-file-modified-sort="1759777540970" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1047">
-<div class="thumbnail">
-<p><a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external"></a></p><a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external">
-<p><img loading="lazy" src="./blog/2023-12-11-post/mount_whitney.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="17" data-categories="R2Vvc3BhdGlhbCUyMEFuYWx5c2lzJTJDUHl0aG9u" data-listing-date-sort="1702252800000" data-listing-file-modified-sort="1759777540970" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1047">
+<div class="thumbnail"><a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external">
+
+<img loading="lazy" src="./blog/2023-12-11-post/mount_whitney.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external">Land Cover Analysis around Mount Whitney</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Geospatial Analysis'); return false;">
-Geospatial Analysis
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external">This analysis uses Python to extract land cover statistics from a USGS raster dataset on land cover classification in the area surrounding Mount Whitney in California.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external">
+<p>This analysis uses Python to extract land cover statistics from a USGS raster dataset on land cover classification in the area surrounding Mount Whitney in California.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external">
@@ -874,30 +798,26 @@ Linus Ghanadan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="18" data-categories="Geospatial Analysis,R" data-listing-date-sort="1685592000000" data-listing-file-modified-sort="1759777540978" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="26">
-<div class="thumbnail">
-<p><a href="./blog/2023-6-1-post/index.html" class="no-external"></a></p><a href="./blog/2023-6-1-post/index.html" class="no-external">
-<p><img loading="lazy" src="./blog/2023-6-1-post/maps.jpeg" class="thumbnail-image"></p>
-</a><p><a href="./blog/2023-6-1-post/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="18" data-categories="R2Vvc3BhdGlhbCUyMEFuYWx5c2lzJTJDUg==" data-listing-date-sort="1685574000000" data-listing-file-modified-sort="1759777540978" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="26">
+<div class="thumbnail"><a href="./blog/2023-6-1-post/index.html" class="no-external">
+
+<img loading="lazy" src="./blog/2023-6-1-post/maps.jpeg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./blog/2023-6-1-post/index.html" class="no-external">Spatial Analysis of Allometric Equations used for estimating Carbon Sequestration from Agroforestry Systems</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./blog/2023-6-1-post/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Geospatial Analysis'); return false;">
-Geospatial Analysis
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/2023-6-1-post/index.html" class="no-external">As an undergraduate capstone project, I worked with six other students and The Nature Conservancy to analyze the spatial distribution of scientific studies that used allometric equations for estimating carbon sequestration from agroforestry systems.</a>
-</div>
+<div class="delink listing-description"><a href="./blog/2023-6-1-post/index.html" class="no-external">
+<p>As an undergraduate capstone project, I worked with six other students and The Nature Conservancy to analyze the spatial distribution of scientific studies that used allometric equations for estimating carbon sequestration from agroforestry systems.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./blog/2023-6-1-post/index.html" class="no-external">
@@ -911,244 +831,246 @@ Linus Ghanadan, Virginia Borda, Sophie Jabés, Eric Marquez, Michael Deffinbaugh
 </div>
 </div>
 </div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
+<div class="listing-no-matching d-none">No matching items</div>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1156,185 +1078,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 
