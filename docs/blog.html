@@ -80,9 +80,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -133,7 +133,7 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -172,8 +172,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(19)</span></div><div class="category" data-category="QW5hbHl0aWNhbCUyMFdvcmtmbG93cw==">Analytical Workflows <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2x1c3RlciUyMEFuYWx5c2lz">Cluster Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMFZpc3VhbGl6YXRpb24=">Data Visualization <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RGVlcCUyMExlYXJuaW5n">Deep Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RHluYW1pYyUyMFNpbXVsYXRpb24=">Dynamic Simulation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWNvbm9tZXRyaWMlMjBBbmFseXNpcw==">Econometric Analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RW5zZW1ibGUlMjBMZWFybmluZw==">Ensemble Learning <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R2Vvc3BhdGlhbCUyMEFuYWx5c2lz">Geospatial Analysis <span class="quarto-category-count">(5)</span></div><div class="category" data-category="SW50ZXJhY3RpdmUlMjBBcHBsaWNhdGlvbnM=">Interactive Applications <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(4)</span></div><div class="category" data-category="TWljcm9zb2Z0JTIwRXhjZWw=">Microsoft Excel <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(13)</span></div><div class="category" data-category="U2Vuc2l0aXZpdHklMjBBbmFseXNpcw==">Sensitivity Analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U3RhdGlzdGljYWwlMjBNb2RlbGluZw==">Statistical Modeling <span class="quarto-category-count">(4)</span></div></div></div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -212,13 +211,6 @@ window.Quarto = {
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-7-24-post/index.html" class="no-external">Visualization Portfolio (R)</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">Data Visualization</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-7-24-post/index.html" class="no-external">
 <p>A collection of data visualizations that I have created using the R programming language.</p>
 </a></div>
@@ -244,13 +236,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-7-23-post/index.html" class="no-external">Visualization Portfolio (Python)</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">Data Visualization</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-7-23-post/index.html" class="no-external">
 <p>A collection of data visualizations that I have created using the Python programming language.</p>
 </a></div>
@@ -276,15 +261,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external">Regression Models to predict Phosphorus Concentration based on Time and Location</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGVlcCUyMExlYXJuaW5n'); return false;">Deep Learning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-7-16-post/ml_chesapeakebay.html" class="no-external">
 <p>In this blog post, I build two models to explore potential advantages of adding an additional hidden layer to a traditional Recurrent Neural Network (RNN) architecture.</p>
 </a></div>
@@ -310,19 +286,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-6-20-post/index.html" class="no-external">Improving GHG Data Analysis Workflow for an Outdoor Apparel Company</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHl0aWNhbCUyMFdvcmtmbG93cw=='); return false;">Analytical Workflows</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJhY3RpdmUlMjBBcHBsaWNhdGlvbnM='); return false;">Interactive Applications</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">Data Visualization</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWljcm9zb2Z0JTIwRXhjZWw='); return false;">Microsoft Excel</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-6-20-post/index.html" class="no-external">
 <p>This blog post provides an overview of my master’s capstone project, including screenshots from deliverables that are shareable under my group’s non-disclosure agreement.</p>
 </a></div>
@@ -348,15 +311,6 @@ Linus Ghanadan, Flora Hamilton, Carly Caswell, Annie Adams
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-6-10-post/index.html" class="no-external">Dynamic Simulation of Forest Growth</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RHluYW1pYyUyMFNpbXVsYXRpb24='); return false;">Dynamic Simulation</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2Vuc2l0aXZpdHklMjBBbmFseXNpcw=='); return false;">Sensitivity Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-6-10-post/index.html" class="no-external">
 <p>Using a model of forest growth, I run a 300-year continuous dynamic simulation for the forest and then conduct a global sensitivity analysis looking at variation in maximum forest size.</p>
 </a></div>
@@ -382,13 +336,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-6-7-post/index.html" class="no-external">Global Sensitivity Analysis for an Atmospheric Conductance Model</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2Vuc2l0aXZpdHklMjBBbmFseXNpcw=='); return false;">Sensitivity Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-6-7-post/index.html" class="no-external">
 <p>In this analysis, I look at an atmospheric conductance model based on vegetation height and windspeed, and I apply a variance-based sensitivity analysis by calculating Sobol indices.</p>
 </a></div>
@@ -414,15 +361,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-3-6-post/index.html" class="no-external">Impact Analysis of a 1998 Cash-Transfer Program in Rural Mexico</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljYWwlMjBNb2RlbGluZw=='); return false;">Statistical Modeling</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RWNvbm9tZXRyaWMlMjBBbmFseXNpcw=='); return false;">Econometric Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-3-6-post/index.html" class="no-external">
 <p>For this analysis, I estimate the Average Treatment Effect (ATE) of the 1998 Prospera cash-transfer program on the value of animals owned by a household.</p>
 </a></div>
@@ -448,15 +386,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-3-11-post/index.html" class="no-external">Using Propensity Score Methods to analyze the impact of Catch Shares</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljYWwlMjBNb2RlbGluZw=='); return false;">Statistical Modeling</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RWNvbm9tZXRyaWMlMjBBbmFseXNpcw=='); return false;">Econometric Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-3-11-post/index.html" class="no-external">
 <p>Disclaimer: The data used in this blog was synthetically generated (i.e., data is fake so results have no real implications).</p>
 </a></div>
@@ -482,15 +411,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external">Regression Models to predict Dissolved Inorganic Carbon in California Coastal Ecosystems</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RW5zZW1ibGUlMjBMZWFybmluZw=='); return false;">Ensemble Learning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-4-3-post/dic-ml-models.html" class="no-external">
 <p>For this blog post, I build and compare four regression models that predict DIC in water samples. I also analyze feature importances in the best performing model.</p>
 </a></div>
@@ -516,15 +436,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-4-1-post/index.html" class="no-external">Cluster Analysis of Bio-Contaminating Algae in the Port Jackson Bay</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q2x1c3RlciUyMEFuYWx5c2lz'); return false;">Cluster Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-4-1-post/index.html" class="no-external">
 <p>For clustering, I use data from Roberts et al.&nbsp;2008 on biological contaminants in Port Jackson Bay.</p>
 </a></div>
@@ -550,15 +461,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-3-29-post/index.html" class="no-external">Classification Models using data from Spotify Web API</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RW5zZW1ibGUlMjBMZWFybmluZw=='); return false;">Ensemble Learning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-3-29-post/index.html" class="no-external">
 <p>In this blog post, I build and compare four classification models that predict whether a given song was in my Spotify collection or that of my friend Maxwell. I also analyze feature importances in the best performing model.</p>
 </a></div>
@@ -584,13 +486,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-3-12-post/index.html" class="no-external">Infographic on Anthropogenic Methane Emissions</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFZpc3VhbGl6YXRpb24='); return false;">Data Visualization</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-3-12-post/index.html" class="no-external">
 <p>This blog post explains the process of creating an infographic on anthropogenic methane emissions in 2021, with a particular focus on the data visualization considerations and choices made.</p>
 </a></div>
@@ -616,13 +511,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external">Time Series Analysis of Nutrient Concentration in Chesapeake Bay</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljYWwlMjBNb2RlbGluZw=='); return false;">Statistical Modeling</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-8-20-post/chesapeake-bay-python.html" class="no-external">
 <p>My favorite data science project from graduate school!</p>
 </a></div>
@@ -648,13 +536,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-1-20-post/index.html" class="no-external">Spatial Analysis of 2021 Houston Power Crisis</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-1-20-post/index.html" class="no-external">
 <p>Using data from the NASA’s VIIRS instrument, I look at where residential blackouts occurred. Then, I visualize this data at the census tract level and analyze the relationship to median income.</p>
 </a></div>
@@ -680,13 +561,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2024-1-10-post/index.html" class="no-external">Spatial Analysis of PM 2.5 and Race Demographics in Maryland</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2024-1-10-post/index.html" class="no-external">
 <p>Using data from the EPA’s Environmental Justice Screening and Mapping Tool (EJScreen), I create basic visualizations looking at the relationship between PM 2.5 concentrations and demographics.</p>
 </a></div>
@@ -712,13 +586,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2023-12-12-post/index.html" class="no-external">Time Series Analysis of Nutrient Concentration in Chesapeake Bay</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljYWwlMjBNb2RlbGluZw=='); return false;">Statistical Modeling</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2023-12-12-post/index.html" class="no-external">
 <p>This analysis seeks to better understand the seasonality and trends of nitrogen and phosphorus concentration in Chesapeake Bay tidal regions since the 2010 introduction of federal water quality requirements under the Clean Water Act.</p>
 </a></div>
@@ -744,13 +611,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external">Spatial Analysis of Biodiversity Changes in Phoenix, AZ</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2023-12-13-post/phoenix_biodiversity.html" class="no-external">
 <p>In this analysis, I retrieve raster data of Biodiversity Intactness Index (BII) from the Microsoft Planetary Computer (MPC) catalog. This allows me to calculate areas of interest based on changes in biodiversity and show my results on a map.</p>
 </a></div>
@@ -776,13 +636,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external">Land Cover Analysis around Mount Whitney</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2023-12-11-post/mt-whitney-land-cover.html" class="no-external">
 <p>This analysis uses Python to extract land cover statistics from a USGS raster dataset on land cover classification in the area surrounding Mount Whitney in California.</p>
 </a></div>
@@ -808,13 +661,6 @@ Linus Ghanadan
 <h3 class="no-anchor listing-title">
 <a href="./blog/2023-6-1-post/index.html" class="no-external">Spatial Analysis of Allometric Equations used for estimating Carbon Sequestration from Agroforestry Systems</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">Geospatial Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-</div>
 <div class="delink listing-description"><a href="./blog/2023-6-1-post/index.html" class="no-external">
 <p>As an undergraduate capstone project, I worked with six other students and The Nature Conservancy to analyze the spatial distribution of scientific studies that used allometric equations for estimating carbon sequestration from agroforestry systems.</p>
 </a></div>
