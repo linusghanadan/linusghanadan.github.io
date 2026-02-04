@@ -10,9 +10,9 @@ website:
       - href: index.qmd
         text: Home
       - href: blog.qmd
-        text: Data Science
+        text: Graduate Projects
       - href: writing.qmd
-        text: Essays
+        text: Undergraduate Projects
         
 format:
   html:

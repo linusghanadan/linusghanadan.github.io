@@ -1,5 +1,5 @@
 ---
-title: "Data Science"
+title: "Graduate Projects"
 listing: 
   contents: blog
   type: default

@@ -1,5 +1,5 @@
 ---
-title: "Essays"
+title: "Undergraduate Projects"
 listing: 
   contents: writing
   type: default
