@@ -1,18 +1,5 @@
 [
   {
-    "listing": "/writing.html",
-    "items": [
-      "/writing/allometric-equations/index.html",
-      "/writing/urban-dev/urban-dev.html",
-      "/writing/evs/ev.html",
-      "/writing/lawn-ethics/lawn-ethics.html",
-      "/writing/env-health/env-health.html",
-      "/writing/offshore-wind/offshore-wind.html",
-      "/writing/carbon-pricing/carbon-pricing.html",
-      "/writing/bag-leakage/bag-leakage.html"
-    ]
-  },
-  {
     "listing": "/blog.html",
     "items": [
       "/blog/2024-7-24-post/index.html",
@@ -33,6 +20,19 @@
       "/blog/2023-12-12-post/index.html",
       "/blog/2023-12-13-post/phoenix_biodiversity.html",
       "/blog/2023-12-11-post/mt-whitney-land-cover.html"
+    ]
+  },
+  {
+    "listing": "/writing.html",
+    "items": [
+      "/writing/allometric-equations/index.html",
+      "/writing/urban-dev/urban-dev.html",
+      "/writing/evs/ev.html",
+      "/writing/lawn-ethics/lawn-ethics.html",
+      "/writing/env-health/env-health.html",
+      "/writing/offshore-wind/offshore-wind.html",
+      "/writing/carbon-pricing/carbon-pricing.html",
+      "/writing/bag-leakage/bag-leakage.html"
     ]
   }
 ]
